@@ -410,36 +410,36 @@ def guess_pixel_model(carrier, combos):
     c_lower = carrier.lower()
     if 'o2_uk' in c_lower:
         if combos >= 460:
-            return "Pixel 10 Pro / Pro XL / Pro Fold", "Flagship Pro (Supports dual low-band B20+B28 CA & 4x4 MIMO)"
+            return "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold", "Flagship Pro (Supports dual low-band B20+B28 CA & 4x4 MIMO)"
         elif combos >= 430:
-            return "Pixel 10 (Standard)", "Standard Flagship (Blocks dual low-band B20+B28 CA, keeps 4x4 MIMO)"
+            return "Pixel 9 / Pixel 10 (Standard)", "Standard Flagship (Blocks dual low-band B20+B28 CA, keeps 4x4 MIMO)"
         elif combos >= 200:
             return "Pixel 10a (UK/EU SKU)", "Mid-range A-series (Restricted to 2x2 MIMO, supports Band 40)"
         else:
             return "Pixel 10a (Basic / NA SKU)", "Basic A-series fallback (Restricted to 2x2 MIMO, lacks Band 40)"
     elif 'ee' in c_lower:
         if combos >= 480:
-            return "Pixel 10 Pro / Pro XL / Pro Fold", "Flagship Pro (Supports dual low-band CA & 4x4 MIMO)"
+            return "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold", "Flagship Pro (Supports dual low-band CA & 4x4 MIMO)"
         elif combos >= 470:
-            return "Pixel 10 (Standard)", "Standard Flagship (Blocks dual low-band CA, keeps 4x4 MIMO)"
+            return "Pixel 9 / Pixel 10 (Standard)", "Standard Flagship (Blocks dual low-band CA, keeps 4x4 MIMO)"
         elif combos >= 250:
             return "Pixel 10a (UK/EU SKU)", "Mid-range A-series (Restricted to 2x2 MIMO)"
         else:
             return "Pixel 10a (Basic / NA SKU)", "Basic A-series fallback (Restricted to 2x2 MIMO)"
     elif 'vf_uk' in c_lower:
         if combos >= 760:
-            return "Pixel 10 Pro / Pro XL / Pro Fold", "Flagship Pro (Supports dual low-band CA & 4x4 MIMO)"
+            return "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold", "Flagship Pro (Supports dual low-band CA & 4x4 MIMO)"
         elif combos >= 530:
-            return "Pixel 10 (Standard)", "Standard Flagship (Blocks dual low-band CA, keeps 4x4 MIMO)"
+            return "Pixel 9 / Pixel 10 (Standard)", "Standard Flagship (Blocks dual low-band CA, keeps 4x4 MIMO)"
         elif combos >= 330:
             return "Pixel 10a (UK/EU SKU)", "Mid-range A-series (Restricted to 2x2 MIMO)"
         else:
             return "Pixel 10a (Basic / NA SKU)", "Basic A-series fallback (Restricted to 2x2 MIMO)"
     elif '3_uk' in c_lower:
         if combos >= 170:
-            return "Pixel 10 Pro / Pro XL / Pro Fold", "Flagship Pro (Supports dual low-band CA & 4x4 MIMO)"
+            return "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold", "Flagship Pro (Supports dual low-band CA & 4x4 MIMO)"
         elif combos >= 150:
-            return "Pixel 10 (Standard)", "Standard Flagship (Blocks dual low-band CA, keeps 4x4 MIMO)"
+            return "Pixel 9 / Pixel 10 (Standard)", "Standard Flagship (Blocks dual low-band CA, keeps 4x4 MIMO)"
         elif combos >= 120:
             return "Pixel 10a (UK/EU SKU)", "Mid-range A-series (Restricted to 2x2 MIMO)"
         else:
