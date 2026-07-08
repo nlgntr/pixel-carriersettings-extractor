@@ -185,11 +185,13 @@ def compile_database():
                     
                     # Merge missing config values from parent MNO config if available
                     merged_configs = configs.copy()
+                    parent_uecaps = []
                     if parent_filename and parent_filename in device_raw and parent_filename != filename:
                         parent_configs = device_raw[parent_filename].get('settings', {}).get('config', {})
                         for key, val in parent_configs.items():
                             if key not in merged_configs:
                                 merged_configs[key] = val
+                        parent_uecaps = match_uecaps_to_carrier(parent_filename, uecap_summaries)
                     
                     # Determine dynamic feature indicators from merged configs
                     has_vonr = merged_configs.get('vonr_enabled', False)
@@ -223,7 +225,7 @@ def compile_database():
                             'vonr': has_vonr,
                             'satellite': has_satellite
                         },
-                        'uecaps': matched_caps
+                        'uecaps': matched_caps if matched_caps else parent_uecaps
                     }
                     
                 except Exception as ex:
@@ -745,6 +747,27 @@ tr:last-child td {
     color: var(--accent);
     text-decoration: none;
 }
+
+.section-header-row td {
+    background-color: rgba(255, 255, 255, 0.02);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.mno-fallback-badge {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
 """
     with open(os.path.join('docs', 'index.css'), 'w', encoding='utf-8') as f:
         f.write(index_css)
@@ -811,7 +834,20 @@ tr:last-child td {
         if (!deviceData || !deviceData.carriers) return;
         
         const carriers = Object.keys(deviceData.carriers).sort();
+        const mnos = [];
+        const mvnos = [];
+        
+        const mnoKeywords = ['ee_gb', 'o2postpaid_gb', 'o2prepaid_gb', 'vodafone_gb', 'h3_gb'];
         carriers.forEach(cFile => {
+            const baseName = cFile.toLowerCase().replace('.toml', '');
+            if (mnoKeywords.includes(baseName)) {
+                mnos.push(cFile);
+            } else {
+                mvnos.push(cFile);
+            }
+        });
+        
+        function createRow(cFile) {
             const carrier = deviceData.carriers[cFile];
             const row = document.createElement('tr');
             row.className = 'matrix-row';
@@ -835,7 +871,18 @@ tr:last-child td {
                 : '<span class="status-badge unsupported"><i data-lucide="x"></i></span>';
                 
             const apnsText = carrier.apns.length > 0 ? `${carrier.apns.length} APNs` : '-';
-            const ueText = carrier.uecaps.length > 0 ? `${carrier.uecaps[0].combos_count} Combos` : '-';
+            
+            let ueText = '-';
+            if (carrier.uecaps && carrier.uecaps.length > 0) {
+                const parentName = carrier.uecaps[0].carrier;
+                const combos = carrier.uecaps[0].combos_count;
+                const isMno = mnoKeywords.includes(cFile.toLowerCase().replace('.toml', ''));
+                if (isMno) {
+                    ueText = `${combos} Combos`;
+                } else {
+                    ueText = `<span class="mno-fallback-badge">${parentName} (${combos})</span>`;
+                }
+            }
             
             row.innerHTML = `
                 <td><strong>${carrier.carrier_name}</strong></td>
@@ -848,15 +895,36 @@ tr:last-child td {
             `;
             
             row.addEventListener('click', () => {
-                // Remove active class from siblings
                 document.querySelectorAll('.matrix-row').forEach(r => r.classList.remove('active'));
                 row.classList.add('active');
                 activeCarrierFile = cFile;
                 showDetails(carrier);
             });
             
-            matrixBody.appendChild(row);
-        });
+            return row;
+        }
+        
+        // Render MNO Header and rows
+        if (mnos.length > 0) {
+            const mnoHeader = document.createElement('tr');
+            mnoHeader.className = 'section-header-row';
+            mnoHeader.innerHTML = '<td colspan="7">Mobile Network Operators (MNOs)</td>';
+            matrixBody.appendChild(mnoHeader);
+            mnos.forEach(cFile => {
+                matrixBody.appendChild(createRow(cFile));
+            });
+        }
+        
+        // Render MVNO Header and rows
+        if (mvnos.length > 0) {
+            const mvnoHeader = document.createElement('tr');
+            mvnoHeader.className = 'section-header-row';
+            mvnoHeader.innerHTML = '<td colspan="7">Virtual Operators (MVNOs)</td>';
+            matrixBody.appendChild(mvnoHeader);
+            mvnos.forEach(cFile => {
+                matrixBody.appendChild(createRow(cFile));
+            });
+        }
         
         lucide.createIcons();
     }

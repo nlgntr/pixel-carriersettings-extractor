@@ -59,7 +59,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!deviceData || !deviceData.carriers) return;
         
         const carriers = Object.keys(deviceData.carriers).sort();
+        const mnos = [];
+        const mvnos = [];
+        
+        const mnoKeywords = ['ee_gb', 'o2postpaid_gb', 'o2prepaid_gb', 'vodafone_gb', 'h3_gb'];
         carriers.forEach(cFile => {
+            const baseName = cFile.toLowerCase().replace('.toml', '');
+            if (mnoKeywords.includes(baseName)) {
+                mnos.push(cFile);
+            } else {
+                mvnos.push(cFile);
+            }
+        });
+        
+        function createRow(cFile) {
             const carrier = deviceData.carriers[cFile];
             const row = document.createElement('tr');
             row.className = 'matrix-row';
@@ -83,7 +96,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 : '<span class="status-badge unsupported"><i data-lucide="x"></i></span>';
                 
             const apnsText = carrier.apns.length > 0 ? `${carrier.apns.length} APNs` : '-';
-            const ueText = carrier.uecaps.length > 0 ? `${carrier.uecaps[0].combos_count} Combos` : '-';
+            
+            let ueText = '-';
+            if (carrier.uecaps && carrier.uecaps.length > 0) {
+                const parentName = carrier.uecaps[0].carrier;
+                const combos = carrier.uecaps[0].combos_count;
+                const isMno = mnoKeywords.includes(cFile.toLowerCase().replace('.toml', ''));
+                if (isMno) {
+                    ueText = `${combos} Combos`;
+                } else {
+                    ueText = `<span class="mno-fallback-badge">${parentName} (${combos})</span>`;
+                }
+            }
             
             row.innerHTML = `
                 <td><strong>${carrier.carrier_name}</strong></td>
@@ -96,15 +120,36 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             
             row.addEventListener('click', () => {
-                // Remove active class from siblings
                 document.querySelectorAll('.matrix-row').forEach(r => r.classList.remove('active'));
                 row.classList.add('active');
                 activeCarrierFile = cFile;
                 showDetails(carrier);
             });
             
-            matrixBody.appendChild(row);
-        });
+            return row;
+        }
+        
+        // Render MNO Header and rows
+        if (mnos.length > 0) {
+            const mnoHeader = document.createElement('tr');
+            mnoHeader.className = 'section-header-row';
+            mnoHeader.innerHTML = '<td colspan="7">Mobile Network Operators (MNOs)</td>';
+            matrixBody.appendChild(mnoHeader);
+            mnos.forEach(cFile => {
+                matrixBody.appendChild(createRow(cFile));
+            });
+        }
+        
+        // Render MVNO Header and rows
+        if (mvnos.length > 0) {
+            const mvnoHeader = document.createElement('tr');
+            mvnoHeader.className = 'section-header-row';
+            mvnoHeader.innerHTML = '<td colspan="7">Virtual Operators (MVNOs)</td>';
+            matrixBody.appendChild(mvnoHeader);
+            mvnos.forEach(cFile => {
+                matrixBody.appendChild(createRow(cFile));
+            });
+        }
         
         lucide.createIcons();
     }

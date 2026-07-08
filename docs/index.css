@@ -387,3 +387,24 @@ tr:last-child td {
     color: var(--accent);
     text-decoration: none;
 }
+
+.section-header-row td {
+    background-color: rgba(255, 255, 255, 0.02);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.mno-fallback-badge {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
