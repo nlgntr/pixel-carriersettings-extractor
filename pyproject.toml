@@ -1,0 +1,21 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pixel-carriersettings-extractor"
+version = "1.0.0"
+description = "Extract and analyze carrier settings and UE capabilities from Pixel factory images"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "ext4",
+]
+
+[project.scripts]
+pixel-extract-all = "pixel_carriersettings_extractor.extract_all:main"
+pixel-extract-carrier-settings = "pixel_carriersettings_extractor.extract_carrier_settings:main"
+pixel-extract-cfg-db = "pixel_carriersettings_extractor.extract_cfg_db:main"
+pixel-extract-uecaps = "pixel_carriersettings_extractor.extract_uecaps:main"
+pixel-compile-web-dashboard = "pixel_carriersettings_extractor.compile_web_dashboard:main"
+pixel-diff-carrier-settings = "pixel_carriersettings_extractor.diff_carrier_settings:main"
