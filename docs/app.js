@@ -87,6 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 ? '<span class="status-badge supported"><i data-lucide="check"></i></span>'
                 : '<span class="status-badge unsupported"><i data-lucide="x"></i></span>';
                 
+            const sa5gHtml = carrier.features.sa5g 
+                ? '<span class="status-badge supported"><i data-lucide="check"></i></span>'
+                : '<span class="status-badge unsupported"><i data-lucide="x"></i></span>';
+                
             const vonrHtml = carrier.features.vonr 
                 ? '<span class="status-badge supported"><i data-lucide="check"></i></span>'
                 : '<span class="status-badge unsupported"><i data-lucide="x"></i></span>';
@@ -125,6 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td><strong>${carrier.carrier_name}</strong></td>
                 <td>${volteHtml}</td>
                 <td>${vowifiHtml}</td>
+                <td>${sa5gHtml}</td>
                 <td>${vonrHtml}</td>
                 <td>${satHtml}</td>
                 <td>${apnsText}</td>
@@ -145,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (mnos.length > 0) {
             const mnoHeader = document.createElement('tr');
             mnoHeader.className = 'section-header-row';
-            mnoHeader.innerHTML = '<td colspan="7">Mobile Network Operators (MNOs)</td>';
+            mnoHeader.innerHTML = '<td colspan="8">Mobile Network Operators (MNOs)</td>';
             matrixBody.appendChild(mnoHeader);
             mnos.forEach(cFile => {
                 matrixBody.appendChild(createRow(cFile));
@@ -156,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (mvnos.length > 0) {
             const mvnoHeader = document.createElement('tr');
             mvnoHeader.className = 'section-header-row';
-            mvnoHeader.innerHTML = '<td colspan="7">Virtual Operators (MVNOs)</td>';
+            mvnoHeader.innerHTML = '<td colspan="8">Virtual Operators (MVNOs)</td>';
             matrixBody.appendChild(mvnoHeader);
             mvnos.forEach(cFile => {
                 matrixBody.appendChild(createRow(cFile));

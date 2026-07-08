@@ -195,8 +195,24 @@ def compile_database():
                                 merged_configs[key] = val
                         parent_uecaps = match_uecaps_to_carrier(parent_filename, uecap_summaries)
                     
-                    # Determine dynamic feature indicators from merged configs
-                    has_vonr = merged_configs.get('vonr_enabled', False)
+                    # Determine 5G SA, VoNR and Satellite strictly from carrier's standalone configs (not MNO parent fallback)
+                    has_5g_sa = False
+                    for key, val in configs.items():
+                        if 'nr_availabilities' in key.lower():
+                            if isinstance(val, list) and 2 in val:
+                                has_5g_sa = True
+                            elif isinstance(val, dict) and 'value' in val and isinstance(val['value'], list) and 2 in val['value']:
+                                has_5g_sa = True
+                                
+                    has_vonr = configs.get('vonr_enabled', False)
+                    
+                    has_satellite = False
+                    for key in configs.keys():
+                        if 'satellite' in key.lower():
+                            has_satellite = True
+                            break
+                            
+                    # Determine VoLTE and VoWiFi (which MVNOs can inherit or support) from merged configs
                     has_wfc = False
                     if 'carrier_wfc_ims_available' in merged_configs:
                         has_wfc = merged_configs['carrier_wfc_ims_available']
@@ -206,13 +222,6 @@ def compile_database():
                         has_wfc = True
                         
                     has_volte = merged_configs.get('volte_feature_enabled', True) # Enabled by default on Exynos 5400
-                    
-                    # Check satellite keys
-                    has_satellite = False
-                    for key in merged_configs.keys():
-                        if 'satellite' in key.lower():
-                            has_satellite = True
-                            break
                             
                     database['builds'][build_id]['devices'][device_dir]['carriers'][filename] = {
                         'carrier_name': filename.replace('.toml', '').replace('_gb', '').upper(),
@@ -224,6 +233,7 @@ def compile_database():
                         'features': {
                             'volte': has_volte,
                             'vowifi': has_wfc,
+                            'sa5g': has_5g_sa,
                             'vonr': has_vonr,
                             'satellite': has_satellite
                         },
@@ -293,8 +303,9 @@ def write_web_dashboard(database):
                             <th>Carrier</th>
                             <th>VoLTE</th>
                             <th>VoWiFi</th>
-                            <th>VoNR (5G SA)</th>
-                            <th>Satellite SMS</th>
+                            <th>5G SA</th>
+                            <th>VoNR</th>
+                            <th>Satellite</th>
                             <th>APNs</th>
                             <th>UE Aggregation</th>
                         </tr>
@@ -1006,6 +1017,10 @@ tr:last-child td {
                 ? '<span class="status-badge supported"><i data-lucide="check"></i></span>'
                 : '<span class="status-badge unsupported"><i data-lucide="x"></i></span>';
                 
+            const sa5gHtml = carrier.features.sa5g 
+                ? '<span class="status-badge supported"><i data-lucide="check"></i></span>'
+                : '<span class="status-badge unsupported"><i data-lucide="x"></i></span>';
+                
             const vonrHtml = carrier.features.vonr 
                 ? '<span class="status-badge supported"><i data-lucide="check"></i></span>'
                 : '<span class="status-badge unsupported"><i data-lucide="x"></i></span>';
@@ -1044,6 +1059,7 @@ tr:last-child td {
                 <td><strong>${carrier.carrier_name}</strong></td>
                 <td>${volteHtml}</td>
                 <td>${vowifiHtml}</td>
+                <td>${sa5gHtml}</td>
                 <td>${vonrHtml}</td>
                 <td>${satHtml}</td>
                 <td>${apnsText}</td>
@@ -1064,7 +1080,7 @@ tr:last-child td {
         if (mnos.length > 0) {
             const mnoHeader = document.createElement('tr');
             mnoHeader.className = 'section-header-row';
-            mnoHeader.innerHTML = '<td colspan="7">Mobile Network Operators (MNOs)</td>';
+            mnoHeader.innerHTML = '<td colspan="8">Mobile Network Operators (MNOs)</td>';
             matrixBody.appendChild(mnoHeader);
             mnos.forEach(cFile => {
                 matrixBody.appendChild(createRow(cFile));
@@ -1075,7 +1091,7 @@ tr:last-child td {
         if (mvnos.length > 0) {
             const mvnoHeader = document.createElement('tr');
             mvnoHeader.className = 'section-header-row';
-            mvnoHeader.innerHTML = '<td colspan="7">Virtual Operators (MVNOs)</td>';
+            mvnoHeader.innerHTML = '<td colspan="8">Virtual Operators (MVNOs)</td>';
             matrixBody.appendChild(mvnoHeader);
             mvnos.forEach(cFile => {
                 matrixBody.appendChild(createRow(cFile));

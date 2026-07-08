@@ -384,8 +384,9 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
-                "satellite": true
+                "sa5g": false,
+                "vonr": false,
+                "satellite": false
               },
               "uecaps": [
                 {
@@ -1262,6 +1263,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": true,
                 "vonr": true,
                 "satellite": true
               },
@@ -1947,7 +1949,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": false,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -2693,8 +2696,9 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
-                "satellite": true
+                "sa5g": false,
+                "vonr": false,
+                "satellite": false
               },
               "uecaps": [
                 {
@@ -3523,7 +3527,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": false,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -4052,8 +4057,9 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
-                "satellite": true
+                "sa5g": false,
+                "vonr": false,
+                "satellite": false
               },
               "uecaps": [
                 {
@@ -4882,7 +4888,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": false,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -5623,7 +5630,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": true,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -6420,6 +6428,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -6530,6 +6539,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -6838,6 +6848,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -7088,7 +7099,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": false,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -7694,6 +7706,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": false,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -8139,6 +8152,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": true,
                 "vonr": true,
                 "satellite": false
               },
@@ -8517,6 +8531,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": false,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -8678,6 +8693,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": false,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -9068,7 +9084,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": true,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -9934,6 +9951,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -10554,7 +10572,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": false,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -11390,6 +11409,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -12110,6 +12130,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": false,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -12564,6 +12585,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": true,
                 "vonr": true,
                 "satellite": false
               },
@@ -13447,6 +13469,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -14221,6 +14244,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -15011,6 +15035,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -15487,7 +15512,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": false,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -15961,6 +15987,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": false,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -16350,8 +16377,9 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
-                "satellite": true
+                "sa5g": false,
+                "vonr": false,
+                "satellite": false
               },
               "uecaps": [
                 {
@@ -17228,6 +17256,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": true,
                 "vonr": true,
                 "satellite": true
               },
@@ -17913,7 +17942,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": false,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -18659,8 +18689,9 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
-                "satellite": true
+                "sa5g": false,
+                "vonr": false,
+                "satellite": false
               },
               "uecaps": [
                 {
@@ -19489,7 +19520,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": false,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -20018,8 +20050,9 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
-                "satellite": true
+                "sa5g": false,
+                "vonr": false,
+                "satellite": false
               },
               "uecaps": [
                 {
@@ -20848,7 +20881,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": false,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -21589,7 +21623,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": true,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -22386,6 +22421,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -22496,6 +22532,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -22804,6 +22841,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -23054,7 +23092,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": false,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -23660,6 +23699,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": false,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -24105,6 +24145,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": true,
                 "vonr": true,
                 "satellite": false
               },
@@ -24483,6 +24524,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": false,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -24644,6 +24686,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": false,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -25034,7 +25077,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": true,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -25900,6 +25944,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -26520,7 +26565,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": false,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -27356,6 +27402,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -28076,6 +28123,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": false,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -28544,6 +28592,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": true,
                 "vonr": true,
                 "satellite": false
               },
@@ -29427,6 +29476,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -30201,6 +30251,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -30991,6 +31042,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -31467,7 +31519,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": false,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -31941,6 +31994,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": false,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -32330,8 +32384,9 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
-                "satellite": true
+                "sa5g": false,
+                "vonr": false,
+                "satellite": false
               },
               "uecaps": [
                 {
@@ -33208,6 +33263,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": true,
                 "vonr": true,
                 "satellite": true
               },
@@ -33893,7 +33949,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": false,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -34639,8 +34696,9 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
-                "satellite": true
+                "sa5g": false,
+                "vonr": false,
+                "satellite": false
               },
               "uecaps": [
                 {
@@ -35469,7 +35527,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": false,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -35998,8 +36057,9 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
-                "satellite": true
+                "sa5g": false,
+                "vonr": false,
+                "satellite": false
               },
               "uecaps": [
                 {
@@ -36828,7 +36888,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": false,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -37569,7 +37630,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": true,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -38366,6 +38428,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -38476,6 +38539,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -38784,6 +38848,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -39034,7 +39099,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": false,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -39640,6 +39706,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": false,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -40085,6 +40152,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": true,
                 "vonr": true,
                 "satellite": false
               },
@@ -40463,6 +40531,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": false,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -40624,6 +40693,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": false,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -41014,7 +41084,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": true,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -41880,6 +41951,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -42500,7 +42572,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": false,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -43336,6 +43409,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -44056,6 +44130,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": false,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -44524,6 +44599,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": true,
                 "vonr": true,
                 "satellite": false
               },
@@ -45407,6 +45483,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -46181,6 +46258,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -46971,6 +47049,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
@@ -47447,7 +47526,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": true,
+                "sa5g": false,
+                "vonr": false,
                 "satellite": false
               },
               "uecaps": [
@@ -47921,6 +48001,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": false,
+                "sa5g": false,
                 "vonr": false,
                 "satellite": false
               },
