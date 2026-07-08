@@ -436,10 +436,8 @@ def guess_pixel_model(carrier, combos):
         else:
             return "Pixel 10a (Basic / NA SKU)", "Basic A-series fallback (Restricted to 2x2 MIMO)"
     elif '3_uk' in c_lower:
-        if combos >= 170:
-            return "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold", "Flagship Pro (Supports dual low-band CA & 4x4 MIMO)"
-        elif combos >= 150:
-            return "Pixel 9 / Pixel 10 (Standard)", "Standard Flagship (Blocks dual low-band CA, keeps 4x4 MIMO)"
+        if combos >= 150:
+            return "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold", "Flagship (Standard & Pro)"
         elif combos >= 120:
             return "Pixel 10a (UK/EU SKU)", "Mid-range A-series (Restricted to 2x2 MIMO)"
         else:

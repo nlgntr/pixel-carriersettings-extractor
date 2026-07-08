@@ -9962,7 +9962,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -10008,7 +10008,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -10054,7 +10054,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -10100,7 +10100,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -10146,7 +10146,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -10214,7 +10214,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -10262,7 +10262,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -10286,7 +10286,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -11418,7 +11418,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -11464,7 +11464,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -11510,7 +11510,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -11556,7 +11556,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -11602,7 +11602,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -11670,7 +11670,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -11718,7 +11718,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -11742,7 +11742,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -13475,7 +13475,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -13521,7 +13521,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -13567,7 +13567,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -13613,7 +13613,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -13659,7 +13659,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -13727,7 +13727,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -13775,7 +13775,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -13799,7 +13799,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -14249,7 +14249,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -14295,7 +14295,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -14341,7 +14341,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -14387,7 +14387,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -14433,7 +14433,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -14501,7 +14501,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -14549,7 +14549,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -14573,7 +14573,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -15039,7 +15039,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -15085,7 +15085,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -15131,7 +15131,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -15177,7 +15177,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -15223,7 +15223,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -15291,7 +15291,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -15339,7 +15339,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -15363,7 +15363,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -25928,7 +25928,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -25974,7 +25974,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -26020,7 +26020,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -26066,7 +26066,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -26112,7 +26112,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -26180,7 +26180,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -26228,7 +26228,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -26252,7 +26252,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -27384,7 +27384,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -27430,7 +27430,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -27476,7 +27476,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -27522,7 +27522,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -27568,7 +27568,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -27636,7 +27636,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -27684,7 +27684,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -27708,7 +27708,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -29455,7 +29455,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -29501,7 +29501,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -29547,7 +29547,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -29593,7 +29593,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -29639,7 +29639,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -29707,7 +29707,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -29755,7 +29755,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -29779,7 +29779,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -30229,7 +30229,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -30275,7 +30275,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -30321,7 +30321,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -30367,7 +30367,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -30413,7 +30413,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -30481,7 +30481,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -30529,7 +30529,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -30553,7 +30553,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -31019,7 +31019,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -31065,7 +31065,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -31111,7 +31111,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -31157,7 +31157,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -31203,7 +31203,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -31271,7 +31271,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -31319,7 +31319,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -31343,7 +31343,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -41908,7 +41908,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -41954,7 +41954,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -42000,7 +42000,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -42046,7 +42046,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -42092,7 +42092,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -42160,7 +42160,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -42208,7 +42208,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -42232,7 +42232,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -43364,7 +43364,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -43410,7 +43410,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -43456,7 +43456,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -43502,7 +43502,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -43548,7 +43548,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -43616,7 +43616,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -43664,7 +43664,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -43688,7 +43688,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -45435,7 +45435,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -45481,7 +45481,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -45527,7 +45527,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -45573,7 +45573,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -45619,7 +45619,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -45687,7 +45687,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -45735,7 +45735,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -45759,7 +45759,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -46209,7 +46209,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -46255,7 +46255,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -46301,7 +46301,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -46347,7 +46347,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -46393,7 +46393,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -46461,7 +46461,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -46509,7 +46509,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -46533,7 +46533,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -46999,7 +46999,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -47045,7 +47045,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -47091,7 +47091,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -47137,7 +47137,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -47183,7 +47183,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -47251,7 +47251,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -47299,7 +47299,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
@@ -47323,7 +47323,7 @@ const DATABASE = {
                 },
                 {
                   "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
+                  "device": "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "Three",
                   "lte_bands": [
                     "B1",
