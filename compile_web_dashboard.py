@@ -72,19 +72,21 @@ def match_uecaps_to_carrier(toml_filename, uecap_summaries):
         carrier_lower = summary['carrier'].lower()
         fn_lower = summary['filename'].lower()
         
-        # Check direct substring matching
-        if toml_base in carrier_lower or toml_base in fn_lower:
+        # Use first token of filename (e.g. 'ee' or '3') to prevent false positive substring matches (like 'ee' in 'three')
+        first_part = fn_lower.split('_')[0]
+        
+        if toml_base == carrier_lower or toml_base == first_part:
             matches.append(summary)
             continue
             
         # Hardcoded overrides for common UK carriers
-        if toml_base == 'h3' and ('three' in carrier_lower or '3_uk' in fn_lower or 'three' in fn_lower):
+        if toml_base == 'h3' and (first_part == '3' or 'three' in carrier_lower):
             matches.append(summary)
         elif toml_base == 'o2postpaid' or toml_base == 'o2prepaid':
-            if 'o2' in carrier_lower or 'o2' in fn_lower:
+            if first_part == 'o2' or 'o2' in carrier_lower:
                 matches.append(summary)
         elif toml_base == 'vodafone':
-            if 'vf' in carrier_lower or 'vf' in fn_lower or 'vodafone' in carrier_lower or 'vodafone' in fn_lower:
+            if first_part == 'vf' or 'vf' in carrier_lower or 'vodafone' in carrier_lower:
                 matches.append(summary)
                 
     return matches
@@ -660,26 +662,168 @@ tr:last-child td {
     gap: 0.75rem;
 }
 
+/* Config groups & sections */
+.config-section-card {
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    width: 100%;
+}
+
+.section-card-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.section-config-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
 .config-item {
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: rgba(0, 0, 0, 0.2);
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 1.25rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.85rem;
+    gap: 1.5rem;
+    min-height: 2.75rem;
+    flex-wrap: wrap; /* Safe wrapping for longer values */
+    width: 100%;
+}
+
+.flat-config-item {
+    margin-bottom: 0.75rem;
 }
 
 .config-key {
     font-family: monospace;
-    color: var(--text-secondary);
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    word-break: break-all;
+    text-align: left;
 }
 
 .config-value {
     font-family: monospace;
+    font-size: 0.85rem;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Value Badges & Chips */
+.badge-pill {
+    padding: 0.15rem 0.6rem;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.badge-pill.bool-true {
+    background-color: rgba(46, 204, 113, 0.15);
+    color: var(--green);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.badge-pill.bool-false {
+    background-color: rgba(255, 118, 117, 0.15);
+    color: var(--red);
+    border: 1px solid rgba(255, 118, 117, 0.3);
+}
+
+.number-val {
+    color: #eccc68;
+    font-weight: 600;
+}
+
+.string-val {
+    color: #ff7f50;
+    word-break: break-all;
+    text-align: left;
+}
+
+.tag-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    justify-content: flex-end;
+}
+
+.tag-chip {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* Nested JSON structures */
+.json-block {
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-color);
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    max-width: 100%;
+    overflow-x: auto;
+    text-align: left;
+    color: #70a1ff;
+}
+
+.nested-policy-box {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+    padding: 0.75rem;
+    border-radius: 6px;
+    text-align: left;
+    font-size: 0.75rem;
+    color: var(--text-primary);
+    width: 100%;
+}
+
+.policy-apn {
     color: var(--accent);
-    font-weight: 500;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+}
+
+.policy-error-line {
+    color: var(--text-secondary);
+    margin-left: 0.5rem;
+}
+
+.policy-error-type {
+    color: var(--red);
+    font-weight: 600;
+}
+
+.policy-retry-line {
+    margin-left: 0.5rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.retry-chip {
+    background-color: rgba(108, 92, 231, 0.1);
+    border-color: var(--accent);
+    color: var(--text-primary);
 }
 
 /* APN and uecaps list designs */
@@ -872,10 +1016,22 @@ tr:last-child td {
                 
             const apnsText = carrier.apns.length > 0 ? `${carrier.apns.length} APNs` : '-';
             
+            // Filter uecaps based on selected device variant
+            let matchedDeviceCaps = carrier.uecaps || [];
+            const activeDeviceLower = activeDeviceDir.toLowerCase();
+            
+            if (activeDeviceLower.includes('10a') || activeDeviceLower.includes('stallion')) {
+                matchedDeviceCaps = matchedDeviceCaps.filter(cap => cap.device.toLowerCase().includes('10a'));
+            } else if (activeDeviceLower.includes('blazer') || activeDeviceLower.includes('10_pro')) {
+                matchedDeviceCaps = matchedDeviceCaps.filter(cap => cap.device.toLowerCase().includes('10 pro') || cap.device.toLowerCase().includes('10 (standard)'));
+            } else if (activeDeviceLower.includes('komodo') || activeDeviceLower.includes('9_pro') || activeDeviceLower.includes('9pro')) {
+                matchedDeviceCaps = matchedDeviceCaps.filter(cap => cap.device.toLowerCase().includes('9 pro') || cap.device.toLowerCase().includes('9 (standard)'));
+            }
+            
             let ueText = '-';
-            if (carrier.uecaps && carrier.uecaps.length > 0) {
-                const parentName = carrier.uecaps[0].carrier;
-                const combos = carrier.uecaps[0].combos_count;
+            if (matchedDeviceCaps.length > 0) {
+                const parentName = matchedDeviceCaps[0].carrier;
+                const combos = matchedDeviceCaps[0].combos_count;
                 const isMno = mnoKeywords.includes(cFile.toLowerCase().replace('.toml', ''));
                 if (isMno) {
                     ueText = `${combos} Combos`;
@@ -929,6 +1085,68 @@ tr:last-child td {
         lucide.createIcons();
     }
     
+    function formatConfigValue(key, val) {
+        let cleanVal = val;
+        if (val && typeof val === 'object' && 'value' in val) {
+            cleanVal = val.value;
+        }
+        
+        if (typeof cleanVal === 'boolean') {
+            return `<span class="badge-pill bool-${cleanVal}">${cleanVal}</span>`;
+        }
+        if (typeof cleanVal === 'number') {
+            return `<span class="number-val">${cleanVal}</span>`;
+        }
+        if (Array.isArray(cleanVal)) {
+            return `
+                <div class="tag-group">
+                    ${cleanVal.map(v => `<span class="tag-chip">${v}</span>`).join('')}
+                </div>
+            `;
+        }
+        if (typeof cleanVal === 'string') {
+            const cleanStr = cleanVal.trim();
+            if (cleanStr.startsWith('[') || cleanStr.startsWith('{')) {
+                try {
+                    const parsed = JSON.parse(cleanStr);
+                    return formatParsedJson(key, parsed);
+                } catch (e) {
+                    // Fallback
+                }
+            }
+            return `<span class="string-val">"${cleanVal}"</span>`;
+        }
+        return `<span class="string-val">${JSON.stringify(cleanVal)}</span>`;
+    }
+    
+    function formatParsedJson(key, parsed) {
+        if (key.includes('key_error_policy_config') && Array.isArray(parsed)) {
+            return `
+                <div class="nested-policy-box">
+                    ${parsed.map(policy => {
+                        const errors = policy.ErrorTypes || [];
+                        return `
+                            <div class="policy-apn">APN: <strong>${policy.ApnName || '*'}</strong></div>
+                            ${errors.map(err => {
+                                const retries = err.RetryArray || [];
+                                return `
+                                    <div class="policy-error-line">
+                                        <span class="policy-error-type">${err.ErrorType || 'ERROR'}:</span>
+                                        <span class="policy-error-details">[Code ${err.ErrorDetails.join(', ')}]</span>
+                                    </div>
+                                    <div class="policy-retry-line">
+                                        Retries: ${retries.map(r => `<span class="tag-chip retry-chip">${r}s</span>`).join(' ')}
+                                    </div>
+                                `;
+                            }).join('')}
+                        `;
+                    }).join('')}
+                </div>
+            `;
+        }
+        return `<pre class="json-block">${JSON.stringify(parsed, null, 2)}</pre>`;
+    }
+
     function showDetails(carrier) {
         detailsPane.classList.remove('hidden');
         
@@ -939,20 +1157,40 @@ tr:last-child td {
         const configs = carrier.configs;
         Object.keys(configs).sort().forEach(key => {
             const val = configs[key];
-            const div = document.createElement('div');
-            div.className = 'config-item';
-            div.dataset.key = key.toLowerCase();
             
-            let valStr = JSON.stringify(val);
-            if (val && typeof val === 'object' && 'value' in val) {
-                valStr = JSON.stringify(val.value);
+            if (val && typeof val === 'object' && !Array.isArray(val) && !('value' in val)) {
+                // This is a category section card! (like ims, iwlan, etc.)
+                const section = document.createElement('div');
+                section.className = 'config-section-card';
+                
+                let innerHtml = `<div class="section-card-title">${key.toUpperCase()} Settings</div>`;
+                innerHtml += `<div class="section-config-grid">`;
+                
+                Object.keys(val).sort().forEach(subKey => {
+                    const subVal = val[subKey];
+                    innerHtml += `
+                        <div class="config-item" data-key="${key.toLowerCase()}.${subKey.toLowerCase()}">
+                            <span class="config-key">${subKey}</span>
+                            <span class="config-value">${formatConfigValue(key + '.' + subKey, subVal)}</span>
+                        </div>
+                    `;
+                });
+                
+                innerHtml += `</div>`;
+                section.innerHTML = innerHtml;
+                configList.appendChild(section);
+            } else {
+                // This is a flat config item
+                const div = document.createElement('div');
+                div.className = 'config-item flat-config-item';
+                div.dataset.key = key.toLowerCase();
+                
+                div.innerHTML = `
+                    <span class="config-key">${key}</span>
+                    <span class="config-value">${formatConfigValue(key, val)}</span>
+                `;
+                configList.appendChild(div);
             }
-            
-            div.innerHTML = `
-                <span class="config-key">${key}</span>
-                <span class="config-value">${valStr}</span>
-            `;
-            configList.appendChild(div);
         });
         
         // Populate APN tab
@@ -980,10 +1218,23 @@ tr:last-child td {
         // Populate UE Caps tab
         const uecapsList = document.getElementById('uecaps-list');
         uecapsList.innerHTML = '';
-        if (carrier.uecaps.length === 0) {
-            uecapsList.innerHTML = '<p class="text-secondary">No UE Capability profile matched for this carrier.</p>';
+        
+        // Filter capability cards based on active device
+        const activeDeviceLower = activeDeviceDir.toLowerCase();
+        let matchedDeviceCaps = carrier.uecaps || [];
+        
+        if (activeDeviceLower.includes('10a') || activeDeviceLower.includes('stallion')) {
+            matchedDeviceCaps = matchedDeviceCaps.filter(cap => cap.device.toLowerCase().includes('10a'));
+        } else if (activeDeviceLower.includes('blazer') || activeDeviceLower.includes('10_pro')) {
+            matchedDeviceCaps = matchedDeviceCaps.filter(cap => cap.device.toLowerCase().includes('10 pro') || cap.device.toLowerCase().includes('10 (standard)'));
+        } else if (activeDeviceLower.includes('komodo') || activeDeviceLower.includes('9_pro') || activeDeviceLower.includes('9pro')) {
+            matchedDeviceCaps = matchedDeviceCaps.filter(cap => cap.device.toLowerCase().includes('9 pro') || cap.device.toLowerCase().includes('9 (standard)'));
+        }
+        
+        if (matchedDeviceCaps.length === 0) {
+            uecapsList.innerHTML = '<p class="text-secondary">No UE Capability profile matched for this carrier and selected device variant.</p>';
         } else {
-            carrier.uecaps.forEach(cap => {
+            matchedDeviceCaps.forEach(cap => {
                 const card = document.createElement('div');
                 card.className = 'uecap-summary-card';
                 card.innerHTML = `
@@ -1025,11 +1276,27 @@ tr:last-child td {
     searchInput.addEventListener('input', (e) => {
         const query = e.target.value.toLowerCase();
         document.querySelectorAll('.config-item').forEach(item => {
-            const key = item.dataset.key;
+            const key = item.dataset.key || '';
             if (key.includes(query)) {
                 item.style.display = 'flex';
             } else {
                 item.style.display = 'none';
+            }
+        });
+        
+        // Hide parent section cards if all child config-items inside them are hidden
+        document.querySelectorAll('.config-section-card').forEach(section => {
+            const items = section.querySelectorAll('.config-item');
+            let hasVisible = false;
+            items.forEach(item => {
+                if (item.style.display !== 'none') {
+                    hasVisible = true;
+                }
+            });
+            if (hasVisible) {
+                section.style.display = 'block';
+            } else {
+                section.style.display = 'none';
             }
         });
     });

@@ -3528,52 +3528,6 @@ const DATABASE = {
               },
               "uecaps": [
                 {
-                  "filename": "3_UK_3494549071620222.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_6482989800480.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -3594,74 +3548,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_3126007040131122.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1898794706001942.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_1254100292640.md",
@@ -3686,52 +3572,6 @@ const DATABASE = {
                   "combos_count": 484
                 },
                 {
-                  "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1249713598190610.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_1666941516576.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -3752,30 +3592,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_122181298464.md",
@@ -3800,28 +3616,6 @@ const DATABASE = {
                   "combos_count": 109
                 },
                 {
-                  "filename": "3_UK_2053340720330214.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 66
-                },
-                {
                   "filename": "EE_9452678596896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -3842,30 +3636,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 484
-                },
-                {
-                  "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_4679703319008.md",
@@ -3934,28 +3704,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_627692802421272.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_4782584981856.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -3976,28 +3724,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_4737004376198010.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_3523237688544.md",
@@ -4088,30 +3814,6 @@ const DATABASE = {
                   "combos_count": 478
                 },
                 {
-                  "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_2598660616416.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -4134,54 +3836,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_5662395712650138.md",
-                  "device": "Pixel 10a (UK/EU SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 121
-                },
-                {
-                  "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_7985104900896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -4202,30 +3856,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_1710338405280.md",
@@ -5257,52 +4887,6 @@ const DATABASE = {
               },
               "uecaps": [
                 {
-                  "filename": "3_UK_3494549071620222.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_6482989800480.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -5323,74 +4907,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_3126007040131122.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1898794706001942.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_1254100292640.md",
@@ -5415,52 +4931,6 @@ const DATABASE = {
                   "combos_count": 484
                 },
                 {
-                  "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1249713598190610.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_1666941516576.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -5481,30 +4951,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_122181298464.md",
@@ -5529,28 +4975,6 @@ const DATABASE = {
                   "combos_count": 109
                 },
                 {
-                  "filename": "3_UK_2053340720330214.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 66
-                },
-                {
                   "filename": "EE_9452678596896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -5571,30 +4995,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 484
-                },
-                {
-                  "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_4679703319008.md",
@@ -5663,28 +5063,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_627692802421272.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_4782584981856.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -5705,28 +5083,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_4737004376198010.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_3523237688544.md",
@@ -5817,30 +5173,6 @@ const DATABASE = {
                   "combos_count": 478
                 },
                 {
-                  "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_2598660616416.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -5863,54 +5195,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_5662395712650138.md",
-                  "device": "Pixel 10a (UK/EU SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 121
-                },
-                {
-                  "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_7985104900896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -5931,30 +5215,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_1710338405280.md",
@@ -8884,52 +8144,6 @@ const DATABASE = {
               },
               "uecaps": [
                 {
-                  "filename": "3_UK_3494549071620222.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_6482989800480.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -8950,74 +8164,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_3126007040131122.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1898794706001942.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_1254100292640.md",
@@ -9042,52 +8188,6 @@ const DATABASE = {
                   "combos_count": 484
                 },
                 {
-                  "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1249713598190610.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_1666941516576.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -9108,30 +8208,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_122181298464.md",
@@ -9156,28 +8232,6 @@ const DATABASE = {
                   "combos_count": 109
                 },
                 {
-                  "filename": "3_UK_2053340720330214.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 66
-                },
-                {
                   "filename": "EE_9452678596896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -9198,30 +8252,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 484
-                },
-                {
-                  "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_4679703319008.md",
@@ -9290,28 +8320,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_627692802421272.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_4782584981856.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -9332,28 +8340,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_4737004376198010.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_3523237688544.md",
@@ -9444,30 +8430,6 @@ const DATABASE = {
                   "combos_count": 478
                 },
                 {
-                  "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_2598660616416.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -9490,54 +8452,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_5662395712650138.md",
-                  "device": "Pixel 10a (UK/EU SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 121
-                },
-                {
-                  "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_7985104900896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -9558,30 +8472,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_1710338405280.md",
@@ -16602,52 +15492,6 @@ const DATABASE = {
               },
               "uecaps": [
                 {
-                  "filename": "3_UK_3494549071620222.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_6482989800480.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -16668,74 +15512,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_3126007040131122.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1898794706001942.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_1254100292640.md",
@@ -16760,52 +15536,6 @@ const DATABASE = {
                   "combos_count": 484
                 },
                 {
-                  "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1249713598190610.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_1666941516576.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -16826,30 +15556,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_122181298464.md",
@@ -16874,28 +15580,6 @@ const DATABASE = {
                   "combos_count": 109
                 },
                 {
-                  "filename": "3_UK_2053340720330214.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 66
-                },
-                {
                   "filename": "EE_9452678596896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -16916,30 +15600,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 484
-                },
-                {
-                  "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_4679703319008.md",
@@ -17008,28 +15668,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_627692802421272.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_4782584981856.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -17050,28 +15688,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_4737004376198010.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_3523237688544.md",
@@ -17162,30 +15778,6 @@ const DATABASE = {
                   "combos_count": 478
                 },
                 {
-                  "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_2598660616416.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -17208,54 +15800,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_5662395712650138.md",
-                  "device": "Pixel 10a (UK/EU SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 121
-                },
-                {
-                  "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_7985104900896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -17276,30 +15820,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_1710338405280.md",
@@ -20974,52 +19494,6 @@ const DATABASE = {
               },
               "uecaps": [
                 {
-                  "filename": "3_UK_3494549071620222.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_6482989800480.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -21040,74 +19514,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_3126007040131122.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1898794706001942.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_1254100292640.md",
@@ -21132,52 +19538,6 @@ const DATABASE = {
                   "combos_count": 484
                 },
                 {
-                  "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1249713598190610.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_1666941516576.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -21198,30 +19558,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_122181298464.md",
@@ -21246,28 +19582,6 @@ const DATABASE = {
                   "combos_count": 109
                 },
                 {
-                  "filename": "3_UK_2053340720330214.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 66
-                },
-                {
                   "filename": "EE_9452678596896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -21288,30 +19602,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 484
-                },
-                {
-                  "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_4679703319008.md",
@@ -21380,28 +19670,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_627692802421272.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_4782584981856.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -21422,28 +19690,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_4737004376198010.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_3523237688544.md",
@@ -21534,30 +19780,6 @@ const DATABASE = {
                   "combos_count": 478
                 },
                 {
-                  "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_2598660616416.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -21580,54 +19802,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_5662395712650138.md",
-                  "device": "Pixel 10a (UK/EU SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 121
-                },
-                {
-                  "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_7985104900896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -21648,30 +19822,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_1710338405280.md",
@@ -22703,52 +20853,6 @@ const DATABASE = {
               },
               "uecaps": [
                 {
-                  "filename": "3_UK_3494549071620222.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_6482989800480.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -22769,74 +20873,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_3126007040131122.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1898794706001942.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_1254100292640.md",
@@ -22861,52 +20897,6 @@ const DATABASE = {
                   "combos_count": 484
                 },
                 {
-                  "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1249713598190610.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_1666941516576.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -22927,30 +20917,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_122181298464.md",
@@ -22975,28 +20941,6 @@ const DATABASE = {
                   "combos_count": 109
                 },
                 {
-                  "filename": "3_UK_2053340720330214.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 66
-                },
-                {
                   "filename": "EE_9452678596896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -23017,30 +20961,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 484
-                },
-                {
-                  "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_4679703319008.md",
@@ -23109,28 +21029,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_627692802421272.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_4782584981856.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -23151,28 +21049,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_4737004376198010.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_3523237688544.md",
@@ -23263,30 +21139,6 @@ const DATABASE = {
                   "combos_count": 478
                 },
                 {
-                  "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_2598660616416.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -23309,54 +21161,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_5662395712650138.md",
-                  "device": "Pixel 10a (UK/EU SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 121
-                },
-                {
-                  "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_7985104900896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -23377,30 +21181,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_1710338405280.md",
@@ -26330,52 +24110,6 @@ const DATABASE = {
               },
               "uecaps": [
                 {
-                  "filename": "3_UK_3494549071620222.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_6482989800480.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -26396,74 +24130,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_3126007040131122.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1898794706001942.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_1254100292640.md",
@@ -26488,52 +24154,6 @@ const DATABASE = {
                   "combos_count": 484
                 },
                 {
-                  "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1249713598190610.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_1666941516576.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -26554,30 +24174,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_122181298464.md",
@@ -26602,28 +24198,6 @@ const DATABASE = {
                   "combos_count": 109
                 },
                 {
-                  "filename": "3_UK_2053340720330214.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 66
-                },
-                {
                   "filename": "EE_9452678596896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -26644,30 +24218,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 484
-                },
-                {
-                  "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_4679703319008.md",
@@ -26736,28 +24286,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_627692802421272.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_4782584981856.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -26778,28 +24306,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_4737004376198010.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_3523237688544.md",
@@ -26890,30 +24396,6 @@ const DATABASE = {
                   "combos_count": 478
                 },
                 {
-                  "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_2598660616416.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -26936,54 +24418,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_5662395712650138.md",
-                  "device": "Pixel 10a (UK/EU SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 121
-                },
-                {
-                  "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_7985104900896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -27004,30 +24438,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_1710338405280.md",
@@ -34062,52 +31472,6 @@ const DATABASE = {
               },
               "uecaps": [
                 {
-                  "filename": "3_UK_3494549071620222.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_6482989800480.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -34128,74 +31492,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_3126007040131122.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1898794706001942.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_1254100292640.md",
@@ -34220,52 +31516,6 @@ const DATABASE = {
                   "combos_count": 484
                 },
                 {
-                  "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1249713598190610.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_1666941516576.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -34286,30 +31536,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_122181298464.md",
@@ -34334,28 +31560,6 @@ const DATABASE = {
                   "combos_count": 109
                 },
                 {
-                  "filename": "3_UK_2053340720330214.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 66
-                },
-                {
                   "filename": "EE_9452678596896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -34376,30 +31580,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 484
-                },
-                {
-                  "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_4679703319008.md",
@@ -34468,28 +31648,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_627692802421272.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_4782584981856.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -34510,28 +31668,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_4737004376198010.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_3523237688544.md",
@@ -34622,30 +31758,6 @@ const DATABASE = {
                   "combos_count": 478
                 },
                 {
-                  "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_2598660616416.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -34668,54 +31780,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_5662395712650138.md",
-                  "device": "Pixel 10a (UK/EU SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 121
-                },
-                {
-                  "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_7985104900896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -34736,30 +31800,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_1710338405280.md",
@@ -38434,52 +35474,6 @@ const DATABASE = {
               },
               "uecaps": [
                 {
-                  "filename": "3_UK_3494549071620222.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_6482989800480.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -38500,74 +35494,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_3126007040131122.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1898794706001942.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_1254100292640.md",
@@ -38592,52 +35518,6 @@ const DATABASE = {
                   "combos_count": 484
                 },
                 {
-                  "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1249713598190610.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_1666941516576.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -38658,30 +35538,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_122181298464.md",
@@ -38706,28 +35562,6 @@ const DATABASE = {
                   "combos_count": 109
                 },
                 {
-                  "filename": "3_UK_2053340720330214.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 66
-                },
-                {
                   "filename": "EE_9452678596896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -38748,30 +35582,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 484
-                },
-                {
-                  "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_4679703319008.md",
@@ -38840,28 +35650,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_627692802421272.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_4782584981856.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -38882,28 +35670,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_4737004376198010.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_3523237688544.md",
@@ -38994,30 +35760,6 @@ const DATABASE = {
                   "combos_count": 478
                 },
                 {
-                  "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_2598660616416.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -39040,54 +35782,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_5662395712650138.md",
-                  "device": "Pixel 10a (UK/EU SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 121
-                },
-                {
-                  "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_7985104900896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -39108,30 +35802,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_1710338405280.md",
@@ -40163,52 +36833,6 @@ const DATABASE = {
               },
               "uecaps": [
                 {
-                  "filename": "3_UK_3494549071620222.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_6482989800480.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -40229,74 +36853,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_3126007040131122.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1898794706001942.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_1254100292640.md",
@@ -40321,52 +36877,6 @@ const DATABASE = {
                   "combos_count": 484
                 },
                 {
-                  "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1249713598190610.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_1666941516576.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -40387,30 +36897,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_122181298464.md",
@@ -40435,28 +36921,6 @@ const DATABASE = {
                   "combos_count": 109
                 },
                 {
-                  "filename": "3_UK_2053340720330214.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 66
-                },
-                {
                   "filename": "EE_9452678596896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -40477,30 +36941,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 484
-                },
-                {
-                  "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_4679703319008.md",
@@ -40569,28 +37009,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_627692802421272.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_4782584981856.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -40611,28 +37029,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_4737004376198010.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_3523237688544.md",
@@ -40723,30 +37119,6 @@ const DATABASE = {
                   "combos_count": 478
                 },
                 {
-                  "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_2598660616416.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -40769,54 +37141,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_5662395712650138.md",
-                  "device": "Pixel 10a (UK/EU SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 121
-                },
-                {
-                  "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_7985104900896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -40837,30 +37161,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_1710338405280.md",
@@ -43790,52 +40090,6 @@ const DATABASE = {
               },
               "uecaps": [
                 {
-                  "filename": "3_UK_3494549071620222.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_6482989800480.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -43856,74 +40110,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_3126007040131122.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1898794706001942.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_1254100292640.md",
@@ -43948,52 +40134,6 @@ const DATABASE = {
                   "combos_count": 484
                 },
                 {
-                  "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1249713598190610.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_1666941516576.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -44014,30 +40154,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_122181298464.md",
@@ -44062,28 +40178,6 @@ const DATABASE = {
                   "combos_count": 109
                 },
                 {
-                  "filename": "3_UK_2053340720330214.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 66
-                },
-                {
                   "filename": "EE_9452678596896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -44104,30 +40198,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 484
-                },
-                {
-                  "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_4679703319008.md",
@@ -44196,28 +40266,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_627692802421272.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_4782584981856.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -44238,28 +40286,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_4737004376198010.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_3523237688544.md",
@@ -44350,30 +40376,6 @@ const DATABASE = {
                   "combos_count": 478
                 },
                 {
-                  "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_2598660616416.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -44396,54 +40398,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_5662395712650138.md",
-                  "device": "Pixel 10a (UK/EU SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 121
-                },
-                {
-                  "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_7985104900896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -44464,30 +40418,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_1710338405280.md",
@@ -51522,52 +47452,6 @@ const DATABASE = {
               },
               "uecaps": [
                 {
-                  "filename": "3_UK_3494549071620222.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_5834572939964202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_6482989800480.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -51588,74 +47472,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_3126007040131122.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
-                  "filename": "3_UK_916348591815930.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1898794706001942.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_1254100292640.md",
@@ -51680,52 +47496,6 @@ const DATABASE = {
                   "combos_count": 484
                 },
                 {
-                  "filename": "3_UK_636199153072812.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
-                  "filename": "3_UK_1249713598190610.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_1666941516576.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -51746,30 +47516,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_367766655788154.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_122181298464.md",
@@ -51794,28 +47540,6 @@ const DATABASE = {
                   "combos_count": 109
                 },
                 {
-                  "filename": "3_UK_2053340720330214.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 66
-                },
-                {
                   "filename": "EE_9452678596896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -51836,30 +47560,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 484
-                },
-                {
-                  "filename": "3_UK_174000609989766.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_4679703319008.md",
@@ -51928,28 +47628,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_627692802421272.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
-                },
-                {
                   "filename": "EE_4782584981856.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -51970,28 +47648,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 478
-                },
-                {
-                  "filename": "3_UK_4737004376198010.md",
-                  "device": "Pixel 10a (Basic / NA SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 111
                 },
                 {
                   "filename": "EE_3523237688544.md",
@@ -52082,30 +47738,6 @@ const DATABASE = {
                   "combos_count": 478
                 },
                 {
-                  "filename": "3_UK_3419375285737446.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_2598660616416.md",
                   "device": "Pixel 9 / Pixel 10 (Standard)",
                   "carrier": "EE",
@@ -52128,54 +47760,6 @@ const DATABASE = {
                   "combos_count": 479
                 },
                 {
-                  "filename": "3_UK_5662395712650138.md",
-                  "device": "Pixel 10a (UK/EU SKU)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 2,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 121
-                },
-                {
-                  "filename": "3_UK_1812434792081550.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
-                },
-                {
                   "filename": "EE_7985104900896.md",
                   "device": "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold",
                   "carrier": "EE",
@@ -52196,30 +47780,6 @@ const DATABASE = {
                   "max_mimo_dl": 4,
                   "max_modulation_dl": "QAM256 DL / QAM256 UL",
                   "combos_count": 483
-                },
-                {
-                  "filename": "3_UK_6906902719016202.md",
-                  "device": "Pixel 9 / Pixel 10 (Standard)",
-                  "carrier": "Three",
-                  "lte_bands": [
-                    "B1",
-                    "B3",
-                    "B20",
-                    "B28",
-                    "B32"
-                  ],
-                  "nr_bands": [
-                    "n1",
-                    "n3",
-                    "n20",
-                    "n28",
-                    "n75",
-                    "n77",
-                    "n78"
-                  ],
-                  "max_mimo_dl": 4,
-                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
-                  "combos_count": 157
                 },
                 {
                   "filename": "EE_1710338405280.md",
