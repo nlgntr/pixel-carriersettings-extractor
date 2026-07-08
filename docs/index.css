@@ -352,6 +352,7 @@ tr:last-child td {
     font-weight: 500;
     word-break: break-all;
     text-align: left;
+    max-width: 100%;
 }
 
 .config-value {
@@ -362,6 +363,8 @@ tr:last-child td {
     justify-content: flex-end;
     flex: 1;
     min-width: 200px;
+    max-width: 100%;
+    word-break: break-all;
 }
 
 /* Value Badges & Chips */
@@ -394,6 +397,7 @@ tr:last-child td {
     color: #ff7f50;
     word-break: break-all;
     text-align: left;
+    max-width: 100%;
 }
 
 .tag-group {
@@ -401,6 +405,7 @@ tr:last-child td {
     flex-wrap: wrap;
     gap: 0.35rem;
     justify-content: flex-end;
+    max-width: 100%;
 }
 
 .tag-chip {
@@ -410,6 +415,10 @@ tr:last-child td {
     border-radius: 4px;
     font-size: 0.75rem;
     color: var(--text-secondary);
+    word-break: break-all;
+    white-space: normal;
+    text-align: left;
+    max-width: 100%;
 }
 
 /* Nested JSON structures */

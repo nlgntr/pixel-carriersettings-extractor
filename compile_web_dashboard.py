@@ -196,15 +196,19 @@ def compile_database():
                         parent_uecaps = match_uecaps_to_carrier(parent_filename, uecap_summaries)
                     
                     # Determine 5G SA, VoNR and Satellite strictly from carrier's standalone configs (not MNO parent fallback)
+                    # We restrict SA and VoNR to the primary physical MNOs only since MVNOs do not have provisioned core access.
+                    is_physical_mno = filename.replace('.toml', '').lower() in ['ee_gb', 'o2postpaid_gb', 'vodafone_gb', 'h3_gb']
+                    
                     has_5g_sa = False
-                    for key, val in configs.items():
-                        if 'nr_availabilities' in key.lower():
-                            if isinstance(val, list) and 2 in val:
-                                has_5g_sa = True
-                            elif isinstance(val, dict) and 'value' in val and isinstance(val['value'], list) and 2 in val['value']:
-                                has_5g_sa = True
-                                
-                    has_vonr = configs.get('vonr_enabled', False)
+                    if is_physical_mno:
+                        for key, val in configs.items():
+                            if 'nr_availabilities' in key.lower():
+                                if isinstance(val, list) and 2 in val:
+                                    has_5g_sa = True
+                                elif isinstance(val, dict) and 'value' in val and isinstance(val['value'], list) and 2 in val['value']:
+                                    has_5g_sa = True
+                                    
+                    has_vonr = configs.get('vonr_enabled', False) if is_physical_mno else False
                     
                     has_satellite = False
                     for key in configs.keys():
@@ -725,6 +729,7 @@ tr:last-child td {
     font-weight: 500;
     word-break: break-all;
     text-align: left;
+    max-width: 100%;
 }
 
 .config-value {
@@ -735,6 +740,8 @@ tr:last-child td {
     justify-content: flex-end;
     flex: 1;
     min-width: 200px;
+    max-width: 100%;
+    word-break: break-all;
 }
 
 /* Value Badges & Chips */
@@ -767,6 +774,7 @@ tr:last-child td {
     color: #ff7f50;
     word-break: break-all;
     text-align: left;
+    max-width: 100%;
 }
 
 .tag-group {
@@ -774,6 +782,7 @@ tr:last-child td {
     flex-wrap: wrap;
     gap: 0.35rem;
     justify-content: flex-end;
+    max-width: 100%;
 }
 
 .tag-chip {
@@ -783,6 +792,10 @@ tr:last-child td {
     border-radius: 4px;
     font-size: 0.75rem;
     color: var(--text-secondary);
+    word-break: break-all;
+    white-space: normal;
+    text-align: left;
+    max-width: 100%;
 }
 
 /* Nested JSON structures */
