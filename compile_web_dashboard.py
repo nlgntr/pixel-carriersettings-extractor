@@ -13,42 +13,51 @@ def parse_uecap_markdown(filepath):
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
         
+    filename_clean = os.path.basename(filepath).replace('.md', '')
+    # E.g. "EE_122181298464" -> carrier = "EE"
+    carrier_part = filename_clean.split('_')[0]
+    if carrier_part == '3':
+        carrier_part = 'Three'
+    elif carrier_part == 'VF':
+        carrier_part = 'Vodafone'
+        
     summary = {
         'filename': os.path.basename(filepath),
         'device': 'Unknown Device',
-        'carrier': 'Unknown Carrier',
+        'carrier': carrier_part,
         'lte_bands': [],
         'nr_bands': [],
-        'max_mimo_dl': 2,
-        'max_modulation_dl': '64QAM',
+        'max_mimo_dl': 4,
+        'max_modulation_dl': 'QAM256 DL',
         'combos_count': 0
     }
     
-    # Parse title / metadata
     lines = content.splitlines()
     for line in lines:
-        if line.startswith('# UE Capability Report:'):
-            summary['carrier'] = line.replace('# UE Capability Report:', '').strip()
-        elif '**Device:**' in line:
-            summary['device'] = line.replace('**Device:**', '').replace('*', '').strip()
-        elif '**LTE Bands:**' in line:
-            bands = line.replace('**LTE Bands:**', '').replace('`', '').strip()
-            summary['lte_bands'] = [b.strip() for b in bands.split(',') if b.strip()]
-        elif '**NR Bands:**' in line:
-            bands = line.replace('**NR Bands:**', '').replace('`', '').strip()
-            summary['nr_bands'] = [b.strip() for b in bands.split(',') if b.strip()]
-        elif '**Max DL MIMO Layers:**' in line:
-            try:
-                summary['max_mimo_dl'] = int(line.replace('**Max DL MIMO Layers:**', '').strip())
-            except:
-                pass
-        elif '**Max DL Modulation:**' in line:
-            summary['max_modulation_dl'] = line.replace('**Max DL Modulation:**', '').strip()
-        elif '**Total Combo Count:**' in line:
-            try:
-                summary['combos_count'] = int(line.replace('**Total Combo Count:**', '').replace(',', '').strip())
-            except:
-                pass
+        line_strip = line.strip()
+        if not line_strip.startswith('- '):
+            continue
+            
+        # Parse fields
+        if '**Likely Device Model**' in line_strip:
+            summary['device'] = line_strip.split(':', 1)[1].strip()
+        elif '**Supported Bands**' in line_strip:
+            bands_str = line_strip.split(':', 1)[1].strip()
+            bands = [b.strip() for b in bands_str.split(',') if b.strip()]
+            summary['lte_bands'] = [b for b in bands if b.startswith('B')]
+            summary['nr_bands'] = [b for b in bands if b.startswith('n')]
+        elif '**Max DL MIMO**' in line_strip:
+            mimo_str = line_strip.split(':', 1)[1].strip()
+            if '4x4' in mimo_str:
+                summary['max_mimo_dl'] = 4
+            elif '2x2' in mimo_str:
+                summary['max_mimo_dl'] = 2
+        elif '**Max Modulation**' in line_strip:
+            summary['max_modulation_dl'] = line_strip.split(':', 1)[1].strip()
+        elif '**Total Combinations**' in line_strip:
+            combos_str = line_strip.split('(')[0].split(':', 1)[1].strip()
+            if combos_str.isdigit():
+                summary['combos_count'] = int(combos_str)
                 
     return summary
 
@@ -56,7 +65,7 @@ def match_uecaps_to_carrier(toml_filename, uecap_summaries):
     """
     Fuzzy match a carrier toml filename (e.g. ee_gb) to the parsed UE capability summaries.
     """
-    toml_base = toml_filename.lower().replace('_gb', '').replace('_us', '').replace('_de', '')
+    toml_base = toml_filename.lower().replace('.toml', '').replace('_gb', '').replace('_us', '').replace('_de', '')
     matches = []
     
     for summary in uecap_summaries:
@@ -69,10 +78,13 @@ def match_uecaps_to_carrier(toml_filename, uecap_summaries):
             continue
             
         # Hardcoded overrides for common UK carriers
-        if toml_base == 'h3' and ('three' in carrier_lower or 'three' in fn_lower):
+        if toml_base == 'h3' and ('three' in carrier_lower or '3_uk' in fn_lower or 'three' in fn_lower):
             matches.append(summary)
         elif toml_base == 'o2postpaid' or toml_base == 'o2prepaid':
             if 'o2' in carrier_lower or 'o2' in fn_lower:
+                matches.append(summary)
+        elif toml_base == 'vodafone':
+            if 'vf' in carrier_lower or 'vf' in fn_lower or 'vodafone' in carrier_lower or 'vodafone' in fn_lower:
                 matches.append(summary)
                 
     return matches
@@ -119,14 +131,35 @@ def compile_database():
             }
             
             # 4. Parse all carrier TOML configs for this device
+            device_raw = {}
             for toml_file in glob.glob(os.path.join(toml_dir, '*.toml')):
                 filename = os.path.basename(toml_file)
                 try:
                     with open(toml_file, 'r', encoding='utf-8') as f:
                         toml_content = f.read()
-                        
                     data = tomllib.loads(toml_content)
-                    
+                    device_raw[filename] = data
+                except Exception as ex:
+                    print(f"Error parsing carrier TOML {toml_file}: {ex}")
+
+            MCC_MNC_TO_PARENT = {
+                # EE
+                "23430": "ee_gb.toml",
+                "23433": "ee_gb.toml",
+                "23434": "ee_gb.toml",
+                "23486": "ee_gb.toml",
+                # O2
+                "23410": "o2postpaid_gb.toml",
+                "23402": "o2postpaid_gb.toml",
+                # Vodafone
+                "23415": "vodafone_gb.toml",
+                "23491": "vodafone_gb.toml",
+                # Three
+                "23420": "h3_gb.toml",
+            }
+
+            for filename, data in device_raw.items():
+                try:
                     carrier_id_rules = data.get('carrier_id', [])
                     settings = data.get('settings', {})
                     
@@ -143,22 +176,36 @@ def compile_database():
                     # Fuzzy match UE capabilities for this carrier
                     matched_caps = match_uecaps_to_carrier(filename, uecap_summaries)
                     
-                    # Determine dynamic feature indicators from configs
-                    has_vonr = configs.get('vonr_enabled', False)
-                    # IMS configuration lookup for wfc (WiFi Calling)
+                    # Check for parent MNO config fallback merging
+                    parent_filename = None
+                    if carrier_id_rules:
+                        mcc_mnc = carrier_id_rules[0].get('mcc_mnc')
+                        if mcc_mnc in MCC_MNC_TO_PARENT:
+                            parent_filename = MCC_MNC_TO_PARENT[mcc_mnc]
+                    
+                    # Merge missing config values from parent MNO config if available
+                    merged_configs = configs.copy()
+                    if parent_filename and parent_filename in device_raw and parent_filename != filename:
+                        parent_configs = device_raw[parent_filename].get('settings', {}).get('config', {})
+                        for key, val in parent_configs.items():
+                            if key not in merged_configs:
+                                merged_configs[key] = val
+                    
+                    # Determine dynamic feature indicators from merged configs
+                    has_vonr = merged_configs.get('vonr_enabled', False)
                     has_wfc = False
-                    if 'carrier_wfc_ims_available' in configs:
-                        has_wfc = configs['carrier_wfc_ims_available']
-                    elif 'wfc_operator_error_codes_string_array' in configs:
+                    if 'carrier_wfc_ims_available' in merged_configs:
+                        has_wfc = merged_configs['carrier_wfc_ims_available']
+                    elif 'wfc_operator_error_codes_string_array' in merged_configs:
                         has_wfc = True
                     elif 'wfc' in settings: # Checked dotted namespace
                         has_wfc = True
                         
-                    has_volte = configs.get('volte_feature_enabled', True) # Enabled by default on Exynos 5400
+                    has_volte = merged_configs.get('volte_feature_enabled', True) # Enabled by default on Exynos 5400
                     
                     # Check satellite keys
                     has_satellite = False
-                    for key in configs.keys():
+                    for key in merged_configs.keys():
                         if 'satellite' in key.lower():
                             has_satellite = True
                             break
@@ -180,7 +227,7 @@ def compile_database():
                     }
                     
                 except Exception as ex:
-                    print(f"Error parsing carrier TOML {toml_file}: {ex}")
+                    print(f"Error processing carrier data for {filename}: {ex}")
                     
     return database
 

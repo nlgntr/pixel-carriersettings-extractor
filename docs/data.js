@@ -384,10 +384,473 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
-                "satellite": false
+                "vonr": true,
+                "satellite": true
               },
-              "uecaps": []
+              "uecaps": [
+                {
+                  "filename": "O2_UK_157986008338018614.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_319120862546985018.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_57740741055071490.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_29001402896802648.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_3256785999905490.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_94870868815126326.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 121
+                },
+                {
+                  "filename": "O2_UK_29394423338450508.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_261620682585876042.md",
+                  "device": "Pixel 10a (UK/EU SKU)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 230
+                },
+                {
+                  "filename": "O2_UK_56275669285930458.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_118943920350302502.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_161459276222013198.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_6441557622624150.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_218864661038178090.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_144431462778251298.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_269575817836317018.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_87730351653960678.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                }
+              ]
             },
             "o2postpaid_gb.toml": {
               "carrier_name": "O2POSTPAID",
@@ -802,7 +1265,470 @@ const DATABASE = {
                 "vonr": true,
                 "satellite": true
               },
-              "uecaps": []
+              "uecaps": [
+                {
+                  "filename": "O2_UK_157986008338018614.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_319120862546985018.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_57740741055071490.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_29001402896802648.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_3256785999905490.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_94870868815126326.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 121
+                },
+                {
+                  "filename": "O2_UK_29394423338450508.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_261620682585876042.md",
+                  "device": "Pixel 10a (UK/EU SKU)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 230
+                },
+                {
+                  "filename": "O2_UK_56275669285930458.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_118943920350302502.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_161459276222013198.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_6441557622624150.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_218864661038178090.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_144431462778251298.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_269575817836317018.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_87730351653960678.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                }
+              ]
             },
             "lebara_gb.toml": {
               "carrier_name": "LEBARA",
@@ -1021,7 +1947,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -1332,8 +2258,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
-                "satellite": false
+                "vonr": true,
+                "satellite": true
               },
               "uecaps": []
             },
@@ -1699,7 +2625,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -1875,8 +2801,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
-                "satellite": false
+                "vonr": true,
+                "satellite": true
               },
               "uecaps": []
             },
@@ -2242,7 +3168,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -2630,7 +3556,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -3660,7 +4586,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -4279,7 +5205,730 @@ const DATABASE = {
                 "vonr": true,
                 "satellite": false
               },
-              "uecaps": []
+              "uecaps": [
+                {
+                  "filename": "3_UK_3494549071620222.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_5834572939964202.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "EE_6482989800480.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 478
+                },
+                {
+                  "filename": "3_UK_3126007040131122.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_916348591815930.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_1898794706001942.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "EE_1254100292640.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 484
+                },
+                {
+                  "filename": "3_UK_636199153072812.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_1249713598190610.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "EE_1666941516576.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 483
+                },
+                {
+                  "filename": "3_UK_367766655788154.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "EE_122181298464.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 109
+                },
+                {
+                  "filename": "3_UK_2053340720330214.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 66
+                },
+                {
+                  "filename": "EE_9452678596896.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 484
+                },
+                {
+                  "filename": "3_UK_174000609989766.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "EE_4679703319008.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 483
+                },
+                {
+                  "filename": "EE_7749465851424.md",
+                  "device": "Pixel 10a (UK/EU SKU)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 257
+                },
+                {
+                  "filename": "EE_4278204145056.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 479
+                },
+                {
+                  "filename": "3_UK_627692802421272.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "EE_4782584981856.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 478
+                },
+                {
+                  "filename": "3_UK_4737004376198010.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "EE_3523237688544.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 483
+                },
+                {
+                  "filename": "EE_435346085088.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 484
+                },
+                {
+                  "filename": "EE_2480469794400.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 484
+                },
+                {
+                  "filename": "EE_214762628064.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 478
+                },
+                {
+                  "filename": "3_UK_3419375285737446.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "EE_2598660616416.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 479
+                },
+                {
+                  "filename": "3_UK_5662395712650138.md",
+                  "device": "Pixel 10a (UK/EU SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 121
+                },
+                {
+                  "filename": "3_UK_1812434792081550.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "EE_7985104900896.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 483
+                },
+                {
+                  "filename": "3_UK_6906902719016202.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "EE_1710338405280.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 479
+                }
+              ]
             },
             "jt_gb.toml": {
               "carrier_name": "JT",
@@ -4852,7 +6501,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -5286,7 +6935,378 @@ const DATABASE = {
                 "vonr": false,
                 "satellite": false
               },
-              "uecaps": []
+              "uecaps": [
+                {
+                  "filename": "3_UK_3494549071620222.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_5834572939964202.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_3126007040131122.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_916348591815930.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_1898794706001942.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_636199153072812.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_1249713598190610.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_367766655788154.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_2053340720330214.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 66
+                },
+                {
+                  "filename": "3_UK_174000609989766.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_627692802421272.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_4737004376198010.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_3419375285737446.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_5662395712650138.md",
+                  "device": "Pixel 10a (UK/EU SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 121
+                },
+                {
+                  "filename": "3_UK_1812434792081550.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_6906902719016202.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                }
+              ]
             },
             "talkmobile_gb.toml": {
               "carrier_name": "TALKMOBILE",
@@ -5532,7 +7552,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -6739,7 +8759,442 @@ const DATABASE = {
                 "vonr": true,
                 "satellite": false
               },
-              "uecaps": []
+              "uecaps": [
+                {
+                  "filename": "VF_UK_126419695759882170.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 531
+                },
+                {
+                  "filename": "VF_UK_96040024446716487.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 531
+                },
+                {
+                  "filename": "VF_UK_345900359840572062.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 763
+                },
+                {
+                  "filename": "VF_UK_102165849009819.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 763
+                },
+                {
+                  "filename": "VF_UK_176752429953485067.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 534
+                },
+                {
+                  "filename": "VF_UK_91671986017962675.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 761
+                },
+                {
+                  "filename": "VF_UK_103856879500774479.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 170
+                },
+                {
+                  "filename": "VF_UK_286400957908161393.md",
+                  "device": "Pixel 10a (UK/EU SKU)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 333
+                },
+                {
+                  "filename": "VF_UK_239595157210109985.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 534
+                },
+                {
+                  "filename": "VF_UK_21452409440212788.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 761
+                },
+                {
+                  "filename": "VF_UK_295109590320155097.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 763
+                },
+                {
+                  "filename": "VF_UK_260420180766837966.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 763
+                },
+                {
+                  "filename": "VF_UK_316223540760697434.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 531
+                },
+                {
+                  "filename": "VF_UK_63496734954036984.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 534
+                },
+                {
+                  "filename": "VF_UK_30898948995218070.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 761
+                },
+                {
+                  "filename": "VF_UK_349347459147977097.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 761
+                }
+              ]
             },
             "gamma_gb.toml": {
               "carrier_name": "GAMMA",
@@ -8110,8 +10565,8 @@ const DATABASE = {
               },
               "features": {
                 "volte": true,
-                "vowifi": false,
-                "vonr": false,
+                "vowifi": true,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -8621,10 +11076,473 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
-                "satellite": false
+                "vonr": true,
+                "satellite": true
               },
-              "uecaps": []
+              "uecaps": [
+                {
+                  "filename": "O2_UK_157986008338018614.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_319120862546985018.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_57740741055071490.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_29001402896802648.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_3256785999905490.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_94870868815126326.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 121
+                },
+                {
+                  "filename": "O2_UK_29394423338450508.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_261620682585876042.md",
+                  "device": "Pixel 10a (UK/EU SKU)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 230
+                },
+                {
+                  "filename": "O2_UK_56275669285930458.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_118943920350302502.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_161459276222013198.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_6441557622624150.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_218864661038178090.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_144431462778251298.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_269575817836317018.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_87730351653960678.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                }
+              ]
             },
             "o2postpaid_gb.toml": {
               "carrier_name": "O2POSTPAID",
@@ -9039,7 +11957,470 @@ const DATABASE = {
                 "vonr": true,
                 "satellite": true
               },
-              "uecaps": []
+              "uecaps": [
+                {
+                  "filename": "O2_UK_157986008338018614.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_319120862546985018.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_57740741055071490.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_29001402896802648.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_3256785999905490.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_94870868815126326.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 121
+                },
+                {
+                  "filename": "O2_UK_29394423338450508.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_261620682585876042.md",
+                  "device": "Pixel 10a (UK/EU SKU)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 230
+                },
+                {
+                  "filename": "O2_UK_56275669285930458.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_118943920350302502.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_161459276222013198.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_6441557622624150.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_218864661038178090.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_144431462778251298.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_269575817836317018.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_87730351653960678.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                }
+              ]
             },
             "lebara_gb.toml": {
               "carrier_name": "LEBARA",
@@ -9258,7 +12639,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -9569,8 +12950,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
-                "satellite": false
+                "vonr": true,
+                "satellite": true
               },
               "uecaps": []
             },
@@ -9936,7 +13317,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -10112,8 +13493,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
-                "satellite": false
+                "vonr": true,
+                "satellite": true
               },
               "uecaps": []
             },
@@ -10479,7 +13860,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -10867,7 +14248,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -11897,7 +15278,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -12516,7 +15897,730 @@ const DATABASE = {
                 "vonr": true,
                 "satellite": false
               },
-              "uecaps": []
+              "uecaps": [
+                {
+                  "filename": "3_UK_3494549071620222.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_5834572939964202.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "EE_6482989800480.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 478
+                },
+                {
+                  "filename": "3_UK_3126007040131122.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_916348591815930.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_1898794706001942.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "EE_1254100292640.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 484
+                },
+                {
+                  "filename": "3_UK_636199153072812.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_1249713598190610.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "EE_1666941516576.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 483
+                },
+                {
+                  "filename": "3_UK_367766655788154.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "EE_122181298464.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 109
+                },
+                {
+                  "filename": "3_UK_2053340720330214.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 66
+                },
+                {
+                  "filename": "EE_9452678596896.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 484
+                },
+                {
+                  "filename": "3_UK_174000609989766.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "EE_4679703319008.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 483
+                },
+                {
+                  "filename": "EE_7749465851424.md",
+                  "device": "Pixel 10a (UK/EU SKU)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 257
+                },
+                {
+                  "filename": "EE_4278204145056.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 479
+                },
+                {
+                  "filename": "3_UK_627692802421272.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "EE_4782584981856.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 478
+                },
+                {
+                  "filename": "3_UK_4737004376198010.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "EE_3523237688544.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 483
+                },
+                {
+                  "filename": "EE_435346085088.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 484
+                },
+                {
+                  "filename": "EE_2480469794400.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 484
+                },
+                {
+                  "filename": "EE_214762628064.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 478
+                },
+                {
+                  "filename": "3_UK_3419375285737446.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "EE_2598660616416.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 479
+                },
+                {
+                  "filename": "3_UK_5662395712650138.md",
+                  "device": "Pixel 10a (UK/EU SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 121
+                },
+                {
+                  "filename": "3_UK_1812434792081550.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "EE_7985104900896.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 483
+                },
+                {
+                  "filename": "3_UK_6906902719016202.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "EE_1710338405280.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 479
+                }
+              ]
             },
             "jt_gb.toml": {
               "carrier_name": "JT",
@@ -13089,7 +17193,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -13523,7 +17627,378 @@ const DATABASE = {
                 "vonr": false,
                 "satellite": false
               },
-              "uecaps": []
+              "uecaps": [
+                {
+                  "filename": "3_UK_3494549071620222.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_5834572939964202.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_3126007040131122.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_916348591815930.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_1898794706001942.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_636199153072812.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_1249713598190610.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_367766655788154.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_2053340720330214.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 66
+                },
+                {
+                  "filename": "3_UK_174000609989766.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_627692802421272.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_4737004376198010.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_3419375285737446.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_5662395712650138.md",
+                  "device": "Pixel 10a (UK/EU SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 121
+                },
+                {
+                  "filename": "3_UK_1812434792081550.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_6906902719016202.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                }
+              ]
             },
             "talkmobile_gb.toml": {
               "carrier_name": "TALKMOBILE",
@@ -13769,7 +18244,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -14990,7 +19465,442 @@ const DATABASE = {
                 "vonr": true,
                 "satellite": false
               },
-              "uecaps": []
+              "uecaps": [
+                {
+                  "filename": "VF_UK_126419695759882170.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 531
+                },
+                {
+                  "filename": "VF_UK_96040024446716487.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 531
+                },
+                {
+                  "filename": "VF_UK_345900359840572062.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 763
+                },
+                {
+                  "filename": "VF_UK_102165849009819.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 763
+                },
+                {
+                  "filename": "VF_UK_176752429953485067.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 534
+                },
+                {
+                  "filename": "VF_UK_91671986017962675.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 761
+                },
+                {
+                  "filename": "VF_UK_103856879500774479.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 170
+                },
+                {
+                  "filename": "VF_UK_286400957908161393.md",
+                  "device": "Pixel 10a (UK/EU SKU)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 333
+                },
+                {
+                  "filename": "VF_UK_239595157210109985.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 534
+                },
+                {
+                  "filename": "VF_UK_21452409440212788.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 761
+                },
+                {
+                  "filename": "VF_UK_295109590320155097.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 763
+                },
+                {
+                  "filename": "VF_UK_260420180766837966.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 763
+                },
+                {
+                  "filename": "VF_UK_316223540760697434.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 531
+                },
+                {
+                  "filename": "VF_UK_63496734954036984.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 534
+                },
+                {
+                  "filename": "VF_UK_30898948995218070.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 761
+                },
+                {
+                  "filename": "VF_UK_349347459147977097.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 761
+                }
+              ]
             },
             "gamma_gb.toml": {
               "carrier_name": "GAMMA",
@@ -16361,8 +21271,8 @@ const DATABASE = {
               },
               "features": {
                 "volte": true,
-                "vowifi": false,
-                "vonr": false,
+                "vowifi": true,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -16872,10 +21782,473 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
-                "satellite": false
+                "vonr": true,
+                "satellite": true
               },
-              "uecaps": []
+              "uecaps": [
+                {
+                  "filename": "O2_UK_157986008338018614.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_319120862546985018.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_57740741055071490.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_29001402896802648.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_3256785999905490.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_94870868815126326.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 121
+                },
+                {
+                  "filename": "O2_UK_29394423338450508.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_261620682585876042.md",
+                  "device": "Pixel 10a (UK/EU SKU)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 230
+                },
+                {
+                  "filename": "O2_UK_56275669285930458.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_118943920350302502.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_161459276222013198.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_6441557622624150.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_218864661038178090.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_144431462778251298.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_269575817836317018.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_87730351653960678.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                }
+              ]
             },
             "o2postpaid_gb.toml": {
               "carrier_name": "O2POSTPAID",
@@ -17290,7 +22663,470 @@ const DATABASE = {
                 "vonr": true,
                 "satellite": true
               },
-              "uecaps": []
+              "uecaps": [
+                {
+                  "filename": "O2_UK_157986008338018614.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_319120862546985018.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_57740741055071490.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_29001402896802648.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_3256785999905490.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_94870868815126326.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 121
+                },
+                {
+                  "filename": "O2_UK_29394423338450508.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_261620682585876042.md",
+                  "device": "Pixel 10a (UK/EU SKU)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 230
+                },
+                {
+                  "filename": "O2_UK_56275669285930458.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_118943920350302502.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_161459276222013198.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_6441557622624150.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_218864661038178090.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_144431462778251298.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                },
+                {
+                  "filename": "O2_UK_269575817836317018.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 462
+                },
+                {
+                  "filename": "O2_UK_87730351653960678.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "O2",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38",
+                    "B40"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n38",
+                    "n40",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 437
+                }
+              ]
             },
             "lebara_gb.toml": {
               "carrier_name": "LEBARA",
@@ -17509,7 +23345,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -17820,8 +23656,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
-                "satellite": false
+                "vonr": true,
+                "satellite": true
               },
               "uecaps": []
             },
@@ -18187,7 +24023,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -18363,8 +24199,8 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
-                "satellite": false
+                "vonr": true,
+                "satellite": true
               },
               "uecaps": []
             },
@@ -18730,7 +24566,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -19118,7 +24954,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -20148,7 +25984,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -20767,7 +26603,730 @@ const DATABASE = {
                 "vonr": true,
                 "satellite": false
               },
-              "uecaps": []
+              "uecaps": [
+                {
+                  "filename": "3_UK_3494549071620222.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_5834572939964202.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "EE_6482989800480.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 478
+                },
+                {
+                  "filename": "3_UK_3126007040131122.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_916348591815930.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_1898794706001942.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "EE_1254100292640.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 484
+                },
+                {
+                  "filename": "3_UK_636199153072812.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_1249713598190610.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "EE_1666941516576.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 483
+                },
+                {
+                  "filename": "3_UK_367766655788154.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "EE_122181298464.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 109
+                },
+                {
+                  "filename": "3_UK_2053340720330214.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 66
+                },
+                {
+                  "filename": "EE_9452678596896.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 484
+                },
+                {
+                  "filename": "3_UK_174000609989766.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "EE_4679703319008.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 483
+                },
+                {
+                  "filename": "EE_7749465851424.md",
+                  "device": "Pixel 10a (UK/EU SKU)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 257
+                },
+                {
+                  "filename": "EE_4278204145056.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 479
+                },
+                {
+                  "filename": "3_UK_627692802421272.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "EE_4782584981856.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 478
+                },
+                {
+                  "filename": "3_UK_4737004376198010.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "EE_3523237688544.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 483
+                },
+                {
+                  "filename": "EE_435346085088.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 484
+                },
+                {
+                  "filename": "EE_2480469794400.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 484
+                },
+                {
+                  "filename": "EE_214762628064.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 478
+                },
+                {
+                  "filename": "3_UK_3419375285737446.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "EE_2598660616416.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 479
+                },
+                {
+                  "filename": "3_UK_5662395712650138.md",
+                  "device": "Pixel 10a (UK/EU SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 121
+                },
+                {
+                  "filename": "3_UK_1812434792081550.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "EE_7985104900896.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 483
+                },
+                {
+                  "filename": "3_UK_6906902719016202.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "EE_1710338405280.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "EE",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 479
+                }
+              ]
             },
             "jt_gb.toml": {
               "carrier_name": "JT",
@@ -21340,7 +27899,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -21774,7 +28333,378 @@ const DATABASE = {
                 "vonr": false,
                 "satellite": false
               },
-              "uecaps": []
+              "uecaps": [
+                {
+                  "filename": "3_UK_3494549071620222.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_5834572939964202.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_3126007040131122.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_916348591815930.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_1898794706001942.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_636199153072812.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_1249713598190610.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_367766655788154.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_2053340720330214.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 66
+                },
+                {
+                  "filename": "3_UK_174000609989766.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_627692802421272.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_4737004376198010.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 111
+                },
+                {
+                  "filename": "3_UK_3419375285737446.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_5662395712650138.md",
+                  "device": "Pixel 10a (UK/EU SKU)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 121
+                },
+                {
+                  "filename": "3_UK_1812434792081550.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                },
+                {
+                  "filename": "3_UK_6906902719016202.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Three",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B20",
+                    "B28",
+                    "B32"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n77",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 157
+                }
+              ]
             },
             "talkmobile_gb.toml": {
               "carrier_name": "TALKMOBILE",
@@ -22020,7 +28950,7 @@ const DATABASE = {
               "features": {
                 "volte": true,
                 "vowifi": true,
-                "vonr": false,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
@@ -23241,7 +30171,442 @@ const DATABASE = {
                 "vonr": true,
                 "satellite": false
               },
-              "uecaps": []
+              "uecaps": [
+                {
+                  "filename": "VF_UK_126419695759882170.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 531
+                },
+                {
+                  "filename": "VF_UK_96040024446716487.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 531
+                },
+                {
+                  "filename": "VF_UK_345900359840572062.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 763
+                },
+                {
+                  "filename": "VF_UK_102165849009819.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 763
+                },
+                {
+                  "filename": "VF_UK_176752429953485067.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 534
+                },
+                {
+                  "filename": "VF_UK_91671986017962675.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 761
+                },
+                {
+                  "filename": "VF_UK_103856879500774479.md",
+                  "device": "Pixel 10a (Basic / NA SKU)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 170
+                },
+                {
+                  "filename": "VF_UK_286400957908161393.md",
+                  "device": "Pixel 10a (UK/EU SKU)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 2,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 333
+                },
+                {
+                  "filename": "VF_UK_239595157210109985.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 534
+                },
+                {
+                  "filename": "VF_UK_21452409440212788.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 761
+                },
+                {
+                  "filename": "VF_UK_295109590320155097.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 763
+                },
+                {
+                  "filename": "VF_UK_260420180766837966.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 763
+                },
+                {
+                  "filename": "VF_UK_316223540760697434.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 531
+                },
+                {
+                  "filename": "VF_UK_63496734954036984.md",
+                  "device": "Pixel 10 (Standard)",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 534
+                },
+                {
+                  "filename": "VF_UK_30898948995218070.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 761
+                },
+                {
+                  "filename": "VF_UK_349347459147977097.md",
+                  "device": "Pixel 10 Pro / Pro XL / Pro Fold",
+                  "carrier": "Vodafone",
+                  "lte_bands": [
+                    "B1",
+                    "B3",
+                    "B7",
+                    "B8",
+                    "B20",
+                    "B28",
+                    "B32",
+                    "B38"
+                  ],
+                  "nr_bands": [
+                    "n1",
+                    "n3",
+                    "n7",
+                    "n8",
+                    "n20",
+                    "n28",
+                    "n75",
+                    "n78"
+                  ],
+                  "max_mimo_dl": 4,
+                  "max_modulation_dl": "QAM256 DL / QAM256 UL",
+                  "combos_count": 761
+                }
+              ]
             },
             "gamma_gb.toml": {
               "carrier_name": "GAMMA",
@@ -24612,8 +31977,8 @@ const DATABASE = {
               },
               "features": {
                 "volte": true,
-                "vowifi": false,
-                "vonr": false,
+                "vowifi": true,
+                "vonr": true,
                 "satellite": false
               },
               "uecaps": []
