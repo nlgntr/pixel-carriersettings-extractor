@@ -371,7 +371,7 @@ def write_web_dashboard(database):
         </section>
 
         <!-- Details Display Pane -->
-        <section class="section-card details-section hidden" id="details-pane">
+        <section class="section-card details-pane hidden" id="details-pane">
             <div class="tab-bar">
                 <button class="tab-btn active" data-tab="configs-tab"><i data-lucide="settings"></i> Framework Settings</button>
                 <button class="tab-btn" data-tab="uecaps-tab"><i data-lucide="radio"></i> Radio Capabilities</button>
