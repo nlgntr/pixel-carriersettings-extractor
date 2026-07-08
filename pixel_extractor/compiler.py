@@ -1405,31 +1405,43 @@ tr:last-child td {
             // Group identical capabilities to prevent repetitive cards
             const uniqueCaps = [];
             
-            // Heuristic function to guess hardware variant based on bands and device label
+            // Heuristic function to guess hardware variant based on selected device and bands
             function getSkuGuess(cap) {
-                const devLower = cap.device.toLowerCase();
+                const devLower = activeDeviceDir.toLowerCase();
                 const hasmmWave = cap.nr_bands.includes('n258') || cap.nr_bands.includes('n260') || cap.nr_bands.includes('n261');
                 
-                if (devLower.includes('10a') || devLower.includes('stallion')) {
-                    if (devLower.includes('uk/eu sku')) return 'EU/UK Variant';
-                    if (devLower.includes('basic / na sku')) return 'US/RoW Variant';
+                // Pixel 10 Family
+                if (devLower.includes('mustang')) {
+                    return hasmmWave ? 'US Variant (Model GUL82: mmWave)' : 'EU/UK Variant (Model G45RY: Sub-6)';
+                }
+                if (devLower.includes('blazer')) {
+                    return hasmmWave ? 'US Variant (Model G4QUR: mmWave)' : 'EU/UK Variant (Model GEHN3: Sub-6)';
+                }
+                if (devLower.includes('rango')) {
+                    return hasmmWave ? 'US Variant (mmWave)' : 'EU/UK Variant (Sub-6)';
+                }
+                if (devLower.includes('frankel')) {
+                    return hasmmWave ? 'US Variant (mmWave)' : 'EU/UK Variant (Model GK2MP: Sub-6)';
+                }
+                if (devLower.includes('stallion') || devLower.includes('10a')) {
+                    const capDev = cap.device.toLowerCase();
+                    if (capDev.includes('uk/eu sku')) return 'EU/UK Variant';
+                    if (capDev.includes('basic / na sku')) return 'US/RoW Variant';
                     return 'Standard Variant';
                 }
                 
-                if (devLower.includes('pro')) {
-                    if (hasmmWave) {
-                        return 'US Variant (Model G4QUR/GUL82 - mmWave)';
-                    } else {
-                        return 'EU/UK Variant (Model GEHN3/G45RY - Sub-6)';
-                    }
+                // Pixel 9 Family
+                if (devLower.includes('komodo')) {
+                    return hasmmWave ? 'US Variant (mmWave)' : 'EU/UK Variant (Model GGX8B: Sub-6)';
                 }
-                
-                if (devLower.includes('standard')) {
-                    if (hasmmWave) {
-                        return 'US Variant (mmWave)';
-                    } else {
-                        return 'EU/UK Variant (Model GK2MP - Sub-6)';
-                    }
+                if (devLower.includes('caiman')) {
+                    return hasmmWave ? 'US Variant (mmWave)' : 'EU/UK Variant (Model GEC77: Sub-6)';
+                }
+                if (devLower.includes('comet')) {
+                    return hasmmWave ? 'US Variant (mmWave)' : 'EU/UK Variant (Model GGH2X: Sub-6)';
+                }
+                if (devLower.includes('tokay')) {
+                    return hasmmWave ? 'US Variant (mmWave)' : 'EU/UK Variant (Model GUR0J: Sub-6)';
                 }
                 
                 return 'Global Variant';
@@ -1475,7 +1487,7 @@ tr:last-child td {
                 
                 card.innerHTML = `
                     <div class="uecap-summary-header">
-                        <h3>${cap.carrier} Capabilities (${skuLabel})</h3>
+                        <h3>${cap.carrier} Capabilities — ${skuLabel}</h3>
                         <p class="text-secondary">Signature: ${signaturesStr}</p>
                     </div>
                     <div class="uecap-summary-grid">
