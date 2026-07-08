@@ -406,7 +406,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         max_mimo_dl: cap.max_mimo_dl,
                         max_modulation_dl: cap.max_modulation_dl,
                         combos: [cap.combos_count],
-                        signatures: [cleanSig]
+                        signatures: [cleanSig],
+                        nr_ca_combos: cap.nr_ca_combos || [],
+                        endc_combos: cap.endc_combos || []
                     });
                 }
             });
@@ -431,6 +433,28 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div><strong>NR Bands:</strong> ${cap.nr_bands.join(', ') || '-'}</div>
                         <div><strong>Max DL MIMO:</strong> ${cap.max_mimo_dl}x${cap.max_mimo_dl}</div>
                         <div><strong>Max DL Modulation:</strong> ${cap.max_modulation_dl}</div>
+                    </div>
+                    
+                    <div class="uecap-combinations-explorer">
+                        <button class="btn-toggle-combos" onclick="toggleCombos(this)">
+                            <i data-lucide="chevron-right"></i> View Band Combinations Explorer (${cap.nr_ca_combos.length} NR-CA, ${cap.endc_combos.length} EN-DC)
+                        </button>
+                        <div class="combos-dropdown-content hidden">
+                            <div class="combos-columns">
+                                <div class="combos-column">
+                                    <h4>5G NR-CA Combinations (${cap.nr_ca_combos.length})</h4>
+                                    <div class="combos-list">
+                                        ${cap.nr_ca_combos.map(c => `<span class="combo-chip">${c}</span>`).join('') || '<span class="text-secondary">None</span>'}
+                                    </div>
+                                </div>
+                                <div class="combos-column">
+                                    <h4>4G/5G EN-DC Combinations (${cap.endc_combos.length})</h4>
+                                    <div class="combos-list">
+                                        ${cap.endc_combos.map(c => `<span class="combo-chip">${c}</span>`).join('') || '<span class="text-secondary">None</span>'}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 `;
                 uecapsList.appendChild(card);
@@ -482,4 +506,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+    
+    window.toggleCombos = (btn) => {
+        const content = btn.nextElementSibling;
+        const isHidden = content.classList.contains('hidden');
+        if (isHidden) {
+            content.classList.remove('hidden');
+            btn.querySelector('i').setAttribute('data-lucide', 'chevron-down');
+            btn.classList.add('active');
+        } else {
+            content.classList.add('hidden');
+            btn.querySelector('i').setAttribute('data-lucide', 'chevron-right');
+            btn.classList.remove('active');
+        }
+        if (window.lucide) {
+            window.lucide.createIcons();
+        }
+    };
 });

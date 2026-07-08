@@ -29,36 +29,62 @@ def parse_uecap_markdown(filepath):
         'nr_bands': [],
         'max_mimo_dl': 4,
         'max_modulation_dl': 'QAM256 DL',
-        'combos_count': 0
+        'combos_count': 0,
+        'nr_ca_combos': [],
+        'endc_combos': []
     }
     
     lines = content.splitlines()
+    current_section = None
     for line in lines:
         line_strip = line.strip()
-        if not line_strip.startswith('- '):
+        
+        # Track section headers
+        if line_strip.startswith('###'):
+            if 'NR-CA' in line_strip or 'Carrier Aggregation' in line_strip:
+                current_section = 'nr_ca'
+            elif 'EN-DC' in line_strip or 'Dual Connectivity' in line_strip:
+                current_section = 'endc'
+            else:
+                current_section = None
+            continue
+        elif line_strip.startswith('##'):
+            current_section = None
             continue
             
-        # Parse fields
-        if '**Likely Device Model**' in line_strip:
-            summary['device'] = line_strip.split(':', 1)[1].strip()
-        elif '**Supported Bands**' in line_strip:
-            bands_str = line_strip.split(':', 1)[1].strip()
-            bands = [b.strip() for b in bands_str.split(',') if b.strip()]
-            summary['lte_bands'] = [b for b in bands if b.startswith('B')]
-            summary['nr_bands'] = [b for b in bands if b.startswith('n')]
-        elif '**Max DL MIMO**' in line_strip:
-            mimo_str = line_strip.split(':', 1)[1].strip()
-            if '4x4' in mimo_str:
-                summary['max_mimo_dl'] = 4
-            elif '2x2' in mimo_str:
-                summary['max_mimo_dl'] = 2
-        elif '**Max Modulation**' in line_strip:
-            summary['max_modulation_dl'] = line_strip.split(':', 1)[1].strip()
-        elif '**Total Combinations**' in line_strip:
-            combos_str = line_strip.split('(')[0].split(':', 1)[1].strip()
-            if combos_str.isdigit():
-                summary['combos_count'] = int(combos_str)
+        if line_strip.startswith('- '):
+            if current_section == 'nr_ca':
+                combo = line_strip[2:].strip()
+                if combo:
+                    summary['nr_ca_combos'].append(combo)
+                continue
+            elif current_section == 'endc':
+                combo = line_strip[2:].strip()
+                if combo:
+                    summary['endc_combos'].append(combo)
+                continue
                 
+            # Parse top summary metadata fields
+            if '**Likely Device Model**' in line_strip:
+                summary['device'] = line_strip.split(':', 1)[1].strip()
+            elif '**Supported Bands**' in line_strip:
+                bands_str = line_strip.split(':', 1)[1].strip()
+                bands = [b.strip() for b in bands_str.split(',') if b.strip()]
+                summary['lte_bands'] = [b for b in bands if b.startswith('B')]
+                summary['nr_bands'] = [b for b in bands if b.startswith('n')]
+            elif '**Max DL MIMO**' in line_strip:
+                mimo_str = line_strip.split(':', 1)[1].strip()
+                if '4x4' in mimo_str:
+                    summary['max_mimo_dl'] = 4
+                elif '2x2' in mimo_str:
+                    summary['max_mimo_dl'] = 2
+            elif '**Max Modulation**' in line_strip:
+                summary['max_modulation_dl'] = line_strip.split(':', 1)[1].strip()
+            elif '**Total Combinations**' in line_strip:
+                combos_str = line_strip.split('(')[0].split(':', 1)[1].strip()
+                if combos_str.isdigit():
+                    summary['combos_count'] = int(combos_str)
+                    
     return summary
 
 def match_uecaps_to_carrier(toml_filename, uecap_summaries):
@@ -940,6 +966,75 @@ tr:last-child td {
     font-size: 0.85rem;
 }
 
+.uecap-combinations-explorer {
+    margin-top: 1rem;
+    border-top: 1px dashed var(--border-color);
+    padding-top: 1rem;
+}
+
+.btn-toggle-combos {
+    background: none;
+    border: none;
+    color: var(--accent);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+
+.btn-toggle-combos:hover {
+    color: #a78bfa;
+}
+
+.combos-dropdown-content {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.combos-dropdown-content.hidden {
+    display: none;
+}
+
+.combos-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.combos-column h4 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+}
+
+.combos-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 0.25rem;
+}
+
+.combo-chip {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+    border-radius: 4px;
+    padding: 0.15rem 0.35rem;
+    font-size: 0.7rem;
+    font-family: monospace;
+}
+
 /* Footer layout */
 .app-footer {
     border-top: 1px solid var(--border-color);
@@ -1472,7 +1567,9 @@ tr:last-child td {
                         max_mimo_dl: cap.max_mimo_dl,
                         max_modulation_dl: cap.max_modulation_dl,
                         combos: [cap.combos_count],
-                        signatures: [cleanSig]
+                        signatures: [cleanSig],
+                        nr_ca_combos: cap.nr_ca_combos || [],
+                        endc_combos: cap.endc_combos || []
                     });
                 }
             });
@@ -1497,6 +1594,28 @@ tr:last-child td {
                         <div><strong>NR Bands:</strong> ${cap.nr_bands.join(', ') || '-'}</div>
                         <div><strong>Max DL MIMO:</strong> ${cap.max_mimo_dl}x${cap.max_mimo_dl}</div>
                         <div><strong>Max DL Modulation:</strong> ${cap.max_modulation_dl}</div>
+                    </div>
+                    
+                    <div class="uecap-combinations-explorer">
+                        <button class="btn-toggle-combos" onclick="toggleCombos(this)">
+                            <i data-lucide="chevron-right"></i> View Band Combinations Explorer (${cap.nr_ca_combos.length} NR-CA, ${cap.endc_combos.length} EN-DC)
+                        </button>
+                        <div class="combos-dropdown-content hidden">
+                            <div class="combos-columns">
+                                <div class="combos-column">
+                                    <h4>5G NR-CA Combinations (${cap.nr_ca_combos.length})</h4>
+                                    <div class="combos-list">
+                                        ${cap.nr_ca_combos.map(c => `<span class="combo-chip">${c}</span>`).join('') || '<span class="text-secondary">None</span>'}
+                                    </div>
+                                </div>
+                                <div class="combos-column">
+                                    <h4>4G/5G EN-DC Combinations (${cap.endc_combos.length})</h4>
+                                    <div class="combos-list">
+                                        ${cap.endc_combos.map(c => `<span class="combo-chip">${c}</span>`).join('') || '<span class="text-secondary">None</span>'}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 `;
                 uecapsList.appendChild(card);
@@ -1548,6 +1667,23 @@ tr:last-child td {
             }
         });
     });
+    
+    window.toggleCombos = (btn) => {
+        const content = btn.nextElementSibling;
+        const isHidden = content.classList.contains('hidden');
+        if (isHidden) {
+            content.classList.remove('hidden');
+            btn.querySelector('i').setAttribute('data-lucide', 'chevron-down');
+            btn.classList.add('active');
+        } else {
+            content.classList.add('hidden');
+            btn.querySelector('i').setAttribute('data-lucide', 'chevron-right');
+            btn.classList.remove('active');
+        }
+        if (window.lucide) {
+            window.lucide.createIcons();
+        }
+    };
 });
 """
     with open(os.path.join('docs', 'app.js'), 'w', encoding='utf-8') as f:

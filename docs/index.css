@@ -522,6 +522,75 @@ tr:last-child td {
     font-size: 0.85rem;
 }
 
+.uecap-combinations-explorer {
+    margin-top: 1rem;
+    border-top: 1px dashed var(--border-color);
+    padding-top: 1rem;
+}
+
+.btn-toggle-combos {
+    background: none;
+    border: none;
+    color: var(--accent);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+
+.btn-toggle-combos:hover {
+    color: #a78bfa;
+}
+
+.combos-dropdown-content {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.combos-dropdown-content.hidden {
+    display: none;
+}
+
+.combos-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.combos-column h4 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+}
+
+.combos-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 0.25rem;
+}
+
+.combo-chip {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+    border-radius: 4px;
+    padding: 0.15rem 0.35rem;
+    font-size: 0.7rem;
+    font-family: monospace;
+}
+
 /* Footer layout */
 .app-footer {
     border-top: 1px solid var(--border-color);
