@@ -177,6 +177,7 @@ def compile_database():
                 "23427": "ee_gb.toml",  # TCL/Truphone (EE network)
                 "23471": "ee_gb.toml",  # ESN (EE network)
                 "23418": "ee_gb.toml",  # Cloud9 (EE network)
+                "23450": "ee_gb.toml",  # JT (Jersey Telecom network partner)
                 # O2 Radio Host
                 "23410": "o2postpaid_gb.toml",
                 "23402": "o2postpaid_gb.toml",
@@ -208,19 +209,23 @@ def compile_database():
                     # Fuzzy match UE capabilities for this carrier
                     matched_caps = match_uecaps_to_carrier(filename, uecap_summaries)
                     
-                    # Check for parent MNO config fallback merging
+                    # Check for parent MNO config fallback merging (scanning all carrier rules)
                     parent_filename = None
                     if carrier_id_rules:
-                        mcc_mnc = carrier_id_rules[0].get('mcc_mnc')
-                        if mcc_mnc in MCC_MNC_TO_PARENT:
-                            parent_filename = MCC_MNC_TO_PARENT[mcc_mnc]
+                        for rule in carrier_id_rules:
+                            mcc_mnc = rule.get('mcc_mnc')
+                            if mcc_mnc in MCC_MNC_TO_PARENT:
+                                parent_filename = MCC_MNC_TO_PARENT[mcc_mnc]
+                                break
                             
-                    # Check for radio capabilities host fallback
+                    # Check for radio capabilities host fallback (scanning all carrier rules)
                     radio_parent_filename = None
                     if carrier_id_rules:
-                        mcc_mnc = carrier_id_rules[0].get('mcc_mnc')
-                        if mcc_mnc in MCC_MNC_TO_RADIO_PARENT:
-                            radio_parent_filename = MCC_MNC_TO_RADIO_PARENT[mcc_mnc]
+                        for rule in carrier_id_rules:
+                            mcc_mnc = rule.get('mcc_mnc')
+                            if mcc_mnc in MCC_MNC_TO_RADIO_PARENT:
+                                radio_parent_filename = MCC_MNC_TO_RADIO_PARENT[mcc_mnc]
+                                break
                     
                     # Merge missing config values from parent MNO config if available
                     merged_configs = configs.copy()
