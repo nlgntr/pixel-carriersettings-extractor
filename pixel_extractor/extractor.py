@@ -246,19 +246,27 @@ def parse_int_array(data):
             arr.append(val)
     return arr
 
+def clean_config_key(key):
+    for suffix in ('_bool', '_string', '_int_array', '_int', '_string_array', '_bundle', '_long'):
+        if key.endswith(suffix):
+            return key[:-len(suffix)]
+    return key
+
 def parse_config_value(fnum, ftype, val):
     if fnum == 2 and ftype == 'length_delimited':
         return val.decode('utf-8', errors='ignore')
-    elif fnum == 3 and ftype == 'varint':
-        return bool(val)
-    elif fnum == 4 and ftype == 'varint':
+    elif fnum in (3, 4) and ftype == 'varint':
         if val & 0x8000000000000000:
             return val - 0x10000000000000000
         return val
-    elif fnum == 5 and ftype == 'length_delimited':
-        return parse_text_array(val)
+    elif fnum == 5 and ftype == 'varint':
+        return bool(val)
     elif fnum == 6 and ftype == 'length_delimited':
+        return parse_text_array(val)
+    elif fnum == 7 and ftype == 'length_delimited':
         return parse_int_array(val)
+    elif fnum == 8 and ftype == 'length_delimited':
+        return build_config_dict(parse_carrier_config(val))
     return None
 
 def parse_config_item(data):
@@ -268,7 +276,7 @@ def parse_config_item(data):
     for fnum, ftype, val in fields:
         if fnum == 1 and ftype == 'length_delimited':
             key = val.decode('utf-8', errors='ignore')
-        elif fnum in (2, 3, 4, 5, 6):
+        elif fnum in (2, 3, 4, 5, 6, 7, 8):
             value = parse_config_value(fnum, ftype, val)
     return key, value
 
@@ -276,28 +284,64 @@ def parse_carrier_config(data):
     fields = parse_protobuf_carrier(data)
     configs = []
     for fnum, ftype, val in fields:
-        if fnum == 1 and ftype == 'length_delimited':
+        if fnum in (1, 2) and ftype == 'length_delimited':
             configs.append(parse_config_item(val))
     return configs
 
 def build_config_dict(configs):
     d = {}
     for k, v in configs:
-        if k:
-            d[k] = v
+        if not k:
+            continue
+        cleaned_k = clean_config_key(k)
+        
+        parts = cleaned_k.split('.')
+        curr = d
+        for part in parts[:-1]:
+            if part not in curr or not isinstance(curr[part], dict):
+                curr[part] = {}
+            curr = curr[part]
+            
+        if isinstance(v, dict):
+            cleaned_v = {}
+            for vk, vv in v.items():
+                cleaned_v[clean_config_key(vk)] = vv
+            v = cleaned_v
+            
+        curr[parts[-1]] = v
     return d
+
+def format_toml_value(val):
+    if isinstance(val, bool):
+        return "true" if val else "false"
+    elif isinstance(val, int):
+        return str(val)
+    elif isinstance(val, str):
+        escaped = val.replace('\\', '\\\\').replace('"', '\\"')
+        return f'"{escaped}"'
+    elif isinstance(val, list):
+        if not val:
+            return "[]"
+        elem_strs = [format_toml_value(x) for x in val]
+        if len(elem_strs) <= 3:
+            return f"[ {', '.join(elem_strs)} ]"
+        else:
+            return "[\n    " + ",\n    ".join(elem_strs) + "\n]"
+    elif isinstance(val, dict):
+        pairs = []
+        for k, v in sorted(val.items()):
+            pairs.append(f"{k} = {format_toml_value(v)}")
+        return "{ " + ", ".join(pairs) + " }"
+    return "null"
 
 def serialize_to_toml_string(carrier_id_rules, cs_dict):
     out = []
     out.append("# Compiled automatically from CarrierSettings.pb overlays via Gemini")
     out.append("")
-    out.append("[carrier_info]")
-    out.append(f'canonical_name = "{cs_dict.get("canonical_name", "")}"')
-    out.append(f'version = {cs_dict.get("version", 0)}')
-    out.append("")
     
+    # 1. Rules: [[carrier_id]]
     for r in carrier_id_rules:
-        out.append("[[carrier_info.rules]]")
+        out.append("[[carrier_id]]")
         for key in ('mcc_mnc', 'spn', 'imsi_prefix_xpattern', 'gid1', 'gid2', 'plmn', 'device_configuration', 'carrier_id'):
             if key in r:
                 val = r[key]
@@ -307,37 +351,16 @@ def serialize_to_toml_string(carrier_id_rules, cs_dict):
                     out.append(f'{key} = {val}')
         out.append("")
         
-    out.append("[configs]")
-    configs = cs_dict.get('configs', {})
-    for key in sorted(configs.keys()):
-        val = configs[key]
-        
-        def format_toml_value(val):
-            if isinstance(val, bool):
-                return "true" if val else "false"
-            elif isinstance(val, int):
-                return str(val)
-            elif isinstance(val, str):
-                escaped = val.replace('\\', '\\\\').replace('"', '\\"')
-                return f'"{escaped}"'
-            elif isinstance(val, list):
-                if not val:
-                    return "[]"
-                elem_strs = [format_toml_value(x) for x in val]
-                if len(elem_strs) <= 3:
-                    return f"[ {', '.join(elem_strs)} ]"
-                else:
-                    return "[\n    " + ",\n    ".join(elem_strs) + "\n]"
-            return "null"
-            
-        out.append(f"{key} = {format_toml_value(val)}")
+    # 2. Settings version: [settings]
+    out.append("[settings]")
+    out.append(f'version = {cs_dict.get("version", 0)}')
     out.append("")
     
+    # 3. APNs: [[settings.apns.apn]]
     apns = cs_dict.get('apns', [])
     if apns:
-        out.append("## Access Point Name configurations")
         for apn in apns:
-            out.append("[[[apn]]]")
+            out.append("[[settings.apns.apn]]")
             for k in sorted(apn.keys()):
                 v = apn[k]
                 if isinstance(v, str):
@@ -350,6 +373,32 @@ def serialize_to_toml_string(carrier_id_rules, cs_dict):
                 elif isinstance(v, list):
                     elem_strs = [f'"{x}"' for x in v]
                     out.append(f'{k} = [ {", ".join(elem_strs)} ]')
+            out.append("")
+            
+    # 4. Configs: [settings.config] and nested blocks
+    configs = cs_dict.get('configs', {})
+    if configs:
+        flat_configs = {}
+        nested_configs = {}
+        for key, val in configs.items():
+            if isinstance(val, dict):
+                nested_configs[key] = val
+            else:
+                flat_configs[key] = val
+                
+        if flat_configs:
+            out.append("[settings.config]")
+            for key in sorted(flat_configs.keys()):
+                val = flat_configs[key]
+                out.append(f"{key} = {format_toml_value(val)}")
+            out.append("")
+            
+        for section_key in sorted(nested_configs.keys()):
+            out.append(f"[settings.config.{section_key}]")
+            section_data = nested_configs[section_key]
+            for key in sorted(section_data.keys()):
+                val = section_data[key]
+                out.append(f"{key} = {format_toml_value(val)}")
             out.append("")
             
     return "\n".join(out)
@@ -1242,12 +1291,21 @@ def extract_uecaps(fz, countries, out_format, export_bin, out_base_dir):
                         parts = entry_name.rsplit('_', 1)
                         if len(parts) == 2:
                             profile_prefix = parts[0].lower()
+                            tokens = profile_prefix.split('_')
                             for country in countries:
                                 suffixes = COUNTRY_TO_SUFFIX.get(country.lower(), [f"_{country.lower()}"])
                                 for suffix in suffixes:
-                                    if suffix.lower() in profile_prefix:
-                                        is_target = True
-                                        break
+                                    s_lower = suffix.lower()
+                                    if s_lower.startswith('_'):
+                                        # Regional suffixes like _uk, _us
+                                        if profile_prefix.endswith(s_lower) or s_lower.lstrip('_') in tokens:
+                                            is_target = True
+                                            break
+                                    else:
+                                        # Carrier names like ee, freedom
+                                        if s_lower in tokens:
+                                            is_target = True
+                                            break
                                 if is_target:
                                     break
                                     

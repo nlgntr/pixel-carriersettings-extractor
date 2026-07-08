@@ -1,28 +1,23 @@
+# Compiled automatically from CarrierSettings.pb overlays via Gemini
+
 [[carrier_id]]
 mcc_mnc = "23405"
-[carrier_id.mvno_data]
-kind  = "spn"
-value = "Spitfire"
+spn = "Spitfire"
 
 [settings]
 version = 77000000002
 
-[[settings.apns.apn]]
-name = "spitfire1"
-value = "spitfire1"
-type = ["default", "ia"]
-protocol = "ipv4v6"
-roaming_protocol = "ipv4v6"
-
-[[settings.apns.apn]]
-name = "ims"
-value = "ims"
-type = ["ims"]
-bearer_bitmask = "14|20"
-proxy = "10.202.0.1"
-user_visible = false
-
-[settings.config]
-imsvoice.amrnb_payload_description_bundle = { 103 = { imsvoice.amr_codec_attribute_modeset = [0, 2, 4, 7], imsvoice.amr_codec_attribute_payload_format = 1 }, 98 = { imsvoice.amr_codec_attribute_modeset = [0, 2, 4, 7] } }
-imsvoice.audio_codec_capability_payload_types_bundle = { imsvoice.amrnb_payload_type = [98, 103], imsvoice.amrwb_payload_type = [100, 105], imsvoice.dtmfnb_payload_type = [97], imsvoice.dtmfwb_payload_type = [96] }
-imsvoice.prack_supported_for_18x = true
+[settings.config.imsvoice]
+amrnb_payload_description = { 103 = { imsvoice = { amr_codec_attribute_modeset = [
+    0,
+    2,
+    4,
+    7
+], amr_codec_attribute_payload_format = 1 } }, 98 = { imsvoice = { amr_codec_attribute_modeset = [
+    0,
+    2,
+    4,
+    7
+] } } }
+audio_codec_capability_payload_types = { imsvoice = { amrnb_payload_type = [ 98, 103 ], amrwb_payload_type = [ 100, 105 ], dtmfnb_payload_type = [ 97 ], dtmfwb_payload_type = [ 96 ] } }
+prack_supported_for_18x = true
