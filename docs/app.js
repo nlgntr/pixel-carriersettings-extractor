@@ -336,6 +336,16 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             // Group identical capabilities to prevent repetitive cards
             const uniqueCaps = [];
+            
+            // Heuristic function to guess hardware variant based on bands
+            function getSkuGuess(lteBands, nrBands) {
+                const hasEuUkOnly = lteBands.includes('B32') || nrBands.includes('n75');
+                if (hasEuUkOnly) {
+                    return 'EU/UK Variant';
+                }
+                return 'US/RoW Variant';
+            }
+
             matchedDeviceCaps.forEach(cap => {
                 const lteStr = [...cap.lte_bands].sort().join(',');
                 const nrStr = [...cap.nr_bands].sort().join(',');
@@ -372,10 +382,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 const combosStr = cap.combos.sort((a, b) => a - b).join(', ');
                 const signaturesStr = cap.signatures.join(', ');
+                const skuLabel = getSkuGuess(cap.lte_bands, cap.nr_bands);
                 
                 card.innerHTML = `
                     <div class="uecap-summary-header">
-                        <h3>${cap.carrier} Capabilities</h3>
+                        <h3>${cap.carrier} Capabilities (${skuLabel})</h3>
                         <p class="text-secondary">Signature: ${signaturesStr}</p>
                     </div>
                     <div class="uecap-summary-grid">

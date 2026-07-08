@@ -372,18 +372,18 @@ def write_web_dashboard(database):
 
         <!-- Details Display Pane -->
         <section class="section-card details-section hidden" id="details-pane">
-            <div class="tab-header">
+            <div class="tab-bar">
                 <button class="tab-btn active" data-tab="configs-tab"><i data-lucide="settings"></i> Framework Settings</button>
                 <button class="tab-btn" data-tab="uecaps-tab"><i data-lucide="radio"></i> Radio Capabilities</button>
                 <button class="tab-btn" data-tab="apns-tab"><i data-lucide="database"></i> APNs</button>
             </div>
 
             <div class="tab-content active" id="configs-tab">
-                <div class="search-box">
+                <div class="search-bar">
                     <input type="text" id="config-search" placeholder="Search configuration parameters...">
                     <i data-lucide="search"></i>
                 </div>
-                <div class="config-list" id="config-list">
+                <div class="config-grid" id="config-list">
                     <!-- Populated by JavaScript -->
                 </div>
             </div>
@@ -1402,6 +1402,16 @@ tr:last-child td {
         } else {
             // Group identical capabilities to prevent repetitive cards
             const uniqueCaps = [];
+            
+            // Heuristic function to guess hardware variant based on bands
+            function getSkuGuess(lteBands, nrBands) {
+                const hasEuUkOnly = lteBands.includes('B32') || nrBands.includes('n75');
+                if (hasEuUkOnly) {
+                    return 'EU/UK Variant';
+                }
+                return 'US/RoW Variant';
+            }
+
             matchedDeviceCaps.forEach(cap => {
                 const lteStr = [...cap.lte_bands].sort().join(',');
                 const nrStr = [...cap.nr_bands].sort().join(',');
@@ -1438,10 +1448,11 @@ tr:last-child td {
                 
                 const combosStr = cap.combos.sort((a, b) => a - b).join(', ');
                 const signaturesStr = cap.signatures.join(', ');
+                const skuLabel = getSkuGuess(cap.lte_bands, cap.nr_bands);
                 
                 card.innerHTML = `
                     <div class="uecap-summary-header">
-                        <h3>${cap.carrier} Capabilities</h3>
+                        <h3>${cap.carrier} Capabilities (${skuLabel})</h3>
                         <p class="text-secondary">Signature: ${signaturesStr}</p>
                     </div>
                     <div class="uecap-summary-grid">
