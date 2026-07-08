@@ -4,7 +4,6 @@ import glob
 import struct
 import sqlite3
 import zipfile
-from ext4 import Volume
 from .common import CODENAMES, MONTHS, parse_android_version, parse_factory_zip_name, extract_partition_img
 
 # ==============================================================================
@@ -428,6 +427,7 @@ def extract_carrier_settings(fz, countries, out_base_dir):
     """
     Processes a single factory image and extracts the relevant carrier setting pb files.
     """
+    from ext4 import Volume
     info = parse_factory_zip_name(fz)
     if not info:
         print(f"\nSkipping {fz}: Could not parse info from filename.")
@@ -578,6 +578,7 @@ def dump_db_info(db_path):
         print(f"Error reading SQLite database: {e}")
 
 def extract_cfg_db(fz, out_base_dir):
+    from ext4 import Volume
     info = parse_factory_zip_name(fz)
     if not info:
         print(f"\nSkipping {fz}: Could not parse info from filename.")
@@ -1193,6 +1194,7 @@ def decode_ap_plmn_mapping_txt(data, out_path):
                     f.write(f"Profile: {profile:<15} (ID: {profile_id:<3}) -> PLMNs: {', '.join(plmns)}\n")
 
 def extract_uecaps(fz, countries, out_format, export_bin, out_base_dir):
+    from ext4 import Volume
     info = parse_factory_zip_name(fz)
     if not info:
         return
