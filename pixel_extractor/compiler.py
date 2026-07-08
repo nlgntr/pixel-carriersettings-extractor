@@ -115,7 +115,175 @@ def match_uecaps_to_carrier(toml_filename, uecap_summaries):
             if first_part == 'vf' or 'vf' in carrier_lower or 'vodafone' in carrier_lower:
                 matches.append(summary)
                 
-    return matches
+def generate_build_index_html(build_path):
+    from .common import CODENAMES
+    build_id = os.path.basename(build_path)
+    friendly_build = build_id.replace('android_', 'Android ').replace('_', ' ')
+    
+    device_tomls = {}
+    cs_dir = os.path.join(build_path, 'carrier_settings')
+    if os.path.exists(cs_dir):
+        for device_dir in sorted(os.listdir(cs_dir)):
+            device_path = os.path.join(cs_dir, device_dir)
+            if not os.path.isdir(device_path):
+                continue
+            toml_dir = os.path.join(device_path, 'toml')
+            if os.path.exists(toml_dir):
+                tomls = sorted([f for f in os.listdir(toml_dir) if f.endswith('.toml')])
+                if tomls:
+                    friendly_name = device_dir.replace('_', ' ').title()
+                    friendly_name = friendly_name.replace(' Xl', ' XL').replace('10A', '10a').replace('9A', '9a')
+                    for codename, friendly in CODENAMES.items():
+                        if codename in device_dir.lower():
+                            friendly_name = f"{friendly} ({device_dir})"
+                            break
+                    device_tomls[friendly_name] = {
+                        'dir': device_dir,
+                        'files': tomls
+                    }
+                    
+    uecaps_files = []
+    uecaps_dir = os.path.join(build_path, 'uecaps', 'markdown')
+    if os.path.exists(uecaps_dir):
+        uecaps_files = sorted([f for f in os.listdir(uecaps_dir) if f.endswith('.md')])
+        
+    cfg_db_path = None
+    if os.path.exists(os.path.join(build_path, 'modem', 'cfg.db')):
+        cfg_db_path = 'modem/cfg.db'
+        
+    html = []
+    html.append("<!DOCTYPE html>")
+    html.append("<html>")
+    html.append("<head>")
+    html.append(f"    <meta charset=\"UTF-8\">")
+    html.append(f"    <title>Index of {friendly_build}</title>")
+    html.append("""    <style>
+        :root {
+            --bg-color: #0d0e12;
+            --text-color: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --border-color: #1f2937;
+            --accent: #8b5cf6;
+            --accent-hover: #a78bfa;
+            --bg-card: rgba(255, 255, 255, 0.02);
+            --bg-hover: rgba(255, 255, 255, 0.05);
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        h1 {
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+            color: var(--text-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        h2 {
+            color: var(--accent-hover);
+            font-size: 1.3rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.25rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        h3 {
+            color: var(--text-color);
+            font-size: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        a:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+        .file-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .file-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.85rem;
+            font-family: monospace;
+            display: flex;
+            align-items: center;
+            transition: background 0.2s ease;
+        }
+        .file-item:hover {
+            background: var(--bg-hover);
+        }
+        .device-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .meta-info {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">""")
+    
+    html.append(f"        <h1>Build Archive Explorer &mdash; {friendly_build}</h1>")
+    html.append(f'        <div class="meta-info">Build folder: <code>{build_id}</code></div>')
+    
+    if cfg_db_path:
+        html.append(f'        <h2>Shannon Modem Configuration</h2>')
+        html.append(f'        <div class="file-list">')
+        html.append(f'            <div class="file-item"><a href="{cfg_db_path}">📄 cfg.db</a></div>')
+        html.append(f'        </div>')
+        
+    if device_tomls:
+        html.append("        <h2>Carrier Settings Configurations (TOML)</h2>")
+        for friendly_name, data in sorted(device_tomls.items()):
+            html.append(f"        <div class=\"device-card\">")
+            html.append(f"            <h3>{friendly_name}</h3>")
+            html.append(f"            <div class=\"file-list\">")
+            for f in data['files']:
+                path = f"carrier_settings/{data['dir']}/toml/{f}"
+                html.append(f'                <div class="file-item"><a href="{path}">📄 {f}</a></div>')
+            html.append(f"            </div>")
+            html.append(f"        </div>")
+            
+    if uecaps_files:
+        html.append("        <h2>UE Capability Radio Profiles (Markdown)</h2>")
+        html.append('        <div class="file-list">')
+        for f in uecaps_files:
+            path = f"uecaps/markdown/{f}"
+            html.append(f'            <div class="file-item"><a href="{path}">📄 {f}</a></div>')
+        html.append('        </div>')
+        
+    html.append("""    </div>
+</body>
+</html>""")
+
+    index_path = os.path.join(build_path, 'index.html')
+    with open(index_path, 'w', encoding='utf-8') as f:
+        f.write("\n".join(html))
+    print(f"Generated build index: {index_path}")
 
 def compile_database():
     database = {
@@ -318,7 +486,13 @@ def compile_database():
                     
                 except Exception as ex:
                     print(f"Error processing carrier data for {filename}: {ex}")
-                    
+        
+        # Generate build directory index page
+        try:
+            generate_build_index_html(build_path)
+        except Exception as ex:
+            print(f"Error generating index for build {build_path}: {ex}")
+            
     return database
 
 def write_web_dashboard(database):
