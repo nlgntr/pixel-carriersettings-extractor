@@ -7,6 +7,20 @@ gid1 = "6764"
 [settings]
 version = 77000000002
 
+[[settings.apns.apn]]
+name = "globaldata"
+type = [ "default", "supl", "dun" ]
+value = "globaldata"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|20"
+name = "IMS"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "ims" ]
+user_visible = false
+value = "ims"
+
 [settings.config]
 read_only_apn_types = []
 

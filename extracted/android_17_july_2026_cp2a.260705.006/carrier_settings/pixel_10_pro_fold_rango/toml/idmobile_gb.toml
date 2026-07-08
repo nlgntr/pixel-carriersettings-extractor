@@ -7,6 +7,24 @@ gid1 = "0305"
 [settings]
 version = 77000000001
 
+[[settings.apns.apn]]
+mmsc = "http://mms.um.idmobile.co.uk:10021/mmsc"
+mmsc_proxy = "mms.idmobile.co.uk"
+mmsc_proxy_port = "8799"
+name = "iD"
+type = [ "default", "mms", "supl", "xcap" ]
+value = "id"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|18|20"
+mtu = 1500
+name = "ims"
+protocol = "ipv6"
+roaming_protocol = "ipv4v6"
+type = [ "ims" ]
+user_visible = false
+value = "IMS"
+
 [settings.config]
 auto_retry_failed_wifi_emergency_call = true
 call_barring_visibility = true

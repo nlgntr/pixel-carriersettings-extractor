@@ -7,6 +7,49 @@ gid1 = "C3"
 [settings]
 version = 77000000002
 
+[[settings.apns.apn]]
+authtype = 1
+bearer_bitmask = "14|18|20"
+name = "IMS"
+password = "secure"
+protocol = "ipv6"
+roaming_protocol = "ipv4v6"
+type = [ "ims" ]
+user = "eesecure"
+user_visible = false
+value = "ims"
+
+[[settings.apns.apn]]
+authtype = 1
+name = "Internet"
+password = "secure"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "default", "supl" ]
+user = "eesecure"
+user_editable = false
+value = "everywhere"
+
+[[settings.apns.apn]]
+authtype = 1
+mmsc = "http://mms/"
+mmsc_proxy = "149.254.201.135"
+mmsc_proxy_port = "8080"
+name = "MMS"
+password = "secure"
+type = [ "mms", "xcap" ]
+user = "eesecure"
+user_editable = false
+value = "eezone"
+
+[[settings.apns.apn]]
+name = "EE Emergency"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "emergency" ]
+user_visible = false
+value = "sos"
+
 [settings.config]
 carrier_cross_sim_ims_available = false
 carrier_default_data_roaming_enabled = true

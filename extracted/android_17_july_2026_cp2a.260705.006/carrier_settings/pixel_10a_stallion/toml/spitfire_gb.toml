@@ -7,6 +7,21 @@ spn = "Spitfire"
 [settings]
 version = 77000000002
 
+[[settings.apns.apn]]
+name = "spitfire1"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "default", "ia" ]
+value = "spitfire1"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|20"
+name = "ims"
+proxy = "10.202.0.1"
+type = [ "ims" ]
+user_visible = false
+value = "ims"
+
 [settings.config.imsvoice]
 amrnb_payload_description = { 103 = { imsvoice = { amr_codec_attribute_modeset = [
     0,

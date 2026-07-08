@@ -7,6 +7,25 @@ gid1 = "0A"
 [settings]
 version = 77000000011
 
+[[settings.apns.apn]]
+authtype = 1
+mmsc = "http://mmsc.mms.o2.co.uk:8002"
+name = "TESCO"
+password = "p"
+protocol = "ipv4v6"
+type = [ "default", "dun", "mms", "supl", "hipri", "xcap" ]
+user = "tm"
+value = "prepay.tesco-mobile.com"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|18|20"
+name = "IMS"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "ims" ]
+user_visible = false
+value = "ims"
+
 [settings.config]
 carrier_default_wfc_ims_enabled = true
 carrier_default_wfc_ims_mode = 1

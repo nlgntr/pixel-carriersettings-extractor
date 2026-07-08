@@ -19,6 +19,27 @@ gid1 = "99"
 [settings]
 version = 77000000009
 
+[[settings.apns.apn]]
+authtype = 1
+mmsc = "http://mmsc.mms.o2.co.uk:8002"
+name = "O2 Pay As You Go"
+password = "p"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "default", "dun", "mms", "supl", "hipri", "xcap" ]
+user = "o2"
+user_editable = false
+value = "payandgo.o2.co.uk"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|18|20"
+name = "O2 IMS"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "ims" ]
+user_visible = false
+value = "ims"
+
 [settings.config]
 auto_retry_failed_wifi_emergency_call = true
 carrier_default_wfc_ims_enabled = true

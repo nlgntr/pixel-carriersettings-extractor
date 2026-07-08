@@ -6,6 +6,15 @@ mcc_mnc = "23471"
 [settings]
 version = 77000000002
 
+[[settings.apns.apn]]
+bearer_bitmask = "14|20"
+name = "IMS"
+protocol = "ipv6"
+roaming_protocol = "ipv6"
+type = [ "ims", "xcap" ]
+user_visible = false
+value = "ims"
+
 [settings.config]
 carrier_default_data_roaming_enabled = true
 carrier_name = ""

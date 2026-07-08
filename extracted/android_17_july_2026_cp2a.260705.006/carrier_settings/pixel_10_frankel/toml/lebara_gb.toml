@@ -10,6 +10,27 @@ mcc_mnc = "23487"
 [settings]
 version = 77000000002
 
+[[settings.apns.apn]]
+authtype = 1
+mmsc = "http://mms.lebara.co.uk/servlets/mms"
+mmsc_proxy = "212.183.137.12"
+mmsc_proxy_port = "8799"
+name = "Lebara Internet"
+password = "wap"
+type = [ "default", "mms", "supl" ]
+user = "wap"
+user_editable = false
+value = "uk.lebara.mobi"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|18|20"
+name = "IMS"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "ims" ]
+user_visible = false
+value = "ims"
+
 [settings.config]
 carrier_default_wfc_ims_mode = 1
 carrier_volte_available = true

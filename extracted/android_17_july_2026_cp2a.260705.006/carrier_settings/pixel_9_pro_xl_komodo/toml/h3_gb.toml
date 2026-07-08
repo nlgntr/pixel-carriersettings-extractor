@@ -12,6 +12,35 @@ mcc_mnc = "23594"
 [settings]
 version = 77000000007
 
+[[settings.apns.apn]]
+authtype = 0
+name = "3hotspot"
+protocol = "ipv4v6"
+type = [ "dun" ]
+user_visible = false
+value = "3hotspot"
+
+[[settings.apns.apn]]
+mmsc = "http://mms.um.three.co.uk:10021/mmsc"
+mmsc_proxy = "mms.three.co.uk"
+mmsc_proxy_port = "8799"
+mtu = 1440
+name = "3"
+protocol = "ipv4v6"
+type = [ "default", "mms", "supl", "xcap" ]
+user_editable = false
+value = "three.co.uk"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|18|20"
+mtu = 1500
+name = "ims"
+protocol = "ipv6"
+roaming_protocol = "ipv4v6"
+type = [ "ims" ]
+user_visible = false
+value = "IMS"
+
 [settings.config]
 auto_retry_failed_wifi_emergency_call = true
 call_barring_visibility = true

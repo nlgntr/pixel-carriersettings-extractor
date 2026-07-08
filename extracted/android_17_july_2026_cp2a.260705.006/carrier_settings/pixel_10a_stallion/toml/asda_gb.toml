@@ -11,6 +11,38 @@ gid1 = "A1"
 [settings]
 version = 77000000006
 
+[[settings.apns.apn]]
+authtype = 1
+mmsc = "http://mms.ad.vodafone.co.uk/servlets/mms"
+mmsc_proxy = "212.183.137.12"
+mmsc_proxy_port = "8799"
+name = "ASDA Mobile"
+password = "wap"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "default", "mms", "supl" ]
+user = "wap"
+user_editable = false
+value = "MY.INTERNET"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|18|20"
+name = "IMS"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "ims" ]
+user_visible = false
+value = "ims"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|18|20"
+name = "XCAP"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "xcap" ]
+user_visible = false
+value = "xcap"
+
 [settings.config]
 carrier_default_wfc_ims_mode = 1
 carrier_supports_ss_over_ut = true

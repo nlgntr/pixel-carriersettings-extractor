@@ -219,14 +219,14 @@ def parse_apn_item(data):
         elif fnum == 24 and ftype == 'varint':
             apn['user_editable'] = bool(val)
     if types:
-        apn['apntype'] = types
+        apn['type'] = types
     return apn
 
 def parse_carrier_apns(data):
     fields = parse_protobuf_carrier(data)
     apns = []
     for fnum, ftype, val in fields:
-        if fnum == 1 and ftype == 'length_delimited':
+        if fnum in (1, 2) and ftype == 'length_delimited':
             apns.append(parse_apn_item(val))
     return apns
 

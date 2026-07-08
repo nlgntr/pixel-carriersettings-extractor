@@ -11,6 +11,30 @@ spn = "eSIM Go"
 [settings]
 version = 77000000008
 
+[[settings.apns.apn]]
+authtype = 1
+mmsc = "http://mms.vodafone.co.uk/servlets/mms"
+mmsc_proxy = "212.183.137.12"
+mmsc_proxy_port = "8799"
+mtu = 1340
+name = "eSIM Go Data"
+password = "wap"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "default", "mms", "supl" ]
+user = "wap"
+user_editable = false
+value = "uk.data.esim"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|18|20"
+name = "IMS"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "ims" ]
+user_visible = false
+value = "IMS"
+
 [settings.config]
 carrier_certificate = []
 carrier_default_wfc_ims_mode = 1

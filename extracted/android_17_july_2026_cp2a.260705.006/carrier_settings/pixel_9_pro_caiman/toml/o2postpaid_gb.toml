@@ -6,6 +6,27 @@ mcc_mnc = "23410"
 [settings]
 version = 77000000015
 
+[[settings.apns.apn]]
+authtype = 1
+mmsc = "http://mmsc.mms.o2.co.uk:8002"
+name = "O2 Pay Monthly"
+password = "p"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "default", "dun", "mms", "supl", "hipri", "xcap" ]
+user = "o2"
+user_editable = false
+value = "mobile.o2.co.uk"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|18|20"
+name = "O2 IMS"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "ims" ]
+user_visible = false
+value = "ims"
+
 [settings.config]
 auto_retry_failed_wifi_emergency_call = true
 carrier_default_wfc_ims_enabled = true

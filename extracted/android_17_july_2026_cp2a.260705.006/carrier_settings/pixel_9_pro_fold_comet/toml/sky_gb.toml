@@ -10,6 +10,57 @@ gid1 = "0C"
 [settings]
 version = 77000000021
 
+[[settings.apns.apn]]
+authtype = 0
+bearer_bitmask = "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|17|20"
+mmsc = "http://185.110.178.96:38090/was"
+mmsc_proxy = "185.110.178.97"
+mmsc_proxy_port = "9028"
+name = "SKY MMS"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "mms" ]
+user_visible = false
+value = "mms.mobile.sky"
+
+[[settings.apns.apn]]
+authtype = 0
+bearer_bitmask = "18"
+mmsc = "http://185.110.178.96:38090/was"
+mmsc_proxy = "185.110.178.97"
+mmsc_proxy_port = "9028"
+name = "SKY WiFi MMS"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "mms" ]
+user_visible = false
+value = "wifi.mms.mobile.sky"
+
+[[settings.apns.apn]]
+name = "SKY Internet"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "default", "supl", "ia" ]
+value = "mobile.sky"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|18|20"
+name = "IMS"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "ims" ]
+user_visible = false
+value = "ims"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|18|20"
+name = "Sky Ut"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "xcap" ]
+user_visible = false
+value = "ut.mobile.sky"
+
 [settings.config]
 call_barring_visibility = true
 carrier_default_wfc_ims_enabled = true

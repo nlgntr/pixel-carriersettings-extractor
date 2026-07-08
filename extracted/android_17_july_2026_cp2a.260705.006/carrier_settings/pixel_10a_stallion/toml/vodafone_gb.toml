@@ -9,6 +9,38 @@ mcc_mnc = "23491"
 [settings]
 version = 77000000009
 
+[[settings.apns.apn]]
+authtype = 1
+mmsc = "http://mms.vodafone.co.uk/servlets/mms"
+mmsc_proxy = "212.183.137.12"
+mmsc_proxy_port = "8799"
+mtu = 1340
+name = "Vodafone UK Data"
+password = "wap"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "default", "mms", "supl" ]
+user = "wap"
+user_editable = false
+value = "wap.vodafone.co.uk"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|18|20"
+name = "IMS"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "ims" ]
+user_visible = false
+value = "IMS"
+
+[[settings.apns.apn]]
+name = "XCAP"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "xcap" ]
+user_visible = false
+value = "xcap"
+
 [settings.config]
 call_barring_visibility = true
 carrier_certificate = [ "2E26357C65C1F858CE0C798AA7EFB38922E8D334F12DAD4A3963007DFBBC5677:com.myvodafoneapp" ]

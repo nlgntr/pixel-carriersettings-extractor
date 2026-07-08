@@ -11,6 +11,26 @@ spn = "GIFFGAFF"
 [settings]
 version = 77000000003
 
+[[settings.apns.apn]]
+authtype = 1
+mmsc = "http://mmsc.mediamessaging.co.uk:8002"
+name = "giffgaff"
+password = "p"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "default", "mms" ]
+user = "gg"
+value = "giffgaff.com"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|18|20"
+name = "IMS"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "ims" ]
+user_visible = false
+value = "ims"
+
 [settings.config]
 carrier_default_wfc_ims_enabled = true
 carrier_default_wfc_ims_mode = 1

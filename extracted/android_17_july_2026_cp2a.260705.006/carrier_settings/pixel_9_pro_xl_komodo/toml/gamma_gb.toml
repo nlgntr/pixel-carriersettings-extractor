@@ -10,6 +10,43 @@ mcc_mnc = "23439"
 [settings]
 version = 77000000011
 
+[[settings.apns.apn]]
+authtype = 0
+name = "GAMMA"
+type = [ "default", "supl", "dun" ]
+user_editable = false
+value = "gamma"
+
+[[settings.apns.apn]]
+mmsc = "http://mms.um.three.co.uk:10021/mmsc"
+mmsc_proxy = "mms.three.co.uk"
+mmsc_proxy_port = "8799"
+mtu = 1440
+name = "Gamma MMS"
+type = [ "mms" ]
+user_editable = false
+value = "three.co.uk"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|18|20"
+mtu = 1500
+name = "ims"
+protocol = "ipv6"
+roaming_protocol = "ipv4v6"
+type = [ "ims" ]
+user_visible = false
+value = "IMS"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|20"
+mtu = 1500
+name = "Gamma XCAP"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "xcap" ]
+user_visible = false
+value = "three.co.uk"
+
 [settings.config]
 auto_retry_failed_wifi_emergency_call = true
 call_barring_visibility = true

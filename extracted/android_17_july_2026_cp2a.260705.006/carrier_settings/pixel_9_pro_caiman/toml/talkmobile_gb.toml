@@ -7,6 +7,37 @@ gid1 = "C1"
 [settings]
 version = 77000000020
 
+[[settings.apns.apn]]
+authtype = 1
+mmsc = "http://mms.talkmobile.co.uk/servlets/mms"
+mmsc_proxy = "212.183.137.12"
+mmsc_proxy_port = "8799"
+name = "Talkmobile Data"
+password = "wap"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "default", "mms", "supl" ]
+user = "wap"
+user_editable = false
+value = "talkmobile.co.uk"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|18|20"
+name = "IMS"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "ims" ]
+user_visible = false
+value = "ims"
+
+[[settings.apns.apn]]
+name = "XCAP"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "xcap" ]
+user_visible = false
+value = "xcap"
+
 [settings.config]
 carrier_default_wfc_ims_mode = 1
 carrier_supports_ss_over_ut = true
