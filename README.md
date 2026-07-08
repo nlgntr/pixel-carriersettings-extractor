@@ -163,6 +163,38 @@ When extracting and comparing stallion (Pixel 10a) and blazer (Pixel 10 Pro) con
 
 ---
 
+## 🔄 How to Add & Process New Device Factory Images
+
+When a new Android security release is published, or when you want to add other Pixel devices (e.g. Pixel 9, Pixel 9 Pro Fold, etc.) to the showcase, follow these steps to update the database and static site:
+
+### Step 1: Place the Factory ZIP
+Download the factory image `.zip` for the target device variant from the official [Google Developers Portal](https://developers.google.com/android/images) and place it directly in the root directory of this project.
+> [!NOTE]
+> Do not unzip the factory image. The pipeline handles mounting and extracting directly from the compressed factory ZIP.
+
+### Step 2: Run the Extraction Pipeline
+Run the unified extractor to parse the partition tables, SQLite databases, and capability binaries:
+```bash
+uv run extract_all.py
+```
+This automatically processes all factory ZIPs in the root folder, isolates them under their respective Build IDs and device codenames in the `extracted/` directory, and translates them.
+
+### Step 3: Rebuild the Web Dashboard Database
+Run the compiler script to update `docs/data.js` and rebuild the client-side static bundle with the new devices and capabilities:
+```bash
+python3 compile_web_dashboard.py
+```
+
+### Step 4: Publish to GitHub Pages
+Commit and push the new changes. The repository's automated CI/CD pipeline ([deploy.yml](file:///.github/workflows/deploy.yml)) will deploy the updated dashboard to your GitHub Pages URL automatically:
+```bash
+git add extracted/ docs/
+git commit -m "feat: add and compile new factory image configs"
+git push
+```
+
+---
+
 ## 🤝 Credits & Acknowledgements
 
 This project's native TOML generator is designed to be fully compatible with the schemas defined by the excellent **[pixel-carriersettings-toolbox](https://github.com/h4wkd3v/pixel-carriersettings-toolbox)** project. 
