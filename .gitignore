@@ -1,0 +1,9 @@
+# Ignore large factory images
+*.zip
+
+# OS metadata
+.DS_Store
+
+# Git temporary files
+COMMIT_MSG.txt
+
