@@ -181,8 +181,8 @@ The classifier in `pixel-extractor extract-uecaps` parses these profiles to iden
 
 | Variant | Characteristics | O2 UK Combos | EE Combos | VF UK Combos | Three Combos |
 | :--- | :--- | :---: | :---: | :---: | :---: |
-| **Pixel 9 Pro / Pro XL / Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold** | **Flagship Pro**: Supports dual-low-band carrier aggregation (B20 + B28), 4x4 MIMO, and 30kHz Subcarrier Spacing (SCS) for fast 5G. | **462** | **484** / **483** | **763** / **761** | **181** / **174** |
-| **Pixel 9 / Pixel 10 (Standard)** | **Standard Flagship**: Supports 4x4 MIMO and 30kHz SCS, but blocks dual-low-band carrier aggregation (B20 + B28 is disabled). | **437** | **479** / **478** | **534** / **531** | **157** |
+| **Pixel 9 Pro / Pro XL / Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold** (e.g., Global **GEHN3** / **G45RY**) | **Flagship Pro**: Supports dual-low-band carrier aggregation (B20 + B28), 4x4 MIMO, and 30kHz Subcarrier Spacing (SCS) for fast 5G. mmWave is US-exclusive. | **462** | **484** / **483** | **763** / **761** | **181** / **174** |
+| **Pixel 9 / Pixel 10 (Standard)** (e.g., Global **GK2MP**) | **Standard Flagship**: Supports 4x4 MIMO and 30kHz SCS, but blocks dual-low-band carrier aggregation (B20 + B28 is disabled). | **437** | **479** / **478** | **534** / **531** | **157** |
 | **Pixel 10a (UK/EU SKU)** | **Mid-Range/A-Series**: Restricted to 2x2 MIMO and 15kHz SCS, but supports all major UK carrier bands (including O2's LTE Band 40). | **230** | **257** | **333** | **121** |
 | **Pixel 10a (Basic / NA SKU)** | **Fallback / Basic**: Restricted to 2x2 MIMO, 15kHz SCS, and **completely removes Band 40** (which is not used by North American carriers). | **121** | **109** | **170** | **111** / **66** |
 

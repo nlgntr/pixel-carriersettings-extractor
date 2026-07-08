@@ -1186,10 +1186,11 @@ tr:last-child td {
             
             if (activeDeviceLower.includes('10a') || activeDeviceLower.includes('stallion')) {
                 matchedDeviceCaps = matchedDeviceCaps.filter(cap => cap.device.toLowerCase().includes('10a'));
-            } else if (activeDeviceLower.includes('blazer') || activeDeviceLower.includes('10_pro')) {
-                matchedDeviceCaps = matchedDeviceCaps.filter(cap => cap.device.toLowerCase().includes('10 pro') || cap.device.toLowerCase().includes('10 (standard)'));
-            } else if (activeDeviceLower.includes('komodo') || activeDeviceLower.includes('9_pro') || activeDeviceLower.includes('9pro')) {
-                matchedDeviceCaps = matchedDeviceCaps.filter(cap => cap.device.toLowerCase().includes('9 pro') || cap.device.toLowerCase().includes('9 (standard)'));
+            } else if (activeDeviceLower.includes('frankel') || activeDeviceLower.includes('tokay')) {
+                matchedDeviceCaps = matchedDeviceCaps.filter(cap => cap.device.toLowerCase().includes('standard'));
+            } else {
+                // Pro / XL / Fold models (blazer, mustang, rango, caiman, komodo, comet)
+                matchedDeviceCaps = matchedDeviceCaps.filter(cap => cap.device.toLowerCase().includes('pro') || cap.device.toLowerCase().includes('flagship'));
             }
             
             let ueText = '-';
@@ -1391,10 +1392,11 @@ tr:last-child td {
         
         if (activeDeviceLower.includes('10a') || activeDeviceLower.includes('stallion')) {
             matchedDeviceCaps = matchedDeviceCaps.filter(cap => cap.device.toLowerCase().includes('10a'));
-        } else if (activeDeviceLower.includes('blazer') || activeDeviceLower.includes('10_pro')) {
-            matchedDeviceCaps = matchedDeviceCaps.filter(cap => cap.device.toLowerCase().includes('10 pro') || cap.device.toLowerCase().includes('10 (standard)'));
-        } else if (activeDeviceLower.includes('komodo') || activeDeviceLower.includes('9_pro') || activeDeviceLower.includes('9pro')) {
-            matchedDeviceCaps = matchedDeviceCaps.filter(cap => cap.device.toLowerCase().includes('9 pro') || cap.device.toLowerCase().includes('9 (standard)'));
+        } else if (activeDeviceLower.includes('frankel') || activeDeviceLower.includes('tokay')) {
+            matchedDeviceCaps = matchedDeviceCaps.filter(cap => cap.device.toLowerCase().includes('standard'));
+        } else {
+            // Pro / XL / Fold models (blazer, mustang, rango, caiman, komodo, comet)
+            matchedDeviceCaps = matchedDeviceCaps.filter(cap => cap.device.toLowerCase().includes('pro') || cap.device.toLowerCase().includes('flagship'));
         }
         
         if (matchedDeviceCaps.length === 0) {
@@ -1403,13 +1405,34 @@ tr:last-child td {
             // Group identical capabilities to prevent repetitive cards
             const uniqueCaps = [];
             
-            // Heuristic function to guess hardware variant based on bands
-            function getSkuGuess(lteBands, nrBands) {
-                const hasEuUkOnly = lteBands.includes('B32') || nrBands.includes('n75');
-                if (hasEuUkOnly) {
-                    return 'EU/UK Variant';
+            // Heuristic function to guess hardware variant based on bands and device label
+            function getSkuGuess(cap) {
+                const devLower = cap.device.toLowerCase();
+                const hasmmWave = cap.nr_bands.includes('n258') || cap.nr_bands.includes('n260') || cap.nr_bands.includes('n261');
+                
+                if (devLower.includes('10a') || devLower.includes('stallion')) {
+                    if (devLower.includes('uk/eu sku')) return 'EU/UK Variant';
+                    if (devLower.includes('basic / na sku')) return 'US/RoW Variant';
+                    return 'Standard Variant';
                 }
-                return 'US/RoW Variant';
+                
+                if (devLower.includes('pro')) {
+                    if (hasmmWave) {
+                        return 'US Variant (Model G4QUR/GUL82 - mmWave)';
+                    } else {
+                        return 'EU/UK Variant (Model GEHN3/G45RY - Sub-6)';
+                    }
+                }
+                
+                if (devLower.includes('standard')) {
+                    if (hasmmWave) {
+                        return 'US Variant (mmWave)';
+                    } else {
+                        return 'EU/UK Variant (Model GK2MP - Sub-6)';
+                    }
+                }
+                
+                return 'Global Variant';
             }
 
             matchedDeviceCaps.forEach(cap => {
@@ -1448,7 +1471,7 @@ tr:last-child td {
                 
                 const combosStr = cap.combos.sort((a, b) => a - b).join(', ');
                 const signaturesStr = cap.signatures.join(', ');
-                const skuLabel = getSkuGuess(cap.lte_bands, cap.nr_bands);
+                const skuLabel = getSkuGuess(cap);
                 
                 card.innerHTML = `
                     <div class="uecap-summary-header">
