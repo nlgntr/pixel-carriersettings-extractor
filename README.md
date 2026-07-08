@@ -1,81 +1,163 @@
-# Pixel Carrier Settings Extractor
+# 📱 Pixel Carrier Settings & UE Capability Extractor
 
-This repository contains tools and extracted carrier configuration files for Google Pixel devices. The configurations are stored in Google's proprietary `.pb` (protocol buffer) format and dictate cellular properties, IMS profiles, and capabilities for various carriers worldwide.
+This repository provides automated, dependency-free tools to extract, decode, and analyze carrier configurations, modem SQLite databases, and UE (User Equipment) radio capability profiles directly from Google Pixel factory firmware images.
 
-The current files in this repository were extracted from **Android 17 (July 2026 Update, Build CP2A.260705.006)** for:
-- **Pixel 10 Pro (ROW / Rest of World)** — Codenamed `blazer`
-- **Pixel 10a (ROW / Rest of World)** — Codenamed `stallion`
+It is designed for cellular configuration enthusiasts, baseband researchers, and developers customizing network behavior on rooted Google Pixel devices.
 
 ---
 
-## 🛠️ Extraction Tool: `extract_carrier_settings.py`
+## 🛠️ Supported Architectures & Devices
 
-A python utility is included in the root directory to automatically parse official Google factory image ZIP files, locate the internal `product.img` partition, parse its raw ext4 filesystem structure (without requiring root/sudo or actual partition mounting), and extract the carrier settings for targeted countries.
+While the scripts are generic and will parse older Qualcomm or Exynos Pixel partitions, the extraction targets and built-in heuristics are optimized for the **Exynos 5400-based Pixel 10 family** running **Android 17+**:
 
-### Prerequisites
+| Codename | Friendly Name | Model Type | Characteristics |
+| :--- | :--- | :--- | :--- |
+| `blazer` | **Pixel 10 Pro** | Flagship Pro | Full RF features, Satellite connectivity, 4x4 MIMO, dual-low-band CA |
+| `mustang` | **Pixel 10 Pro XL** | Flagship Pro | Full RF features, Satellite connectivity, 4x4 MIMO, dual-low-band CA |
+| `rango` | **Pixel 10 Pro Fold** | Flagship Pro | Full RF features, Satellite connectivity, 4x4 MIMO, dual-low-band CA |
+| `frankel` | **Pixel 10** | Standard Flagship | 4x4 MIMO, No dual-low-band CA (e.g. B20 + B28 blocked) |
+| `stallion` | **Pixel 10a** | Mid-Range A-Series | 2x2 MIMO limits, 15kHz SCS limit, regional variants (EU/UK vs. US) |
 
-You need the `uv` tool to run this script easily. It will automatically resolve the `ext4` read-only filesystem library dependency inside a sandboxed virtual environment.
+---
 
-```bash
-# Verify uv is installed
-uv --version
+## 📂 Extracted Workspace Directory Structure
+
+All outputs are grouped under a top-level directory named after the **Android Version, Release Date, and Build ID** to keep builds isolated. Model configurations that share the same firmware block are automatically deduplicated at the file level to prevent redundancy, while framework settings are isolated per model to preserve unique carrier feature flags:
+
 ```
-
-### Usage
-
-#### 1. Extract UK (`gb`) carriers from all factory zips in the current directory (Default):
-The script will automatically detect any `*-factory-*.zip` files in the working directory:
-```bash
-uv run extract_carrier_settings.py
-```
-
-#### 2. Extract from a specific factory image file:
-If your image file is in another location:
-```bash
-uv run extract_carrier_settings.py -i /path/to/stallion-cp2a.260705.006-factory-e7631ea9.zip
-```
-
-#### 3. Extract other countries' carrier settings:
-You can specify a comma-separated list of country codes (such as `us` for USA, `de` for Germany, `ca` for Canada):
-```bash
-uv run extract_carrier_settings.py -c us,de,ca
-```
-
-#### 4. Extract carrier settings for ALL countries:
-To pull the entire directory of carriers:
-```bash
-uv run extract_carrier_settings.py -c all
+extracted/
+└── android_17_july_2026_cp2a.260705.006/             # Grouped by Android version & Build ID
+    ├── carrier_settings/                            # 1. Framework Carrier Settings (.pb + .toml)
+    │   ├── pixel_10a_stallion/                     # Isolated by device variant to prevent overwriting
+    │   │   ├── carrier_list.pb                      # Global SIM-matching rule lookup binary
+    │   │   ├── ee_gb.pb                             # Raw carrier configuration binary protobuf
+    │   │   ├── ...
+    │   │   └── toml/                                # Natively decoded carrier configs (editable TOMLs)
+    │   │       ├── ee_gb.toml                       # e.g., EE UK configuration (APNs, IMS settings)
+    │   │       └── ...
+    │   └── pixel_10_pro_blazer/
+    │       ├── carrier_list.pb
+    │       ├── ee_gb.pb
+    │       └── toml/
+    │           └── ee_gb.toml
+    │
+    ├── cfg_db/                                      # 2. Low-level Modem NV Configurations
+    │   ├── cfg.db                                   # SQLite modem carrier policy database (unified build)
+    │   └── confseqs/                                # Extracted regional modem configuration scripts
+    │
+    └── uecaps/                                      # 3. Modem Radio Capability Profiles (unified build)
+        ├── bin/                                     # Raw .bin files for uecaps.hennes.xyz upload
+        │   ├── EE_122181298464.bin
+        │   └── O2_UK_261620682585876042.bin
+        ├── binarypb/                                # Binary protobuf capability descriptors
+        │   └── EE_122181298464.binarypb
+        └── markdown/                                # Translated human-readable combination sheets
+            ├── EE_122181298464.md
+            └── O2_UK_261620682585876042.md          # Bands, MIMO, Modulation, and CA classification
 ```
 
 ---
 
-## 📂 Repository Structure
+## 🔬 Included Extraction Tools
 
-- `extracted_carrier_settings/`
-  - `android_17_july_2026_pixel_10_pro_row/` — Staged carrier configurations (`.pb`) for the Pixel 10 Pro.
-  - `android_17_july_2026_pixel_10a_row/` — Staged carrier configurations (`.pb`) for the Pixel 10a.
-- `extract_carrier_settings.py` — The automated extraction utility.
-- `.gitignore` — Ignores large factory image files and binary cache.
+### 1. Unified Wrapper (`extract_all.py`)
+Runs all three sub-extractors sequentially. It automatically scans the workspace directory, mounts partitions, handles file-level deduplication, and generates the nested directory structure.
 
----
-
-## 🔍 How it Works
-
-1. **ZIP Extraction**: The script inspects the outer Google factory image zip file and opens the inner `image-<device>-<build>.zip` file.
-2. **Partition Locating**: It extracts `product.img`, which contains the product partition of the Android OS.
-3. **Ext4 Volume Parsing**: Using the `ext4` library, it reads the raw ext4 filesystem from `product.img` directly, walks to `/etc/CarrierSettings/`, and filters files.
-4. **Protobuf Filtering**:
-   - `carrier_list.pb` (the main index of MCC/MNCs mappings) is always extracted.
-   - Specific country `.pb` files (e.g. `ee_gb.pb` for EE UK, `vodafone_gb.pb` for Vodafone UK) are parsed and copied out.
-5. **Output naming**: Results are outputted to clean folders prefixed with the Android version, release date, and user-friendly device name (e.g., `android_17_july_2026_pixel_10_pro_row`).
-6. **Cleanup**: Temporary `.img` files are automatically deleted after the extraction is finished to preserve disk space.
-
----
-
-## 🚀 What's Next?
-
-Once the `.pb` files are extracted, you can parse, modify, or merge them using the [pixel-carriersettings-toolbox](https://github.com/vorot93/pixel-carriersettings-toolbox):
 ```bash
-# Decode a carrier config:
-pixel-carriersettings-toolbox decode <extracted_file>.pb -o decoded_output.textpb
+uv run extract_all.py [-i/--image <path_to_factory_zip>] [-c/--country <codes>]
 ```
+
+### 2. Framework Carrier Settings (`extract_carrier_settings.py`)
+Mounts the `product.img` partition and extracts carrier configurations.
+*   **Native TOML Decoder**: Parses binary `.pb` files natively in Python (no external Rust compiler or `protoc` required) and outputs them as fully valid `.toml` configurations compatible with the Rust `pixel-carriersettings-toolbox` schema.
+*   **Carrier List Joining**: Parses `carrier_list.pb` and joins the specific carrier's SIM match rules (MCC/MNC, GID1, GID2, SPN, etc.) directly into its TOML document under `[[carrier_id]]` headers, creating self-describing configuration sheets.
+*   **Model Isolation**: Places output configurations under device-specific subdirectories (e.g. `pixel_10_pro_blazer`) to preserve hardware-specific flags (e.g. satellite configurations).
+
+### 3. Low-level Modem NV Config (`extract_cfg_db.py`)
+Mounts the `vendor.img` partition and extracts the baseband regional SQLite configuration database `/firmware/carrierconfig/cfg.db`. 
+*   **DB Analyzer**: Connects to the SQLite database post-extraction, runs query diagnostics, lists regional fallback rules, and dumps table configuration schemas (e.g., policy constraints, IIN rules).
+
+### 4. UE Capability Profile Translator (`extract_uecaps.py`)
+Extracts UE Radio Capability configurations from `/firmware/uecapconfig/` in `vendor.img`.
+*   **Multi-format Outputs**: Writes raw `.bin` files (for diag-site uploads), `.binarypb` descriptors, and human-readable `.md` markdown summary tables.
+*   **Bandwidth & Layer Fallback**: Correctly interprets modem configuration index values. When a band profile falls back to default (`dl_fs_idx = 0`), the script automatically assigns 3GPP-standard bandwidths (e.g. 20 MHz LTE, 100 MHz NR C-Band) and MIMO layer mappings instead of showing empty `0 MHz` listings.
+*   **Model Variant Classifier**: Dynamically parses the combinations, MIMO capabilities, and Subcarrier Spacings (SCS) inside the binary profile to classify the target hardware variant (e.g. Flagship Pro, Standard, A-Series regional variants) and embeds this in the Markdown report header.
+
+### 5. Semantic Config Differ (`diff_carrier_settings.py`)
+A custom comparison tool that parses carrier settings across multiple extracted devices, strips version numbers (which change dynamically on Google's build pipelines), and highlights **only semantic configuration differences** (APN configurations, IMS flags, and carrier features).
+
+```bash
+uv run diff_carrier_settings.py
+```
+
+---
+
+## ⚙️ Prerequisites & Installation
+
+All tools run in an automated sandbox using the **`uv`** package manager. `uv` handles dependency management (e.g., ext4 filesystem reading tools) in a virtual environment on the fly.
+
+### Installation
+Ensure Python 3 is installed, then install the package manager:
+```bash
+# macOS / Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Clone the repository and place the Pixel factory ZIP images (downloaded from the [Google Developers Portal](https://developers.google.com/android/images)) directly in the root of the project directory.
+
+---
+
+## 📖 Command-Line Usage
+
+The scripts share a unified interface and will automatically find factory images in the current directory if `-i` is omitted.
+
+### Quick Start
+To extract all modem and framework configuration layers (defaults to `gb` country filters for UK/Europe carriers):
+```bash
+uv run extract_all.py
+```
+
+### Advanced Usage Examples
+```bash
+# Extract for US and German carriers only:
+uv run extract_all.py -c us,de
+
+# Extract all countries from a specific factory ZIP:
+uv run extract_all.py -i stallion-cp2a.260705.006-factory-e7631ea9.zip -c all
+
+# Extract only UE Capabilities in Markdown format:
+uv run extract_uecaps.py -o my_caps -f markdown
+```
+
+---
+
+## 🔍 Mapping Suffix Hashes to Pixel 10 Variants
+
+Google ships a unified `vendor.img` partition supporting the entire Pixel 10 family. Capability files are stored with an 18-digit suffix hash (e.g. `O2_UK_261620682585876042.bin`), representing a 64-bit signature of the device's hardware RF configuration.
+
+The classifier in `extract_uecaps.py` parses these profiles to identify the likely device variant and write it directly into the Markdown summary headers:
+
+| Variant | Characteristics | O2 UK Combos | EE Combos | VF UK Combos | Three Combos |
+| :--- | :--- | :---: | :---: | :---: | :---: |
+| **Pixel 10 Pro / Pro XL / Pro Fold** | **Flagship Pro**: Supports dual-low-band carrier aggregation (B20 + B28), 4x4 MIMO, and 30kHz Subcarrier Spacing (SCS) for fast 5G. | **462** | **484** / **483** | **763** / **761** | **181** / **174** |
+| **Pixel 10 (Standard)** | **Standard Flagship**: Supports 4x4 MIMO and 30kHz SCS, but blocks dual-low-band carrier aggregation (B20 + B28 is disabled). | **437** | **479** / **478** | **534** / **531** | **157** |
+| **Pixel 10a (UK/EU SKU)** | **Mid-Range/A-Series**: Restricted to 2x2 MIMO and 15kHz SCS, but supports all major UK carrier bands (including O2's LTE Band 40). | **230** | **257** | **333** | **121** |
+| **Pixel 10a (Basic / NA SKU)** | **Fallback / Basic**: Restricted to 2x2 MIMO, 15kHz SCS, and **completely removes Band 40** (which is not used by North American carriers). | **121** | **109** | **170** | **111** / **66** |
+
+---
+
+## 💡 Key Architectural Discoveries
+
+When extracting and comparing stallion (Pixel 10a) and blazer (Pixel 10 Pro) configurations on the CP2A.260705.006 build, the following observations were made:
+- **Unified Modem Layer**: The UE capability profiles (`uecaps/`) and modem settings (`cfg.db`) are **100% byte-for-byte identical** on the partition layer. Google builds a single unified baseband image for all Exynos 5400 devices.
+- **Variant Carrier Settings**: Framework settings (`carrier_settings/`) contain subtle model-specific feature flags:
+  - **Satellite Connectivity**: `blazer` profiles (Pixel 10 Pro) contain extra keys enabling satellite networks (`satellite_ignore_data_roaming_setting` on NTT Docomo, `carrier_supported_satellite_services_per_provider_bundle` on KDDI, and T-Mobile satellite support flags) that are absent on the standard A-Series.
+  - **WiFi Calling**: Differences in WFC availability configurations (`carrier_wfc_ims_available` on AIS Thailand) and UI formatting tags.
+
+---
+
+## 🤝 Credits & Acknowledgements
+
+This project's native TOML generator is designed to be fully compatible with the schemas defined by the excellent **[pixel-carriersettings-toolbox](https://github.com/h4wkd3v/pixel-carriersettings-toolbox)** project. 
+
+The decoded `.toml` files produced here can be compiled directly back into Magisk-flashable CarrierSettings overlays using their Rust build toolchain. Many thanks to its developers for their foundational research on Pixel carrier configuration schemas!
