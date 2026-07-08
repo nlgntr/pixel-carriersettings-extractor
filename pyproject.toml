@@ -12,5 +12,15 @@ dependencies = [
     "ext4",
 ]
 
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "1.0.0"
+tag_format = "v$version"
+version_files = [
+    "pyproject.toml:version =",
+    "pixel_extractor/__init__.py:__version__ ="
+]
+update_changelog_on_bump = true
+
 [project.scripts]
 pixel-extractor = "pixel_extractor.cli:main"

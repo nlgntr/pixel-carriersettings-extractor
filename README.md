@@ -210,13 +210,13 @@ git push
 
 ## 📦 Automated Versioning & Releases
 
-This repository uses Google's official **[`release-please-action`](https://github.com/googleapis/release-please-action)** inside the automated release workflow ([release.yml](file:///.github/workflows/release.yml)).
+This repository uses the official **[`commitizen-action`](https://github.com/commitizen-tools/commitizen-action)** inside the automated release workflow ([release.yml](file:///.github/workflows/release.yml)).
 
-Whenever commits are pushed or merged to `main`:
-1. `release-please` parses conventional commit subjects (`feat:`, `fix:`, etc.) to determine the next semver increment.
-2. It automatically generates/updates the `CHANGELOG.md` file and bumps the version field in `pyproject.toml`.
-3. It creates or updates a "Release PR".
-4. Once you merge the Release PR, it automatically tags the commit (`vX.Y.Z`) and creates a formal GitHub Release.
+Whenever commits are pushed directly to `main`:
+1. The workflow scans your conventional commits (`feat:`, `fix:`, etc.) since the last tag.
+2. If changes are detected, it automatically bumps the version inside `pyproject.toml` and `pixel_extractor/__init__.py`.
+3. It updates `CHANGELOG.md` with the new changes.
+4. It creates a commit and pushes the corresponding git tag (e.g. `v1.1.0`) directly back to the `main` branch.
 
 ---
 
