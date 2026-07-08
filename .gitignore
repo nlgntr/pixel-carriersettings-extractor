@@ -7,3 +7,16 @@
 # Git temporary files
 COMMIT_MSG.txt
 
+# Ignore raw binary, database, and protobuf configuration files
+*.bin
+*.binarypb
+*.pb
+*.db
+
+# Ignore temporary partition images
+temp_*.img
+
+# Ignore legacy extraction directories
+extracted_carrier_settings/
+extracted_uecaps/
+extracted_cfg_db/
