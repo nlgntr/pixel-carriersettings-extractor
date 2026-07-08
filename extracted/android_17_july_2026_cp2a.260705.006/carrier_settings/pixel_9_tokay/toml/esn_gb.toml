@@ -1,0 +1,75 @@
+[[carrier_id]]
+mcc_mnc = "23471"
+
+[settings]
+version = 77000000009
+
+[[settings.apns.apn]]
+name = "IMS"
+value = "ims"
+type = ["ims", "xcap"]
+protocol = "ipv6"
+roaming_protocol = "ipv6"
+bearer_bitmask = "14|20"
+user_visible = false
+
+[settings.config]
+carrier_default_data_roaming_enabled = true
+carrier_name = ""
+carrier_name_override = false
+carrier_nr_availabilities = []
+carrier_supports_ss_over_ut = true
+carrier_ussd_method = 2
+carrier_volte_available = true
+carrier_wfc_ims_available = false
+display_voicemail_number_as_default_call_forwarding_number = { kind = "bool", value = true }
+editable_enhanced_4g_lte = false
+editable_wfc_mode = false
+hide_enhanced_4g_lte = true
+hide_ims_apn = true
+hide_preferred_network_type = true
+imssms.sms_over_ims_supported_rats = [3, 6]
+imsss.network_initiated_ussd_over_ims_supported = false
+imsss.ut_iptype_home = 1
+imsss.ut_iptype_roaming = 1
+imsss.ut_requires_ims_registration = true
+imsss.xcap_over_ut_supported_rats = [6, 3]
+imsvoice.audio_codec_capability_payload_types_bundle = { imsvoice.amrnb_payload_type = [102], imsvoice.amrwb_payload_type = [104], imsvoice.dtmfnb_payload_type = [97], imsvoice.dtmfwb_payload_type = [96], imsvoice.evs_payload_type = [127] }
+imsvoice.conference_subscribe_type = 0
+imsvoice.evs_payload_description_bundle = { 127 = { imsvoice.evs_codec_attribute_bitrate = [0, 6], imsvoice.evs_codec_attribute_ch_aw_recv = 2 } }
+imsvoice.minimum_session_expires_timer_sec = 600
+imsvoice.ringback_timer_millis = 130000
+imsvoice.ringing_timer_millis = 60000
+imsvoice.session_expires_timer_sec = 2000
+iwlan_handover_policy_string_array = { kind = "text_array", value = ["source=GERAN|UTRAN|EUTRAN|NGRAN|IWLAN|UNKNOWN, target=GERAN|UTRAN|EUTRAN|NGRAN|IWLAN, type=disallowed, capabilities=MMS|XCAP|CBS", "source=GERAN|UTRAN|EUTRAN|NGRAN|UNKNOWN, target=IWLAN, type=disallowed, capabilities=EIMS", "source=IWLAN|UNKNOWN, target=GERAN|UTRAN, type=disallowed, capabilities=EIMS", "source=IWLAN, target=EUTRAN|NGRAN, type=allowed, capabilities=EIMS", "source=IWLAN|UNKNOWN, target=GERAN|UTRAN, type=disallowed, capabilities=IMS", "source=GERAN|UTRAN, target=IWLAN, type=disallowed, capabilities=IMS", "source=EUTRAN|NGRAN|IWLAN, target=EUTRAN|NGRAN|IWLAN, type=allowed, capabilities=IMS"] }
+non_roaming_operator_string_array = { kind = "text_array", value = ["23430", "23431", "23432", "23433", "23434", "23486"] }
+prefer_2g = false
+preferred_ike_protocol = 40
+qns.mms_rat_preference = 2
+qns.sos_transport_type = 2
+qns.xcap_rat_preference = 2
+qns.xcap_transport_type = 0
+show_4g_for_lte_data_icon = true
+use_wfc_home_network_mode_in_roaming_network = true
+wfc_operator_error_codes_string_array = { kind = "text_array", value = ["REG09|0"] }
+wfc_spn_format_idx = 1
+
+[settings.config.ims]
+ipsec_authentication_algorithms = [1]
+ipsec_encryption_algorithms = [2]
+ipv4_sip_mtu_size_cellular = 1200
+ipv6_sip_mtu_size_cellular = 1200
+sip_timer_f_millis = 32000
+sip_timer_j_millis = 32000
+
+[settings.config.imsemergency]
+emergency_domain_preference = [2, 1]
+emergency_domain_preference_roaming = [2, 1]
+emergency_over_ims_supported_3gpp_network_types = [6, 3]
+emergency_over_ims_supported_rats = [3]
+prefer_ims_emergency_when_voice_calls_on_cs = true
+
+[settings.config.iwlan]
+ike_rekey_hard_timer_in_sec = { kind = "int", value = 1300 }
+ike_rekey_soft_timer_sec = 1200
+key_error_policy_config = "[{\"ApnName\": \"*\",\"ErrorTypes\": [{\"ErrorType\": \"IKE_PROTOCOL_ERROR_TYPE\",\"ErrorDetails\": [\"24\"],\"RetryArray\": [\"10\", \"30\", \"60\", \"120\", \"300\", \"-1\"],\"UnthrottlingEvents\": [\"APM_ENABLE_EVENT\", \"WIFI_DISABLE_EVENT\", \"WIFI_AP_CHANGED_EVENT\", \"WIFI_CALLING_DISABLE_EVENT\"]}]}]"
