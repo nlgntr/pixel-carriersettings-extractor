@@ -127,8 +127,10 @@ def compile_database():
             if not os.path.exists(toml_dir):
                 continue
                 
+            friendly_name = device_dir.replace('_', ' ').title()
+            friendly_name = friendly_name.replace(' Xl', ' XL').replace('10A', '10a').replace('9A', '9a')
             database['builds'][build_id]['devices'][device_dir] = {
-                'friendly_name': device_dir.replace('_', ' ').title(),
+                'friendly_name': friendly_name,
                 'carriers': {}
             }
             
@@ -1103,8 +1105,16 @@ tr:last-child td {
         deviceSelect.innerHTML = '';
         const devices = Object.keys(DATABASE.builds[buildId].devices);
         devices.sort((a, b) => {
-            const nameA = DATABASE.builds[buildId].devices[a].friendly_name.toLowerCase();
-            const nameB = DATABASE.builds[buildId].devices[b].friendly_name.toLowerCase();
+            const nameA = DATABASE.builds[buildId].devices[a].friendly_name;
+            const nameB = DATABASE.builds[buildId].devices[b].friendly_name;
+            
+            // Extract the first number sequence (e.g. 9 or 10)
+            const numA = parseInt(nameA.match(/\\d+/)?.[0] || '0', 10);
+            const numB = parseInt(nameB.match(/\\d+/)?.[0] || '0', 10);
+            
+            if (numA !== numB) {
+                return numA - numB; // Ascending numeric order (9 before 10)
+            }
             return nameA.localeCompare(nameB);
         });
         devices.forEach(d => {
@@ -1185,12 +1195,13 @@ tr:last-child td {
             let ueText = '-';
             if (matchedDeviceCaps.length > 0) {
                 const parentName = matchedDeviceCaps[0].carrier;
-                const combos = matchedDeviceCaps[0].combos_count;
+                const uniqueCombos = [...new Set(matchedDeviceCaps.map(c => c.combos_count))].sort((a, b) => a - b);
+                const combosStr = uniqueCombos.join('/');
                 const isMno = mnoKeywords.includes(cFile.toLowerCase().replace('.toml', ''));
                 if (isMno) {
-                    ueText = `${combos} Combos`;
+                    ueText = `${combosStr} Combos`;
                 } else {
-                    ueText = `<span class="mno-fallback-badge">${parentName} (${combos})</span>`;
+                    ueText = `<span class="mno-fallback-badge">${parentName} (${combosStr})</span>`;
                 }
             }
             
@@ -1389,19 +1400,55 @@ tr:last-child td {
         if (matchedDeviceCaps.length === 0) {
             uecapsList.innerHTML = '<p class="text-secondary">No UE Capability profile matched for this carrier and selected device variant.</p>';
         } else {
+            // Group identical capabilities to prevent repetitive cards
+            const uniqueCaps = [];
             matchedDeviceCaps.forEach(cap => {
+                const lteStr = [...cap.lte_bands].sort().join(',');
+                const nrStr = [...cap.nr_bands].sort().join(',');
+                const capKey = `${cap.device}|${lteStr}|${nrStr}|${cap.max_mimo_dl}|${cap.max_modulation_dl}`;
+                
+                const cleanSig = cap.filename.replace(/\\.(md|toml|pb|binarypb)$/i, '');
+                
+                let existing = uniqueCaps.find(u => u.key === capKey);
+                if (existing) {
+                    if (!existing.signatures.includes(cleanSig)) {
+                        existing.signatures.push(cleanSig);
+                    }
+                    if (!existing.combos.includes(cap.combos_count)) {
+                        existing.combos.push(cap.combos_count);
+                    }
+                } else {
+                    uniqueCaps.push({
+                        key: capKey,
+                        carrier: cap.carrier,
+                        device: cap.device,
+                        lte_bands: cap.lte_bands,
+                        nr_bands: cap.nr_bands,
+                        max_mimo_dl: cap.max_mimo_dl,
+                        max_modulation_dl: cap.max_modulation_dl,
+                        combos: [cap.combos_count],
+                        signatures: [cleanSig]
+                    });
+                }
+            });
+
+            uniqueCaps.forEach(cap => {
                 const card = document.createElement('div');
                 card.className = 'uecap-summary-card';
+                
+                const combosStr = cap.combos.sort((a, b) => a - b).join(', ');
+                const signaturesStr = cap.signatures.join(', ');
+                
                 card.innerHTML = `
                     <div class="uecap-summary-header">
                         <h3>${cap.carrier} Capabilities</h3>
-                        <p class="text-secondary">Signature suffix: ${cap.filename}</p>
+                        <p class="text-secondary">Signature: ${signaturesStr}</p>
                     </div>
                     <div class="uecap-summary-grid">
                         <div><strong>Likely Device Variant:</strong> ${cap.device}</div>
-                        <div><strong>Aggregated Combos:</strong> ${cap.combos_count}</div>
-                        <div><strong>LTE Bands:</strong> ${cap.lte_bands.join(', ')}</div>
-                        <div><strong>NR Bands:</strong> ${cap.nr_bands.join(', ')}</div>
+                        <div><strong>Aggregated Combos:</strong> ${combosStr}</div>
+                        <div><strong>LTE Bands:</strong> ${cap.lte_bands.join(', ') || '-'}</div>
+                        <div><strong>NR Bands:</strong> ${cap.nr_bands.join(', ') || '-'}</div>
                         <div><strong>Max DL MIMO:</strong> ${cap.max_mimo_dl}x${cap.max_mimo_dl}</div>
                         <div><strong>Max DL Modulation:</strong> ${cap.max_modulation_dl}</div>
                     </div>
