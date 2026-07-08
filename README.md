@@ -173,16 +173,16 @@ By default, the provided compilation configuration extracts settings for **UK** 
 
 ---
 
-## 🔍 Mapping Suffix Hashes to Pixel 10 Variants
+## 🔍 Mapping Suffix Hashes to Pixel 9 & Pixel 10 Variants
 
-Google ships a unified `vendor.img` partition supporting the entire Pixel 10 family. Capability files are stored with an 18-digit suffix hash (e.g. `O2_UK_261620682585876042.bin`), representing a 64-bit signature of the device's hardware RF configuration.
+Google ships a unified `vendor.img` partition supporting the entire Exynos 5400 platform (both the Pixel 9 and Pixel 10 families). Capability files are stored with an 18-digit suffix hash (e.g. `O2_UK_261620682585876042.bin`), representing a 64-bit signature of the device's hardware RF configuration.
 
-The classifier in `pixel-extract-uecaps` parses these profiles to identify the likely device variant and write it directly into the Markdown summary headers:
+The classifier in `pixel-extractor extract-uecaps` parses these profiles to identify the likely device variant and write it directly into the summaries:
 
 | Variant | Characteristics | O2 UK Combos | EE Combos | VF UK Combos | Three Combos |
 | :--- | :--- | :---: | :---: | :---: | :---: |
-| **Pixel 10 Pro / Pro XL / Pro Fold** | **Flagship Pro**: Supports dual-low-band carrier aggregation (B20 + B28), 4x4 MIMO, and 30kHz Subcarrier Spacing (SCS) for fast 5G. | **462** | **484** / **483** | **763** / **761** | **181** / **174** |
-| **Pixel 10 (Standard)** | **Standard Flagship**: Supports 4x4 MIMO and 30kHz SCS, but blocks dual-low-band carrier aggregation (B20 + B28 is disabled). | **437** | **479** / **478** | **534** / **531** | **157** |
+| **Pixel 9 Pro / Pro XL / Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold** | **Flagship Pro**: Supports dual-low-band carrier aggregation (B20 + B28), 4x4 MIMO, and 30kHz Subcarrier Spacing (SCS) for fast 5G. | **462** | **484** / **483** | **763** / **761** | **181** / **174** |
+| **Pixel 9 / Pixel 10 (Standard)** | **Standard Flagship**: Supports 4x4 MIMO and 30kHz SCS, but blocks dual-low-band carrier aggregation (B20 + B28 is disabled). | **437** | **479** / **478** | **534** / **531** | **157** |
 | **Pixel 10a (UK/EU SKU)** | **Mid-Range/A-Series**: Restricted to 2x2 MIMO and 15kHz SCS, but supports all major UK carrier bands (including O2's LTE Band 40). | **230** | **257** | **333** | **121** |
 | **Pixel 10a (Basic / NA SKU)** | **Fallback / Basic**: Restricted to 2x2 MIMO, 15kHz SCS, and **completely removes Band 40** (which is not used by North American carriers). | **121** | **109** | **170** | **111** / **66** |
 
