@@ -64,37 +64,44 @@ extracted/
 
 ---
 
-## 🔬 Included Extraction Tools
+## 🔬 Included Extraction Subcommands
 
-### 1. Unified Wrapper (`extract_all.py`)
-Runs all three sub-extractors sequentially. It automatically scans the workspace directory, mounts partitions, handles file-level deduplication, and generates the nested directory structure.
+### 1. Unified Extractor (`extract-all`)
+Runs all three sub-extractors (`extract-carrier-settings`, `extract-cfg-db`, and `extract-uecaps`) sequentially. It automatically scans the workspace directory, mounts partition images, handles file-level deduplication, and generates the nested directory structure.
 
 ```bash
-uv run extract_all.py [-i/--image <path_to_factory_zip>] [-c/--country <codes>]
+uv run pixel-extractor extract-all [-i/--image <path_to_factory_zip>] [-c/--country <codes>]
 ```
 
-### 2. Framework Carrier Settings (`extract_carrier_settings.py`)
+### 2. Framework Carrier Settings (`extract-carrier-settings`)
 Mounts the `product.img` partition and extracts carrier configurations.
 *   **Native TOML Decoder**: Parses binary `.pb` files natively in Python (no external Rust compiler or `protoc` required) and outputs them as fully valid `.toml` configurations compatible with the Rust `pixel-carriersettings-toolbox` schema.
 *   **Carrier List Joining**: Parses `carrier_list.pb` and joins the specific carrier's SIM match rules (MCC/MNC, GID1, GID2, SPN, etc.) directly into its TOML document under `[[carrier_id]]` headers, creating self-describing configuration sheets.
 *   **Model Isolation**: Places output configurations under device-specific subdirectories (e.g. `pixel_10_pro_blazer`) to preserve hardware-specific flags (e.g. satellite configurations).
 
-### 3. Low-level Modem NV Config (`extract_cfg_db.py`)
+### 3. Low-level Modem NV Config (`extract-cfg-db`)
 Mounts the `vendor.img` partition and extracts the baseband regional SQLite configuration database `/firmware/carrierconfig/cfg.db`. 
 *   **DB Analyzer**: Connects to the SQLite database post-extraction, runs query diagnostics, lists regional fallback rules, and dumps table configuration schemas (e.g., policy constraints, IIN rules).
 *   **Model Isolation**: Places the output SQLite database under device-specific subdirectories (e.g. `pixel_10_pro_blazer`) to prevent model-specific baseband policy changes from overwriting each other.
 
-### 4. UE Capability Profile Translator (`extract_uecaps.py`)
+### 4. UE Capability Profile Translator (`extract-uecaps`)
 Extracts UE Radio Capability configurations from `/firmware/uecapconfig/` in `vendor.img`.
-*   **Multi-format Outputs**: Writes raw `.bin` files (for diag-site uploads), `.binarypb` descriptors, and human-readable `.md` markdown summary tables.
+*   **Multi-format Outputs**: Writes raw `.bin` files (for diag-site uploads), `.binarypb` descriptors, and human-readable summaries.
 *   **Bandwidth & Layer Fallback**: Correctly interprets modem configuration index values. When a band profile falls back to default (`dl_fs_idx = 0`), the script automatically assigns 3GPP-standard bandwidths (e.g. 20 MHz LTE, 100 MHz NR C-Band) and MIMO layer mappings instead of showing empty `0 MHz` listings.
-*   **Model Variant Classifier**: Dynamically parses the combinations, MIMO capabilities, and Subcarrier Spacings (SCS) inside the binary profile to classify the target hardware variant (e.g. Flagship Pro, Standard, A-Series regional variants) and embeds this in the Markdown report header.
+*   **Model Variant Classifier**: Dynamically parses the combinations, MIMO capabilities, and Subcarrier Spacings (SCS) inside the binary profile to classify the target hardware variant (e.g. Flagship Pro, Standard, A-Series regional variants) and embeds this in the report.
 
-### 5. Semantic Config Differ (`diff_carrier_settings.py`)
+### 5. Semantic Config Differ (`diff`)
 A custom comparison tool that parses carrier settings across multiple extracted devices, strips version numbers (which change dynamically on Google's build pipelines), and highlights **only semantic configuration differences** (APN configurations, IMS flags, and carrier features).
 
 ```bash
-uv run diff_carrier_settings.py
+uv run pixel-extractor diff
+```
+
+### 6. Website Database Compiler (`compile`)
+Compiles all extracted carrier parameters, SQLite policies, and UE capabilities from the nested workspace into a structured client-side JSON database (`docs/data.js`) to feed the web showcase dashboard.
+
+```bash
+uv run pixel-extractor compile
 ```
 
 ---
@@ -148,6 +155,21 @@ pixel-extractor extract-uecaps -o my_caps -f markdown
 # Rebuild the web site dashboard
 pixel-extractor compile
 ```
+
+---
+
+## 🌍 Multi-Region Customizations
+
+By default, the provided compilation configuration extracts settings for **UK** carriers (`-c gb`). If you want to host a carrier showcase website for your own region:
+1. Run the extraction pipeline with your target country codes, e.g. `-c us,de,jp` or `-c all`:
+   ```bash
+   uv run pixel-extractor extract-all -c us,de,jp
+   ```
+2. Re-compile the showcase database:
+   ```bash
+   uv run pixel-extractor compile
+   ```
+3. Commit and push the changes. The deployment workflow will automatically deploy your new regional showcase to your GitHub Pages repository! Other developers are welcome and encouraged to fork this codebase for their own regional showcases.
 
 ---
 

@@ -40,7 +40,7 @@
         <section class="section-card matrix-section">
             <div class="card-header">
                 <h2><i data-lucide="layout-grid"></i> UK Carrier Feature Matrix</h2>
-                <span class="badge">UK & Europe Profiles</span>
+                <span class="badge">UK Profiles</span>
             </div>
             <div class="table-container">
                 <table id="matrix-table">
@@ -63,34 +63,26 @@
             </div>
         </section>
 
-        <!-- Main Details Pane -->
-        <div id="details-pane" class="details-pane hidden">
-            <!-- Navigation Tabs inside Details Pane -->
-            <div class="tab-bar">
-                <button class="tab-btn active" data-tab="carrier-settings-tab">
-                    <i data-lucide="settings"></i> Framework Settings
-                </button>
-                <button class="tab-btn" data-tab="ue-caps-tab">
-                    <i data-lucide="cpu"></i> Radio Capabilities
-                </button>
-                <button class="tab-btn" data-tab="apns-tab">
-                    <i data-lucide="network"></i> APNs
-                </button>
+        <!-- Details Display Pane -->
+        <section class="section-card details-section hidden" id="details-pane">
+            <div class="tab-header">
+                <button class="tab-btn active" data-tab="configs-tab"><i data-lucide="settings"></i> Framework Settings</button>
+                <button class="tab-btn" data-tab="uecaps-tab"><i data-lucide="radio"></i> Radio Capabilities</button>
+                <button class="tab-btn" data-tab="apns-tab"><i data-lucide="database"></i> APNs</button>
             </div>
 
-            <!-- Content Area -->
-            <div class="tab-content active" id="carrier-settings-tab">
-                <div class="search-bar">
+            <div class="tab-content active" id="configs-tab">
+                <div class="search-box">
+                    <input type="text" id="config-search" placeholder="Search configuration parameters...">
                     <i data-lucide="search"></i>
-                    <input type="text" id="config-search" placeholder="Search config keys (e.g. vonr, ims)...">
                 </div>
-                <div class="config-grid" id="config-list">
+                <div class="config-list" id="config-list">
                     <!-- Populated by JavaScript -->
                 </div>
             </div>
 
-            <div class="tab-content" id="ue-caps-tab">
-                <div id="uecaps-list">
+            <div class="tab-content" id="uecaps-tab">
+                <div class="uecap-grid" id="uecaps-list">
                     <!-- Populated by JavaScript -->
                 </div>
             </div>
@@ -100,11 +92,11 @@
                     <!-- Populated by JavaScript -->
                 </div>
             </div>
-        </div>
+        </section>
     </main>
 
     <footer class="app-footer">
-        <p>Built with ❤️ for the Android developer community. Natively parsed from stock Google Pixel factory partitions.</p>
+        <p>Built with ❤️ for the Android developer community. Natively parsed from stock Google Pixel factory partitions. This showcase displays UK profiles—feel free to fork this project to host other regions for your own site.</p>
         <p>Explore the raw extraction summaries directly on <a href="https://github.com/nlgntr/pixel-carriersettings-extractor" target="_blank">GitHub</a> | Compatible with <a href="https://github.com/h4wkd3v/pixel-carriersettings-toolbox" target="_blank">pixel-carriersettings-toolbox</a></p>
     </footer>
 
