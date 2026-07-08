@@ -12,11 +12,15 @@ While the scripts are generic and will parse older Qualcomm or Exynos Pixel part
 
 | Codename | Friendly Name | Model Type | Characteristics |
 | :--- | :--- | :--- | :--- |
-| `blazer` | **Pixel 10 Pro** | Flagship Pro | Full RF features, Satellite connectivity, 4x4 MIMO, dual-low-band CA |
-| `mustang` | **Pixel 10 Pro XL** | Flagship Pro | Full RF features, Satellite connectivity, 4x4 MIMO, dual-low-band CA |
-| `rango` | **Pixel 10 Pro Fold** | Flagship Pro | Full RF features, Satellite connectivity, 4x4 MIMO, dual-low-band CA |
-| `frankel` | **Pixel 10** | Standard Flagship | 4x4 MIMO, No dual-low-band CA (e.g. B20 + B28 blocked) |
-| `stallion` | **Pixel 10a** | Mid-Range A-Series | 2x2 MIMO limits, 15kHz SCS limit, regional variants (EU/UK vs. US) |
+| `blazer` | **Pixel 10 Pro** | Flagship Pro (Exynos 5400) | Full RF features, Satellite connectivity, 4x4 MIMO, dual-low-band CA |
+| `mustang` | **Pixel 10 Pro XL** | Flagship Pro (Exynos 5400) | Full RF features, Satellite connectivity, 4x4 MIMO, dual-low-band CA |
+| `rango` | **Pixel 10 Pro Fold** | Flagship Pro (Exynos 5400) | Full RF features, Satellite connectivity, 4x4 MIMO, dual-low-band CA |
+| `frankel` | **Pixel 10** | Standard Flagship (Exynos 5400) | 4x4 MIMO, No dual-low-band CA (e.g. B20 + B28 blocked) |
+| `stallion` | **Pixel 10a** | Mid-Range A-Series (Exynos 5400) | 2x2 MIMO limits, 15kHz SCS limit, regional variants (EU/UK vs. US) |
+| `komodo` | **Pixel 9 Pro XL** | Flagship Pro (Exynos 5400) | Full RF features, Satellite connectivity, 4x4 MIMO, dual-low-band CA |
+| `caiman` | **Pixel 9 Pro** | Flagship Pro (Exynos 5400) | Full RF features, Satellite connectivity, 4x4 MIMO, dual-low-band CA |
+| `tokay` | **Pixel 9** | Standard Flagship (Exynos 5400) | 4x4 MIMO, No dual-low-band CA |
+| `comet` | **Pixel Fold / 9 Pro Fold** | Foldable Flagship (Exynos 5400) | Foldable form factor capabilities |
 
 ---
 
@@ -42,8 +46,10 @@ extracted/
     │           └── ee_gb.toml
     │
     ├── cfg_db/                                      # 2. Low-level Modem NV Configurations
-    │   ├── cfg.db                                   # SQLite modem carrier policy database (unified build)
-    │   └── confseqs/                                # Extracted regional modem configuration scripts
+    │   ├── pixel_10a_stallion/                      # Isolated by device variant to prevent overwriting
+    │   │   └── cfg.db                               # SQLite modem carrier policy database
+    │   └── pixel_10_pro_blazer/
+    │       └── cfg.db
     │
     └── uecaps/                                      # 3. Modem Radio Capability Profiles (unified build)
         ├── bin/                                     # Raw .bin files for uecaps.hennes.xyz upload
@@ -76,6 +82,7 @@ Mounts the `product.img` partition and extracts carrier configurations.
 ### 3. Low-level Modem NV Config (`extract_cfg_db.py`)
 Mounts the `vendor.img` partition and extracts the baseband regional SQLite configuration database `/firmware/carrierconfig/cfg.db`. 
 *   **DB Analyzer**: Connects to the SQLite database post-extraction, runs query diagnostics, lists regional fallback rules, and dumps table configuration schemas (e.g., policy constraints, IIN rules).
+*   **Model Isolation**: Places the output SQLite database under device-specific subdirectories (e.g. `pixel_10_pro_blazer`) to prevent model-specific baseband policy changes from overwriting each other.
 
 ### 4. UE Capability Profile Translator (`extract_uecaps.py`)
 Extracts UE Radio Capability configurations from `/firmware/uecapconfig/` in `vendor.img`.

@@ -87,12 +87,16 @@ def parse_factory_zip_name(filename):
     android_ver = parse_android_version(build_id)
     dir_name = f"android_{android_ver}_{month_year_str}_{build_id}"
     
+    device_clean = device_friendly.lower().replace(' ', '_')
+    device_dir = f"{device_clean}_{codename}"
+    
     return {
         'codename': codename,
         'build_id': build_id,
         'device': device_friendly,
         'android_version': android_ver,
-        'dir_name': dir_name
+        'dir_name': dir_name,
+        'device_dir': device_dir
     }
 
 def dump_db_info(db_path):
@@ -136,7 +140,7 @@ def process_image(fz, out_base_dir):
         print(f"\nSkipping {fz}: Could not parse info from filename.")
         return
         
-    target_dir = os.path.join(out_base_dir, info['dir_name'], 'cfg_db')
+    target_dir = os.path.join(out_base_dir, info['dir_name'], 'cfg_db', info['device_dir'])
     print(f"\n================ Processing {info['device']} (Codename: {info['codename']}) ================")
     if info['build_id']:
         print(f"Build ID: {info['build_id']}")
@@ -202,7 +206,7 @@ def process_image(fz, out_base_dir):
                 db_inode = vol.inode_at(target_file_path)
                 data = db_inode.open().read()
                 
-                target_dir = os.path.join(out_base_dir, info['dir_name'], 'cfg_db')
+                target_dir = os.path.join(out_base_dir, info['dir_name'], 'cfg_db', info['device_dir'])
                 os.makedirs(target_dir, exist_ok=True)
                 
                 out_filepath = os.path.join(target_dir, 'cfg.db')

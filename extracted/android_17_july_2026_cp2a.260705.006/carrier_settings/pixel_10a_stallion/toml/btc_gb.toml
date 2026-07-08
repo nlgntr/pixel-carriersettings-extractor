@@ -1,0 +1,93 @@
+[[carrier_id]]
+mcc_mnc = "23430"
+[carrier_id.mvno_data]
+kind  = "gid1"
+value = "C3"
+
+[settings]
+version = 77000000001
+
+[[settings.apns.apn]]
+name = "IMS"
+value = "ims"
+type = ["ims"]
+protocol = "ipv6"
+roaming_protocol = "ipv4v6"
+authtype = 1
+bearer_bitmask = "14|18|20"
+password = "secure"
+user = "eesecure"
+user_visible = false
+
+[[settings.apns.apn]]
+name = "Internet"
+value = "everywhere"
+type = ["default", "supl"]
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+authtype = 1
+password = "secure"
+user = "eesecure"
+user_editable = false
+
+[[settings.apns.apn]]
+name = "MMS"
+value = "eezone"
+type = ["mms", "xcap"]
+authtype = 1
+mmsc = "http://mms/"
+mmsc_proxy = "149.254.201.135"
+mmsc_proxy_port = "8080"
+password = "secure"
+user = "eesecure"
+user_editable = false
+
+[[settings.apns.apn]]
+name = "EE Emergency"
+value = "sos"
+type = ["emergency"]
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+user_visible = false
+
+[settings.config]
+carrier_cross_sim_ims_available = false
+carrier_default_data_roaming_enabled = true
+carrier_supports_ss_over_ut = true
+carrier_ussd_method = 2
+carrier_volte_available = true
+carrier_wfc_ims_available = true
+editable_enhanced_4g_lte = false
+editable_wfc_mode = false
+hide_enable_2g = true
+hide_ims_apn = true
+hide_preferred_network_type = true
+imsss.ut_iptype_home = 0
+imsss.ut_iptype_roaming = 0
+imsss.xcap_over_ut_supported_rats = [5, 6, 3, 1, 2]
+imsvoice.audio_codec_capability_payload_types_bundle = { imsvoice.amrnb_payload_type = [102], imsvoice.amrwb_payload_type = [104], imsvoice.dtmfnb_payload_type = [97], imsvoice.dtmfwb_payload_type = [96], imsvoice.evs_payload_type = [127] }
+imsvoice.evs_payload_description_bundle = { 127 = { imsvoice.evs_codec_attribute_bitrate = [0, 6], imsvoice.evs_codec_attribute_ch_aw_recv = 2 } }
+imswfc.emergency_call_over_emergency_pdn = true
+non_roaming_operator_string_array = { kind = "text_array", value = ["23430", "23431", "23432", "23433", "23434", "23486"] }
+prefer_2g = false
+qns.mms_rat_preference = 2
+qns.sos_transport_type = 2
+show_4g_for_lte_data_icon = true
+use_wfc_home_network_mode_in_roaming_network = true
+wfc_operator_error_codes_string_array = { kind = "text_array", value = ["REG09|0"] }
+wfc_spn_format_idx = 1
+
+[settings.config.ims]
+geolocation_pidf_in_sip_invite_support = [4, 2]
+geolocation_pidf_in_sip_register_support = [4, 2]
+ims_user_agent = "#MANUFACTURE#_#MODEL#_#BUILD#"
+
+[settings.config.imsemergency]
+emergency_domain_preference = [2, 1]
+emergency_domain_preference_roaming = [2, 1]
+emergency_over_ims_supported_rats = [3]
+
+[settings.config.iwlan]
+ike_rekey_hard_timer_in_sec = { kind = "int", value = 1300 }
+ike_rekey_soft_timer_sec = 1200
+key_error_policy_config = "[{\"ApnName\": \"*\",\"ErrorTypes\": [{\"ErrorType\": \"IKE_PROTOCOL_ERROR_TYPE\",\"ErrorDetails\": [\"24\"],\"RetryArray\": [\"10\", \"30\", \"60\", \"120\", \"300\", \"-1\"],\"UnthrottlingEvents\": [\"APM_ENABLE_EVENT\", \"WIFI_DISABLE_EVENT\", \"WIFI_AP_CHANGED_EVENT\", \"WIFI_CALLING_DISABLE_EVENT\"]}]}]"

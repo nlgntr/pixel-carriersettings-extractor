@@ -11,6 +11,7 @@ import glob
 import struct
 import zipfile
 import argparse
+import json
 
 # Mapping of Pixel codenames to friendly names
 CODENAMES = {
@@ -443,12 +444,12 @@ def serialize_to_toml_string(carrier_id_rules, cs_dict):
                     kind = val['kind']
                     v = val['value']
                     if isinstance(v, str):
-                        return f'{{ kind = "{kind}", value = "{v}" }}'
+                        return f'{{ kind = "{kind}", value = {json.dumps(v)} }}'
                     elif isinstance(v, bool):
                         return f'{{ kind = "{kind}", value = {str(v).lower()} }}'
                     elif isinstance(v, list):
                         if kind == 'text_array':
-                            list_str = ", ".join(f'"{x}"' for x in v)
+                            list_str = ", ".join(json.dumps(x) for x in v)
                             return f'{{ kind = "{kind}", value = [{list_str}] }}'
                         else:
                             list_str = ", ".join(str(x) for x in v)
@@ -461,12 +462,12 @@ def serialize_to_toml_string(carrier_id_rules, cs_dict):
                         items.append(f'{bk} = {format_toml_value(bv)}')
                     return f"{{ {', '.join(items)} }}"
             elif isinstance(val, str):
-                return f'"{val}"'
+                return json.dumps(val)
             elif isinstance(val, bool):
                 return str(val).lower()
             elif isinstance(val, list):
                 if all(isinstance(x, str) for x in val):
-                    list_str = ", ".join(f'"{x}"' for x in val)
+                    list_str = ", ".join(json.dumps(x) for x in val)
                     return f"[{list_str}]"
                 else:
                     list_str = ", ".join(str(x) for x in val)

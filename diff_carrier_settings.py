@@ -1,119 +1,155 @@
-# /// script
-# dependencies = [
-#   "ext4",
-# ]
-# ///
-
+#!/usr/bin/env python3
 import os
-import zipfile
 import sys
-from ext4 import Volume
+import glob
 
-# Add current directory to path so we can import our native parser
-sys.path.append(os.path.dirname(__file__))
-from extract_carrier_settings import parse_protobuf, parse_carrier_apns, parse_carrier_config, build_config_dict
+try:
+    import tomllib
+except ImportError:
+    try:
+        import toml as tomllib
+    except ImportError:
+        # Simple fallback parser for basic TOML structure if no library is available
+        class tomllib:
+            @staticmethod
+            def loads(content):
+                res = {}
+                current_section = None
+                for line in content.splitlines():
+                    line = line.strip()
+                    if not line or line.startswith('#'):
+                        continue
+                    if line.startswith('[') and line.endswith(']'):
+                        section_name = line[1:-1].strip()
+                        current_section = {}
+                        res[section_name] = current_section
+                    elif '=' in line:
+                        k, v = line.split('=', 1)
+                        k = k.strip()
+                        v = v.strip()
+                        # Clean simple quotes/bools
+                        if v.startswith('"') and v.endswith('"'):
+                            v = v[1:-1]
+                        elif v.lower() == 'true':
+                            v = True
+                        elif v.lower() == 'false':
+                            v = False
+                        
+                        if current_section is not None:
+                            current_section[k] = v
+                        else:
+                            res[k] = v
+                return res
 
-def extract_pb(zip_path, codename):
-    with zipfile.ZipFile(zip_path) as outer:
-        namelist = outer.namelist()
-        inner_zip_name = next(name for name in namelist if name.endswith('.zip') and f"image-{codename}" in name)
-        with outer.open(inner_zip_name) as inner_file:
-            with zipfile.ZipFile(inner_file) as inner_zip:
-                with inner_zip.open('product.img') as source, open(f"temp_product_{codename}.img", 'wb') as target:
-                    while True:
-                        chunk = source.read(4 * 1024 * 1024)
-                        if not chunk:
-                            break
-                        target.write(chunk)
-        with open(f"temp_product_{codename}.img", 'rb') as f:
-            vol = Volume(f)
-            cs_inode = vol.inode_at('/etc/CarrierSettings')
-            pbs = {}
-            for entry, ftype in cs_inode.opendir():
-                name = getattr(entry, 'name_str', None) or getattr(entry, 'name', b'').decode('utf-8')
-                if name.endswith('.pb') and name != 'carrier_list.pb':
-                    pbs[name] = vol.inodes[entry.inode].open().read()
-            os.remove(f"temp_product_{codename}.img")
-            return pbs
+def find_extracted_builds():
+    builds = glob.glob(os.path.join('extracted', 'android_*'))
+    return [b for b in builds if os.path.isdir(b)]
 
-def pb_to_dict(pb_data):
-    fields = parse_protobuf(pb_data)
-    cs_dict = {}
-    for fnum, ftype, val in fields:
-        if fnum == 1 and ftype == 'length_delimited':
-            cs_dict['canonical_name'] = val.decode('utf-8', errors='ignore')
-        elif fnum == 2 and ftype == 'varint':
-            cs_dict['version'] = val
-        elif fnum == 3 and ftype == 'length_delimited':
-            cs_dict['apns'] = parse_carrier_apns(val)
-        elif fnum == 4 and ftype == 'length_delimited':
-            cs_dict['configs'] = build_config_dict(parse_carrier_config(val))
-    return cs_dict
+def get_devices_in_build(build_path):
+    cs_path = os.path.join(build_path, 'carrier_settings')
+    if not os.path.exists(cs_path):
+        return []
+    return [os.path.join(cs_path, d) for d in os.listdir(cs_path) if os.path.isdir(os.path.join(cs_path, d))]
+
+def load_toml_config(filepath):
+    with open(filepath, 'r', encoding='utf-8') as f:
+        content = f.read()
+    try:
+        data = tomllib.loads(content)
+        # Strip version number to perform semantic comparisons
+        if 'settings' in data:
+            data['settings'].pop('version', None)
+        return data
+    except Exception as e:
+        print(f"Error parsing {filepath}: {e}")
+        return None
+
+def print_dict_diff(d1, d2, path=""):
+    if isinstance(d1, dict) and isinstance(d2, dict):
+        all_keys = sorted(list(set(d1.keys()) | set(d2.keys())))
+        for k in all_keys:
+            new_path = f"{path}.{k}" if path else k
+            if k not in d1:
+                print(f"  * Key '{new_path}' is missing in baseline")
+            elif k not in d2:
+                print(f"  * Key '{new_path}' is missing in target")
+            else:
+                print_dict_diff(d1[k], d2[k], new_path)
+    elif isinstance(d1, list) and isinstance(d2, list):
+        if len(d1) != len(d2):
+            print(f"  * List at '{path}' has different lengths: baseline={len(d1)}, target={len(d2)}")
+        else:
+            for idx, (item1, item2) in enumerate(zip(d1, d2)):
+                print_dict_diff(item1, item2, f"{path}[{idx}]")
+    else:
+        if d1 != d2:
+            print(f"  * Difference at '{path}':")
+            print(f"    - Baseline: {d1}")
+            print(f"    - Target:   {d2}")
 
 def main():
-    zips = [f for f in os.listdir('.') if f.endswith('.zip') and '-factory-' in f]
-    stallion_zip = next(f for f in zips if 'stallion' in f)
-    blazer_zip = next(f for f in zips if 'blazer' in f)
+    builds = find_extracted_builds()
+    if not builds:
+        print("No extracted builds found in 'extracted/'. Run extract_all.py first.")
+        sys.exit(1)
+        
+    # Default to the first build found
+    build_path = builds[0]
+    devices = get_devices_in_build(build_path)
     
-    print(f"Extracting carrier configs from Stallion ({stallion_zip})...")
-    s_pbs = extract_pb(stallion_zip, 'stallion')
+    if len(devices) < 2:
+        print(f"Found devices in {build_path}: {[os.path.basename(d) for d in devices]}")
+        print("Need at least 2 extracted devices to perform a comparison.")
+        sys.exit(0)
+        
+    print(f"Comparing carriers in build: {os.path.basename(build_path)}")
+    print("Devices found:")
+    for idx, d in enumerate(devices):
+        print(f"  [{idx}] {os.path.basename(d)}")
+        
+    # We will compare all devices pairwise or against a baseline (index 0)
+    baseline_dir = devices[0]
+    baseline_name = os.path.basename(baseline_dir)
     
-    print(f"Extracting carrier configs from Blazer ({blazer_zip})...")
-    b_pbs = extract_pb(blazer_zip, 'blazer')
+    # Scan all configuration files in baseline
+    baseline_toml_dir = os.path.join(baseline_dir, 'toml')
+    if not os.path.exists(baseline_toml_dir):
+        print(f"No toml files found in {baseline_toml_dir}")
+        sys.exit(1)
+        
+    toml_files = sorted(os.listdir(baseline_toml_dir))
+    toml_files = [f for f in toml_files if f.endswith('.toml')]
     
-    print("\nComparing configuration contents...")
-    diff_ver_only = 0
-    diff_content = 0
-    identical = 0
+    print(f"\nPerforming semantic comparison against baseline: {baseline_name}")
+    diff_count = 0
     
-    for name in sorted(s_pbs.keys()):
-        if name not in b_pbs:
-            print(f"- {name} only present in Stallion")
+    for filename in toml_files:
+        base_file = os.path.join(baseline_toml_dir, filename)
+        base_data = load_toml_config(base_file)
+        if not base_data:
             continue
             
-        s_data = s_pbs[name]
-        b_data = b_pbs[name]
-        
-        if s_data == b_data:
-            identical += 1
-            continue
+        for other_dir in devices[1:]:
+            other_name = os.path.basename(other_dir)
+            other_file = os.path.join(other_dir, 'toml', filename)
             
-        # Parse content
-        s_dict = pb_to_dict(s_data)
-        b_dict = pb_to_dict(b_data)
-        
-        # Remove version
-        s_ver = s_dict.pop('version', None)
-        b_ver = b_dict.pop('version', None)
-        
-        if s_dict == b_dict:
-            diff_ver_only += 1
-            print(f"- {name}: Only version differs (stallion={s_ver}, blazer={b_ver})")
-        else:
-            diff_content += 1
-            print(f"- {name}: CONTENT MISMATCH!")
-            # Pinpoint what's different
-            for k in ['canonical_name', 'apns', 'configs']:
-                sv = s_dict.get(k)
-                bv = b_dict.get(k)
-                if sv != bv:
-                    print(f"  * Difference in field '{k}':")
-                    if k == 'configs':
-                        # Diff keys
-                        all_keys = sorted(list(set(sv.keys()) | set(bv.keys())))
-                        for ck in all_keys:
-                            cv_s = sv.get(ck)
-                            cv_b = bv.get(ck)
-                            if cv_s != cv_b:
-                                print(f"    - key '{ck}': stallion={cv_s}, blazer={cv_b}")
-                    else:
-                        print(f"    - Stallion: {sv}")
-                        print(f"    - Blazer: {bv}")
-                        
-    print(f"\nSummary:")
-    print(f"  Identical binary files: {identical}")
-    print(f"  Only version/timestamp differs: {diff_ver_only}")
-    print(f"  Actual content mismatches: {diff_content}")
+            if not os.path.exists(other_file):
+                print(f"- {filename}: Missing in {other_name}")
+                continue
+                
+            other_data = load_toml_config(other_file)
+            if not other_data:
+                continue
+                
+            if base_data != other_data:
+                diff_count += 1
+                print(f"\n[!] {filename}: CONTENT MISMATCH between {baseline_name} and {other_name}!")
+                print_dict_diff(base_data, other_data)
+                    
+    if diff_count == 0:
+        print("\nAll carrier configurations are semantically identical across devices!")
+    else:
+        print(f"\nFound {diff_count} semantic configuration difference(s).")
 
 if __name__ == '__main__':
     main()

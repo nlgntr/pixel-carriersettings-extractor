@@ -1,0 +1,8 @@
+[[carrier_id]]
+mcc_mnc = "23450"
+[carrier_id.mvno_data]
+kind  = "spn"
+value = "JT"
+
+[settings]
+version = 77000000001
