@@ -31,7 +31,8 @@ def parse_uecap_markdown(filepath):
         'max_modulation_dl': 'QAM256 DL',
         'combos_count': 0,
         'nr_ca_combos': [],
-        'endc_combos': []
+        'endc_combos': [],
+        'band_caps': []
     }
     
     lines = content.splitlines()
@@ -49,7 +50,25 @@ def parse_uecap_markdown(filepath):
                 current_section = None
             continue
         elif line_strip.startswith('##'):
-            current_section = None
+            if 'Band Capabilities' in line_strip:
+                current_section = 'band_caps'
+            else:
+                current_section = None
+            continue
+            
+        if current_section == 'band_caps':
+            if line_strip.startswith('|') and 'Band' not in line_strip and '---' not in line_strip:
+                parts = [p.strip() for p in line_strip.split('|')[1:-1]]
+                if len(parts) >= 7:
+                    summary['band_caps'].append({
+                        'band': parts[0],
+                        'dl_mimo': parts[1],
+                        'dl_bw': parts[2],
+                        'dl_qam': parts[3],
+                        'ul_mimo': parts[4],
+                        'ul_bw': parts[5],
+                        'ul_qam': parts[6]
+                    })
             continue
             
         if line_strip.startswith('- '):
@@ -1211,6 +1230,42 @@ tr:last-child td {
     font-family: monospace;
 }
 
+.uecap-band-capabilities {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.05);
+}
+
+.band-caps-table-wrapper {
+    overflow-x: auto;
+    margin-top: 0.5rem;
+}
+
+.band-caps-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    text-align: left;
+}
+
+.band-caps-table th, .band-caps-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.band-caps-table th {
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.band-caps-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.01);
+}
+
 /* Footer layout */
 .app-footer {
     border-top: 1px solid var(--border-color);
@@ -1745,7 +1800,8 @@ tr:last-child td {
                         combos: [cap.combos_count],
                         signatures: [cleanSig],
                         nr_ca_combos: cap.nr_ca_combos || [],
-                        endc_combos: cap.endc_combos || []
+                        endc_combos: cap.endc_combos || [],
+                        band_caps: cap.band_caps || []
                     });
                 }
             });
@@ -1790,6 +1846,42 @@ tr:last-child td {
                                         ${cap.endc_combos.map(c => `<span class="combo-chip">${c}</span>`).join('') || '<span class="text-secondary">None</span>'}
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="uecap-band-capabilities">
+                        <button class="btn-toggle-combos" onclick="toggleCombos(this)">
+                            <i data-lucide="chevron-right"></i> View Detailed Band Capabilities (${cap.band_caps.length} Bands)
+                        </button>
+                        <div class="combos-dropdown-content hidden">
+                            <div class="band-caps-table-wrapper">
+                                <table class="band-caps-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Band</th>
+                                            <th>Max DL MIMO</th>
+                                            <th>Max DL BW</th>
+                                            <th>Max DL QAM</th>
+                                            <th>Max UL MIMO</th>
+                                            <th>Max UL BW</th>
+                                            <th>Max UL QAM</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${cap.band_caps.map(b => `
+                                            <tr>
+                                                <td><strong>${b.band}</strong></td>
+                                                <td>${b.dl_mimo}</td>
+                                                <td>${b.dl_bw}</td>
+                                                <td>${b.dl_qam}</td>
+                                                <td>${b.ul_mimo}</td>
+                                                <td>${b.ul_bw}</td>
+                                                <td>${b.ul_qam}</td>
+                                            </tr>
+                                        `).join('')}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

@@ -591,6 +591,42 @@ tr:last-child td {
     font-family: monospace;
 }
 
+.uecap-band-capabilities {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.05);
+}
+
+.band-caps-table-wrapper {
+    overflow-x: auto;
+    margin-top: 0.5rem;
+}
+
+.band-caps-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    text-align: left;
+}
+
+.band-caps-table th, .band-caps-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.band-caps-table th {
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.band-caps-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.01);
+}
+
 /* Footer layout */
 .app-footer {
     border-top: 1px solid var(--border-color);
