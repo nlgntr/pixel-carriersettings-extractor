@@ -99,6 +99,8 @@ uv run pixel-extractor diff
 
 ### 6. Website Database Compiler (`compile`)
 Compiles all extracted carrier parameters, SQLite policies, and UE capabilities from the nested workspace into a structured client-side JSON database (`docs/data.js`) to feed the web showcase dashboard.
+*   **Static Directory Explorer**: Generates a sleek, dark-themed `index.html` file browser index directly under each build subdirectory (e.g. `extracted/android_17_july_2026_cp2a.260705.006/index.html`) mapping out devices, TOMLs, and raw radio profiles.
+*   **Interactive Combination Explorer**: Extracts complex EN-DC and NR-CA carrier aggregation paths recursively from markdown sheets and formats them into an expandable, search-friendly inline chip dashboard under the "Radio Capabilities" tab.
 
 ```bash
 uv run pixel-extractor compile
