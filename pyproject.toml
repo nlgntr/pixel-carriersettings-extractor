@@ -13,9 +13,4 @@ dependencies = [
 ]
 
 [project.scripts]
-pixel-extract-all = "pixel_carriersettings_extractor.extract_all:main"
-pixel-extract-carrier-settings = "pixel_carriersettings_extractor.extract_carrier_settings:main"
-pixel-extract-cfg-db = "pixel_carriersettings_extractor.extract_cfg_db:main"
-pixel-extract-uecaps = "pixel_carriersettings_extractor.extract_uecaps:main"
-pixel-compile-web-dashboard = "pixel_carriersettings_extractor.compile_web_dashboard:main"
-pixel-diff-carrier-settings = "pixel_carriersettings_extractor.diff_carrier_settings:main"
+pixel-extractor = "pixel_extractor.cli:main"

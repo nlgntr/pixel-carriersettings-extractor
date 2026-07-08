@@ -101,39 +101,52 @@ uv run diff_carrier_settings.py
 
 ## ⚙️ Prerequisites & Installation
 
-All tools run in an automated sandbox using the **`uv`** package manager. `uv` handles dependency management (e.g., ext4 filesystem reading tools) in a virtual environment on the fly.
+The repository is structured as a standard Python package. It requires Python 3.11+ (as `tomllib` is built-in).
 
-### Installation
-Ensure Python 3 is installed, then install the package manager:
+If you are using the **`uv`** package manager (recommended), no manual installation is required! `uv` will automatically inspect `pyproject.toml`, build a virtual environment, install dependencies (`ext4`), and execute the tool on-the-fly.
+
+If you don't use `uv`, you can install it using pip:
 ```bash
-# macOS / Linux
-curl -LsSf https://astral.sh/uv/install.sh | sh
+pip install -e .
 ```
 
-Clone the repository and place the Pixel factory ZIP images (downloaded from the [Google Developers Portal](https://developers.google.com/android/images)) directly in the root of the project directory.
+Place your Pixel factory ZIP images (downloaded from the [Google Developers Portal](https://developers.google.com/android/images)) directly in the root of the project directory.
 
 ---
 
 ## 📖 Command-Line Usage
 
-The scripts share a unified interface and will automatically find factory images in the current directory if `-i` is omitted.
+You can run the tool directly using `uv run`, or invoke `python3 main.py` locally. If installed via pip, the command `pixel-extractor` will be mapped to your shell.
 
-### Quick Start
-To extract all modem and framework configuration layers (defaults to `gb` country filters for UK/Europe carriers):
-```bash
-uv run extract_all.py
-```
+### Subcommands Map
+| Subcommand | Purpose |
+|------------|---------|
+| `extract-all` | Runs all extractors sequentially for the target country (default: `gb`). |
+| `extract-carrier-settings` | Extracts framework carrier settings and compiles them to TOML. |
+| `extract-cfg-db` | Extracts Shannon modem database `cfg.db` configurations. |
+| `extract-uecaps` | Extracts UE capability configs and decodes them into summaries. |
+| `compile` | Compiles the client-side static web showcase under the `docs/` folder. |
+| `diff` | Compares carrier configs across different devices in a build. |
 
-### Advanced Usage Examples
+### Usage Examples
 ```bash
+# Extract all configurations for UK/Europe carriers (default)
+pixel-extractor extract-all
+
+# Local repository execution without installing:
+python3 main.py extract-all
+
 # Extract for US and German carriers only:
-uv run extract_all.py -c us,de
+pixel-extractor extract-all -c us,de
 
 # Extract all countries from a specific factory ZIP:
-uv run extract_all.py -i stallion-cp2a.260705.006-factory-e7631ea9.zip -c all
+pixel-extractor extract-all -i stallion-cp2a.260705.006-factory-e7631ea9.zip -c all
 
 # Extract only UE Capabilities in Markdown format:
-uv run extract_uecaps.py -o my_caps -f markdown
+pixel-extractor extract-uecaps -o my_caps -f markdown
+
+# Rebuild the web site dashboard
+pixel-extractor compile
 ```
 
 ---
@@ -142,7 +155,7 @@ uv run extract_uecaps.py -o my_caps -f markdown
 
 Google ships a unified `vendor.img` partition supporting the entire Pixel 10 family. Capability files are stored with an 18-digit suffix hash (e.g. `O2_UK_261620682585876042.bin`), representing a 64-bit signature of the device's hardware RF configuration.
 
-The classifier in `extract_uecaps.py` parses these profiles to identify the likely device variant and write it directly into the Markdown summary headers:
+The classifier in `pixel-extract-uecaps` parses these profiles to identify the likely device variant and write it directly into the Markdown summary headers:
 
 | Variant | Characteristics | O2 UK Combos | EE Combos | VF UK Combos | Three Combos |
 | :--- | :--- | :---: | :---: | :---: | :---: |
@@ -175,14 +188,14 @@ Download the factory image `.zip` for the target device variant from the officia
 ### Step 2: Run the Extraction Pipeline
 Run the unified extractor to parse the partition tables, SQLite databases, and capability binaries:
 ```bash
-uv run extract_all.py
+pixel-extractor extract-all
 ```
 This automatically processes all factory ZIPs in the root folder, isolates them under their respective Build IDs and device codenames in the `extracted/` directory, and translates them.
 
 ### Step 3: Rebuild the Web Dashboard Database
 Run the compiler script to update `docs/data.js` and rebuild the client-side static bundle with the new devices and capabilities:
 ```bash
-python3 compile_web_dashboard.py
+pixel-extractor compile
 ```
 
 ### Step 4: Publish to GitHub Pages
@@ -192,6 +205,18 @@ git add extracted/ docs/
 git commit -m "feat: add and compile new factory image configs"
 git push
 ```
+
+---
+
+## 📦 Automated Versioning & Releases
+
+This repository uses Google's official **[`release-please-action`](https://github.com/googleapis/release-please-action)** inside the automated release workflow ([release.yml](file:///.github/workflows/release.yml)).
+
+Whenever commits are pushed or merged to `main`:
+1. `release-please` parses conventional commit subjects (`feat:`, `fix:`, etc.) to determine the next semver increment.
+2. It automatically generates/updates the `CHANGELOG.md` file and bumps the version field in `pyproject.toml`.
+3. It creates or updates a "Release PR".
+4. Once you merge the Release PR, it automatically tags the commit (`vX.Y.Z`) and creates a formal GitHub Release.
 
 ---
 
