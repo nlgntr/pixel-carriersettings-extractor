@@ -1,0 +1,118 @@
+[[carrier_id]]
+mcc_mnc = "20601"
+
+[carrier_id.mvno_data]
+kind = "gid1"
+value = "28000000"
+
+[[carrier_id]]
+mcc_mnc = "20620"
+
+[carrier_id.mvno_data]
+kind = "gid1"
+value = "28000000"
+
+[[carrier_id]]
+mcc_mnc = "23430"
+
+[carrier_id.mvno_data]
+kind = "gid1"
+value = "28000000"
+
+[[carrier_id]]
+mcc_mnc = "23438"
+
+[settings]
+version = 77000000002
+
+[[settings.apns.apn]]
+name = "Virgin Media Mobile Internet"
+value = "goto.virginmobile.uk"
+type = ["default", "mms", "supl"]
+user = "user"
+authtype = 1
+mmsc = "http://mms.virginmobile.co.uk:8002"
+mmsc_proxy = "193.30.166.2"
+mmsc_proxy_port = "8080"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+
+[[settings.apns.apn]]
+name = "XCAP"
+value = "hos"
+type = ["xcap"]
+bearer_bitmask = "14"
+protocol = "ipv4v6"
+user_visible = false
+
+[[settings.apns.apn]]
+name = "ims"
+value = "IMS"
+type = ["ims"]
+bearer_bitmask = "14|18|20"
+protocol = "ipv4v6"
+mtu = 1280
+user_visible = false
+field27 = "1|2|3|8|9|10|13|14|15|18|20"
+
+[settings.config]
+carrier_default_wfc_ims_enabled = true
+carrier_default_wfc_ims_mode = 2
+carrier_name = "Virgin"
+carrier_name_override = true
+carrier_supports_ss_over_ut = true
+carrier_ussd_method = 2
+carrier_volte_available = true
+carrier_wfc_ims_available = true
+editable_wfc_mode = false
+hide_ims_apn = true
+non_roaming_operator = ["23430", "23431", "23432", "23433", "23434", "23486"]
+prefer_2g = true
+show_4g_for_lte_data_icon = true
+sim_country_iso_override = "gb"
+wfc_spn_format_idx = 1
+
+[settings.config.bsf]
+bsf_server_port = 8080
+
+[settings.config.ims]
+geolocation_pidf_in_sip_invite_support = [4, 2]
+geolocation_pidf_in_sip_register_support = [4, 2]
+ims_user_agent = "#MANUFACTURE# #MODEL# #BUILD#"
+ipsec_authentication_algorithms = [1]
+ipsec_encryption_algorithms = [2]
+ipv4_sip_mtu_size_cellular = 1280
+ipv6_sip_mtu_size_cellular = 1280
+request_uri_type = 1
+
+[settings.config.imsss]
+network_initiated_ussd_over_ims_supported = false
+ut_iptype_home = 0
+ut_iptype_roaming = 0
+ut_requires_ims_registration = true
+xcap_over_ut_supported_rats = [3]
+
+[settings.config.imsvoice]
+ringback_timer_millis = 180000
+ringing_timer_millis = 180000
+session_privacy_type = 2
+
+[settings.config.imsvoice.evs_payload_description.127]
+evs_codec_attribute_bitrate = [0, 6]
+evs_codec_attribute_ch_aw_recv = -1
+
+[settings.config.iwlan]
+child_sa_rekey_hard_timer_sec = 86500
+child_sa_rekey_soft_timer_sec = 86400
+diffie_hellman_groups = [14]
+epdg_static_address = "epdg.epc.mnc038.mcc234.pub.3gppnetwork.org"
+ike_rekey_hard_timer_in_sec = 86500
+ike_rekey_soft_timer_sec = 86400
+ike_remote_id_type = 11
+key_error_policy_config = '[{"ApnName": "*","ErrorTypes": [{"ErrorType": "IKE_PROTOCOL_ERROR_TYPE","ErrorDetails": ["9000"],"RetryArray": [],"UnthrottlingEvents": ["WIFI_DISABLE_EVENT", "WIFI_CALLING_DISABLE_EVENT"]}, {"ErrorType": "IKE_PROTOCOL_ERROR_TYPE","ErrorDetails": ["10500"],"RetryArray": ["30", "30", "30", "30", "30"],"UnthrottlingEvents": ["APM_ENABLE_EVENT", "WIFI_DISABLE_EVENT", "WIFI_CALLING_DISABLE_EVENT"]}]}]'
+
+[settings.config.qns]
+xcap_transport_type = 0
+
+[settings.field8]
+seconds = 1753205239
