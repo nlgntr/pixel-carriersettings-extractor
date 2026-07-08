@@ -150,14 +150,44 @@ def compile_database():
                 "23433": "ee_gb.toml",
                 "23434": "ee_gb.toml",
                 "23486": "ee_gb.toml",
+                "23426": "ee_gb.toml",  # LycaMobile (EE)
                 # O2
                 "23410": "o2postpaid_gb.toml",
                 "23402": "o2postpaid_gb.toml",
+                "23457": "o2postpaid_gb.toml",  # Sky Mobile (O2)
+                "23438": "o2postpaid_gb.toml",  # Virgin Mobile UK (O2)
                 # Vodafone
                 "23415": "vodafone_gb.toml",
                 "23491": "vodafone_gb.toml",
                 # Three
                 "23420": "h3_gb.toml",
+                "23439": "h3_gb.toml",  # Gamma Telecom (Three)
+            }
+            
+            # Maps MVNO MCC/MNCs to their physical radio hosting MNO (for uecap radio aggregation profiles)
+            MCC_MNC_TO_RADIO_PARENT = {
+                # EE Radio Host
+                "23430": "ee_gb.toml",
+                "23433": "ee_gb.toml",
+                "23434": "ee_gb.toml",
+                "23486": "ee_gb.toml",
+                "23426": "ee_gb.toml",  # LycaMobile (EE)
+                "23440": "ee_gb.toml",  # Spusu (EE network)
+                "23405": "ee_gb.toml",  # Spitfire (EE network)
+                "23427": "ee_gb.toml",  # TCL/Truphone (EE network)
+                "23471": "ee_gb.toml",  # ESN (EE network)
+                "23418": "ee_gb.toml",  # Cloud9 (EE network)
+                # O2 Radio Host
+                "23410": "o2postpaid_gb.toml",
+                "23402": "o2postpaid_gb.toml",
+                "23457": "o2postpaid_gb.toml",  # Sky Mobile (O2)
+                "23438": "o2postpaid_gb.toml",  # Virgin Mobile UK (O2)
+                # Vodafone Radio Host
+                "23415": "vodafone_gb.toml",
+                "23491": "vodafone_gb.toml",
+                # Three Radio Host
+                "23420": "h3_gb.toml",
+                "23439": "h3_gb.toml",  # Gamma Telecom (Three)
             }
 
             for filename, data in device_raw.items():
@@ -184,16 +214,25 @@ def compile_database():
                         mcc_mnc = carrier_id_rules[0].get('mcc_mnc')
                         if mcc_mnc in MCC_MNC_TO_PARENT:
                             parent_filename = MCC_MNC_TO_PARENT[mcc_mnc]
+                            
+                    # Check for radio capabilities host fallback
+                    radio_parent_filename = None
+                    if carrier_id_rules:
+                        mcc_mnc = carrier_id_rules[0].get('mcc_mnc')
+                        if mcc_mnc in MCC_MNC_TO_RADIO_PARENT:
+                            radio_parent_filename = MCC_MNC_TO_RADIO_PARENT[mcc_mnc]
                     
                     # Merge missing config values from parent MNO config if available
                     merged_configs = configs.copy()
-                    parent_uecaps = []
                     if parent_filename and parent_filename in device_raw and parent_filename != filename:
                         parent_configs = device_raw[parent_filename].get('settings', {}).get('config', {})
                         for key, val in parent_configs.items():
                             if key not in merged_configs:
                                 merged_configs[key] = val
-                        parent_uecaps = match_uecaps_to_carrier(parent_filename, uecap_summaries)
+                                
+                    parent_uecaps = []
+                    if radio_parent_filename and radio_parent_filename in device_raw:
+                        parent_uecaps = match_uecaps_to_carrier(radio_parent_filename, uecap_summaries)
                     
                     # Determine 5G SA, VoNR and Satellite strictly from carrier's standalone configs (not MNO parent fallback)
                     # We restrict SA and VoNR to the primary physical MNOs only since MVNOs do not have provisioned core access.
