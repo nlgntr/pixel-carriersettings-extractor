@@ -115,6 +115,8 @@ def match_uecaps_to_carrier(toml_filename, uecap_summaries):
             if first_part == 'vf' or 'vf' in carrier_lower or 'vodafone' in carrier_lower:
                 matches.append(summary)
                 
+    return matches
+
 def generate_build_index_html(build_path):
     from .common import CODENAMES
     build_id = os.path.basename(build_path)
