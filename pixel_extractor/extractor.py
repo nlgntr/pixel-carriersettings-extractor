@@ -1162,10 +1162,13 @@ def decode_uecap_to_markdown(pb_data, out_path):
         for label in sorted_labels:
             d = band_details[label]
             m_dl = f"{d['dl_mimo']}x{d['dl_mimo']}"
-            m_ul = "2x2" if d['ul_mimo'] > 1 else "1x1"
+            m_ul = "N/A" if d['ul_bw'] == 0 else ("2x2" if d['ul_mimo'] > 1 else "1x1")
             q_dl = "QAM256" if d['dl_qam'] == 2 else "QAM64"
-            q_ul = "QAM256" if d['ul_qam'] == 2 else "QAM64"
-            f.write(f"| {label} | {m_dl} | {d['dl_bw']} MHz | {q_dl} | {m_ul} | {d['ul_bw']} MHz | {q_ul} |\n")
+            q_ul = "N/A" if d['ul_bw'] == 0 else ("QAM256" if d['ul_qam'] == 2 else "QAM64")
+            
+            dl_bw_val = f"{d['dl_bw']} MHz" if d['dl_bw'] > 0 else "N/A"
+            ul_bw_val = f"{d['ul_bw']} MHz" if d['ul_bw'] > 0 else "N/A"
+            f.write(f"| {label} | {m_dl} | {dl_bw_val} | {q_dl} | {m_ul} | {ul_bw_val} | {q_ul} |\n")
         f.write("\n")
         
         f.write(f"## Band Combinations ({len(combos)})\n\n")

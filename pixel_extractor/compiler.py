@@ -60,14 +60,24 @@ def parse_uecap_markdown(filepath):
             if line_strip.startswith('|') and 'Band' not in line_strip and '---' not in line_strip:
                 parts = [p.strip() for p in line_strip.split('|')[1:-1]]
                 if len(parts) >= 7:
+                    dl_bw = parts[2]
+                    ul_bw = parts[5]
+                    ul_mimo = parts[4]
+                    ul_qam = parts[6]
+                    if dl_bw in ('0 MHz', '0'):
+                        dl_bw = 'N/A'
+                    if ul_bw in ('0 MHz', '0'):
+                        ul_bw = 'N/A'
+                        ul_mimo = 'N/A'
+                        ul_qam = 'N/A'
                     summary['band_caps'].append({
                         'band': parts[0],
                         'dl_mimo': parts[1],
-                        'dl_bw': parts[2],
+                        'dl_bw': dl_bw,
                         'dl_qam': parts[3],
-                        'ul_mimo': parts[4],
-                        'ul_bw': parts[5],
-                        'ul_qam': parts[6]
+                        'ul_mimo': ul_mimo,
+                        'ul_bw': ul_bw,
+                        'ul_qam': ul_qam
                     })
             continue
             
