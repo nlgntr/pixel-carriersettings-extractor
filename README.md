@@ -97,7 +97,14 @@ A custom comparison tool that parses carrier settings across multiple extracted 
 uv run pixel-extractor diff
 ```
 
-### 6. Website Database Compiler (`compile`)
+### 6. Modem NV Config Differ (`diff-cfg`)
+Compares low-level Shannon modem regional policy databases (`cfg.db`) across generations, device variants, or firmware builds. It runs SQL query comparisons on MCC/MNC carrier assignments, ICCID matching prefixes (IIN rules), and configuration table checksum sequences, outputting a clear, colored terminal diagnostic diff.
+
+```bash
+uv run pixel-extractor diff-cfg <path_to_db1> <path_to_db2>
+```
+
+### 7. Website Database Compiler (`compile`)
 Compiles all extracted carrier parameters, SQLite policies, and UE capabilities from the nested workspace into a structured client-side JSON database (`docs/data.js`) to feed the web showcase dashboard.
 *   **Static Directory Explorer**: Generates a sleek, dark-themed `index.html` file browser index directly under each build subdirectory (e.g. `extracted/android_17_july_2026_cp2a.260705.006/index.html`) mapping out devices, TOMLs, and raw radio profiles.
 *   **Interactive Combination Explorer**: Extracts complex EN-DC and NR-CA carrier aggregation paths recursively from markdown sheets and formats them into an expandable, search-friendly inline chip dashboard under the "Radio Capabilities" tab.
@@ -136,6 +143,7 @@ You can run the tool directly using `uv run`, or invoke `python3 main.py` locall
 | `extract-uecaps` | Extracts UE capability configs and decodes them into summaries. |
 | `compile` | Compiles the client-side static web showcase under the `docs/` folder. |
 | `diff` | Compares carrier configs across different devices in a build. |
+| `diff-cfg` | Compares Shannon policy databases (`cfg.db`) across device variants. |
 
 ### Usage Examples
 ```bash
@@ -153,6 +161,9 @@ pixel-extractor extract-all -i stallion-cp2a.260705.006-factory-e7631ea9.zip -c 
 
 # Extract only UE Capabilities in Markdown format:
 pixel-extractor extract-uecaps -o my_caps -f markdown
+
+# Compare low-level policy databases across Pixel generations:
+pixel-extractor diff-cfg path/to/pixel9/cfg.db path/to/pixel10/cfg.db
 
 # Rebuild the web site dashboard
 pixel-extractor compile

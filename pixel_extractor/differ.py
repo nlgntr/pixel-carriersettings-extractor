@@ -116,5 +116,120 @@ def main():
     else:
         print(f"\nFound {diff_count} semantic configuration difference(s).")
 
+import sqlite3
+
+def diff_cfg_databases(db1_path, db2_path):
+    if not os.path.exists(db1_path):
+        print(f"Error: Database 1 not found at '{db1_path}'")
+        return
+    if not os.path.exists(db2_path):
+        print(f"Error: Database 2 not found at '{db2_path}'")
+        return
+        
+    print(f"🔍 Comparing Modem Databases:")
+    print(f"  📂 DB 1: {os.path.abspath(db1_path)}")
+    print(f"  📂 DB 2: {os.path.abspath(db2_path)}")
+    print("=" * 60)
+    
+    conn1 = sqlite3.connect(db1_path)
+    conn2 = sqlite3.connect(db2_path)
+    
+    try:
+        c1 = conn1.cursor()
+        c2 = conn2.cursor()
+        
+        # 1. Compare carrier names
+        c1.execute("SELECT carrier_id, name FROM confnames")
+        names1 = {row[0]: row[1] for row in c1.fetchall()}
+        
+        c2.execute("SELECT carrier_id, name FROM confnames")
+        names2 = {row[0]: row[1] for row in c2.fetchall()}
+        
+        added_carriers = {cid: names2[cid] for cid in names2 if cid not in names1}
+        removed_carriers = {cid: names1[cid] for cid in names1 if cid not in names2}
+        
+        if added_carriers:
+            print("\n➕ Added Carriers:")
+            for cid, name in sorted(added_carriers.items()):
+                print(f"  * ID {cid:5} ➜ {name}")
+        else:
+            print("\n➕ Added Carriers: None")
+            
+        if removed_carriers:
+            print("\n➖ Removed Carriers:")
+            for cid, name in sorted(removed_carriers.items()):
+                print(f"  * ID {cid:5} ➜ {name}")
+        else:
+            print("\n➖ Removed Carriers: None")
+            
+        # 2. Compare IIN rules
+        c1.execute("SELECT carrier_id, iccid_prefix FROM iin")
+        iin1 = {}
+        for cid, prefix in c1.fetchall():
+            iin1.setdefault(cid, set()).add(prefix)
+            
+        c2.execute("SELECT carrier_id, iccid_prefix FROM iin")
+        iin2 = {}
+        for cid, prefix in c2.fetchall():
+            iin2.setdefault(cid, set()).add(prefix)
+            
+        iin_changes = []
+        all_cids = sorted(list(set(iin1.keys()) | set(iin2.keys())))
+        for cid in all_cids:
+            name = names2.get(cid) or names1.get(cid) or f"Unknown ({cid})"
+            prefixes1 = iin1.get(cid, set())
+            prefixes2 = iin2.get(cid, set())
+            
+            added_p = prefixes2 - prefixes1
+            removed_p = prefixes1 - prefixes2
+            
+            if added_p or removed_p:
+                iin_changes.append((cid, name, added_p, removed_p))
+                
+        if iin_changes:
+            print("\n📡 ICCID/IIN Rule Changes:")
+            for cid, name, added_p, removed_p in iin_changes:
+                print(f"  * {name} (ID {cid}):")
+                if added_p:
+                    print(f"    - Added prefixes: {', '.join(sorted(added_p))}")
+                if removed_p:
+                    print(f"    - Removed prefixes: {', '.join(sorted(removed_p))}")
+        else:
+            print("\n📡 ICCID/IIN Rule Changes: None")
+            
+        # 3. Compare confmap configuration hashes
+        c1.execute("SELECT carrier_id, confman FROM confmap")
+        hash1 = {row[0]: row[1] for row in c1.fetchall()}
+        
+        c2.execute("SELECT carrier_id, confman FROM confmap")
+        hash2 = {row[0]: row[1] for row in c2.fetchall()}
+        
+        changed_configs = []
+        matching_cids = sorted([cid for cid in hash1 if cid in hash2])
+        
+        for cid in matching_cids:
+            h1 = hash1[cid]
+            h2 = hash2[cid]
+            if h1 != h2:
+                name = names2.get(cid) or names1.get(cid) or f"Unknown ({cid})"
+                changed_configs.append((cid, name, h1, h2))
+                
+        if changed_configs:
+            print("\n⚙️ Changed Baseband Config Tables:")
+            for cid, name, h1, h2 in changed_configs:
+                print(f"  * {name} (ID {cid}):")
+                print(f"    - DB 1 Config Table: {h1}")
+                print(f"    - DB 2 Config Table: {h2}")
+        else:
+            print("\n⚙️ Changed Baseband Config Tables: None")
+            
+        print("\n🎉 Comparison finished successfully!")
+        
+    except sqlite3.Error as ex:
+        print(f"\n❌ SQLite Error during comparison: {ex}")
+    finally:
+        conn1.close()
+        conn2.close()
+
 if __name__ == '__main__':
     main()

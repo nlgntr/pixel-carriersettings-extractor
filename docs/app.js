@@ -35,6 +35,11 @@ document.addEventListener('DOMContentLoaded', () => {
         renderMatrix();
     });
     
+    // Listen for filter checkbox changes
+    document.getElementById('filter-sa5g').addEventListener('change', renderMatrix);
+    document.getElementById('filter-vonr').addEventListener('change', renderMatrix);
+    document.getElementById('filter-satellite').addEventListener('change', renderMatrix);
+    
     function populateDevices(buildId) {
         deviceSelect.innerHTML = '';
         const devices = Object.keys(DATABASE.builds[buildId].devices);
@@ -70,6 +75,19 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const deviceData = DATABASE.builds[activeBuildId].devices[activeDeviceDir];
         if (!deviceData || !deviceData.carriers) return;
+        
+        const filterSA5G = document.getElementById('filter-sa5g').checked;
+        const filterVoNR = document.getElementById('filter-vonr').checked;
+        const filterSatellite = document.getElementById('filter-satellite').checked;
+        
+        function carrierMatchesFilters(cFile) {
+            const carrier = deviceData.carriers[cFile];
+            if (!carrier) return false;
+            if (filterSA5G && !carrier.features.sa5g) return false;
+            if (filterVoNR && !carrier.features.vonr) return false;
+            if (filterSatellite && !carrier.features.satellite) return false;
+            return true;
+        }
         
         const carriers = Object.keys(deviceData.carriers).sort();
         const mnos = [];
@@ -161,24 +179,27 @@ document.addEventListener('DOMContentLoaded', () => {
             return row;
         }
         
+        const filteredMnos = mnos.filter(carrierMatchesFilters);
+        const filteredMvnos = mvnos.filter(carrierMatchesFilters);
+        
         // Render MNO Header and rows
-        if (mnos.length > 0) {
+        if (filteredMnos.length > 0) {
             const mnoHeader = document.createElement('tr');
             mnoHeader.className = 'section-header-row';
             mnoHeader.innerHTML = '<td colspan="8">Mobile Network Operators (MNOs)</td>';
             matrixBody.appendChild(mnoHeader);
-            mnos.forEach(cFile => {
+            filteredMnos.forEach(cFile => {
                 matrixBody.appendChild(createRow(cFile));
             });
         }
         
         // Render MVNO Header and rows
-        if (mvnos.length > 0) {
+        if (filteredMvnos.length > 0) {
             const mvnoHeader = document.createElement('tr');
             mvnoHeader.className = 'section-header-row';
             mvnoHeader.innerHTML = '<td colspan="8">Virtual Operators (MVNOs)</td>';
             matrixBody.appendChild(mvnoHeader);
-            mvnos.forEach(cFile => {
+            filteredMvnos.forEach(cFile => {
                 matrixBody.appendChild(createRow(cFile));
             });
         }
@@ -540,6 +561,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 section.style.display = 'block';
             } else {
                 section.style.display = 'none';
+            }
+        });
+    });
+    
+    // Combo Search input filter
+    const comboSearchInput = document.getElementById('combo-search');
+    comboSearchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        const tokens = query.split(',').map(t => t.trim()).filter(t => t.length > 0);
+        
+        document.querySelectorAll('.combo-chip').forEach(chip => {
+            const chipText = chip.textContent.toLowerCase();
+            if (tokens.length === 0) {
+                chip.style.display = 'inline-block';
+            } else {
+                const match = tokens.every(token => chipText.includes(token));
+                chip.style.display = match ? 'inline-block' : 'none';
             }
         });
     });

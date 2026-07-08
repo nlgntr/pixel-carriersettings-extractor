@@ -74,6 +74,9 @@ def handle_diff(args):
     print("Comparing carrier settings configs...")
     differ.main()
 
+def handle_diff_cfg(args):
+    differ.diff_cfg_databases(args.db1, args.db2)
+
 def main():
     parser = argparse.ArgumentParser(
         description="Unified Google Pixel Carrier Settings & Capabilities Extractor CLI tool."
@@ -122,6 +125,12 @@ def main():
     # Subcommand: diff
     p_diff = subparsers.add_parser("diff", help="Compares carrier configs across different devices inside a build.")
     p_diff.set_defaults(func=handle_diff)
+    
+    # Subcommand: diff-cfg
+    p_diff_cfg = subparsers.add_parser("diff-cfg", help="Compares policy database files (cfg.db) across device variants.")
+    p_diff_cfg.add_argument("db1", help="Path to the first cfg.db database.")
+    p_diff_cfg.add_argument("db2", help="Path to the second cfg.db database.")
+    p_diff_cfg.set_defaults(func=handle_diff_cfg)
     
     args = parser.parse_args()
     args.func(args)

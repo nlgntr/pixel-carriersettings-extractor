@@ -42,6 +42,18 @@
                 <h2><i data-lucide="layout-grid"></i> UK Carrier Feature Matrix</h2>
                 <span class="badge">UK Profiles</span>
             </div>
+            <div class="matrix-filters">
+                <span class="filter-label"><i data-lucide="filter"></i> Filter by Support:</span>
+                <label class="filter-checkbox-label">
+                    <input type="checkbox" id="filter-sa5g"> 5G SA
+                </label>
+                <label class="filter-checkbox-label">
+                    <input type="checkbox" id="filter-vonr"> VoNR
+                </label>
+                <label class="filter-checkbox-label">
+                    <input type="checkbox" id="filter-satellite"> Satellite
+                </label>
+            </div>
             <div class="table-container">
                 <table id="matrix-table">
                     <thead>
@@ -66,22 +78,16 @@
         <!-- Details Display Pane -->
         <section class="section-card details-pane hidden" id="details-pane">
             <div class="tab-bar">
-                <button class="tab-btn active" data-tab="configs-tab"><i data-lucide="settings"></i> Framework Settings</button>
-                <button class="tab-btn" data-tab="uecaps-tab"><i data-lucide="radio"></i> Radio Capabilities</button>
+                <button class="tab-btn active" data-tab="uecaps-tab"><i data-lucide="radio"></i> Radio Capabilities</button>
                 <button class="tab-btn" data-tab="apns-tab"><i data-lucide="database"></i> APNs</button>
+                <button class="tab-btn" data-tab="configs-tab"><i data-lucide="settings"></i> Framework Settings</button>
             </div>
 
-            <div class="tab-content active" id="configs-tab">
-                <div class="search-bar">
-                    <input type="text" id="config-search" placeholder="Search configuration parameters...">
+            <div class="tab-content active" id="uecaps-tab">
+                <div class="search-bar combo-search-bar" style="margin-bottom: 1.25rem;">
+                    <input type="text" id="combo-search" placeholder="Search combinations (e.g. n28, n78)...">
                     <i data-lucide="search"></i>
                 </div>
-                <div class="config-grid" id="config-list">
-                    <!-- Populated by JavaScript -->
-                </div>
-            </div>
-
-            <div class="tab-content" id="uecaps-tab">
                 <div class="uecap-grid" id="uecaps-list">
                     <!-- Populated by JavaScript -->
                 </div>
@@ -89,6 +95,16 @@
 
             <div class="tab-content" id="apns-tab">
                 <div class="apn-grid" id="apn-list">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="tab-content" id="configs-tab">
+                <div class="search-bar">
+                    <input type="text" id="config-search" placeholder="Search configuration parameters...">
+                    <i data-lucide="search"></i>
+                </div>
+                <div class="config-grid" id="config-list">
                     <!-- Populated by JavaScript -->
                 </div>
             </div>

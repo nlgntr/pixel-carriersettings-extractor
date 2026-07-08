@@ -155,6 +155,66 @@ select:hover, select:focus {
     font-weight: 500;
 }
 
+.matrix-filters {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 0.75rem 1rem;
+    background-color: rgba(255, 255, 255, 0.01);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
+}
+
+.filter-label {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.filter-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.2s ease;
+}
+
+.filter-checkbox-label:hover {
+    color: var(--text-primary);
+}
+
+.filter-checkbox-label input[type="checkbox"] {
+    appearance: none;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    display: inline-grid;
+    place-content: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.filter-checkbox-label input[type="checkbox"]:checked {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+.filter-checkbox-label input[type="checkbox"]:checked::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background-color: var(--text-color);
+    border-radius: 1px;
+}
+
 /* Feature Matrix Table */
 .table-container {
     overflow-x: auto;

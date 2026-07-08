@@ -580,6 +580,18 @@ def write_web_dashboard(database):
                 <h2><i data-lucide="layout-grid"></i> UK Carrier Feature Matrix</h2>
                 <span class="badge">UK Profiles</span>
             </div>
+            <div class="matrix-filters">
+                <span class="filter-label"><i data-lucide="filter"></i> Filter by Support:</span>
+                <label class="filter-checkbox-label">
+                    <input type="checkbox" id="filter-sa5g"> 5G SA
+                </label>
+                <label class="filter-checkbox-label">
+                    <input type="checkbox" id="filter-vonr"> VoNR
+                </label>
+                <label class="filter-checkbox-label">
+                    <input type="checkbox" id="filter-satellite"> Satellite
+                </label>
+            </div>
             <div class="table-container">
                 <table id="matrix-table">
                     <thead>
@@ -604,22 +616,16 @@ def write_web_dashboard(database):
         <!-- Details Display Pane -->
         <section class="section-card details-pane hidden" id="details-pane">
             <div class="tab-bar">
-                <button class="tab-btn active" data-tab="configs-tab"><i data-lucide="settings"></i> Framework Settings</button>
-                <button class="tab-btn" data-tab="uecaps-tab"><i data-lucide="radio"></i> Radio Capabilities</button>
+                <button class="tab-btn active" data-tab="uecaps-tab"><i data-lucide="radio"></i> Radio Capabilities</button>
                 <button class="tab-btn" data-tab="apns-tab"><i data-lucide="database"></i> APNs</button>
+                <button class="tab-btn" data-tab="configs-tab"><i data-lucide="settings"></i> Framework Settings</button>
             </div>
 
-            <div class="tab-content active" id="configs-tab">
-                <div class="search-bar">
-                    <input type="text" id="config-search" placeholder="Search configuration parameters...">
+            <div class="tab-content active" id="uecaps-tab">
+                <div class="search-bar combo-search-bar" style="margin-bottom: 1.25rem;">
+                    <input type="text" id="combo-search" placeholder="Search combinations (e.g. n28, n78)...">
                     <i data-lucide="search"></i>
                 </div>
-                <div class="config-grid" id="config-list">
-                    <!-- Populated by JavaScript -->
-                </div>
-            </div>
-
-            <div class="tab-content" id="uecaps-tab">
                 <div class="uecap-grid" id="uecaps-list">
                     <!-- Populated by JavaScript -->
                 </div>
@@ -627,6 +633,16 @@ def write_web_dashboard(database):
 
             <div class="tab-content" id="apns-tab">
                 <div class="apn-grid" id="apn-list">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="tab-content" id="configs-tab">
+                <div class="search-bar">
+                    <input type="text" id="config-search" placeholder="Search configuration parameters...">
+                    <i data-lucide="search"></i>
+                </div>
+                <div class="config-grid" id="config-list">
                     <!-- Populated by JavaScript -->
                 </div>
             </div>
@@ -802,6 +818,66 @@ select:hover, select:focus {
     padding: 0.25rem 0.6rem;
     border-radius: 99px;
     font-weight: 500;
+}
+
+.matrix-filters {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 0.75rem 1rem;
+    background-color: rgba(255, 255, 255, 0.01);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
+}
+
+.filter-label {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.filter-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.2s ease;
+}
+
+.filter-checkbox-label:hover {
+    color: var(--text-primary);
+}
+
+.filter-checkbox-label input[type="checkbox"] {
+    appearance: none;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    display: inline-grid;
+    place-content: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.filter-checkbox-label input[type="checkbox"]:checked {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+.filter-checkbox-label input[type="checkbox"]:checked::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background-color: var(--text-color);
+    border-radius: 1px;
 }
 
 /* Feature Matrix Table */
@@ -1437,6 +1513,11 @@ tr:last-child td {
         renderMatrix();
     });
     
+    // Listen for filter checkbox changes
+    document.getElementById('filter-sa5g').addEventListener('change', renderMatrix);
+    document.getElementById('filter-vonr').addEventListener('change', renderMatrix);
+    document.getElementById('filter-satellite').addEventListener('change', renderMatrix);
+    
     function populateDevices(buildId) {
         deviceSelect.innerHTML = '';
         const devices = Object.keys(DATABASE.builds[buildId].devices);
@@ -1472,6 +1553,19 @@ tr:last-child td {
         
         const deviceData = DATABASE.builds[activeBuildId].devices[activeDeviceDir];
         if (!deviceData || !deviceData.carriers) return;
+        
+        const filterSA5G = document.getElementById('filter-sa5g').checked;
+        const filterVoNR = document.getElementById('filter-vonr').checked;
+        const filterSatellite = document.getElementById('filter-satellite').checked;
+        
+        function carrierMatchesFilters(cFile) {
+            const carrier = deviceData.carriers[cFile];
+            if (!carrier) return false;
+            if (filterSA5G && !carrier.features.sa5g) return false;
+            if (filterVoNR && !carrier.features.vonr) return false;
+            if (filterSatellite && !carrier.features.satellite) return false;
+            return true;
+        }
         
         const carriers = Object.keys(deviceData.carriers).sort();
         const mnos = [];
@@ -1563,24 +1657,27 @@ tr:last-child td {
             return row;
         }
         
+        const filteredMnos = mnos.filter(carrierMatchesFilters);
+        const filteredMvnos = mvnos.filter(carrierMatchesFilters);
+        
         // Render MNO Header and rows
-        if (mnos.length > 0) {
+        if (filteredMnos.length > 0) {
             const mnoHeader = document.createElement('tr');
             mnoHeader.className = 'section-header-row';
             mnoHeader.innerHTML = '<td colspan="8">Mobile Network Operators (MNOs)</td>';
             matrixBody.appendChild(mnoHeader);
-            mnos.forEach(cFile => {
+            filteredMnos.forEach(cFile => {
                 matrixBody.appendChild(createRow(cFile));
             });
         }
         
         // Render MVNO Header and rows
-        if (mvnos.length > 0) {
+        if (filteredMvnos.length > 0) {
             const mvnoHeader = document.createElement('tr');
             mvnoHeader.className = 'section-header-row';
             mvnoHeader.innerHTML = '<td colspan="8">Virtual Operators (MVNOs)</td>';
             matrixBody.appendChild(mvnoHeader);
-            mvnos.forEach(cFile => {
+            filteredMvnos.forEach(cFile => {
                 matrixBody.appendChild(createRow(cFile));
             });
         }
@@ -1942,6 +2039,23 @@ tr:last-child td {
                 section.style.display = 'block';
             } else {
                 section.style.display = 'none';
+            }
+        });
+    });
+    
+    // Combo Search input filter
+    const comboSearchInput = document.getElementById('combo-search');
+    comboSearchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        const tokens = query.split(',').map(t => t.trim()).filter(t => t.length > 0);
+        
+        document.querySelectorAll('.combo-chip').forEach(chip => {
+            const chipText = chip.textContent.toLowerCase();
+            if (tokens.length === 0) {
+                chip.style.display = 'inline-block';
+            } else {
+                const match = tokens.every(token => chipText.includes(token));
+                chip.style.display = match ? 'inline-block' : 'none';
             }
         });
     });
