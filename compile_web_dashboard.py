@@ -282,6 +282,9 @@ def write_web_dashboard(database):
         </div>
         
         <div class="selectors">
+            <a href="https://github.com/nlgntr/pixel-carriersettings-extractor" target="_blank" class="github-link-btn" title="View Source on GitHub">
+                <i data-lucide="github"></i> GitHub Repository
+            </a>
             <div class="select-wrapper">
                 <label for="build-select">Build ID</label>
                 <select id="build-select"></select>
@@ -363,7 +366,7 @@ def write_web_dashboard(database):
 
     <footer class="app-footer">
         <p>Built with ❤️ for the Android developer community. Natively parsed from stock Google Pixel factory partitions.</p>
-        <p>Compatible with <a href="https://github.com/h4wkd3v/pixel-carriersettings-toolbox" target="_blank">pixel-carriersettings-toolbox</a></p>
+        <p>Explore the raw extraction summaries directly on <a href="https://github.com/nlgntr/pixel-carriersettings-extractor" target="_blank">GitHub</a> | Compatible with <a href="https://github.com/h4wkd3v/pixel-carriersettings-toolbox" target="_blank">pixel-carriersettings-toolbox</a></p>
     </footer>
 
     <script src="data.js"></script>
@@ -935,6 +938,28 @@ tr:last-child td {
     padding: 0.15rem 0.4rem;
     border-radius: 4px;
     font-weight: 500;
+}
+
+.github-link-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.github-link-btn:hover {
+    border-color: var(--accent);
+    background-color: rgba(108, 92, 231, 0.1);
+    box-shadow: 0 0 10px var(--accent-glow);
 }
 """
     with open(os.path.join('docs', 'index.css'), 'w', encoding='utf-8') as f:
