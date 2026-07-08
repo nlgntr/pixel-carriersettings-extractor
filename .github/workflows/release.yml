@@ -1,4 +1,4 @@
-name: Bump version
+name: Release and Deploy
 
 on:
   push:
@@ -7,20 +7,53 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  bump-version:
+  release-and-deploy:
     if: "!startsWith(github.event.head_commit.message, 'bump:') && !startsWith(github.event.head_commit.message, 'chore(release):')"
     runs-on: ubuntu-latest
-    name: "Bump version and create changelog with commitizen"
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Check out
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      # 1. Run Commitizen to bump version, update changelog, and push tags directly
       - name: Create bump and changelog
         uses: commitizen-tools/commitizen-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           changelog_increment_filename: CHANGELOG.md
+
+      # 2. Compile static showcase database
+      - name: Compile Showcase Database
+        run: |
+          python3 main.py compile
+
+      # 3. Deploy the compiled docs directory to GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './docs'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

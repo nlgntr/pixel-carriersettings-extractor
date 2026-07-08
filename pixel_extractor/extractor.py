@@ -1166,10 +1166,11 @@ def decode_ap_plmn_mapping_toml(data, out_path):
                     elif efnum == 3 and eftype == 'length_delimited':
                         profile = eval.decode('utf-8', errors='ignore')
                 if profile or plmns:
+                    plmn_list_str = ", ".join(f'"{x}"' for x in plmns)
                     f.write("[[mapping]]\n")
                     f.write(f'profile = "{profile}"\n')
                     f.write(f"profile_id = {profile_id}\n")
-                    f.write(f"plmns = [ {', '.join(f'\"{x}\"' for x in plmns)} ]\n\n")
+                    f.write(f"plmns = [ {plmn_list_str} ]\n\n")
 
 def decode_ap_plmn_mapping_txt(data, out_path):
     fields = parse_protobuf_uecap(data)

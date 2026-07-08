@@ -7,7 +7,7 @@ name = "pixel-carriersettings-extractor"
 version = "1.0.0"
 description = "Extract and analyze carrier settings and UE capabilities from Pixel factory images"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.13"
 dependencies = [
     "ext4",
 ]

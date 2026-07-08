@@ -101,7 +101,7 @@ uv run diff_carrier_settings.py
 
 ## ⚙️ Prerequisites & Installation
 
-The repository is structured as a standard Python package. It requires Python 3.11+ (as `tomllib` is built-in).
+The repository is structured as a standard Python package. It requires Python 3.13+.
 
 If you are using the **`uv`** package manager (recommended), no manual installation is required! `uv` will automatically inspect `pyproject.toml`, build a virtual environment, install dependencies (`ext4`), and execute the tool on-the-fly.
 
