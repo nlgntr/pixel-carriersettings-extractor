@@ -22,7 +22,7 @@ CODENAMES = {
     'tokay': 'Pixel 9',
     'caiman': 'Pixel 9 Pro',
     'komodo': 'Pixel 9 Pro XL',
-    'comet': 'Pixel Fold / 9 Pro Fold',
+    'comet': 'Pixel 9 Pro Fold',
     'husky': 'Pixel 8 Pro',
     'shiba': 'Pixel 8',
     'akita': 'Pixel 8a',

@@ -1050,6 +1050,11 @@ tr:last-child td {
     function populateDevices(buildId) {
         deviceSelect.innerHTML = '';
         const devices = Object.keys(DATABASE.builds[buildId].devices);
+        devices.sort((a, b) => {
+            const nameA = DATABASE.builds[buildId].devices[a].friendly_name.toLowerCase();
+            const nameB = DATABASE.builds[buildId].devices[b].friendly_name.toLowerCase();
+            return nameA.localeCompare(nameB);
+        });
         devices.forEach(d => {
             const opt = document.createElement('option');
             opt.value = d;
