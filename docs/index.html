@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Carrier Settings & UE Cap Showcase</title>
+    <meta name="description" content="Community carrier config and UE radio aggregation capability lookup for Google Pixel 9 and Pixel 10 devices.">
+    <!-- Google Font & Lucide Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo-area">
+            <i data-lucide="radio-tower" class="logo-icon"></i>
+            <div>
+                <h1>Pixel Carrier Configs</h1>
+                <p>Exynos 5400 baseband parameters & UE Capabilities Explorer</p>
+            </div>
+        </div>
+        
+        <div class="selectors">
+            <div class="select-wrapper">
+                <label for="build-select">Build ID</label>
+                <select id="build-select"></select>
+            </div>
+            <div class="select-wrapper">
+                <label for="device-select">Device Variant</label>
+                <select id="device-select"></select>
+            </div>
+        </div>
+    </header>
+
+    <main class="app-main">
+        <!-- Feature Matrix Table Section -->
+        <section class="section-card matrix-section">
+            <div class="card-header">
+                <h2><i data-lucide="layout-grid"></i> UK Carrier Feature Matrix</h2>
+                <span class="badge">UK & Europe Profiles</span>
+            </div>
+            <div class="table-container">
+                <table id="matrix-table">
+                    <thead>
+                        <tr>
+                            <th>Carrier</th>
+                            <th>VoLTE</th>
+                            <th>VoWiFi</th>
+                            <th>VoNR (5G SA)</th>
+                            <th>Satellite SMS</th>
+                            <th>APNs</th>
+                            <th>UE Aggregation</th>
+                        </tr>
+                    </thead>
+                    <tbody id="matrix-body">
+                        <!-- Populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Main Details Pane -->
+        <div id="details-pane" class="details-pane hidden">
+            <!-- Navigation Tabs inside Details Pane -->
+            <div class="tab-bar">
+                <button class="tab-btn active" data-tab="carrier-settings-tab">
+                    <i data-lucide="settings"></i> Framework Settings
+                </button>
+                <button class="tab-btn" data-tab="ue-caps-tab">
+                    <i data-lucide="cpu"></i> Radio Capabilities
+                </button>
+                <button class="tab-btn" data-tab="apns-tab">
+                    <i data-lucide="network"></i> APNs
+                </button>
+            </div>
+
+            <!-- Content Area -->
+            <div class="tab-content active" id="carrier-settings-tab">
+                <div class="search-bar">
+                    <i data-lucide="search"></i>
+                    <input type="text" id="config-search" placeholder="Search config keys (e.g. vonr, ims)...">
+                </div>
+                <div class="config-grid" id="config-list">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="tab-content" id="ue-caps-tab">
+                <div id="uecaps-list">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="tab-content" id="apns-tab">
+                <div class="apn-grid" id="apn-list">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="app-footer">
+        <p>Built with ❤️ for the Android developer community. Natively parsed from stock Google Pixel factory partitions.</p>
+        <p>Compatible with <a href="https://github.com/h4wkd3v/pixel-carriersettings-toolbox" target="_blank">pixel-carriersettings-toolbox</a></p>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
