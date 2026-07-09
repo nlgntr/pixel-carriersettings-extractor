@@ -233,6 +233,18 @@ th {
     color: var(--text-secondary);
     padding: 1rem;
     border-bottom: 1px solid var(--border-color);
+}
+
+.th-sub {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    display: block;
+    margin-top: 0.15rem;
+    text-transform: none;
+    white-space: nowrap;
+}
+
+#matrix-table td:last-child, .ue-relation-badge {
     white-space: nowrap;
 }
 
@@ -291,6 +303,29 @@ tr:last-child td {
     gap: 1.5rem;
     max-height: 80vh;
     overflow-y: auto;
+    position: relative;
+}
+
+.btn-close-details {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.35rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.btn-close-details:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
 }
 
 .details-pane.hidden {

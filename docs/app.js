@@ -588,6 +588,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
+    window.closeDetails = () => {
+        detailsPane.classList.add('hidden');
+        document.querySelectorAll('.matrix-row').forEach(r => r.classList.remove('active'));
+    };
+
     window.toggleCombos = (btn) => {
         const content = btn.nextElementSibling;
         const isHidden = content.classList.contains('hidden');

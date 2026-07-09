@@ -603,10 +603,10 @@ def write_web_dashboard(database):
                     <thead>
                         <tr>
                             <th>Carrier</th>
-                            <th>4G Calling (VoLTE)</th>
-                            <th>WiFi Calling (VoWiFi)</th>
-                            <th>5G+ (5G SA)</th>
-                            <th>5G Calling (VoNR)</th>
+                            <th>4G Calling<br><span class="th-sub">(VoLTE)</span></th>
+                            <th>WiFi Calling<br><span class="th-sub">(VoWiFi)</span></th>
+                            <th>5G+<br><span class="th-sub">(5G SA)</span></th>
+                            <th>5G Calling<br><span class="th-sub">(VoNR)</span></th>
                             <th>Satellite</th>
                             <th>APNs</th>
                             <th>UE Aggregation</th>
@@ -621,6 +621,9 @@ def write_web_dashboard(database):
 
         <!-- Details Display Pane -->
         <section class="section-card details-pane hidden" id="details-pane">
+            <button class="btn-close-details" onclick="closeDetails()" title="Close Details Panel">
+                <i data-lucide="x"></i>
+            </button>
             <div class="tab-bar">
                 <button class="tab-btn active" data-tab="uecaps-tab"><i data-lucide="radio"></i> Radio Capabilities</button>
                 <button class="tab-btn" data-tab="apns-tab"><i data-lucide="database"></i> APNs</button>
@@ -904,6 +907,18 @@ th {
     color: var(--text-secondary);
     padding: 1rem;
     border-bottom: 1px solid var(--border-color);
+}
+
+.th-sub {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    display: block;
+    margin-top: 0.15rem;
+    text-transform: none;
+    white-space: nowrap;
+}
+
+#matrix-table td:last-child, .ue-relation-badge {
     white-space: nowrap;
 }
 
@@ -962,6 +977,29 @@ tr:last-child td {
     gap: 1.5rem;
     max-height: 80vh;
     overflow-y: auto;
+    position: relative;
+}
+
+.btn-close-details {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.35rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.btn-close-details:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
 }
 
 .details-pane.hidden {
@@ -2073,6 +2111,11 @@ tr:last-child td {
         });
     });
     
+    window.closeDetails = () => {
+        detailsPane.classList.add('hidden');
+        document.querySelectorAll('.matrix-row').forEach(r => r.classList.remove('active'));
+    };
+
     window.toggleCombos = (btn) => {
         const content = btn.nextElementSibling;
         const isHidden = content.classList.contains('hidden');

@@ -65,10 +65,10 @@
                     <thead>
                         <tr>
                             <th>Carrier</th>
-                            <th>4G Calling (VoLTE)</th>
-                            <th>WiFi Calling (VoWiFi)</th>
-                            <th>5G+ (5G SA)</th>
-                            <th>5G Calling (VoNR)</th>
+                            <th>4G Calling<br><span class="th-sub">(VoLTE)</span></th>
+                            <th>WiFi Calling<br><span class="th-sub">(VoWiFi)</span></th>
+                            <th>5G+<br><span class="th-sub">(5G SA)</span></th>
+                            <th>5G Calling<br><span class="th-sub">(VoNR)</span></th>
                             <th>Satellite</th>
                             <th>APNs</th>
                             <th>UE Aggregation</th>
@@ -83,6 +83,9 @@
 
         <!-- Details Display Pane -->
         <section class="section-card details-pane hidden" id="details-pane">
+            <button class="btn-close-details" onclick="closeDetails()" title="Close Details Panel">
+                <i data-lucide="x"></i>
+            </button>
             <div class="tab-bar">
                 <button class="tab-btn active" data-tab="uecaps-tab"><i data-lucide="radio"></i> Radio Capabilities</button>
                 <button class="tab-btn" data-tab="apns-tab"><i data-lucide="database"></i> APNs</button>
