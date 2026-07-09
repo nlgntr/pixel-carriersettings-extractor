@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ? '<span class="status-badge supported"><i data-lucide="check"></i></span>'
                 : '<span class="status-badge unsupported"><i data-lucide="x"></i></span>';
                 
-            const apnsText = carrier.apns.length > 0 ? `${carrier.apns.length} APNs` : '-';
+            const apnsText = carrier.apns.length > 0 ? `${carrier.apns.length}` : '-';
             
             // Filter uecaps based on selected device variant
             let matchedDeviceCaps = carrier.uecaps || [];
