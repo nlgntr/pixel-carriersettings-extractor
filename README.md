@@ -119,7 +119,7 @@ uv run pixel-extractor compile
 
 The repository is structured as a standard Python package. It requires Python 3.13+.
 
-If you are using the **`uv`** package manager (recommended), no manual installation is required! `uv` will automatically inspect `pyproject.toml`, build a virtual environment, install dependencies (`ext4`), and execute the tool on-the-fly.
+If you are using the **`uv`** package manager (recommended), no manual installation is required! `uv` will automatically inspect `pyproject.toml`, build a virtual environment, install dependencies (`ext4`, `dominate`), and execute the tool on-the-fly.
 
 If you don't use `uv`, you can install it using pip:
 ```bash
@@ -234,7 +234,7 @@ pixel-extractor compile
 ```
 
 ### Step 4: Publish to GitHub Pages
-Commit and push the new changes. The repository's automated CI/CD pipeline ([deploy.yml](file:///.github/workflows/deploy.yml)) will deploy the updated dashboard to your GitHub Pages URL automatically:
+Commit and push the new changes. The repository's automated CI/CD pipeline ([release.yml](file:///.github/workflows/release.yml)) will deploy the updated dashboard to your GitHub Pages URL automatically:
 ```bash
 git add extracted/ docs/
 git commit -m "feat: add and compile new factory image configs"
