@@ -583,16 +583,16 @@ def write_web_dashboard(database):
             <div class="matrix-filters">
                 <span class="filter-label"><i data-lucide="filter"></i> Filter by Support:</span>
                 <label class="filter-checkbox-label">
-                    <input type="checkbox" id="filter-volte"> 4G Calling
+                    <input type="checkbox" id="filter-volte"> 4G Calling (VoLTE)
                 </label>
                 <label class="filter-checkbox-label">
-                    <input type="checkbox" id="filter-vowifi"> WiFi Calling
+                    <input type="checkbox" id="filter-vowifi"> WiFi Calling (VoWiFi)
                 </label>
                 <label class="filter-checkbox-label">
-                    <input type="checkbox" id="filter-sa5g"> 5G+
+                    <input type="checkbox" id="filter-sa5g"> 5G+ (5G SA)
                 </label>
                 <label class="filter-checkbox-label">
-                    <input type="checkbox" id="filter-vonr"> VoNR
+                    <input type="checkbox" id="filter-vonr"> 5G Calling (VoNR)
                 </label>
                 <label class="filter-checkbox-label">
                     <input type="checkbox" id="filter-satellite"> Satellite
@@ -603,10 +603,10 @@ def write_web_dashboard(database):
                     <thead>
                         <tr>
                             <th>Carrier</th>
-                            <th>4G Calling</th>
-                            <th>WiFi Calling</th>
-                            <th>5G+</th>
-                            <th>VoNR</th>
+                            <th>4G Calling (VoLTE)</th>
+                            <th>WiFi Calling (VoWiFi)</th>
+                            <th>5G+ (5G SA)</th>
+                            <th>5G Calling (VoNR)</th>
                             <th>Satellite</th>
                             <th>APNs</th>
                             <th>UE Aggregation</th>
