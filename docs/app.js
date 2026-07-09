@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderMatrix() {
         matrixBody.innerHTML = '';
         detailsPane.classList.add('hidden');
+        document.body.classList.remove('details-open');
         
         const deviceData = DATABASE.builds[activeBuildId].devices[activeDeviceDir];
         if (!deviceData || !deviceData.carriers) return;
@@ -165,14 +166,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             row.innerHTML = `
-                <td><strong>${carrier.carrier_name}</strong></td>
-                <td>${volteHtml}</td>
-                <td>${vowifiHtml}</td>
-                <td>${sa5gHtml}</td>
-                <td>${vonrHtml}</td>
-                <td>${satHtml}</td>
-                <td>${apnsText}</td>
-                <td>${ueText}</td>
+                <td class="carrier-name-cell" data-label="Carrier"><strong>${carrier.carrier_name}</strong></td>
+                <td data-label="4G Calling">${volteHtml}</td>
+                <td data-label="WiFi Calling">${vowifiHtml}</td>
+                <td data-label="5G+ (5G SA)">${sa5gHtml}</td>
+                <td data-label="5G Calling">${vonrHtml}</td>
+                <td data-label="Satellite">${satHtml}</td>
+                <td data-label="APNs">${apnsText}</td>
+                <td data-label="UE Aggregation">${ueText}</td>
             `;
             
             row.addEventListener('click', () => {
@@ -277,6 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function showDetails(carrier) {
         detailsPane.classList.remove('hidden');
+        document.body.classList.add('details-open');
         
         // Populate config tab
         const configList = document.getElementById('config-list');
@@ -590,6 +592,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     window.closeDetails = () => {
         detailsPane.classList.add('hidden');
+        document.body.classList.remove('details-open');
         document.querySelectorAll('.matrix-row').forEach(r => r.classList.remove('active'));
     };
 
