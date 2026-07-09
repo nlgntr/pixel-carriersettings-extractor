@@ -36,6 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // Listen for filter checkbox changes
+    document.getElementById('filter-volte').addEventListener('change', renderMatrix);
+    document.getElementById('filter-vowifi').addEventListener('change', renderMatrix);
     document.getElementById('filter-sa5g').addEventListener('change', renderMatrix);
     document.getElementById('filter-vonr').addEventListener('change', renderMatrix);
     document.getElementById('filter-satellite').addEventListener('change', renderMatrix);
@@ -76,6 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const deviceData = DATABASE.builds[activeBuildId].devices[activeDeviceDir];
         if (!deviceData || !deviceData.carriers) return;
         
+        const filterVoLTE = document.getElementById('filter-volte').checked;
+        const filterVoWiFi = document.getElementById('filter-vowifi').checked;
         const filterSA5G = document.getElementById('filter-sa5g').checked;
         const filterVoNR = document.getElementById('filter-vonr').checked;
         const filterSatellite = document.getElementById('filter-satellite').checked;
@@ -83,6 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
         function carrierMatchesFilters(cFile) {
             const carrier = deviceData.carriers[cFile];
             if (!carrier) return false;
+            if (filterVoLTE && !carrier.features.volte) return false;
+            if (filterVoWiFi && !carrier.features.vowifi) return false;
             if (filterSA5G && !carrier.features.sa5g) return false;
             if (filterVoNR && !carrier.features.vonr) return false;
             if (filterSatellite && !carrier.features.satellite) return false;

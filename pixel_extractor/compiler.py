@@ -583,7 +583,13 @@ def write_web_dashboard(database):
             <div class="matrix-filters">
                 <span class="filter-label"><i data-lucide="filter"></i> Filter by Support:</span>
                 <label class="filter-checkbox-label">
-                    <input type="checkbox" id="filter-sa5g"> 5G SA
+                    <input type="checkbox" id="filter-volte"> 4G Calling
+                </label>
+                <label class="filter-checkbox-label">
+                    <input type="checkbox" id="filter-vowifi"> WiFi Calling
+                </label>
+                <label class="filter-checkbox-label">
+                    <input type="checkbox" id="filter-sa5g"> 5G+
                 </label>
                 <label class="filter-checkbox-label">
                     <input type="checkbox" id="filter-vonr"> VoNR
@@ -597,9 +603,9 @@ def write_web_dashboard(database):
                     <thead>
                         <tr>
                             <th>Carrier</th>
-                            <th>VoLTE</th>
-                            <th>VoWiFi</th>
-                            <th>5G SA</th>
+                            <th>4G Calling</th>
+                            <th>WiFi Calling</th>
+                            <th>5G+</th>
                             <th>VoNR</th>
                             <th>Satellite</th>
                             <th>APNs</th>
@@ -1514,6 +1520,8 @@ tr:last-child td {
     });
     
     // Listen for filter checkbox changes
+    document.getElementById('filter-volte').addEventListener('change', renderMatrix);
+    document.getElementById('filter-vowifi').addEventListener('change', renderMatrix);
     document.getElementById('filter-sa5g').addEventListener('change', renderMatrix);
     document.getElementById('filter-vonr').addEventListener('change', renderMatrix);
     document.getElementById('filter-satellite').addEventListener('change', renderMatrix);
@@ -1554,6 +1562,8 @@ tr:last-child td {
         const deviceData = DATABASE.builds[activeBuildId].devices[activeDeviceDir];
         if (!deviceData || !deviceData.carriers) return;
         
+        const filterVoLTE = document.getElementById('filter-volte').checked;
+        const filterVoWiFi = document.getElementById('filter-vowifi').checked;
         const filterSA5G = document.getElementById('filter-sa5g').checked;
         const filterVoNR = document.getElementById('filter-vonr').checked;
         const filterSatellite = document.getElementById('filter-satellite').checked;
@@ -1561,6 +1571,8 @@ tr:last-child td {
         function carrierMatchesFilters(cFile) {
             const carrier = deviceData.carriers[cFile];
             if (!carrier) return false;
+            if (filterVoLTE && !carrier.features.volte) return false;
+            if (filterVoWiFi && !carrier.features.vowifi) return false;
             if (filterSA5G && !carrier.features.sa5g) return false;
             if (filterVoNR && !carrier.features.vonr) return false;
             if (filterSatellite && !carrier.features.satellite) return false;
