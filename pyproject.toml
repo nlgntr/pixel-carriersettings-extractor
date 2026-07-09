@@ -10,6 +10,7 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "ext4",
+    "dominate",
 ]
 
 [project.scripts]
@@ -17,3 +18,26 @@ pixel-extractor = "pixel_extractor.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["pixel_extractor"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # Pyflakes
+    "I",   # isort (import sorting)
+    "N",   # pep8-naming
+    "D",   # pydocstyle
+    "UP",  # pyupgrade (modernize syntax)
+]
+ignore = [
+    "D100", # Missing docstring in public module
+    "D104", # Missing docstring in public package
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
