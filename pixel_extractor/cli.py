@@ -147,8 +147,13 @@ def serve(args: argparse.Namespace | None = None) -> None:
         return
     os.chdir(docs_dir)
     port = 8000
+    handler = http.server.SimpleHTTPRequestHandler
     print(f"Serving dashboard at http://localhost:{port}/  (Ctrl+C to stop)")
-    http.server.test(HandlerClass=http.server.SimpleHTTPRequestHandler, port=port)
+    try:
+        with http.server.ThreadingHTTPServer(("", port), handler) as httpd:
+            httpd.serve_forever()
+    except KeyboardInterrupt:
+        print("\nServer stopped.")
 
 def main() -> None:
     """Main CLI command dispatcher."""
