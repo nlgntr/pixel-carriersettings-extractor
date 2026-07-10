@@ -130,6 +130,26 @@ def handle_diff_cfg(args: argparse.Namespace) -> None:
     differ.diff_cfg_databases(args.db1, args.db2)
 
 
+def serve(args: argparse.Namespace | None = None) -> None:
+    """Runs a local static web server for the compiled dashboard under docs/.
+
+    The dashboard fetches its data with fetch(), which browsers block over the
+    file:// protocol, so it must be previewed over HTTP. This serves the docs/
+    folder (resolved relative to the package) on http://localhost:8000/.
+    """
+    import http.server
+    import os
+    from pathlib import Path
+
+    docs_dir = Path(__file__).resolve().parent.parent / "docs"
+    if not docs_dir.is_dir():
+        print(f"Error: dashboard directory not found at {docs_dir}")
+        return
+    os.chdir(docs_dir)
+    port = 8000
+    print(f"Serving dashboard at http://localhost:{port}/  (Ctrl+C to stop)")
+    http.server.test(HandlerClass=http.server.SimpleHTTPRequestHandler, port=port)
+
 def main() -> None:
     """Main CLI command dispatcher."""
     parser = argparse.ArgumentParser(
@@ -223,6 +243,13 @@ def main() -> None:
     p_diff_cfg.add_argument("db1", help="Path to the first cfg.db database.")
     p_diff_cfg.add_argument("db2", help="Path to the second cfg.db database.")
     p_diff_cfg.set_defaults(func=handle_diff_cfg)
+
+    # Subcommand: serve
+    p_serve = subparsers.add_parser(
+        "serve",
+        help="Serve the compiled static web dashboard (docs/) over HTTP for local preview.",
+    )
+    p_serve.set_defaults(func=serve)
 
     args = parser.parse_args()
     args.func(args)

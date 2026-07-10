@@ -15,6 +15,7 @@ dependencies = [
 
 [project.scripts]
 pixel-extractor = "pixel_extractor.cli:main"
+pixel-carrier-serve = "pixel_extractor.cli:serve"
 
 [tool.hatch.build.targets.wheel]
 packages = ["pixel_extractor"]
