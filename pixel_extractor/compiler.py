@@ -3,7 +3,6 @@
 
 import glob
 import gzip
-import io
 import json
 import os
 import tomllib
@@ -606,10 +605,7 @@ def _encode_dashboard_artifact(
 
 def _gzip_deterministic(data: bytes) -> bytes:
     """Compresses data with gzip using a fixed timestamp for reproducible output."""
-    buffer = io.BytesIO()
-    with gzip.GzipFile(fileobj=buffer, mode="wb", mtime=0, filename="") as gz:
-        gz.write(data)
-    return buffer.getvalue()
+    return gzip.compress(data, compresslevel=9, mtime=0)
 
 
 def write_web_dashboard(database: dict[str, Any], artifact_path: str = "docs/carrier_data.pb") -> None:
