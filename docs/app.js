@@ -165,9 +165,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     function getSourceSignature(filename) {
         return (filename || 'Unknown source').replace(/\.(md|toml|pb|binarypb)$/i, '');
     }
+
+    function getBuildSortKey(id) {
+        // Build IDs look like android_<ver>_<year>_<month>_<rest>; parse for ordering.
+        const m = (id || '').match(/android_(\d+)_(\d{4})_(\d{2})_(.+)$/);
+        if (!m) return [0, 0, 0, ''];
+        return [parseInt(m[1], 10), parseInt(m[2], 10), parseInt(m[3], 10), m[4] || ''];
+    }
+
     
-    // Build Selector populate
-    const buildIds = Object.keys(DATABASE.builds);
+    // Build Selector populate (newest build first, so it is the default selection)
+    const buildIds = Object.keys(DATABASE.builds).sort((a, b) => {
+        const ka = getBuildSortKey(a);
+        const kb = getBuildSortKey(b);
+        for (let i = 0; i < 4; i++) {
+            if (ka[i] < kb[i]) return 1; // descending: newest first
+            if (ka[i] > kb[i]) return -1;
+        }
+        return 0;
+    });
     buildIds.forEach(id => {
         const opt = document.createElement('option');
         opt.value = id;
