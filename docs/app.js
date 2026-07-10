@@ -6,6 +6,13 @@ let DATABASE = null;
 // and inflate with the native DecompressionStream.
 
 async function loadDashboard() {
+  if (location.protocol === 'file:') {
+    throw new Error(
+      'This dashboard must be served over HTTP(S). Open it via a local web server ' +
+      '(e.g. run "python3 -m http.server" inside the docs/ folder, then visit ' +
+      'http://localhost:8000/) instead of opening the file directly.'
+    );
+  }
   const resp = await fetch('carrier_data.pb', { cache: 'no-cache' });
   if (!resp.ok) {
     throw new Error(`Failed to fetch carrier_data.pb (${resp.status})`);
