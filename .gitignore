@@ -11,6 +11,8 @@ COMMIT_MSG.txt
 *.bin
 *.binarypb
 *.pb
+# Exception: the compact protobuf web dashboard artifact is intentionally tracked.
+!docs/carrier_data.pb
 *.db
 
 # Ignore temporary partition images

@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package pixel_extractor.dashboard.v1;
+
+// Encoding applied to the bytes stored in DashboardArtifact.payload.
+enum PayloadEncoding {
+  PAYLOAD_ENCODING_UNSPECIFIED = 0;
+  PAYLOAD_ENCODING_JSON_UTF8 = 1;
+}
+
+// Compression applied to the bytes stored in DashboardArtifact.payload.
+enum Compression {
+  COMPRESSION_UNSPECIFIED = 0;
+  COMPRESSION_GZIP = 1;
+}
+
+// Compact, versioned envelope for the static web showcase database.
+//
+// The payload is the dashboard database serialized as UTF-8 JSON and then
+// compressed. Integers outside JavaScript's safe integer range are encoded as
+// decimal strings so precision is preserved when decoded in the browser.
+message DashboardArtifact {
+  uint32 format_version = 1;
+  PayloadEncoding payload_encoding = 2;
+  Compression compression = 3;
+  bytes payload = 4;
+}

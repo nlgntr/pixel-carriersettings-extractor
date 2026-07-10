@@ -1,0 +1,37 @@
+# Compiled automatically from CarrierSettings.pb overlays via Gemini
+
+[[carrier_id]]
+mcc_mnc = "23430"
+spn = "LycaMobile"
+
+[settings]
+version = 77000000001
+
+[[settings.apns.apn]]
+name = "Lycamobile"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "default", "supl" ]
+value = "data.lycamobile.co.uk"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|20"
+name = "IMS"
+protocol = "ipv6"
+roaming_protocol = "ipv4v6"
+type = [ "ims" ]
+user_visible = false
+value = "ims"
+
+[settings.config]
+non_roaming_operator = [
+    "23410",
+    "23420",
+    "23430",
+    "23431",
+    "23432",
+    "23433",
+    "23434",
+    "23486"
+]
+show_4g_for_lte_data_icon = true

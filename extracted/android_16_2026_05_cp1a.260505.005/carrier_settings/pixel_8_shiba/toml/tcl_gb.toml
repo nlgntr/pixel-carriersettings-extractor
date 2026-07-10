@@ -1,0 +1,7 @@
+# Compiled automatically from CarrierSettings.pb overlays via Gemini
+
+[[carrier_id]]
+mcc_mnc = "23427"
+
+[settings]
+version = 75000000001

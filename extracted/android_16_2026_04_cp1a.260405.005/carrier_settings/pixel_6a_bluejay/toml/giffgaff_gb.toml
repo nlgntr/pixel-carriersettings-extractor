@@ -1,0 +1,57 @@
+# Compiled automatically from CarrierSettings.pb overlays via Gemini
+
+[[carrier_id]]
+mcc_mnc = "23410"
+gid1 = "50"
+
+[[carrier_id]]
+mcc_mnc = "23410"
+spn = "GIFFGAFF"
+
+[settings]
+version = 75000000006
+
+[[settings.apns.apn]]
+authtype = 1
+mmsc = "http://mmsc.mediamessaging.co.uk:8002"
+name = "giffgaff"
+password = "p"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "default", "mms" ]
+user = "gg"
+value = "giffgaff.com"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|18|20"
+name = "IMS"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "ims" ]
+user_visible = false
+value = "ims"
+
+[settings.config]
+carrier_default_wfc_ims_enabled = true
+carrier_default_wfc_ims_mode = 1
+carrier_supports_ss_over_ut = true
+carrier_volte_available = true
+default_vm_number = "443"
+hide_lte_plus_data_icon = false
+non_roaming_operator = [
+    "23420",
+    "23426",
+    "23430",
+    "23431",
+    "23432",
+    "23433",
+    "23434",
+    "23486"
+]
+prefer_2g = false
+radio_restart_failure_causes = [ 55 ]
+read_only_apn_types = []
+show_4g_for_lte_data_icon = true
+show_wifi_calling_icon_in_status_bar = true
+smsToMmsTextThreshold = 10
+wfc_spn_format_idx = 9

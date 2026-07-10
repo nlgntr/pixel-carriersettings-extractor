@@ -1,4 +1,4 @@
-"""Command-line interface (CLI) entry point orchestrating Pixel Carrier Settings and UE capabilities extraction commands."""
+"""Orchestrate Pixel Carrier Settings and UE capabilities extraction commands."""
 
 import argparse
 import glob
@@ -101,7 +101,7 @@ def handle_extract_uecaps(args: argparse.Namespace) -> None:
     print("\n🎉 UE Capabilities extraction completed successfully!")
 
 
-def handle_compile(args: argparse.Namespace) -> None:  # noqa: ARG001
+def handle_compile(args: argparse.Namespace) -> None:
     """Subcommand handler to compile extracted build configurations to the web dashboard.
 
     Args:
@@ -111,7 +111,7 @@ def handle_compile(args: argparse.Namespace) -> None:  # noqa: ARG001
     compiler.main()
 
 
-def handle_diff(args: argparse.Namespace) -> None:  # noqa: ARG001
+def handle_diff(args: argparse.Namespace) -> None:
     """Subcommand handler to compare carrier configurations across devices.
 
     Args:
@@ -136,11 +136,23 @@ def main() -> None:
         description="Unified Google Pixel Carrier Settings & Capabilities Extractor CLI tool."
     )
 
-    subparsers = parser.add_subparsers(dest="command", title="commands", description="Available subcommands", required=True)
+    subparsers = parser.add_subparsers(
+        dest="command",
+        title="commands",
+        description="Available subcommands",
+        required=True,
+    )
 
     # Subcommand: extract-all
-    p_all = subparsers.add_parser("extract-all", help="Extract CarrierSettings, cfg.db, and UE capabilities sequentially.")
-    p_all.add_argument("-i", "--image", help="Path to a specific factory ZIP file. If omitted, scans current directory.")
+    p_all = subparsers.add_parser(
+        "extract-all",
+        help="Extract CarrierSettings, cfg.db, and UE capabilities sequentially.",
+    )
+    p_all.add_argument(
+        "-i",
+        "--image",
+        help="Path to a specific factory ZIP file. If omitted, scans current directory.",
+    )
     p_all.add_argument(
         "-c",
         "--country",
@@ -152,7 +164,11 @@ def main() -> None:
 
     # Subcommand: extract-carrier-settings
     p_cs = subparsers.add_parser(
-        "extract-carrier-settings", help="Extract framework carrier settings overlay .pb configurations and compile to TOML."
+        "extract-carrier-settings",
+        help=(
+            "Extract only framework carrier settings (.pb + .toml) from product.img. "
+            "Requires one factory image per device."
+        ),
     )
     p_cs.add_argument("-i", "--image", help="Path to specific factory ZIP file.")
     p_cs.add_argument("-c", "--country", default="gb", help="Comma-separated country code(s). Default is 'gb'.")
@@ -160,14 +176,21 @@ def main() -> None:
     p_cs.set_defaults(func=handle_extract_carrier_settings)
 
     # Subcommand: extract-cfg-db
-    p_db = subparsers.add_parser("extract-cfg-db", help="Extract Shannon modem configs database (cfg.db) from vendor partition.")
+    p_db = subparsers.add_parser(
+        "extract-cfg-db",
+        help="Extract Shannon modem configs database (cfg.db) from vendor partition.",
+    )
     p_db.add_argument("-i", "--image", help="Path to specific factory ZIP file.")
     p_db.add_argument("-o", "--output", default="extracted", help="Output base directory.")
     p_db.set_defaults(func=handle_extract_cfg_db)
 
     # Subcommand: extract-uecaps
     p_ue = subparsers.add_parser(
-        "extract-uecaps", help="Extract radio capabilities (uecapconfig) from vendor and decode them."
+        "extract-uecaps",
+        help=(
+            "Extract only UE radio capabilities from vendor.img. "
+            "One image per modem generation is sufficient because profiles are shared across devices."
+        ),
     )
     p_ue.add_argument("-i", "--image", help="Path to specific factory ZIP file.")
     p_ue.add_argument("-c", "--country", default="gb", help="Comma-separated country code(s). Default is 'gb'.")
@@ -193,7 +216,10 @@ def main() -> None:
     p_diff.set_defaults(func=handle_diff)
 
     # Subcommand: diff-cfg
-    p_diff_cfg = subparsers.add_parser("diff-cfg", help="Compares policy database files (cfg.db) across device variants.")
+    p_diff_cfg = subparsers.add_parser(
+        "diff-cfg",
+        help="Compare policy database files (cfg.db) across device variants.",
+    )
     p_diff_cfg.add_argument("db1", help="Path to the first cfg.db database.")
     p_diff_cfg.add_argument("db2", help="Path to the second cfg.db database.")
     p_diff_cfg.set_defaults(func=handle_diff_cfg)
