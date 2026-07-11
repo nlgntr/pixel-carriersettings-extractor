@@ -3,6 +3,7 @@
 
 import glob
 import gzip
+import html
 import json
 import os
 import tomllib
@@ -202,15 +203,12 @@ def generate_build_index_html(build_path: str) -> None:
     Args:
         build_path: The directory path of the extracted build.
     """
-    import dominate
-    from dominate.tags import a, code, div, h1, h2, h3, meta
-
     from .common import CODENAMES, get_friendly_build_name
 
     build_id = os.path.basename(build_path)
     friendly_build = get_friendly_build_name(build_id)
 
-    device_tomls = {}
+    device_tomls: dict[str, dict[str, Any]] = {}
     cs_dir = os.path.join(build_path, "carrier_settings")
     if os.path.exists(cs_dir):
         for device_dir in sorted(os.listdir(cs_dir)):
@@ -219,7 +217,7 @@ def generate_build_index_html(build_path: str) -> None:
                 continue
             toml_dir = os.path.join(device_path, "toml")
             if os.path.exists(toml_dir):
-                tomls = sorted([f for f in os.listdir(toml_dir) if f.endswith(".toml")])
+                tomls = sorted(f for f in os.listdir(toml_dir) if f.endswith(".toml"))
                 if tomls:
                     friendly_name = device_dir.replace("_", " ").title()
                     friendly_name = friendly_name.replace(" Xl", " XL").replace("10A", "10a").replace("9A", "9a")
@@ -229,70 +227,71 @@ def generate_build_index_html(build_path: str) -> None:
                             break
                     device_tomls[friendly_name] = {"dir": device_dir, "files": tomls}
 
-    uecaps_files = []
+    uecaps_files: list[str] = []
     uecaps_dir = os.path.join(build_path, "uecaps", "markdown")
     if os.path.exists(uecaps_dir):
-        uecaps_files = sorted([f for f in os.listdir(uecaps_dir) if f.endswith(".md")])
+        uecaps_files = sorted(f for f in os.listdir(uecaps_dir) if f.endswith(".md"))
 
-    cfg_db_path = None
-    if os.path.exists(os.path.join(build_path, "modem", "cfg.db")):
-        cfg_db_path = "modem/cfg.db"
+    cfg_db_path = "modem/cfg.db" if os.path.exists(os.path.join(build_path, "modem", "cfg.db")) else None
 
-    # Write the shared index.css stylesheet to extracted/ folder
+    # Copy the shared stylesheet into the extracted/ folder.
     os.makedirs("extracted", exist_ok=True)
     shared_css_path = os.path.join("extracted", "index.css")
-
-    css_content = ""
     css_src = os.path.join(os.path.dirname(__file__), "build_index.css")
     if os.path.exists(css_src):
         with open(css_src, encoding="utf-8") as f:
             css_content = f.read()
-
-    if css_content:
         with open(shared_css_path, "w", encoding="utf-8") as f:
             f.write(css_content)
 
-    doc = dominate.document(title=f"Index of {friendly_build}")
+    esc = html.escape
+    body: list[str] = ['<div class="container">']
+    body.append(f'  <h1>Build Archive Explorer — {esc(friendly_build)}</h1>')
+    body.append(f'  <div class="meta-info"><span>Build folder: </span><code>{esc(build_id)}</code></div>')
 
-    with doc.head:
-        meta(charset="UTF-8")
-        dominate.tags.link(rel="stylesheet", href="../index.css")
+    if cfg_db_path:
+        body.append('  <h2>Shannon Modem Configuration</h2>')
+        body.append('  <div class="file-list">')
+        body.append(f'    <div class="file-item"><a href="{esc(cfg_db_path)}">📄 cfg.db</a></div>')
+        body.append('  </div>')
 
-    with doc.body:
-        with div(cls="container"):
-            h1(f"Build Archive Explorer — {friendly_build}")
-            with div(cls="meta-info"):
-                dominate.tags.span("Build folder: ")
-                code(build_id)
+    if device_tomls:
+        body.append('  <h2>Carrier Settings Configurations (TOML)</h2>')
+        for friendly_name, data in sorted(device_tomls.items()):
+            body.append(f'  <div class="device-card"><h3>{esc(friendly_name)}</h3>')
+            body.append('    <div class="file-list">')
+            for fname in data["files"]:
+                rel = f"carrier_settings/{data['dir']}/toml/{fname}"
+                body.append(f'      <div class="file-item"><a href="{esc(rel)}">📄 {esc(fname)}</a></div>')
+            body.append('    </div>')
+            body.append('  </div>')
 
-            if cfg_db_path:
-                h2("Shannon Modem Configuration")
-                with div(cls="file-list"):
-                    with div(cls="file-item"):
-                        a("📄 cfg.db", href=cfg_db_path)
+    if uecaps_files:
+        body.append('  <h2>UE Capability Radio Profiles (Markdown)</h2>')
+        body.append('  <div class="file-list">')
+        for fname in uecaps_files:
+            rel = f"uecaps/markdown/{fname}"
+            body.append(f'    <div class="file-item"><a href="{esc(rel)}">📄 {esc(fname)}</a></div>')
+        body.append('  </div>')
 
-            if device_tomls:
-                h2("Carrier Settings Configurations (TOML)")
-                for friendly_name, data in sorted(device_tomls.items()):
-                    with div(cls="device-card"):
-                        h3(friendly_name)
-                        with div(cls="file-list"):
-                            for f in data["files"]:
-                                path = f"carrier_settings/{data['dir']}/toml/{f}"
-                                with div(cls="file-item"):
-                                    a(f"📄 {f}", href=path)
+    body.append('</div>')
 
-            if uecaps_files:
-                h2("UE Capability Radio Profiles (Markdown)")
-                with div(cls="file-list"):
-                    for f in uecaps_files:
-                        path = f"uecaps/markdown/{f}"
-                        with div(cls="file-item"):
-                            a(f"📄 {f}", href=path)
+    html_doc = (
+        '<!DOCTYPE html>\n'
+        '<html lang="en">\n'
+        '<head>\n'
+        '  <meta charset="UTF-8">\n'
+        f'  <title>Index of {esc(friendly_build)}</title>\n'
+        '  <link rel="stylesheet" href="../index.css">\n'
+        '</head>\n'
+        '<body>\n'
+        + "\n".join(body)
+        + "\n</body>\n</html>\n"
+    )
 
     index_path = os.path.join(build_path, "index.html")
     with open(index_path, "w", encoding="utf-8") as f:
-        f.write(doc.render())
+        f.write(html_doc)
     print(f"Generated build index: {index_path}")
 
 

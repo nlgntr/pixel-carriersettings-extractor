@@ -18,15 +18,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/6b/b0/e595ce2a2527e169c3bcd6c33d2473c1918e0b7f6826a043ca1245dd4e5b/crcmod-1.7.tar.gz", hash = "sha256:dc7051a0db5f2bd48665a990d3ec1cc305a466a77358ca4492826f41f283601e", size = 89670, upload-time = "2010-06-27T14:35:29.538Z" }
 
 [[package]]
-name = "dominate"
-version = "2.9.1"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/fb/f3/1c8088ff19a0fcd9c3234802a0ee47006ea64bd8852f1019194f0e3583ff/dominate-2.9.1.tar.gz", hash = "sha256:558284687d9b8aae1904e3d6051ad132dd4a8c0cf551b37ea4e7e42a31d19dc4", size = 37715, upload-time = "2023-12-24T20:45:19.192Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/58/19/0380af745f151a1648657bbcef0fb49ac28bf09083d94498163ffd9b32dc/dominate-2.9.1-py2.py3-none-any.whl", hash = "sha256:cb7b6b79d33b15ae0a6e87856b984879927c7c2ebb29522df4c75b28ffd9b989", size = 29976, upload-time = "2023-12-24T20:45:17.154Z" },
-]
-
-[[package]]
 name = "ext4"
 version = "1.4.1"
 source = { registry = "https://pypi.org/simple" }
@@ -71,7 +62,6 @@ name = "pixel-carriersettings-extractor"
 version = "1.0.0"
 source = { editable = "." }
 dependencies = [
-    { name = "dominate" },
     { name = "ext4" },
 ]
 
@@ -81,10 +71,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [
-    { name = "dominate" },
-    { name = "ext4" },
-]
+requires-dist = [{ name = "ext4" }]
 
 [package.metadata.requires-dev]
 dev = [{ name = "ruff", specifier = ">=0.15.21" }]
