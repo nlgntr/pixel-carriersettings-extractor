@@ -43,7 +43,7 @@ def load_toml_config(filepath: str) -> dict[str, Any] | None:
     Returns:
         The parsed TOML configuration dictionary, or None if parsing fails.
     """
-    with open(filepath, "r", encoding="utf-8") as f:
+    with open(filepath, encoding="utf-8") as f:
         content = f.read()
     try:
         data = tomllib.loads(content)

@@ -1,4 +1,90 @@
-document.addEventListener('DOMContentLoaded', () => {
+let DATABASE = null;
+
+// --- Compact protobuf artifact loader ---------------------------------------
+// The dashboard ships as a small DashboardArtifact protobuf envelope whose payload
+// is gzip-compressed JSON. We hand-decode the envelope (no protobuf.js dependency)
+// and inflate with the native DecompressionStream.
+
+async function loadDashboard() {
+  if (location.protocol === 'file:') {
+    throw new Error(
+      'This dashboard must be served over HTTP(S). Open it via a local web server ' +
+      '(e.g. run "python3 -m http.server" inside the docs/ folder, then visit ' +
+      'http://localhost:8000/) instead of opening the file directly.'
+    );
+  }
+  const resp = await fetch('carrier_data.pb', { cache: 'no-cache' });
+  if (!resp.ok) {
+    throw new Error(`Failed to fetch carrier_data.pb (${resp.status})`);
+  }
+  const bytes = new Uint8Array(await resp.arrayBuffer());
+  const artifact = decodeDashboardArtifact(bytes);
+  if (artifact.formatVersion !== 1) {
+    throw new Error(`Unsupported dashboard format version ${artifact.formatVersion}`);
+  }
+  if (artifact.payloadEncoding !== 1) {
+    throw new Error(`Unsupported payload encoding ${artifact.payloadEncoding}`);
+  }
+  if (artifact.compression !== 1) {
+    throw new Error(`Unsupported compression ${artifact.compression}`);
+  }
+  const jsonBytes = await gunzip(artifact.payload);
+  const text = new TextDecoder('utf-8').decode(jsonBytes);
+  return JSON.parse(text);
+}
+
+function decodeDashboardArtifact(bytes) {
+  let formatVersion = 0;
+  let payloadEncoding = 0;
+  let compression = 0;
+  let payload = null;
+  let i = 0;
+  while (i < bytes.length) {
+    const tagResult = readVarint(bytes, i);
+    i = tagResult.next;
+    const tag = tagResult.value;
+    const fieldNumber = tag >> 3;
+    const wireType = tag & 0x7;
+    if (wireType === 0) {
+      const v = readVarint(bytes, i);
+      i = v.next;
+      if (fieldNumber === 1) formatVersion = v.value;
+      else if (fieldNumber === 2) payloadEncoding = v.value;
+      else if (fieldNumber === 3) compression = v.value;
+    } else if (wireType === 2) {
+      const lenResult = readVarint(bytes, i);
+      i = lenResult.next;
+      const len = lenResult.value;
+      payload = bytes.subarray(i, i + len);
+      i += len;
+    } else {
+      throw new Error(`Unsupported protobuf wire type ${wireType}`);
+    }
+  }
+  return { formatVersion, payloadEncoding, compression, payload };
+}
+
+function readVarint(bytes, pos) {
+  let result = 0n;
+  let shift = 0n;
+  let i = pos;
+  while (i < bytes.length) {
+    const b = bytes[i++];
+    result |= BigInt(b & 0x7f) << shift;
+    if ((b & 0x80) === 0) break;
+    shift += 7n;
+  }
+  return { value: Number(result), next: i };
+}
+
+async function gunzip(input) {
+  const ds = new DecompressionStream('gzip');
+  const stream = new Blob([input]).stream().pipeThrough(ds);
+  const buffer = await new Response(stream).arrayBuffer();
+  return new Uint8Array(buffer);
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
     // 1. Initialize selects
     const buildSelect = document.getElementById('build-select');
     const deviceSelect = document.getElementById('device-select');
@@ -9,13 +95,99 @@ document.addEventListener('DOMContentLoaded', () => {
     let activeBuildId = '';
     let activeDeviceDir = '';
     let activeCarrierFile = '';
+
+    // Load the compact dashboard artifact before wiring the UI.
+    const loadingEl = document.getElementById('loading');
+    try {
+        DATABASE = await loadDashboard();
+    } catch (err) {
+        if (loadingEl) {
+            loadingEl.textContent = 'Failed to load carrier data: ' + err.message;
+            loadingEl.classList.add('loading-error');
+        }
+        console.error(err);
+        return;
+    }
+    if (loadingEl) loadingEl.remove();
     
-    // Build Selector populate
-    const buildIds = Object.keys(DATABASE.builds);
+    function getFriendlyCarrierName(name) {
+        if (!name) return name;
+        const n = name.toUpperCase();
+        if (n === 'H3' || n === 'THREE') return '3';
+        if (n === 'EE') return 'EE';
+        if (n === 'O2POSTPAID') return 'O² PAYM';
+        if (n === 'O2PREPAID') return 'O² PAYG';
+        if (n === 'O2') return 'O²';
+        if (n === 'VODAFONE' || n === 'VF') return 'Vodafone';
+        return name;
+    }
+
+    function normalizeCapabilityList(values) {
+        return [...new Set(Array.isArray(values) ? values : [])]
+            .sort((a, b) => String(a).localeCompare(String(b), undefined, { numeric: true }));
+    }
+
+    function normalizeBandCapabilities(values) {
+        const capabilitiesByValue = new Map();
+        (Array.isArray(values) ? values : []).forEach(value => {
+            const normalizedValue = Object.keys(value || {})
+                .sort()
+                .reduce((result, key) => {
+                    result[key] = value[key];
+                    return result;
+                }, {});
+            capabilitiesByValue.set(JSON.stringify(normalizedValue), normalizedValue);
+        });
+
+        return [...capabilitiesByValue.values()].sort((a, b) => {
+            const bandOrder = String(a.band || '').localeCompare(String(b.band || ''), undefined, { numeric: true });
+            return bandOrder || JSON.stringify(a).localeCompare(JSON.stringify(b));
+        });
+    }
+
+    function getNormalizedCapability(cap) {
+        return {
+            lte_bands: normalizeCapabilityList(cap.lte_bands),
+            nr_bands: normalizeCapabilityList(cap.nr_bands),
+            max_mimo_dl: cap.max_mimo_dl ?? null,
+            max_modulation_dl: cap.max_modulation_dl || '',
+            hardware_tier: cap.hardware_tier || '',
+            nr_ca_combos: normalizeCapabilityList(cap.nr_ca_combos),
+            endc_combos: normalizeCapabilityList(cap.endc_combos),
+            band_caps: normalizeBandCapabilities(cap.band_caps)
+        };
+    }
+
+    function getNormalizedCapabilityKey(cap) {
+        return JSON.stringify(getNormalizedCapability(cap));
+    }
+
+    function getSourceSignature(filename) {
+        return (filename || 'Unknown source').replace(/\.(md|toml|pb|binarypb)$/i, '');
+    }
+
+    function getBuildSortKey(id) {
+        // Build IDs look like android_<ver>_<year>_<month>_<rest>; parse for ordering.
+        const m = (id || '').match(/android_(\d+)_(\d{4})_(\d{2})_(.+)$/);
+        if (!m) return [0, 0, 0, ''];
+        return [parseInt(m[1], 10), parseInt(m[2], 10), parseInt(m[3], 10), m[4] || ''];
+    }
+
+    
+    // Build Selector populate (newest build first, so it is the default selection)
+    const buildIds = Object.keys(DATABASE.builds).sort((a, b) => {
+        const ka = getBuildSortKey(a);
+        const kb = getBuildSortKey(b);
+        for (let i = 0; i < 4; i++) {
+            if (ka[i] < kb[i]) return 1; // descending: newest first
+            if (ka[i] > kb[i]) return -1;
+        }
+        return 0;
+    });
     buildIds.forEach(id => {
         const opt = document.createElement('option');
         opt.value = id;
-        opt.textContent = id.replace('android_', 'Android ').replace(/_/g, ' ');
+        opt.textContent = DATABASE.builds[id].friendly_name || id;
         buildSelect.appendChild(opt);
     });
     
@@ -42,6 +214,25 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('filter-vonr').addEventListener('change', renderMatrix);
     document.getElementById('filter-satellite').addEventListener('change', renderMatrix);
     
+    function getGeneration(friendlyName) {
+        const lower = friendlyName.toLowerCase();
+        if (lower.includes('10')) return 10;
+        if (lower.includes('9')) return 9;
+        if (lower.includes('8')) return 8;
+        if (lower.includes('7')) return 7;
+        if (lower.includes('6')) return 6;
+        if (lower.includes('5')) return 5;
+        
+        if (lower.includes('pixel fold')) {
+            // Felix is Pixel 7-gen Tensor G2
+            return 7;
+        }
+        if (lower.includes('tablet')) {
+            return 7;
+        }
+        return 0;
+    }
+    
     function populateDevices(buildId) {
         deviceSelect.innerHTML = '';
         const devices = Object.keys(DATABASE.builds[buildId].devices);
@@ -49,12 +240,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const nameA = DATABASE.builds[buildId].devices[a].friendly_name;
             const nameB = DATABASE.builds[buildId].devices[b].friendly_name;
             
-            // Extract the first number sequence (e.g. 9 or 10)
-            const numA = parseInt(nameA.match(/\d+/)?.[0] || '0', 10);
-            const numB = parseInt(nameB.match(/\d+/)?.[0] || '0', 10);
+            const genA = getGeneration(nameA);
+            const genB = getGeneration(nameB);
             
-            if (numA !== numB) {
-                return numA - numB; // Ascending numeric order (9 before 10)
+            if (genA !== genB) {
+                return genB - genA; // Descending order: newest device generation first
             }
             return nameA.localeCompare(nameB);
         });
@@ -141,32 +331,44 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Filter uecaps based on selected device variant
             let matchedDeviceCaps = carrier.uecaps || [];
-            const activeDeviceLower = activeDeviceDir.toLowerCase();
+            const activeDeviceFriendly = DATABASE.builds[activeBuildId].devices[activeDeviceDir].friendly_name;
+            const activeDeviceLower = activeDeviceFriendly.split('(')[0].trim().toLowerCase();
             
-            if (activeDeviceLower.includes('10a') || activeDeviceLower.includes('stallion')) {
-                matchedDeviceCaps = matchedDeviceCaps.filter(cap => cap.device.toLowerCase().includes('10a'));
-            } else if (activeDeviceLower.includes('frankel') || activeDeviceLower.includes('tokay')) {
-                matchedDeviceCaps = matchedDeviceCaps.filter(cap => cap.device.toLowerCase().includes('standard'));
-            } else {
-                // Pro / XL / Fold models (blazer, mustang, rango, caiman, komodo, comet)
-                matchedDeviceCaps = matchedDeviceCaps.filter(cap => cap.device.toLowerCase().includes('pro') || cap.device.toLowerCase().includes('flagship'));
-            }
+            matchedDeviceCaps = matchedDeviceCaps.filter(cap => {
+                const supportedList = cap.device.split(',').map(x => x.trim().toLowerCase());
+                
+                // 1. Exact match in the supported list
+                const hasExactMatch = supportedList.includes(activeDeviceLower);
+                if (hasExactMatch) return true;
+                
+                // 2. Generic fallback matching for threshold strings containing '&' or '/'
+                const hasGenericMatch = (cap.device.includes('/') || cap.device.includes('&')) && 
+                                        cap.device.toLowerCase().includes(activeDeviceLower);
+                return hasGenericMatch;
+            });
             
             let ueText = '-';
             if (matchedDeviceCaps.length > 0) {
                 const parentName = matchedDeviceCaps[0].carrier;
-                const uniqueCombos = [...new Set(matchedDeviceCaps.map(c => c.combos_count))].sort((a, b) => a - b);
-                const combosStr = uniqueCombos.join('/');
+                const normalizedProfiles = [...new Map(matchedDeviceCaps.map(cap => [
+                    getNormalizedCapabilityKey(cap),
+                    getNormalizedCapability(cap)
+                ])).values()];
+                const nrCaCounts = [...new Set(normalizedProfiles.map(cap => cap.nr_ca_combos.length))].sort((a, b) => a - b);
+                const endcCounts = [...new Set(normalizedProfiles.map(cap => cap.endc_combos.length))].sort((a, b) => a - b);
+                const aggregationSummary = `${nrCaCounts.join('/')} NR-CA · ${endcCounts.join('/')} EN-DC`;
                 const isMno = mnoKeywords.includes(cFile.toLowerCase().replace('.toml', ''));
                 if (isMno) {
-                    ueText = `${combosStr} Combos`;
+                    ueText = aggregationSummary;
                 } else {
-                    ueText = `<span class="mno-fallback-badge">${parentName} (${combosStr})</span>`;
+                    ueText = `<span class="mno-fallback-badge">${getFriendlyCarrierName(parentName)} (${aggregationSummary})</span>`;
                 }
+            } else if (activeDeviceLower.includes('pixel 6')) {
+                ueText = '<span class="text-secondary" title="Tensor G1 modem stores capabilities in cfg.db format">N/A</span>';
             }
             
             row.innerHTML = `
-                <td class="carrier-name-cell" data-label="Carrier"><strong>${carrier.carrier_name}</strong></td>
+                <td class="carrier-name-cell" data-label="Carrier"><strong>${getFriendlyCarrierName(carrier.carrier_name)}</strong></td>
                 <td data-label="4G Calling">${volteHtml}</td>
                 <td data-label="WiFi Calling">${vowifiHtml}</td>
                 <td data-label="5G+ (5G SA)">${sa5gHtml}</td>
@@ -350,121 +552,185 @@ document.addEventListener('DOMContentLoaded', () => {
         uecapsList.innerHTML = '';
         
         // Filter capability cards based on active device
-        const activeDeviceLower = activeDeviceDir.toLowerCase();
+        const activeDeviceFriendly = DATABASE.builds[activeBuildId].devices[activeDeviceDir].friendly_name;
+        const activeDeviceLower = activeDeviceFriendly.split('(')[0].trim().toLowerCase();
         let matchedDeviceCaps = carrier.uecaps || [];
         
-        if (activeDeviceLower.includes('10a') || activeDeviceLower.includes('stallion')) {
-            matchedDeviceCaps = matchedDeviceCaps.filter(cap => cap.device.toLowerCase().includes('10a'));
-        } else if (activeDeviceLower.includes('frankel') || activeDeviceLower.includes('tokay')) {
-            matchedDeviceCaps = matchedDeviceCaps.filter(cap => cap.device.toLowerCase().includes('standard'));
-        } else {
-            // Pro / XL / Fold models (blazer, mustang, rango, caiman, komodo, comet)
-            matchedDeviceCaps = matchedDeviceCaps.filter(cap => cap.device.toLowerCase().includes('pro') || cap.device.toLowerCase().includes('flagship'));
-        }
+        matchedDeviceCaps = matchedDeviceCaps.filter(cap => {
+            const supportedList = cap.device.split(',').map(x => x.trim().toLowerCase());
+            
+            // 1. Exact match in the supported list
+            const hasExactMatch = supportedList.includes(activeDeviceLower);
+            if (hasExactMatch) return true;
+            
+            // 2. Generic fallback matching for threshold strings containing '&' or '/'
+            const hasGenericMatch = (cap.device.includes('/') || cap.device.includes('&')) && 
+                                    cap.device.toLowerCase().includes(activeDeviceLower);
+            return hasGenericMatch;
+        });
         
         if (matchedDeviceCaps.length === 0) {
-            uecapsList.innerHTML = '<p class="text-secondary">No UE Capability profile matched for this carrier and selected device variant.</p>';
+            const allCapsEmpty = !carrier.uecaps || carrier.uecaps.length === 0;
+            const isOlderDevice = activeDeviceLower.includes('pixel 6');
+            if (isOlderDevice) {
+                uecapsList.innerHTML = '<p class="text-secondary">⚠️ UE Capability extraction is not supported for Pixel 6 series.<br><small>The Tensor G1 (Exynos 5123) modem stores capabilities in a proprietary cfg.db/confseqs format, not as extractable .binarypb files.</small></p>';
+            } else if (allCapsEmpty) {
+                uecapsList.innerHTML = '<p class="text-secondary">No UE Capability data available for this carrier.</p>';
+            } else {
+                uecapsList.innerHTML = '<p class="text-secondary">No UE Capability profile matched for this carrier and selected device variant.</p>';
+            }
         } else {
-            // Group identical capabilities to prevent repetitive cards
-            const uniqueCaps = [];
-            
-            // Heuristic function to guess hardware variant based on selected device and bands
+            // Hardware/SKU names are heuristic presentation only; they never define profile identity.
             function getSkuGuess(cap) {
                 const devLower = activeDeviceDir.toLowerCase();
                 const hasmmWave = cap.nr_bands.includes('n258') || cap.nr_bands.includes('n260') || cap.nr_bands.includes('n261');
-                
-                // Pixel 10 Family
+
                 if (devLower.includes('mustang')) {
-                    return hasmmWave ? 'US Variant (Model GUL82: mmWave)' : 'EU/UK Variant (Model G45RY: Sub-6)';
+                    return hasmmWave ? 'US (Model GUL82: mmWave)' : 'Global (RoW) (Model G45RY: Sub-6)';
                 }
                 if (devLower.includes('blazer')) {
-                    return hasmmWave ? 'US Variant (Model G4QUR: mmWave)' : 'EU/UK Variant (Model GEHN3: Sub-6)';
+                    return hasmmWave ? 'US (Model G4QUR: mmWave)' : 'Global (RoW) (Model GEHN3: Sub-6)';
                 }
                 if (devLower.includes('rango')) {
-                    return hasmmWave ? 'US Variant (mmWave)' : 'EU/UK Variant (Sub-6)';
+                    return hasmmWave ? 'US (mmWave)' : 'Global (RoW) (Sub-6)';
                 }
                 if (devLower.includes('frankel')) {
-                    return hasmmWave ? 'US Variant (mmWave)' : 'EU/UK Variant (Model GK2MP: Sub-6)';
+                    return hasmmWave ? 'US (mmWave)' : 'Global (RoW) (Model GK2MP: Sub-6)';
                 }
                 if (devLower.includes('stallion') || devLower.includes('10a')) {
-                    const capDev = cap.device.toLowerCase();
-                    if (capDev.includes('uk/eu sku')) return 'EU/UK Variant';
-                    if (capDev.includes('basic / na sku')) return 'US/RoW Variant';
-                    return 'Standard Variant';
+                    const has66 = [...cap.revisions.values()].some(r => r.rawEntryCount === 66);
+                    if (has66) {
+                        return 'Japanese (Model GV0BP: Sub-6)';
+                    }
+                    const tier = cap.hardware_tier.toLowerCase();
+                    if (tier.includes('mid-range') || tier.includes('uk/eu')) {
+                        return 'Global (RoW) (Model G4H7L: Sub-6)';
+                    }
+                    if (tier.includes('basic') || tier.includes('fallback') || tier.includes('na sku')) {
+                        return 'North American (Model GE1GQ: Sub-6)';
+                    }
+                    return 'Standard Sub-6';
                 }
-                
-                // Pixel 9 Family
                 if (devLower.includes('komodo')) {
-                    return hasmmWave ? 'US Variant (mmWave)' : 'EU/UK Variant (Model GGX8B: Sub-6)';
+                    return hasmmWave ? 'US (Model GZC4K / GQ57S: mmWave)' : 'Global (RoW) (Model GGX8B: Sub-6)';
                 }
                 if (devLower.includes('caiman')) {
-                    return hasmmWave ? 'US Variant (mmWave)' : 'EU/UK Variant (Model GEC77: Sub-6)';
+                    return hasmmWave ? 'US (Model GQD8C: mmWave)' : 'Global (RoW) (Model GEC77: Sub-6)';
                 }
                 if (devLower.includes('comet')) {
-                    return hasmmWave ? 'US Variant (mmWave)' : 'EU/UK Variant (Model GGH2X: Sub-6)';
+                    return hasmmWave ? 'US (Model G9EJD: mmWave)' : 'Global (RoW) (Model GGH2X: Sub-6)';
                 }
                 if (devLower.includes('tokay')) {
-                    return hasmmWave ? 'US Variant (mmWave)' : 'EU/UK Variant (Model GUR0J: Sub-6)';
+                    return hasmmWave ? 'US (Model G2YBB: mmWave)' : 'Global (RoW) (Model GUR25: Sub-6)';
                 }
-                
-                return 'Global Variant';
+                if (devLower.includes('tegu') || devLower.includes('9a')) {
+                    return 'Global (RoW) (Model GTF7P: Sub-6)';
+                }
+                return 'Global (RoW)';
             }
 
-            matchedDeviceCaps.forEach(cap => {
-                const lteStr = [...cap.lte_bands].sort().join(',');
-                const nrStr = [...cap.nr_bands].sort().join(',');
-                const capKey = `${cap.device}|${lteStr}|${nrStr}|${cap.max_mimo_dl}|${cap.max_modulation_dl}`;
-                
-                const cleanSig = cap.filename.replace(/\.(md|toml|pb|binarypb)$/i, '');
-                
-                let existing = uniqueCaps.find(u => u.key === capKey);
-                if (existing) {
-                    if (!existing.signatures.includes(cleanSig)) {
-                        existing.signatures.push(cleanSig);
-                    }
-                    if (!existing.combos.includes(cap.combos_count)) {
-                        existing.combos.push(cap.combos_count);
-                    }
-                } else {
-                    uniqueCaps.push({
-                        key: capKey,
-                        carrier: cap.carrier,
-                        device: cap.device,
-                        lte_bands: cap.lte_bands,
-                        nr_bands: cap.nr_bands,
-                        max_mimo_dl: cap.max_mimo_dl,
-                        max_modulation_dl: cap.max_modulation_dl,
-                        combos: [cap.combos_count],
-                        signatures: [cleanSig],
-                        nr_ca_combos: cap.nr_ca_combos || [],
-                        endc_combos: cap.endc_combos || [],
-                        band_caps: cap.band_caps || []
-                    });
+            const groupedCaps = new Map();
+            matchedDeviceCaps.forEach(sourceCap => {
+                const capKey = getNormalizedCapabilityKey(sourceCap);
+                let groupedCap = groupedCaps.get(capKey);
+                if (!groupedCap) {
+                    groupedCap = {
+                        ...getNormalizedCapability(sourceCap),
+                        carrier: sourceCap.carrier,
+                        deviceMappings: new Set(),
+                        revisions: new Map()
+                    };
+                    groupedCaps.set(capKey, groupedCap);
                 }
+
+                if (sourceCap.device) {
+                    groupedCap.deviceMappings.add(sourceCap.device);
+                }
+
+                const modemConfigVersion = Number.isInteger(sourceCap.modem_config_version)
+                    ? sourceCap.modem_config_version
+                    : 0;
+                const rawEntryCount = Number.isFinite(sourceCap.combos_count)
+                    ? sourceCap.combos_count
+                    : 0;
+                const revisionKey = `${modemConfigVersion}|${rawEntryCount}`;
+                let revision = groupedCap.revisions.get(revisionKey);
+                if (!revision) {
+                    revision = {
+                        modemConfigVersion,
+                        rawEntryCount,
+                        signatures: new Set()
+                    };
+                    groupedCap.revisions.set(revisionKey, revision);
+                }
+                revision.signatures.add(getSourceSignature(sourceCap.filename));
             });
 
-            uniqueCaps.forEach(cap => {
-                const card = document.createElement('div');
+            [...groupedCaps.values()].forEach((cap, profileIndex) => {
+                const card = document.createElement('article');
                 card.className = 'uecap-summary-card';
-                
-                const combosStr = cap.combos.sort((a, b) => a - b).join(', ');
-                const signaturesStr = cap.signatures.join(', ');
                 const skuLabel = getSkuGuess(cap);
-                
+                const deviceMappings = [...cap.deviceMappings].sort().join('; ') || 'Not available';
+                const revisions = [...cap.revisions.values()].sort((a, b) =>
+                    a.modemConfigVersion - b.modemConfigVersion || a.rawEntryCount - b.rawEntryCount
+                );
+                const mimoLabel = cap.max_mimo_dl == null ? '-' : `${cap.max_mimo_dl}x${cap.max_mimo_dl}`;
+
                 card.innerHTML = `
                     <div class="uecap-summary-header">
-                        <h3>${cap.carrier} Capabilities — ${skuLabel}</h3>
-                        <p class="text-secondary">Signature: ${signaturesStr}</p>
+                        <h3>${getFriendlyCarrierName(cap.carrier)} Radio Capability Profile ${profileIndex + 1}</h3>
+                        <p class="text-secondary">One profile represents a shared set of normalized modem capabilities across its listed revisions.</p>
                     </div>
                     <div class="uecap-summary-grid">
-                        <div><strong>Likely Device Variant:</strong> ${cap.device}</div>
-                        <div><strong>Aggregated Combos:</strong> ${combosStr}</div>
+                        <div><strong>Device mapping <span class="inferred-label">(inferred)</span>:</strong> ${deviceMappings}</div>
+                        <div><strong>Hardware/SKU mapping <span class="inferred-label">(inferred)</span>:</strong> ${skuLabel}</div>
+                        <div><strong>Hardware tier:</strong> ${cap.hardware_tier || '-'}</div>
+                        <div><strong>Max DL MIMO:</strong> ${mimoLabel}</div>
                         <div><strong>LTE Bands:</strong> ${cap.lte_bands.join(', ') || '-'}</div>
                         <div><strong>NR Bands:</strong> ${cap.nr_bands.join(', ') || '-'}</div>
-                        <div><strong>Max DL MIMO:</strong> ${cap.max_mimo_dl}x${cap.max_mimo_dl}</div>
-                        <div><strong>Max DL Modulation:</strong> ${cap.max_modulation_dl}</div>
+                        <div><strong>Max DL Modulation:</strong> ${cap.max_modulation_dl || '-'}</div>
                     </div>
-                    
+
+                    <section class="uecap-revisions" aria-label="Modem configuration revisions">
+                        <div class="uecap-revisions-heading">
+                            <h4>Modem configuration revisions</h4>
+                            <p>Raw profile entries are parameterized protobuf records. Their totals are extraction details, not a capability ranking.</p>
+                        </div>
+                        <div class="uecap-revisions-table-wrapper">
+                            <table class="uecap-revisions-table">
+                                <thead>
+                                    <tr>
+                                        <th>Modem config version</th>
+                                        <th>Raw profile entries</th>
+                                        <th>Normalized combinations</th>
+                                        <th>Source signatures</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${revisions.map(revision => {
+                                        const signatures = [...revision.signatures].sort();
+                                        const signatureLabel = `${signatures.length} source signature${signatures.length === 1 ? '' : 's'}`;
+                                        return `
+                                            <tr>
+                                                <td data-label="Modem config version">${revision.modemConfigVersion || 'Not reported'}</td>
+                                                <td data-label="Raw profile entries">${revision.rawEntryCount}</td>
+                                                <td data-label="Normalized combinations">${cap.nr_ca_combos.length} NR-CA · ${cap.endc_combos.length} EN-DC</td>
+                                                <td data-label="Source signatures">
+                                                    <details class="source-signature-details">
+                                                        <summary>${signatureLabel}</summary>
+                                                        <span class="source-signature-list">
+                                                            ${signatures.map(signature => `<code>${signature}</code>`).join('')}
+                                                        </span>
+                                                    </details>
+                                                </td>
+                                            </tr>
+                                        `;
+                                    }).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
                     <div class="uecap-combinations-explorer">
                         <button class="btn-toggle-combos" onclick="toggleCombos(this)">
                             <i data-lucide="chevron-right"></i> View Band Combinations Explorer (${cap.nr_ca_combos.length} NR-CA, ${cap.endc_combos.length} EN-DC)
@@ -486,7 +752,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="uecap-band-capabilities">
                         <button class="btn-toggle-combos" onclick="toggleCombos(this)">
                             <i data-lucide="chevron-right"></i> View Detailed Band Capabilities (${cap.band_caps.length} Bands)

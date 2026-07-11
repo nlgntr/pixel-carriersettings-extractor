@@ -1,19 +1,16 @@
-import os
-import re
 import glob
-import struct
+import os
 import sqlite3
-import zipfile
-from .common import CODENAMES, MONTHS, parse_android_version, parse_factory_zip_name, extract_partition_img
+import struct
+
+from .common import extract_partition_img, parse_factory_zip_name
 
 # ==============================================================================
 # SECTION 1: PROTOBUF PARSERS & HELPERS
 # ==============================================================================
 
 def parse_protobuf_carrier(data):
-    """
-    Parses flat Protobuf messages for CarrierSettings configs.
-    """
+    """Parse a flat Protobuf message for CarrierSettings configs."""
     pos = 0
     fields = []
     while pos < len(data):
@@ -30,10 +27,10 @@ def parse_protobuf_carrier(data):
             shift += 7
         if pos >= len(data) and key == 0:
             break
-        
+
         field_num = key >> 3
         wire_type = key & 7
-        
+
         if wire_type == 0:
             val = 0
             shift = 0
@@ -84,9 +81,7 @@ def parse_protobuf_carrier(data):
     return fields
 
 def parse_varint(data, pos):
-    """
-    Parses a single varint from bytes.
-    """
+    """Parse a single varint from bytes."""
     val = 0
     shift = 0
     while pos < len(data):
@@ -99,9 +94,7 @@ def parse_varint(data, pos):
     return val, pos
 
 def parse_protobuf_uecap(data, start=0, end=None):
-    """
-    Parses Protobuf fields recursively for UE Capability configs.
-    """
+    """Parse Protobuf fields recursively for UE capability configs."""
     if end is None:
         end = len(data)
     pos = start
@@ -115,7 +108,7 @@ def parse_protobuf_uecap(data, start=0, end=None):
             break
         wire_type = tag_byte & 0x07
         field_num = tag_byte >> 3
-        
+
         if wire_type == 0:  # Varint
             try:
                 val, pos = parse_varint(data, pos)
@@ -154,6 +147,7 @@ def parse_protobuf_uecap(data, start=0, end=None):
 # ==============================================================================
 
 def parse_timestamp(data):
+    """Parse a timestamp value from a Protobuf message."""
     fields = parse_protobuf_carrier(data)
     for fnum, ftype, val in fields:
         if fnum == 1 and ftype == 'varint':
@@ -161,6 +155,7 @@ def parse_timestamp(data):
     return None
 
 def parse_apn_item(data):
+    """Parse one APN definition from a Protobuf message."""
     fields = parse_protobuf_carrier(data)
     apn = {}
     types = []
@@ -223,6 +218,7 @@ def parse_apn_item(data):
     return apn
 
 def parse_carrier_apns(data):
+    """Parse APN definitions from a carrier settings message."""
     fields = parse_protobuf_carrier(data)
     apns = []
     for fnum, ftype, val in fields:
@@ -231,6 +227,7 @@ def parse_carrier_apns(data):
     return apns
 
 def parse_text_array(data):
+    """Parse a repeated text field into a list."""
     fields = parse_protobuf_carrier(data)
     arr = []
     for fnum, ftype, val in fields:
@@ -239,6 +236,7 @@ def parse_text_array(data):
     return arr
 
 def parse_int_array(data):
+    """Parse a repeated integer field into a list."""
     fields = parse_protobuf_carrier(data)
     arr = []
     for fnum, ftype, val in fields:
@@ -247,12 +245,22 @@ def parse_int_array(data):
     return arr
 
 def clean_config_key(key):
-    for suffix in ('_bool', '_string', '_int_array', '_int', '_string_array', '_bundle', '_long'):
+    """Remove a carrier config value type suffix from a key."""
+    for suffix in (
+        '_bool',
+        '_string',
+        '_int_array',
+        '_int',
+        '_string_array',
+        '_bundle',
+        '_long',
+    ):
         if key.endswith(suffix):
             return key[:-len(suffix)]
     return key
 
 def parse_config_value(fnum, ftype, val):
+    """Parse a typed carrier config value."""
     if fnum == 2 and ftype == 'length_delimited':
         return val.decode('utf-8', errors='ignore')
     elif fnum in (3, 4) and ftype == 'varint':
@@ -270,6 +278,7 @@ def parse_config_value(fnum, ftype, val):
     return None
 
 def parse_config_item(data):
+    """Parse one key-value item from a carrier config message."""
     fields = parse_protobuf_carrier(data)
     key = ""
     value = None
@@ -281,6 +290,7 @@ def parse_config_item(data):
     return key, value
 
 def parse_carrier_config(data):
+    """Parse all key-value items from a carrier config message."""
     fields = parse_protobuf_carrier(data)
     configs = []
     for fnum, ftype, val in fields:
@@ -289,29 +299,31 @@ def parse_carrier_config(data):
     return configs
 
 def build_config_dict(configs):
+    """Build a nested dictionary from dotted carrier config keys."""
     d = {}
     for k, v in configs:
         if not k:
             continue
         cleaned_k = clean_config_key(k)
-        
+
         parts = cleaned_k.split('.')
         curr = d
         for part in parts[:-1]:
             if part not in curr or not isinstance(curr[part], dict):
                 curr[part] = {}
             curr = curr[part]
-            
+
         if isinstance(v, dict):
             cleaned_v = {}
             for vk, vv in v.items():
                 cleaned_v[clean_config_key(vk)] = vv
             v = cleaned_v
-            
+
         curr[parts[-1]] = v
     return d
 
 def format_toml_value(val):
+    """Format a Python value as TOML."""
     if isinstance(val, bool):
         return "true" if val else "false"
     elif isinstance(val, int):
@@ -335,14 +347,24 @@ def format_toml_value(val):
     return "null"
 
 def serialize_to_toml_string(carrier_id_rules, cs_dict):
+    """Serialize carrier ID rules and settings to TOML."""
     out = []
     out.append("# Compiled automatically from CarrierSettings.pb overlays via Gemini")
     out.append("")
-    
+
     # 1. Rules: [[carrier_id]]
     for r in carrier_id_rules:
         out.append("[[carrier_id]]")
-        for key in ('mcc_mnc', 'spn', 'imsi_prefix_xpattern', 'gid1', 'gid2', 'plmn', 'device_configuration', 'carrier_id'):
+        for key in (
+            'mcc_mnc',
+            'spn',
+            'imsi_prefix_xpattern',
+            'gid1',
+            'gid2',
+            'plmn',
+            'device_configuration',
+            'carrier_id',
+        ):
             if key in r:
                 val = r[key]
                 if isinstance(val, str):
@@ -350,12 +372,12 @@ def serialize_to_toml_string(carrier_id_rules, cs_dict):
                 elif isinstance(val, int):
                     out.append(f'{key} = {val}')
         out.append("")
-        
+
     # 2. Settings version: [settings]
     out.append("[settings]")
     out.append(f'version = {cs_dict.get("version", 0)}')
     out.append("")
-    
+
     # 3. APNs: [[settings.apns.apn]]
     apns = cs_dict.get('apns', [])
     if apns:
@@ -374,7 +396,7 @@ def serialize_to_toml_string(carrier_id_rules, cs_dict):
                     elem_strs = [f'"{x}"' for x in v]
                     out.append(f'{k} = [ {", ".join(elem_strs)} ]')
             out.append("")
-            
+
     # 4. Configs: [settings.config] and nested blocks
     configs = cs_dict.get('configs', {})
     if configs:
@@ -385,14 +407,14 @@ def serialize_to_toml_string(carrier_id_rules, cs_dict):
                 nested_configs[key] = val
             else:
                 flat_configs[key] = val
-                
+
         if flat_configs:
             out.append("[settings.config]")
             for key in sorted(flat_configs.keys()):
                 val = flat_configs[key]
                 out.append(f"{key} = {format_toml_value(val)}")
             out.append("")
-            
+
         for section_key in sorted(nested_configs.keys()):
             out.append(f"[settings.config.{section_key}]")
             section_data = nested_configs[section_key]
@@ -400,10 +422,11 @@ def serialize_to_toml_string(carrier_id_rules, cs_dict):
                 val = section_data[key]
                 out.append(f"{key} = {format_toml_value(val)}")
             out.append("")
-            
+
     return "\n".join(out)
 
 def parse_carrier_id(data):
+    """Parse one carrier identification rule."""
     fields = parse_protobuf_carrier(data)
     rule = {}
     for fnum, ftype, val in fields:
@@ -426,6 +449,7 @@ def parse_carrier_id(data):
     return rule
 
 def parse_carrier_map(data):
+    """Parse a carrier name and its identification rules."""
     fields = parse_protobuf_carrier(data)
     name = ""
     ids = []
@@ -437,6 +461,7 @@ def parse_carrier_map(data):
     return name, ids
 
 def load_carrier_list(path):
+    """Load carrier identification rules from a Protobuf file."""
     if not os.path.exists(path):
         return {}
     with open(path, 'rb') as f:
@@ -453,6 +478,7 @@ def load_carrier_list(path):
     return rules
 
 def decode_pb_to_toml_native(pb_data, carrier_list_rules=None):
+    """Decode native carrier settings Protobuf data to TOML."""
     fields = parse_protobuf_carrier(pb_data)
     cs_dict = {}
     for fnum, ftype, val in fields:
@@ -464,62 +490,75 @@ def decode_pb_to_toml_native(pb_data, carrier_list_rules=None):
             cs_dict['apns'] = parse_carrier_apns(val)
         elif fnum == 4 and ftype == 'length_delimited':
             cs_dict['configs'] = build_config_dict(parse_carrier_config(val))
-            
+
     name = cs_dict.get('canonical_name', '')
     rules = []
     if carrier_list_rules and name in carrier_list_rules:
         rules = carrier_list_rules[name]
-        
+
     return name, serialize_to_toml_string(rules, cs_dict)
 
 def extract_carrier_settings(fz, countries, out_base_dir):
-    """
-    Processes a single factory image and extracts the relevant carrier setting pb files.
-    """
+    """Extract carrier settings files from a factory image."""
     from ext4 import Volume
     info = parse_factory_zip_name(fz)
     if not info:
         print(f"\nSkipping {fz}: Could not parse info from filename.")
         return
-        
-    target_dir = os.path.join(out_base_dir, info['dir_name'], 'carrier_settings', info['device_dir'])
-    print(f"\n================ Processing {info['device']} (Codename: {info['codename']}) ================")
+
+    target_dir = os.path.join(
+        out_base_dir, info['dir_name'], 'carrier_settings', info['device_dir']
+    )
+    print(
+        f"\n================ Processing {info['device']} "
+        f"(Codename: {info['codename']}) ================"
+    )
     if info['build_id']:
         print(f"Build ID: {info['build_id']}")
-    print(f"Target Directory: {os.path.join(info['dir_name'], 'carrier_settings', info['device_dir'])}")
-    
+    print(
+        "Target Directory: "
+        f"{os.path.join(info['dir_name'], 'carrier_settings', info['device_dir'])}"
+    )
+
     if not os.path.exists(fz):
         print(f"Error: Factory zip file '{fz}' does not exist.")
         return
-        
+
     temp_img_path = f"temp_product_{info['codename']}.img"
     if not extract_partition_img(fz, info['codename'], 'product.img', temp_img_path):
         return
-        
+
     print("Opening ext4 volume of product.img...")
     try:
         with open(temp_img_path, 'rb') as f:
             vol = Volume(f)
             cs_path = '/etc/CarrierSettings'
-            
+
             try:
                 cs_inode = vol.inode_at(cs_path)
             except Exception as e:
                 print(f"CarrierSettings directory not found in product.img: {e}")
                 return
-                
-            target_dir = os.path.join(out_base_dir, info['dir_name'], 'carrier_settings', info['device_dir'])
+
+            target_dir = os.path.join(
+                out_base_dir,
+                info['dir_name'],
+                'carrier_settings',
+                info['device_dir'],
+            )
             os.makedirs(target_dir, exist_ok=True)
-            
+
             extracted_count = 0
             for entry, ftype in cs_inode.opendir():
                 entry_name = getattr(entry, 'name_str', None)
                 if not entry_name:
-                    entry_name = getattr(entry, 'name', b'').decode('utf-8', errors='ignore')
-                    
+                    entry_name = getattr(entry, 'name', b'').decode(
+                        'utf-8', errors='ignore'
+                    )
+
                 if entry_name in ('.', '..'):
                     continue
-                
+
                 is_target = False
                 if entry_name == 'carrier_list.pb':
                     is_target = True
@@ -530,12 +569,12 @@ def extract_carrier_settings(fz, countries, out_base_dir):
                         if entry_name.endswith(f'_{country.lower()}.pb'):
                             is_target = True
                             break
-                
+
                 if is_target:
                     try:
                         child_inode = vol.inodes[entry.inode]
                         data = child_inode.open().read()
-                        
+
                         out_filepath = os.path.join(target_dir, entry_name)
                         if os.path.exists(out_filepath):
                             try:
@@ -551,28 +590,31 @@ def extract_carrier_settings(fz, countries, out_base_dir):
                         extracted_count += 1
                     except Exception as file_err:
                         print(f"  Failed to extract {entry_name}: {file_err}")
-                        
-            print(f"Successfully extracted {extracted_count} carrier setting file(s) to: {target_dir}")
-            
+
+            print(
+                f"Successfully extracted {extracted_count} carrier setting "
+                f"file(s) to: {target_dir}"
+            )
+
     except Exception as e:
         print(f"Failed to process ext4 volume: {e}")
     finally:
         if os.path.exists(temp_img_path):
             print(f"Cleaning up temporary file {temp_img_path}...")
             os.remove(temp_img_path)
-            
+
     carrier_list_pb = os.path.join(target_dir, "carrier_list.pb")
     rules = {}
     if os.path.exists(carrier_list_pb):
         try:
             rules = load_carrier_list(carrier_list_pb)
-            print(f"Loaded carrier match rules from carrier_list.pb")
+            print("Loaded carrier match rules from carrier_list.pb")
         except Exception as e:
             print(f"Warning: Failed to parse carrier_list.pb for rules: {e}")
-            
+
     toml_dir = os.path.join(target_dir, "toml")
     os.makedirs(toml_dir, exist_ok=True)
-    
+
     pb_files = glob.glob(os.path.join(target_dir, "*.pb"))
     decoded_count = 0
     for pb_file in pb_files:
@@ -591,7 +633,10 @@ def extract_carrier_settings(fz, countries, out_base_dir):
             decoded_count += 1
         except Exception as dec_err:
             print(f"  Failed to decode {basename} natively: {dec_err}")
-    print(f"🎉 Natively decoded {decoded_count} carrier configuration(s) to TOML in: {toml_dir}")
+    print(
+        f"🎉 Natively decoded {decoded_count} carrier configuration(s) "
+        f"to TOML in: {toml_dir}"
+    )
 
 
 # ==============================================================================
@@ -599,21 +644,28 @@ def extract_carrier_settings(fz, countries, out_base_dir):
 # ==============================================================================
 
 def dump_db_info(db_path):
+    """Print an overview and sample rows from a modem database."""
     print(f"\n--- Overview of {os.path.basename(db_path)} ---")
     try:
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
-        
+
         cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
         tables = [row[0] for row in cursor.fetchall()]
         print(f"Tables found ({len(tables)}): {', '.join(tables)}")
-        
+
         for table in tables:
             cursor.execute(f"SELECT COUNT(*) FROM [{table}]")
             count = cursor.fetchone()[0]
             print(f"  Table '{table}': {count} rows")
-            
-            if table in ('regional_fallback', 'carrier_policy', 'policy', 'main', 'fallback'):
+
+            if table in (
+                'regional_fallback',
+                'carrier_policy',
+                'policy',
+                'main',
+                'fallback',
+            ):
                 cursor.execute(f"PRAGMA table_info([{table}])")
                 cols = [col[1] for col in cursor.fetchall()]
                 print(f"    Columns: {cols}")
@@ -621,73 +673,98 @@ def dump_db_info(db_path):
                 rows = cursor.fetchall()
                 for row in rows:
                     print(f"    Sample: {row}")
-                    
+
         conn.close()
     except Exception as e:
         print(f"Error reading SQLite database: {e}")
 
 def extract_cfg_db(fz, out_base_dir):
+    """Extract the Shannon modem configuration database."""
     from ext4 import Volume
     info = parse_factory_zip_name(fz)
     if not info:
         print(f"\nSkipping {fz}: Could not parse info from filename.")
         return
-        
-    target_dir = os.path.join(out_base_dir, info['dir_name'], 'cfg_db', info['device_dir'])
-    print(f"\n================ Processing {info['device']} (Codename: {info['codename']}) ================")
+
+    target_dir = os.path.join(
+        out_base_dir, info['dir_name'], 'cfg_db', info['device_dir']
+    )
+    print(
+        f"\n================ Processing {info['device']} "
+        f"(Codename: {info['codename']}) ================"
+    )
     if info['build_id']:
         print(f"Build ID: {info['build_id']}")
-    
+
     if not os.path.exists(fz):
         print(f"Error: Factory zip file '{fz}' does not exist.")
         return
-        
+
     temp_img_path = f"temp_vendor_{info['codename']}.img"
     if not extract_partition_img(fz, info['codename'], 'vendor.img', temp_img_path):
         return
-        
+
     print("Opening ext4 volume of vendor.img...")
     try:
         with open(temp_img_path, 'rb') as f:
             vol = Volume(f)
-            
+
             target_file_path = '/firmware/carrierconfig/cfg.db'
             try:
                 db_inode = vol.inode_at(target_file_path)
                 data = db_inode.open().read()
-                
-                target_dir = os.path.join(out_base_dir, info['dir_name'], 'cfg_db', info['device_dir'])
+
+                target_dir = os.path.join(
+                    out_base_dir,
+                    info['dir_name'],
+                    'cfg_db',
+                    info['device_dir'],
+                )
                 os.makedirs(target_dir, exist_ok=True)
-                
+
                 out_filepath = os.path.join(target_dir, 'cfg.db')
                 if os.path.exists(out_filepath):
                     try:
                         with open(out_filepath, 'rb') as old_f:
                             old_data = old_f.read()
                         if old_data == data:
-                            print(f"  [Info] cfg.db already exists and is identical. Skipping.")
+                            print(
+                                "  [Info] cfg.db already exists and is identical. "
+                                "Skipping."
+                            )
                             return
                         else:
-                            print(f"  [Warning] cfg.db exists but contents differ! Overwriting.")
+                            print(
+                                "  [Warning] cfg.db exists but contents differ! "
+                                "Overwriting."
+                            )
                     except Exception:
                         pass
                 with open(out_filepath, 'wb') as out_f:
                     out_f.write(data)
-                print(f"🎉 Successfully extracted: {target_file_path} ({len(data)} bytes) to {out_filepath}")
+                print(
+                    f"🎉 Successfully extracted: {target_file_path} "
+                    f"({len(data)} bytes) to {out_filepath}"
+                )
                 dump_db_info(out_filepath)
-                
+
             except Exception as e:
-                print(f"Could not find or extract {target_file_path} in vendor.img: {e}")
+                print(
+                    f"Could not find or extract {target_file_path} "
+                    f"in vendor.img: {e}"
+                )
                 try:
                     firmware_inode = vol.inode_at('/firmware')
                     print("Contents of /firmware:")
                     for entry, ftype in firmware_inode.opendir():
-                        name = getattr(entry, 'name_str', None) or getattr(entry, 'name', b'').decode('utf-8', errors='ignore')
+                        name = getattr(entry, 'name_str', None) or getattr(
+                            entry, 'name', b''
+                        ).decode('utf-8', errors='ignore')
                         if name not in ('.', '..'):
                             print(f"  /{name}")
                 except Exception as walk_err:
                     print(f"Could not list /firmware: {walk_err}")
-            
+
     except Exception as e:
         print(f"Failed to process ext4 volume: {e}")
     finally:
@@ -704,15 +781,36 @@ def extract_cfg_db(fz, out_base_dir):
 COUNTRY_TO_SUFFIX = {
     'gb': ['_uk', 'ee'],
     'uk': ['_uk', 'ee'],
-    'us': ['_us', '_vzw', '_att', '_tmo', 'charter', 'comcast', 'visible', 'xfinity', 'firstnet'],
+    'us': [
+        '_us',
+        '_vzw',
+        '_att',
+        '_tmo',
+        'charter',
+        'comcast',
+        'visible',
+        'xfinity',
+        'firstnet',
+    ],
     'de': ['_de', '_dtag', '_vf', '_o2', '1and1', 'alditalk'],
     'fr': ['_fr', '_orange', '_sfr', '_bouygues', '_free', 'coriolis'],
     'jp': ['_jp', '_sbm', '_dcm', '_kddi', 'rakuten'],
     'au': ['_au', '_telstra', '_optus', '_vha'],
-    'ca': ['_ca', '_rogers', '_bell', '_telus', 'koodo', 'fizz', 'videotron', 'sasktel', 'freedom'],
+    'ca': [
+        '_ca',
+        '_rogers',
+        '_bell',
+        '_telus',
+        'koodo',
+        'fizz',
+        'videotron',
+        'sasktel',
+        'freedom',
+    ],
 }
 
 def parse_featureset(fields):
+    """Parse a decoded UE capability feature set."""
     fs = {
         'mimo': 1,
         'qam': 1,
@@ -722,15 +820,22 @@ def parse_featureset(fields):
         'cc': 1
     }
     for fnum, ftype, val in fields:
-        if fnum == 1: fs['mimo'] = val
-        elif fnum == 2: fs['qam'] = val
-        elif fnum == 3: fs['bw'] = val
-        elif fnum == 4: fs['scs'] = val
-        elif fnum == 5: fs['90mhz'] = val
-        elif fnum == 6: fs['cc'] = val
+        if fnum == 1:
+            fs['mimo'] = val
+        elif fnum == 2:
+            fs['qam'] = val
+        elif fnum == 3:
+            fs['bw'] = val
+        elif fnum == 4:
+            fs['scs'] = val
+        elif fnum == 5:
+            fs['90mhz'] = val
+        elif fnum == 6:
+            fs['cc'] = val
     return fs
 
 def format_fs_dl_txt(fs):
+    """Format a downlink feature set as text."""
     mimo = f"{fs['mimo']}x{fs['mimo']}" if fs['mimo'] in (1,2,4,8) else f"{fs['mimo']} layers"
     qam = "QAM256" if fs['qam'] == 2 else "QAM64"
     scs = "30kHz" if fs['scs'] == 1 else "15kHz"
@@ -738,6 +843,7 @@ def format_fs_dl_txt(fs):
     return f"{scs}, {mimo}, {fs['bw']} MHz, {qam}, {m90}"
 
 def format_fs_ul_txt(fs):
+    """Format an uplink feature set as text."""
     ul_mimo_str = "Yes" if fs['mimo'] > 1 else "No"
     qam = "QAM256" if fs['qam'] == 2 else "QAM64"
     scs = "30kHz" if fs['scs'] == 1 else "15kHz"
@@ -745,6 +851,7 @@ def format_fs_ul_txt(fs):
     return f"{scs}, ULMIMO: {ul_mimo_str}, {fs['bw']} MHz, {qam}, {m90}"
 
 def parse_band_config(fields):
+    """Parse a decoded UE capability band configuration."""
     band_cfg = {
         'band': 0,
         'dl_fs_idx': 0,
@@ -762,13 +869,14 @@ def parse_band_config(fields):
     return band_cfg
 
 def decode_uecap_to_toml(pb_data, out_path):
+    """Decode UE capability protobuf data to a TOML file."""
     fields = parse_protobuf_uecap(pb_data)
     version = None
     carrier_id = None
     dl_feature_sets = []
     ul_feature_sets = []
     combos = []
-    
+
     for fnum, ftype, val in fields:
         if fnum == 1 and ftype == 'varint':
             version = val
@@ -782,7 +890,7 @@ def decode_uecap_to_toml(pb_data, out_path):
             combo_fields = parse_protobuf_uecap(val)
             combo_info = None
             band_params = []
-            
+
             for cfnum, cftype, cval in combo_fields:
                 if cfnum == 1 and cftype == 'length_delimited':
                     combo_info = parse_protobuf_uecap(cval)
@@ -797,11 +905,11 @@ def decode_uecap_to_toml(pb_data, out_path):
                             bcs_mask = bpval
                     band_params.append((configs_in_bp, bcs_mask))
             combos.append((combo_info, band_params))
-            
+
     with open(out_path, 'w') as out_f:
         out_f.write(f"version = {version if version is not None else 0}\n")
         out_f.write(f"carrier_id = {carrier_id if carrier_id is not None else 0}\n\n")
-        
+
         for i, fs in enumerate(dl_feature_sets):
             mimo = f'"{fs["mimo"]}x{fs["mimo"]}"' if fs['mimo'] in (1,2,4,8) else f'"{fs["mimo"]} layers"'
             qam = '"QAM256"' if fs['qam'] == 2 else '"QAM64"'
@@ -814,7 +922,7 @@ def decode_uecap_to_toml(pb_data, out_path):
             out_f.write(f"bw = {fs['bw']}\n")
             out_f.write(f"scs = {scs}\n")
             out_f.write(f"m90 = {m90}\n\n")
-            
+
         for i, fs in enumerate(ul_feature_sets):
             ul_mimo = "true" if fs['mimo'] > 1 else "false"
             qam = '"QAM256"' if fs['qam'] == 2 else '"QAM64"'
@@ -827,25 +935,25 @@ def decode_uecap_to_toml(pb_data, out_path):
             out_f.write(f"bw = {fs['bw']}\n")
             out_f.write(f"scs = {scs}\n")
             out_f.write(f"m90 = {m90}\n\n")
-            
+
         for combo_idx, (info, band_params) in enumerate(combos):
             info_dict = {}
             if info:
                 for fnum, ftype, val in info:
                     info_dict[f"tag_{fnum}"] = val
             info_str = ", ".join(f"{k} = {v}" for k, v in info_dict.items())
-            
+
             out_f.write("[[combo]]\n")
             out_f.write(f"id = {combo_idx+1}\n")
             out_f.write(f"info = {{ {info_str} }}\n")
-            
+
             for bp_idx, (bp_configs, bcs_mask) in enumerate(band_params):
                 out_f.write("  [[combo.variant]]\n")
                 out_f.write(f"  bcs_mask = {bcs_mask}\n")
                 for bc in bp_configs:
                     raw_band = bc['band']
                     band_num = raw_band - 10000 if raw_band > 10000 else raw_band
-                    
+
                     out_f.write("    [[combo.variant.band]]\n")
                     out_f.write(f'    name = "{band_num}"\n')
                     out_f.write(f"    dl_fs = {bc['dl_fs_idx']}\n")
@@ -853,13 +961,14 @@ def decode_uecap_to_toml(pb_data, out_path):
             out_f.write("\n")
 
 def decode_uecap_to_text(pb_data, out_path):
+    """Decode UE capability protobuf data to a text file."""
     fields = parse_protobuf_uecap(pb_data)
     version = None
     carrier_id = None
     dl_feature_sets = []
     ul_feature_sets = []
     combos = []
-    
+
     for fnum, ftype, val in fields:
         if fnum == 1 and ftype == 'varint':
             version = val
@@ -873,7 +982,7 @@ def decode_uecap_to_text(pb_data, out_path):
             combo_fields = parse_protobuf_uecap(val)
             combo_info = None
             band_params = []
-            
+
             for cfnum, cftype, cval in combo_fields:
                 if cfnum == 1 and cftype == 'length_delimited':
                     combo_info = parse_protobuf_uecap(cval)
@@ -888,38 +997,38 @@ def decode_uecap_to_text(pb_data, out_path):
                             bcs_mask = bpval
                     band_params.append((configs_in_bp, bcs_mask))
             combos.append((combo_info, band_params))
-            
+
     with open(out_path, 'w') as out_f:
         out_f.write(f"VERSION: {version}\n")
         out_f.write(f"CARRIER ID: {carrier_id}\n\n")
-        
+
         out_f.write("=== DOWNLINK FEATURE SETS ===\n")
         for i, fs in enumerate(dl_feature_sets):
             out_f.write(f"  DL FeatureSet #{i+1}: {format_fs_dl_txt(fs)}  (Raw: {fs})\n")
         out_f.write("\n")
-        
+
         out_f.write("=== UPLINK FEATURE SETS ===\n")
         for i, fs in enumerate(ul_feature_sets):
             out_f.write(f"  UL FeatureSet #{i+1}: {format_fs_ul_txt(fs)}  (Raw: {fs})\n")
         out_f.write("\n")
-        
+
         out_f.write("=== BAND COMBINATIONS ===\n")
         for combo_idx, (info, band_params) in enumerate(combos):
             info_str = ", ".join(f"tag_{fnum}={val}" for fnum, ftype, val in info) if info else "None"
             out_f.write(f"Combo #{combo_idx+1} [Info: {info_str}]:\n")
-            
+
             for bp_idx, (bp_configs, bcs_mask) in enumerate(band_params):
                 out_f.write(f"  Variant #{bp_idx+1} (BCS Mask: {bcs_mask}):\n")
                 for bc in bp_configs:
                     raw_band = bc['band']
                     band_num = raw_band - 10000 if raw_band > 10000 else raw_band
-                    
+
                     dl_desc = ""
                     if bc['dl_fs_idx'] > 0 and bc['dl_fs_idx'] <= len(dl_feature_sets):
                         dl_desc = f"{bc['dl_fs_idx']}: {format_fs_dl_txt(dl_feature_sets[bc['dl_fs_idx']-1])}"
                     else:
                         dl_desc = f"DL Index {bc['dl_fs_idx']} (Unknown)"
-                        
+
                     ul_desc = ""
                     if bc['ul_fs_idx'] > 0:
                         if bc['ul_fs_idx'] <= len(ul_feature_sets):
@@ -928,73 +1037,160 @@ def decode_uecap_to_text(pb_data, out_path):
                             ul_desc = f"UL Index {bc['ul_fs_idx']} (Unknown)"
                     else:
                         ul_desc = "No Uplink"
-                        
+
                     out_f.write(f"    - Band {band_num}:\n")
                     out_f.write(f"        DL: {dl_desc}\n")
                     out_f.write(f"        UL: {ul_desc}\n")
             out_f.write("\n")
 
 def get_band_label(raw_band):
+    """Return the label and metadata for a raw band number."""
     is_nr = raw_band > 10000
     num = raw_band - 10000 if is_nr else raw_band
     prefix = 'n' if is_nr else 'B'
     return f"{prefix}{num}", is_nr, num
 
 def sort_band_labels(labels):
+    """Sort band labels by radio type and band number."""
     parsed = []
-    for l in labels:
-        is_nr = l.startswith('n')
-        num = int(l[1:])
-        parsed.append((l, is_nr, num))
+    for label in labels:
+        is_nr = label.startswith('n')
+        num = int(label[1:])
+        parsed.append((label, is_nr, num))
     parsed = sorted(parsed, key=lambda x: (x[1], x[2]))
     return [x[0] for x in parsed]
 
-def guess_pixel_model(carrier, combos):
+def device_matches_tier(device_model: str, tier: str) -> bool:
+    """Verify whether a device model matches a hardware capability tier.
+
+    Args:
+        device_model: The user-friendly device model name (e.g. "Pixel 8 Pro").
+        tier: The target capability tier description (e.g. "Flagship Pro").
+
+    Returns:
+        True if the device fits the hardware tier, False otherwise.
+    """
+    dm = device_model.lower()
+    t = tier.lower()
+
+    # A-series checks
+    is_device_a = "a" in dm or "stallion" in dm or "tegu" in dm or "akita" in dm or "lynx" in dm or "bluejay" in dm
+    is_tier_a = "a-series" in t or "mid-range" in t
+    if is_device_a:
+        return is_tier_a
+
+    # Pro / Fold checks
+    is_device_pro = (
+        "pro" in dm
+        or "fold" in dm
+        or "blazer" in dm
+        or "mustang" in dm
+        or "rango" in dm
+        or "caiman" in dm
+        or "komodo" in dm
+        or "comet" in dm
+        or "husky" in dm
+        or "cheetah" in dm
+        or "raven" in dm
+        or "felix" in dm
+    )
+    is_tier_pro = "pro" in t or "flagship (standard & pro)" in t
+    if is_device_pro:
+        return is_tier_pro
+
+    # Standard checks
+    is_device_standard = (
+        "tokay" in dm
+        or "shiba" in dm
+        or "panther" in dm
+        or "oriole" in dm
+        or "redfin" in dm
+        or ("pixel" in dm and not is_device_pro and not is_device_a)
+    )
+    is_tier_standard = "standard" in t or "flagship (standard & pro)" in t
+    if is_device_standard:
+        return is_tier_standard
+
+    return False
+
+
+def guess_pixel_model(carrier, combos, device_model=None, is_legacy_format=False):
+    """Guess the Pixel device model(s) and hardware tier for a UE capability profile.
+
+    Uses modem generation detection (legacy vs hashed filename format) and combo-count
+    heuristics to determine which devices use a given capability profile.
+
+    Args:
+        carrier: The carrier identifier string (e.g. 'EE', 'O2_UK').
+        combos: The total number of band combinations in the profile.
+        device_model: Optional explicit device model name from factory image.
+        is_legacy_format: True if the uecap file uses the legacy format (no hash suffix),
+            indicating an Exynos 5300 modem (Pixel 7/8 generation).
+
+    Returns:
+        A tuple of (model_string, tier_string) describing the likely devices and hardware tier.
+    """
+    # Exynos 5300 (Tensor G2/G3) legacy format: single file shared by ALL Pixel 7/8/9a/Fold
+    exynos_5300_devices = "Pixel 7, Pixel 7 Pro, Pixel 7a, Pixel 8, Pixel 8 Pro, Pixel 8a, Pixel 9a, Pixel Fold"
+    exynos_5300_tier = "Shared profile (Exynos 5300 modem — all Pixel 7/8 series, Pixel 9a, Pixel Fold)"
+
+    # Exynos 5400 (Tensor G4/G5) hashed format: per-tier device groupings
+    pro_devices = "Pixel 9 Pro, Pixel 9 Pro XL, Pixel 9 Pro Fold, Pixel 10 Pro, Pixel 10 Pro XL, Pixel 10 Pro Fold"
+    standard_devices = "Pixel 9, Pixel 10"
+    a_series_devices = "Pixel 10a"
+
+    if is_legacy_format:
+        return exynos_5300_devices, exynos_5300_tier
+
     c_lower = carrier.lower()
+    model, tier = "Unknown", "Unknown tier"
+
     if 'o2_uk' in c_lower:
         if combos >= 460:
-            return "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold", "Flagship Pro (Supports dual low-band B20+B28 CA & 4x4 MIMO)"
+            model, tier = pro_devices, "Flagship Pro (Supports dual low-band B20+B28 CA & 4x4 MIMO)"
         elif combos >= 430:
-            return "Pixel 9 / Pixel 10 (Standard)", "Standard Flagship (Blocks dual low-band B20+B28 CA, keeps 4x4 MIMO)"
+            model, tier = standard_devices, "Standard Flagship (Blocks dual low-band B20+B28 CA, keeps 4x4 MIMO)"
         elif combos >= 200:
-            return "Pixel 10a (UK/EU SKU)", "Mid-range A-series (Restricted to 2x2 MIMO, supports Band 40)"
+            model, tier = a_series_devices, "Mid-range A-series (Restricted to 2x2 MIMO, supports Band 40)"
         else:
-            return "Pixel 10a (Basic / NA SKU)", "Basic A-series fallback (Restricted to 2x2 MIMO, lacks Band 40)"
+            model, tier = a_series_devices, "Basic A-series fallback (Restricted to 2x2 MIMO, lacks Band 40)"
     elif 'ee' in c_lower:
         if combos >= 480:
-            return "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold", "Flagship Pro (Supports dual low-band CA & 4x4 MIMO)"
+            model, tier = pro_devices, "Flagship Pro (Supports dual low-band CA & 4x4 MIMO)"
         elif combos >= 470:
-            return "Pixel 9 / Pixel 10 (Standard)", "Standard Flagship (Blocks dual low-band CA, keeps 4x4 MIMO)"
+            model, tier = standard_devices, "Standard Flagship (Blocks dual low-band CA, keeps 4x4 MIMO)"
         elif combos >= 250:
-            return "Pixel 10a (UK/EU SKU)", "Mid-range A-series (Restricted to 2x2 MIMO)"
+            model, tier = a_series_devices, "Mid-range A-series (Restricted to 2x2 MIMO)"
         else:
-            return "Pixel 10a (Basic / NA SKU)", "Basic A-series fallback (Restricted to 2x2 MIMO)"
+            model, tier = a_series_devices, "Basic A-series fallback (Restricted to 2x2 MIMO)"
     elif 'vf_uk' in c_lower:
         if combos >= 760:
-            return "Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold", "Flagship Pro (Supports dual low-band CA & 4x4 MIMO)"
+            model, tier = pro_devices, "Flagship Pro (Supports dual low-band CA & 4x4 MIMO)"
         elif combos >= 530:
-            return "Pixel 9 / Pixel 10 (Standard)", "Standard Flagship (Blocks dual low-band CA, keeps 4x4 MIMO)"
+            model, tier = standard_devices, "Standard Flagship (Blocks dual low-band CA, keeps 4x4 MIMO)"
         elif combos >= 330:
-            return "Pixel 10a (UK/EU SKU)", "Mid-range A-series (Restricted to 2x2 MIMO)"
+            model, tier = a_series_devices, "Mid-range A-series (Restricted to 2x2 MIMO)"
         else:
-            return "Pixel 10a (Basic / NA SKU)", "Basic A-series fallback (Restricted to 2x2 MIMO)"
+            model, tier = a_series_devices, "Basic A-series fallback (Restricted to 2x2 MIMO)"
     elif '3_uk' in c_lower:
         if combos >= 150:
-            return "Pixel 9 / Pixel 10 (Standard) & Pixel 9 Pro / 9 Pro XL / 9 Pro Fold & Pixel 10 Pro / Pro XL / Pro Fold", "Flagship (Standard & Pro)"
+            model, tier = f"{pro_devices}, {standard_devices}", "Flagship (Standard & Pro)"
         elif combos >= 120:
-            return "Pixel 10a (UK/EU SKU)", "Mid-range A-series (Restricted to 2x2 MIMO)"
+            model, tier = a_series_devices, "Mid-range A-series (Restricted to 2x2 MIMO)"
         else:
-            return "Pixel 10a (Basic / NA SKU)", "Basic A-series fallback (Restricted to 2x2 MIMO)"
-    return "Unknown", "Unknown tier"
+            model, tier = a_series_devices, "Basic A-series fallback (Restricted to 2x2 MIMO)"
 
-def decode_uecap_to_markdown(pb_data, out_path):
+    return model, tier
+
+def decode_uecap_to_markdown(pb_data, out_path, device_model=None):
+    """Decode UE capability protobuf data to a Markdown file."""
     fields = parse_protobuf_uecap(pb_data)
     version = None
     carrier_id = None
     dl_feature_sets = []
     ul_feature_sets = []
     combos = []
-    
+
     for fnum, ftype, val in fields:
         if fnum == 1 and ftype == 'varint':
             version = val
@@ -1008,7 +1204,7 @@ def decode_uecap_to_markdown(pb_data, out_path):
             combo_fields = parse_protobuf_uecap(val)
             combo_info = None
             band_params = []
-            
+
             for cfnum, cftype, cval in combo_fields:
                 if cfnum == 1 and cftype == 'length_delimited':
                     combo_info = parse_protobuf_uecap(cval)
@@ -1029,49 +1225,59 @@ def decode_uecap_to_markdown(pb_data, out_path):
     max_ul_mimo = 1
     max_dl_qam = 1
     max_ul_qam = 1
-    
+
     for fs in dl_feature_sets:
-        if fs['mimo'] > max_dl_mimo: max_dl_mimo = fs['mimo']
-        if fs['qam'] > max_dl_qam: max_dl_qam = fs['qam']
+        if fs['mimo'] > max_dl_mimo:
+            max_dl_mimo = fs['mimo']
+        if fs['qam'] > max_dl_qam:
+            max_dl_qam = fs['qam']
     for fs in ul_feature_sets:
-        if fs['mimo'] > max_ul_mimo: max_ul_mimo = fs['mimo']
-        if fs['qam'] > max_ul_qam: max_ul_qam = fs['qam']
-        
+        if fs['mimo'] > max_ul_mimo:
+            max_ul_mimo = fs['mimo']
+        if fs['qam'] > max_ul_qam:
+            max_ul_qam = fs['qam']
+
     band_details = {}
-    
+
     for combo_info, band_params in combos:
         for bp_configs, bcs_mask in band_params:
             for bc in bp_configs:
                 raw_band = bc['band']
                 label, is_nr, num = get_band_label(raw_band)
                 unique_bands.add(label)
-                
+
                 dl_fs_idx = bc['dl_fs_idx']
                 ul_fs_idx = bc['ul_fs_idx']
-                
+
                 if label not in band_details:
                     band_details[label] = {
                         'is_nr': is_nr, 'num': num,
                         'dl_mimo': 1, 'dl_qam': 1, 'dl_bw': 0,
                         'ul_mimo': 1, 'ul_qam': 1, 'ul_bw': 0
                     }
-                    
+
                 if dl_fs_idx > 0 and dl_fs_idx <= len(dl_feature_sets):
                     fs = dl_feature_sets[dl_fs_idx-1]
-                    if fs['mimo'] > band_details[label]['dl_mimo']: band_details[label]['dl_mimo'] = fs['mimo']
-                    if fs['qam'] > band_details[label]['dl_qam']: band_details[label]['dl_qam'] = fs['qam']
-                    if fs['bw'] > band_details[label]['dl_bw']: band_details[label]['dl_bw'] = fs['bw']
-                    
+                    if fs['mimo'] > band_details[label]['dl_mimo']:
+                        band_details[label]['dl_mimo'] = fs['mimo']
+                    if fs['qam'] > band_details[label]['dl_qam']:
+                        band_details[label]['dl_qam'] = fs['qam']
+                    if fs['bw'] > band_details[label]['dl_bw']:
+                        band_details[label]['dl_bw'] = fs['bw']
+
                 if ul_fs_idx > 0 and ul_fs_idx <= len(ul_feature_sets):
                     fs = ul_feature_sets[ul_fs_idx-1]
-                    if fs['mimo'] > band_details[label]['ul_mimo']: band_details[label]['ul_mimo'] = fs['mimo']
-                    if fs['qam'] > band_details[label]['ul_qam']: band_details[label]['ul_qam'] = fs['qam']
-                    if fs['bw'] > band_details[label]['ul_bw']: band_details[label]['ul_bw'] = fs['bw']
+                    if fs['mimo'] > band_details[label]['ul_mimo']:
+                        band_details[label]['ul_mimo'] = fs['mimo']
+                    if fs['qam'] > band_details[label]['ul_qam']:
+                        band_details[label]['ul_qam'] = fs['qam']
+                    if fs['bw'] > band_details[label]['ul_bw']:
+                        band_details[label]['ul_bw'] = fs['bw']
 
     for label, d in band_details.items():
         is_nr = d['is_nr']
         num = d['num']
-        
+
         if d['dl_bw'] == 0:
             if is_nr:
                 if num in (77, 78):
@@ -1088,7 +1294,7 @@ def decode_uecap_to_markdown(pb_data, out_path):
                 d['dl_mimo'] = max(d['dl_mimo'], 4 if num in (1, 3, 7, 38, 40) else 2)
                 d['dl_bw'] = 20
                 d['dl_qam'] = max(d['dl_qam'], 2)
-                
+
         if d['ul_bw'] == 0 and num not in (32, 75):
             if is_nr:
                 if num in (77, 78):
@@ -1102,7 +1308,7 @@ def decode_uecap_to_markdown(pb_data, out_path):
     lte_ca = []
     nr_ca = []
     en_dc = []
-    
+
     for combo_info, band_params in combos:
         for bp_configs, bcs_mask in band_params:
             bands = []
@@ -1112,50 +1318,75 @@ def decode_uecap_to_markdown(pb_data, out_path):
             bands = sorted(list(set(bands)), key=lambda x: (x[1], x[2]))
             if not bands:
                 continue
-                
+
             has_nr = any(x[1] for x in bands)
             has_lte = any(not x[1] for x in bands)
             combo_str = " + ".join(x[0] for x in bands)
-            
+
             if has_nr and has_lte:
                 en_dc.append(combo_str)
             elif has_nr:
                 nr_ca.append(combo_str)
             else:
                 lte_ca.append(combo_str)
-                
+
     lte_ca = sorted(list(set(lte_ca)))
     nr_ca = sorted(list(set(nr_ca)))
     en_dc = sorted(list(set(en_dc)))
-    
+
+    # Recalculate max DL/UL MIMO and QAM from the actual populated band_details to ensure consistency
+    for d in band_details.values():
+        if d['dl_mimo'] > max_dl_mimo:
+            max_dl_mimo = d['dl_mimo']
+        if d['dl_qam'] > max_dl_qam:
+            max_dl_qam = d['dl_qam']
+        if d['ul_mimo'] > max_ul_mimo:
+            max_ul_mimo = d['ul_mimo']
+        if d['ul_qam'] > max_ul_qam:
+            max_ul_qam = d['ul_qam']
+
     mimo_dl_str = f"{max_dl_mimo}x{max_dl_mimo}" if max_dl_mimo in (1,2,4,8) else f"{max_dl_mimo} layers"
     mimo_ul_str = "Yes (2x2)" if max_ul_mimo > 1 else "No"
     qam_dl_str = "QAM256" if max_dl_qam == 2 else "QAM64"
     qam_ul_str = "QAM256" if max_ul_qam == 2 else "QAM64"
-    
+
     sorted_labels = sort_band_labels(unique_bands)
-    
+
     filename = os.path.basename(out_path)
-    parts = filename.rsplit('_', 1)
-    if len(parts) == 2:
+    filename_no_ext = filename.replace('.md', '').replace('.toml', '').replace('.txt', '')
+
+    # Detect legacy vs hashed format from the filename.
+    # Legacy format: "EE.md", "O2_UK.md", "3_UK.md" — no hash suffix
+    # Hashed format: "EE_122181298464.md", "O2_UK_29394423338450508.md" — has numeric hash
+    parts = filename_no_ext.rsplit('_', 1)
+    if len(parts) == 2 and parts[1].isdigit():
+        # Hashed format (Exynos 5400 / Tensor G4+G5)
         carrier = parts[0]
+        is_legacy_format = False
     else:
-        carrier = filename.split('_')[0]
-        
-    model, tier = guess_pixel_model(carrier, len(combos))
-    
+        # Legacy format (Exynos 5300 / Tensor G2+G3)
+        carrier = filename_no_ext
+        is_legacy_format = True
+
+    model, tier = guess_pixel_model(carrier, len(combos), device_model, is_legacy_format)
+    final_models = model
+    final_tiers = tier
+
     with open(out_path, 'w') as f:
         f.write(f"# UE Capability Summary: {filename.replace('.md', '')}\n\n")
         f.write(f"- **Carrier ID**: {carrier_id if carrier_id is not None else 0}\n")
         f.write(f"- **Modem Config Version**: {version if version is not None else 0}\n")
-        f.write(f"- **Likely Device Model**: {model}\n")
-        f.write(f"- **Hardware Tier**: {tier}\n")
+        f.write(f"- **Likely Device Model**: {final_models}\n")
+        f.write(f"- **Hardware Tier**: {final_tiers}\n")
         f.write(f"- **Supported Bands**: {', '.join(sorted_labels)}\n")
         f.write(f"- **Max DL MIMO**: {mimo_dl_str}\n")
         f.write(f"- **Max UL MIMO**: {mimo_ul_str}\n")
         f.write(f"- **Max Modulation**: {qam_dl_str} DL / {qam_ul_str} UL\n")
-        f.write(f"- **Total Combinations**: {len(combos)} ({len(lte_ca)} LTE-CA, {len(nr_ca)} NR-CA, {len(en_dc)} EN-DC)\n\n")
-        
+        f.write(
+            f"- **Total Combinations**: {len(combos)} ({len(lte_ca)} LTE-CA, "
+            f"{len(nr_ca)} NR-CA, {len(en_dc)} EN-DC)\n\n"
+        )
+
         f.write("## Band Capabilities\n\n")
         f.write("| Band | Max DL MIMO | Max DL BW | Max DL QAM | Max UL MIMO | Max UL BW | Max UL QAM |\n")
         f.write("|------|-------------|-----------|------------|-------------|-----------|------------|\n")
@@ -1165,12 +1396,12 @@ def decode_uecap_to_markdown(pb_data, out_path):
             m_ul = "N/A" if d['ul_bw'] == 0 else ("2x2" if d['ul_mimo'] > 1 else "1x1")
             q_dl = "QAM256" if d['dl_qam'] == 2 else "QAM64"
             q_ul = "N/A" if d['ul_bw'] == 0 else ("QAM256" if d['ul_qam'] == 2 else "QAM64")
-            
+
             dl_bw_val = f"{d['dl_bw']} MHz" if d['dl_bw'] > 0 else "N/A"
             ul_bw_val = f"{d['ul_bw']} MHz" if d['ul_bw'] > 0 else "N/A"
             f.write(f"| {label} | {m_dl} | {dl_bw_val} | {q_dl} | {m_ul} | {ul_bw_val} | {q_ul} |\n")
         f.write("\n")
-        
+
         f.write(f"## Band Combinations ({len(combos)})\n\n")
         if lte_ca:
             f.write(f"### LTE-CA Combinations ({len(lte_ca)})\n")
@@ -1189,6 +1420,7 @@ def decode_uecap_to_markdown(pb_data, out_path):
             f.write("\n")
 
 def bcd_to_plmn(val):
+    """Convert a BCD-encoded value to an MCC-MNC identifier."""
     b1 = val & 0x0F
     b2 = (val >> 4) & 0x0F
     b3 = (val >> 8) & 0x0F
@@ -1202,6 +1434,7 @@ def bcd_to_plmn(val):
     return f"{mcc}-{mnc}"
 
 def decode_ap_plmn_mapping_toml(data, out_path):
+    """Decode AP-to-PLMN mapping data to a TOML file."""
     fields = parse_protobuf_uecap(data)
     with open(out_path, 'w') as f:
         f.write("# Compiled automatically from ap_plmn_mapping.binarypb\n\n")
@@ -1226,6 +1459,7 @@ def decode_ap_plmn_mapping_toml(data, out_path):
                     f.write(f"plmns = [ {plmn_list_str} ]\n\n")
 
 def decode_ap_plmn_mapping_txt(data, out_path):
+    """Decode AP-to-PLMN mapping data to a text file."""
     fields = parse_protobuf_uecap(data)
     with open(out_path, 'w') as f:
         f.write("=== AP TO PLMN PROFILE MAPPINGS ===\n\n")
@@ -1243,27 +1477,31 @@ def decode_ap_plmn_mapping_txt(data, out_path):
                     elif efnum == 3 and eftype == 'length_delimited':
                         profile = eval.decode('utf-8', errors='ignore')
                 if profile or plmns:
-                    f.write(f"Profile: {profile:<15} (ID: {profile_id:<3}) -> PLMNs: {', '.join(plmns)}\n")
+                    f.write(
+                        f"Profile: {profile:<15} (ID: {profile_id:<3}) -> "
+                        f"PLMNs: {', '.join(plmns)}\n"
+                    )
 
 def extract_uecaps(fz, countries, out_format, export_bin, out_base_dir):
+    """Extract UE capability data from a factory image."""
     from ext4 import Volume
     info = parse_factory_zip_name(fz)
     if not info:
         return
-        
+
     print(f"\n================ Processing {info['device']} (Codename: {info['codename']}) ================")
-    
+
     if not os.path.exists(fz):
         print(f"Error: Factory zip file '{fz}' does not exist.")
         return
-        
+
     temp_img_path = f"temp_vendor_uecap_{info['codename']}.img"
     if not extract_partition_img(fz, info['codename'], 'vendor.img', temp_img_path):
         return
     try:
         with open(temp_img_path, 'rb') as f:
             vol = Volume(f)
-            
+
             uecap_path = '/firmware/uecapconfig'
             try:
                 ue_inode = vol.inode_at(uecap_path)
@@ -1271,52 +1509,45 @@ def extract_uecaps(fz, countries, out_format, export_bin, out_base_dir):
                 bin_dir = os.path.join(target_dir, 'bin')
                 pb_dir = os.path.join(target_dir, 'binarypb')
                 md_dir = os.path.join(target_dir, 'markdown')
-                
+
                 os.makedirs(target_dir, exist_ok=True)
                 if export_bin:
                     os.makedirs(bin_dir, exist_ok=True)
                     os.makedirs(pb_dir, exist_ok=True)
                 if out_format != 'none':
                     os.makedirs(md_dir, exist_ok=True)
-                
+
                 extracted_count = 0
                 for entry, ftype in ue_inode.opendir():
-                    entry_name = getattr(entry, 'name_str', None) or getattr(entry, 'name', b'').decode('utf-8', errors='ignore')
+                    entry_name = getattr(entry, 'name_str', None) or getattr(
+                        entry, 'name', b''
+                    ).decode('utf-8', errors='ignore')
                     if entry_name in ('.', '..'):
                         continue
-                        
+
                     is_target = False
                     if entry_name == 'ap_plmn_mapping.binarypb':
                         is_target = True
                     elif 'all' in countries:
                         is_target = True
                     else:
-                        parts = entry_name.rsplit('_', 1)
-                        if len(parts) == 2:
-                            profile_prefix = parts[0].lower()
-                            tokens = profile_prefix.split('_')
-                            for country in countries:
-                                suffixes = COUNTRY_TO_SUFFIX.get(country.lower(), [f"_{country.lower()}"])
-                                for suffix in suffixes:
-                                    s_lower = suffix.lower()
-                                    if s_lower.startswith('_'):
-                                        # Regional suffixes like _uk, _us
-                                        if profile_prefix.endswith(s_lower) or s_lower.lstrip('_') in tokens:
-                                            is_target = True
-                                            break
-                                    else:
-                                        # Carrier names like ee, freedom
-                                        if s_lower in tokens:
-                                            is_target = True
-                                            break
-                                if is_target:
+                        name_clean = entry_name.lower().replace('.binarypb', '')
+                        tokens = name_clean.split('_')
+                        for country in countries:
+                            suffixes = COUNTRY_TO_SUFFIX.get(country.lower(), [f"_{country.lower()}"])
+                            for suffix in suffixes:
+                                s_lower = suffix.lower().lstrip('_')
+                                if s_lower in tokens:
+                                    is_target = True
                                     break
-                                    
+                            if is_target:
+                                break
+
                     if is_target:
                         try:
                             child_inode = vol.inodes[entry.inode]
                             data = child_inode.open().read()
-                            
+
                             if export_bin:
                                 pb_out_path = os.path.join(pb_dir, entry_name)
                                 with open(pb_out_path, 'wb') as out_pb:
@@ -1325,7 +1556,7 @@ def extract_uecaps(fz, countries, out_format, export_bin, out_base_dir):
                                 bin_out_path = os.path.join(bin_dir, bin_out_name)
                                 with open(bin_out_path, 'wb') as out_bin:
                                     out_bin.write(data)
-                                    
+
                             if out_format != 'none':
                                 if out_format == 'toml':
                                     ext = '.toml'
@@ -1333,10 +1564,10 @@ def extract_uecaps(fz, countries, out_format, export_bin, out_base_dir):
                                     ext = '.md'
                                 else:
                                     ext = '.txt'
-                                    
+
                                 out_name = entry_name.replace('.binarypb', ext)
                                 out_path = os.path.join(md_dir, out_name)
-                                
+
                                 if entry_name == 'ap_plmn_mapping.binarypb':
                                     if out_format == 'toml':
                                         decode_ap_plmn_mapping_toml(data, out_path)
@@ -1349,22 +1580,28 @@ def extract_uecaps(fz, countries, out_format, export_bin, out_base_dir):
                                         if out_format == 'toml':
                                             decode_uecap_to_toml(data, out_path)
                                         elif out_format == 'markdown':
-                                            decode_uecap_to_markdown(data, out_path)
+                                            decode_uecap_to_markdown(data, out_path, device_model=info['device'])
                                         else:
                                             decode_uecap_to_text(data, out_path)
                                     except Exception as dec_err:
                                         with open(out_path, 'w') as err_f:
                                             err_f.write(f"# Failed to parse uecap: {dec_err}\n")
-                                            
+
                             extracted_count += 1
                         except Exception as child_err:
                             print(f"  Failed to process {entry_name}: {child_err}")
-                            
+
                 print(f"🎉 Successfully extracted {extracted_count} carrier uecap file(s) to {target_dir}")
-                
-            except Exception as e:
-                print(f"Could not read {uecap_path} in vendor.img: {e}")
-                
+
+            except Exception:
+                # Pixel 6 series (Tensor G1 / Exynos 5123) stores modem config
+                # in /firmware/carrierconfig/cfg.db + confseqs, not as separate
+                # .binarypb files. UE cap extraction is only supported for
+                # Pixel 7+ (Tensor G2+ / Exynos 5300+).
+                print(f"⚠️  {info['device']}: No UE capability configs found at {uecap_path}.")
+                print("   This device likely uses an older modem generation that stores")
+                print("   capabilities in a different format (cfg.db/confseqs).")
+
     finally:
         if os.path.exists(temp_img_path):
             os.remove(temp_img_path)

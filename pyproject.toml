@@ -10,11 +10,11 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "ext4",
-    "dominate",
 ]
 
 [project.scripts]
 pixel-extractor = "pixel_extractor.cli:main"
+pixel-carrier-serve = "pixel_extractor.cli:serve"
 
 [tool.hatch.build.targets.wheel]
 packages = ["pixel_extractor"]
@@ -40,4 +40,9 @@ ignore = [
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.21",
+]
 

@@ -1,0 +1,119 @@
+# Compiled automatically from CarrierSettings.pb overlays via Gemini
+
+[[carrier_id]]
+mcc_mnc = "23410"
+gid1 = "61"
+
+[[carrier_id]]
+mcc_mnc = "23410"
+gid1 = "67"
+
+[[carrier_id]]
+mcc_mnc = "23410"
+gid1 = "85"
+
+[[carrier_id]]
+mcc_mnc = "23410"
+gid1 = "99"
+
+[settings]
+version = 77000000005
+
+[[settings.apns.apn]]
+authtype = 1
+mmsc = "http://mmsc.mms.o2.co.uk:8002"
+name = "O2 Pay As You Go"
+password = "p"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "default", "dun", "mms", "supl", "hipri", "xcap" ]
+user = "o2"
+user_editable = false
+value = "payandgo.o2.co.uk"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|18|20"
+name = "O2 IMS"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "ims" ]
+user_visible = false
+value = "ims"
+
+[settings.config]
+auto_retry_failed_wifi_emergency_call = true
+carrier_default_wfc_ims_enabled = true
+carrier_supports_ss_over_ut = true
+carrier_volte_available = true
+carrier_wfc_ims_available = true
+default_vm_number = "901"
+disable_supplementary_services_in_airplane_mode = true
+display_hd_audio_property = false
+hide_lte_plus_data_icon = false
+ims_reasoninfo_mapping = [ "510|Call completed elsewhere|1014", "*|Call is dropped due to Wi-Fi signal is degraded|1407" ]
+min_udp_port_4500_nat_timeout_sec = 120
+non_roaming_operator = [
+    "23420",
+    "23426",
+    "23430",
+    "23431",
+    "23432",
+    "23433",
+    "23434",
+    "23486"
+]
+prefer_2g = false
+radio_restart_failure_causes = [ 55 ]
+read_only_apn_types = []
+show_4g_for_lte_data_icon = true
+smsToMmsTextThreshold = 10
+wfc_spn_format_idx = 1
+
+[settings.config.bsf]
+bsf_server_port = 443
+bsf_transport_type = 3
+
+[settings.config.ims]
+ipv4_sip_mtu_size_cellular = 1280
+ipv6_sip_mtu_size_cellular = 1280
+sip_timer_b_millis = 90000
+sip_timer_f_millis = 32000
+sip_timer_j_millis = 32000
+
+[settings.config.imsemergency]
+prefer_ims_emergency_when_voice_calls_on_cs = true
+
+[settings.config.imsss]
+network_initiated_ussd_over_ims_supported = false
+ut_as_server_port = 443
+ut_iptype_home = 0
+ut_transport_type = 3
+xcap_over_ut_supported_rats = [
+    6,
+    3,
+    1,
+    2
+]
+
+[settings.config.imsvoice]
+audio_codec_capability_payload_types = { imsvoice = { amrnb_payload_type = [ 102 ], amrwb_payload_type = [ 104 ], dtmfnb_payload_type = [ 97 ], dtmfwb_payload_type = [ 96 ], evs_payload_type = [ 126 ] } }
+conference_subscribe_type = 0
+dedicated_bearer_wait_timer_millis = 10000
+evs_payload_description = { 126 = { imsvoice = { evs_codec_attribute_bitrate = [ 0, 6 ], evs_codec_attribute_ch_aw_recv = 3 } } }
+minimum_session_expires_timer_sec = 600
+oip_source_from_header = true
+prack_supported_for_18x = true
+
+[settings.config.iwlan]
+child_sa_rekey_hard_timer_sec = 43300
+child_sa_rekey_soft_timer_sec = 43200
+diffie_hellman_groups = [ 14 ]
+dpd_timer_sec = 1800
+ike_rekey_hard_timer_in_sec = 43300
+ike_rekey_soft_timer_sec = 43200
+ike_remote_id_type = 11
+supported_ike_session_encryption_algorithms = [ 12, 13 ]
+
+[settings.config.qns]
+support_wfc_in_international_roaming = false
+xcap_transport_type = 0

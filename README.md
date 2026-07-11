@@ -8,19 +8,32 @@ It is designed for cellular configuration enthusiasts, baseband researchers, and
 
 ## 🛠️ Supported Architectures & Devices
 
-While the scripts are generic and will parse older Qualcomm or Exynos Pixel partitions, the extraction targets and built-in heuristics are optimized for the **Exynos 5400-based Pixel 10 family** running **Android 17+**:
+While the scripts are generic and will parse carrier settings from any Pixel factory image, the UE capability extraction and built-in heuristics are optimized for **Pixel 7+ devices** running **Android 16+**:
 
-| Codename | Friendly Name | Model Type | Characteristics |
-| :--- | :--- | :--- | :--- |
-| `blazer` | **Pixel 10 Pro** | Flagship Pro (Exynos 5400) | Full RF features, Satellite connectivity, 4x4 MIMO, dual-low-band CA |
-| `mustang` | **Pixel 10 Pro XL** | Flagship Pro (Exynos 5400) | Full RF features, Satellite connectivity, 4x4 MIMO, dual-low-band CA |
-| `rango` | **Pixel 10 Pro Fold** | Flagship Pro (Exynos 5400) | Full RF features, Satellite connectivity, 4x4 MIMO, dual-low-band CA |
-| `frankel` | **Pixel 10** | Standard Flagship (Exynos 5400) | 4x4 MIMO, No dual-low-band CA (e.g. B20 + B28 blocked) |
-| `stallion` | **Pixel 10a** | Mid-Range A-Series (Exynos 5400) | 2x2 MIMO limits, 15kHz SCS limit, regional variants (EU/UK vs. US) |
-| `komodo` | **Pixel 9 Pro XL** | Flagship Pro (Exynos 5400) | Full RF features, Satellite connectivity, 4x4 MIMO, dual-low-band CA |
-| `caiman` | **Pixel 9 Pro** | Flagship Pro (Exynos 5400) | Full RF features, Satellite connectivity, 4x4 MIMO, dual-low-band CA |
-| `tokay` | **Pixel 9** | Standard Flagship (Exynos 5400) | 4x4 MIMO, No dual-low-band CA |
-| `comet` | **Pixel Fold / 9 Pro Fold** | Foldable Flagship (Exynos 5400) | Foldable form factor capabilities |
+| Codename | Friendly Name | SoC / Modem | Carrier Settings | UE Capabilities |
+| :--- | :--- | :--- | :---: | :---: |
+| `blazer` | **Pixel 10 Pro** | Tensor G5 / Exynos 5400 | ✅ | ✅ |
+| `mustang` | **Pixel 10 Pro XL** | Tensor G5 / Exynos 5400 | ✅ | ✅ |
+| `rango` | **Pixel 10 Pro Fold** | Tensor G5 / Exynos 5400 | ✅ | ✅ |
+| `frankel` | **Pixel 10** | Tensor G5 / Exynos 5400 | ✅ | ✅ |
+| `stallion` | **Pixel 10a** | Tensor G5 / Exynos 5400 | ✅ | ✅ |
+| `tokay` | **Pixel 9** | Tensor G4 / Exynos 5400 | ✅ | ✅ |
+| `caiman` | **Pixel 9 Pro** | Tensor G4 / Exynos 5400 | ✅ | ✅ |
+| `komodo` | **Pixel 9 Pro XL** | Tensor G4 / Exynos 5400 | ✅ | ✅ |
+| `comet` | **Pixel 9 Pro Fold** | Tensor G4 / Exynos 5400 | ✅ | ✅ |
+| `tegu` | **Pixel 9a** | Tensor G4 / Exynos 5400 | ✅ | ✅ |
+| `shiba` | **Pixel 8** | Tensor G3 / Exynos 5300 | ✅ | ✅ |
+| `husky` | **Pixel 8 Pro** | Tensor G3 / Exynos 5300 | ✅ | ✅ |
+| `akita` | **Pixel 8a** | Tensor G3 / Exynos 5300 | ✅ | ✅ |
+| `panther` | **Pixel 7** | Tensor G2 / Exynos 5300 | ✅ | ✅ |
+| `cheetah` | **Pixel 7 Pro** | Tensor G2 / Exynos 5300 | ✅ | ✅ |
+| `lynx` | **Pixel 7a** | Tensor G2 / Exynos 5300 | ✅ | ✅ |
+| `felix` | **Pixel Fold** | Tensor G2 / Exynos 5300 | ✅ | ✅ |
+| `oriole` | **Pixel 6** | Tensor G1 / Exynos 5123 | ✅ | ❌ |
+| `raven` | **Pixel 6 Pro** | Tensor G1 / Exynos 5123 | ✅ | ❌ |
+| `bluejay` | **Pixel 6a** | Tensor G1 / Exynos 5123 | ✅ | ❌ |
+
+> **Note:** Pixel 6 series devices (Tensor G1 / Exynos 5123) store UE capability data in a proprietary `cfg.db`/`confseqs` format inside `/firmware/carrierconfig/`, not as extractable `.binarypb` files. Carrier settings extraction works for all devices, but UE capability extraction requires Pixel 7 or newer.
 
 ---
 
@@ -73,22 +86,48 @@ Runs all three sub-extractors (`extract-carrier-settings`, `extract-cfg-db`, and
 uv run pixel-extractor extract-all [-i/--image <path_to_factory_zip>] [-c/--country <codes>]
 ```
 
-### 2. Framework Carrier Settings (`extract-carrier-settings`)
-Mounts the `product.img` partition and extracts carrier configurations.
+### 2. Framework Carrier Settings Only (`extract-carrier-settings`)
+Extracts **only** carrier configuration `.pb` files from `product.img` and compiles them to TOML. Requires a factory image **per device** since carrier feature flags (5G SA, VoNR, satellite, VoWiFi) differ between models.
+
+```bash
+# Extract carrier settings from all factory images in the current directory
+uv run pixel-extractor extract-carrier-settings
+
+# Extract from a single device
+uv run pixel-extractor extract-carrier-settings -i blazer-cp2a.260705.006-factory-*.zip
+```
+
+### 3. UE Capabilities Only (`extract-uecaps`)
+Extracts **only** UE radio capability profiles from `vendor.img`. This is significantly faster than `extract-all` and benefits from a key optimization:
+
+> **⚡ Optimization:** All devices sharing the same modem generation ship identical uecap files. You only need **one factory image per modem generation per build** to extract all capability profiles:
+> - **One Exynos 5400 device** (any Pixel 9 or 10) → all 16 hashed profiles for that carrier
+> - **One Exynos 5300 device** (any Pixel 7 or 8) → the single legacy profile
+> - Pixel 6 series (Exynos 5123) → no extractable uecap data
+
+```bash
+# Quick: extract uecaps from just one representative device per modem generation
+uv run pixel-extractor extract-uecaps -i blazer-cp2a.260705.006-factory-*.zip
+uv run pixel-extractor extract-uecaps -i shiba-cp2a.260705.006-factory-*.zip
+
+# Full: extract from all devices (slower, but auto-builds complete device lists)
+uv run pixel-extractor extract-uecaps
+```
+
+#### Carrier Settings Features
 *   **Native TOML Decoder**: Parses binary `.pb` files natively in Python (no external Rust compiler or `protoc` required) and outputs them as fully valid `.toml` configurations compatible with the Rust `pixel-carriersettings-toolbox` schema.
 *   **Carrier List Joining**: Parses `carrier_list.pb` and joins the specific carrier's SIM match rules (MCC/MNC, GID1, GID2, SPN, etc.) directly into its TOML document under `[[carrier_id]]` headers, creating self-describing configuration sheets.
 *   **Model Isolation**: Places output configurations under device-specific subdirectories (e.g. `pixel_10_pro_blazer`) to preserve hardware-specific flags (e.g. satellite configurations).
 
-### 3. Low-level Modem NV Config (`extract-cfg-db`)
-Mounts the `vendor.img` partition and extracts the baseband regional SQLite configuration database `/firmware/carrierconfig/cfg.db`. 
-*   **DB Analyzer**: Connects to the SQLite database post-extraction, runs query diagnostics, lists regional fallback rules, and dumps table configuration schemas (e.g., policy constraints, IIN rules).
-*   **Model Isolation**: Places the output SQLite database under device-specific subdirectories (e.g. `pixel_10_pro_blazer`) to prevent model-specific baseband policy changes from overwriting each other.
-
-### 4. UE Capability Profile Translator (`extract-uecaps`)
-Extracts UE Radio Capability configurations from `/firmware/uecapconfig/` in `vendor.img`.
+#### UE Capability Features
 *   **Multi-format Outputs**: Writes raw `.bin` files (for diag-site uploads), `.binarypb` descriptors, and human-readable summaries.
 *   **Bandwidth & Layer Fallback**: Correctly interprets modem configuration index values. When a band profile falls back to default (`dl_fs_idx = 0`), the script automatically assigns 3GPP-standard bandwidths (e.g. 20 MHz LTE, 100 MHz NR C-Band) and MIMO layer mappings instead of showing empty `0 MHz` listings.
 *   **Model Variant Classifier**: Dynamically parses the combinations, MIMO capabilities, and Subcarrier Spacings (SCS) inside the binary profile to classify the target hardware variant (e.g. Flagship Pro, Standard, A-Series regional variants) and embeds this in the report.
+
+### 4. Low-level Modem NV Config (`extract-cfg-db`)
+Mounts the `vendor.img` partition and extracts the baseband regional SQLite configuration database `/firmware/carrierconfig/cfg.db`. 
+*   **DB Analyzer**: Connects to the SQLite database post-extraction, runs query diagnostics, lists regional fallback rules, and dumps table configuration schemas (e.g., policy constraints, IIN rules).
+*   **Model Isolation**: Places the output SQLite database under device-specific subdirectories (e.g. `pixel_10_pro_blazer`) to prevent model-specific baseband policy changes from overwriting each other.
 
 ### 5. Semantic Config Differ (`diff`)
 A custom comparison tool that parses carrier settings across multiple extracted devices, strips version numbers (which change dynamically on Google's build pipelines), and highlights **only semantic configuration differences** (APN configurations, IMS flags, and carrier features).
@@ -105,7 +144,7 @@ uv run pixel-extractor diff-cfg <path_to_db1> <path_to_db2>
 ```
 
 ### 7. Website Database Compiler (`compile`)
-Compiles all extracted carrier parameters, SQLite policies, and UE capabilities from the nested workspace into a structured client-side JSON database (`docs/data.js`) to feed the web showcase dashboard.
+Compiles all extracted carrier parameters, SQLite policies, and UE capabilities from the nested workspace into a compact protobuf artifact (`docs/carrier_data.pb`) that the web showcase dashboard fetches and decodes in the browser.
 *   **Static Directory Explorer**: Generates a sleek, dark-themed `index.html` file browser index directly under each build subdirectory (e.g. `extracted/android_17_july_2026_cp2a.260705.006/index.html`) mapping out devices, TOMLs, and raw radio profiles.
 *   **Interactive Combination Explorer**: Extracts complex EN-DC and NR-CA carrier aggregation paths recursively from markdown sheets and formats them into an expandable, search-friendly inline chip dashboard under the "Radio Capabilities" tab.
 
@@ -119,7 +158,7 @@ uv run pixel-extractor compile
 
 The repository is structured as a standard Python package. It requires Python 3.13+.
 
-If you are using the **`uv`** package manager (recommended), no manual installation is required! `uv` will automatically inspect `pyproject.toml`, build a virtual environment, install dependencies (`ext4`, `dominate`), and execute the tool on-the-fly.
+If you are using the **`uv`** package manager (recommended), no manual installation is required! `uv` will automatically inspect `pyproject.toml`, build a virtual environment, install dependencies (`ext4`), and execute the tool on-the-fly.
 
 If you don't use `uv`, you can install it using pip:
 ```bash
@@ -228,7 +267,7 @@ pixel-extractor extract-all
 This automatically processes all factory ZIPs in the root folder, isolates them under their respective Build IDs and device codenames in the `extracted/` directory, and translates them.
 
 ### Step 3: Rebuild the Web Dashboard Database
-Run the compiler script to update `docs/data.js` and rebuild the client-side static bundle with the new devices and capabilities:
+Run the compiler script to regenerate `docs/carrier_data.pb` and rebuild the client-side static bundle with the new devices and capabilities:
 ```bash
 pixel-extractor compile
 ```

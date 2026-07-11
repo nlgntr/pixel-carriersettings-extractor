@@ -2,6 +2,8 @@
 """Compiler module to parse carrier configs, UE aggregation profiles and generate web dashboards."""
 
 import glob
+import gzip
+import html
 import json
 import os
 import tomllib
@@ -29,6 +31,7 @@ class UeCapabilitySummary:
     filename: str
     carrier: str
     device: str = "Unknown Device"
+    hardware_tier: str = "Unknown Tier"
     lte_bands: list[str] = field(default_factory=list)
     nr_bands: list[str] = field(default_factory=list)
     max_mimo_dl: int = 4
@@ -37,6 +40,7 @@ class UeCapabilitySummary:
     nr_ca_combos: list[str] = field(default_factory=list)
     endc_combos: list[str] = field(default_factory=list)
     band_caps: list[BandCapability] = field(default_factory=list)
+    modem_config_version: int = 0
 
 
 def parse_uecap_markdown(filepath: str) -> UeCapabilitySummary:
@@ -48,7 +52,7 @@ def parse_uecap_markdown(filepath: str) -> UeCapabilitySummary:
     Returns:
         A structured UeCapabilitySummary dataclass model containing parsed parameters.
     """
-    with open(filepath, "r", encoding="utf-8") as f:
+    with open(filepath, encoding="utf-8") as f:
         content = f.read()
 
     filename_clean = os.path.basename(filepath).replace(".md", "")
@@ -123,6 +127,8 @@ def parse_uecap_markdown(filepath: str) -> UeCapabilitySummary:
             # Parse top summary metadata fields
             if "**Likely Device Model**" in line_strip:
                 summary.device = line_strip.split(":", 1)[1].strip()
+            elif "**Hardware Tier**" in line_strip:
+                summary.hardware_tier = line_strip.split(":", 1)[1].strip()
             elif "**Supported Bands**" in line_strip:
                 bands_str = line_strip.split(":", 1)[1].strip()
                 bands = [b.strip() for b in bands_str.split(",") if b.strip()]
@@ -140,11 +146,21 @@ def parse_uecap_markdown(filepath: str) -> UeCapabilitySummary:
                 combos_str = line_strip.split("(")[0].split(":", 1)[1].strip()
                 if combos_str.isdigit():
                     summary.combos_count = int(combos_str)
+            elif "**Modem Config Version**" in line_strip:
+                version_str = line_strip.split(":", 1)[1].strip()
+                try:
+                    summary.modem_config_version = int(version_str)
+                except (ValueError, TypeError):
+                    # Safely default to 0 if parsing fails or value is not numeric
+                    summary.modem_config_version = 0
 
     return summary
 
 
-def match_uecaps_to_carrier(toml_filename: str, uecap_summaries: list[UeCapabilitySummary]) -> list[UeCapabilitySummary]:
+def match_uecaps_to_carrier(
+    toml_filename: str,
+    uecap_summaries: list[UeCapabilitySummary],
+) -> list[UeCapabilitySummary]:
     """Fuzzy matches a carrier toml filename (e.g. ee_gb) to parsed UE capability summaries.
 
     Args:
@@ -187,15 +203,12 @@ def generate_build_index_html(build_path: str) -> None:
     Args:
         build_path: The directory path of the extracted build.
     """
-    import dominate
-    from dominate.tags import a, code, div, h1, h2, h3, meta, style
-
-    from .common import CODENAMES
+    from .common import CODENAMES, get_friendly_build_name
 
     build_id = os.path.basename(build_path)
-    friendly_build = build_id.replace("android_", "Android ").replace("_", " ")
+    friendly_build = get_friendly_build_name(build_id)
 
-    device_tomls = {}
+    device_tomls: dict[str, dict[str, Any]] = {}
     cs_dir = os.path.join(build_path, "carrier_settings")
     if os.path.exists(cs_dir):
         for device_dir in sorted(os.listdir(cs_dir)):
@@ -204,7 +217,7 @@ def generate_build_index_html(build_path: str) -> None:
                 continue
             toml_dir = os.path.join(device_path, "toml")
             if os.path.exists(toml_dir):
-                tomls = sorted([f for f in os.listdir(toml_dir) if f.endswith(".toml")])
+                tomls = sorted(f for f in os.listdir(toml_dir) if f.endswith(".toml"))
                 if tomls:
                     friendly_name = device_dir.replace("_", " ").title()
                     friendly_name = friendly_name.replace(" Xl", " XL").replace("10A", "10a").replace("9A", "9a")
@@ -214,70 +227,71 @@ def generate_build_index_html(build_path: str) -> None:
                             break
                     device_tomls[friendly_name] = {"dir": device_dir, "files": tomls}
 
-    uecaps_files = []
+    uecaps_files: list[str] = []
     uecaps_dir = os.path.join(build_path, "uecaps", "markdown")
     if os.path.exists(uecaps_dir):
-        uecaps_files = sorted([f for f in os.listdir(uecaps_dir) if f.endswith(".md")])
+        uecaps_files = sorted(f for f in os.listdir(uecaps_dir) if f.endswith(".md"))
 
-    cfg_db_path = None
-    if os.path.exists(os.path.join(build_path, "modem", "cfg.db")):
-        cfg_db_path = "modem/cfg.db"
+    cfg_db_path = "modem/cfg.db" if os.path.exists(os.path.join(build_path, "modem", "cfg.db")) else None
 
-    # Write the shared index.css stylesheet to extracted/ folder
+    # Copy the shared stylesheet into the extracted/ folder.
     os.makedirs("extracted", exist_ok=True)
     shared_css_path = os.path.join("extracted", "index.css")
-
-    css_content = ""
     css_src = os.path.join(os.path.dirname(__file__), "build_index.css")
     if os.path.exists(css_src):
-        with open(css_src, "r", encoding="utf-8") as f:
+        with open(css_src, encoding="utf-8") as f:
             css_content = f.read()
-
-    if css_content:
         with open(shared_css_path, "w", encoding="utf-8") as f:
             f.write(css_content)
 
-    doc = dominate.document(title=f"Index of {friendly_build}")
+    esc = html.escape
+    body: list[str] = ['<div class="container">']
+    body.append(f'  <h1>Build Archive Explorer — {esc(friendly_build)}</h1>')
+    body.append(f'  <div class="meta-info"><span>Build folder: </span><code>{esc(build_id)}</code></div>')
 
-    with doc.head:
-        meta(charset="UTF-8")
-        dominate.tags.link(rel="stylesheet", href="../index.css")
+    if cfg_db_path:
+        body.append('  <h2>Shannon Modem Configuration</h2>')
+        body.append('  <div class="file-list">')
+        body.append(f'    <div class="file-item"><a href="{esc(cfg_db_path)}">📄 cfg.db</a></div>')
+        body.append('  </div>')
 
-    with doc.body:
-        with div(cls="container"):
-            h1(f"Build Archive Explorer — {friendly_build}")
-            with div(cls="meta-info"):
-                dominate.tags.span("Build folder: ")
-                code(build_id)
+    if device_tomls:
+        body.append('  <h2>Carrier Settings Configurations (TOML)</h2>')
+        for friendly_name, data in sorted(device_tomls.items()):
+            body.append(f'  <div class="device-card"><h3>{esc(friendly_name)}</h3>')
+            body.append('    <div class="file-list">')
+            for fname in data["files"]:
+                rel = f"carrier_settings/{data['dir']}/toml/{fname}"
+                body.append(f'      <div class="file-item"><a href="{esc(rel)}">📄 {esc(fname)}</a></div>')
+            body.append('    </div>')
+            body.append('  </div>')
 
-            if cfg_db_path:
-                h2("Shannon Modem Configuration")
-                with div(cls="file-list"):
-                    with div(cls="file-item"):
-                        a("📄 cfg.db", href=cfg_db_path)
+    if uecaps_files:
+        body.append('  <h2>UE Capability Radio Profiles (Markdown)</h2>')
+        body.append('  <div class="file-list">')
+        for fname in uecaps_files:
+            rel = f"uecaps/markdown/{fname}"
+            body.append(f'    <div class="file-item"><a href="{esc(rel)}">📄 {esc(fname)}</a></div>')
+        body.append('  </div>')
 
-            if device_tomls:
-                h2("Carrier Settings Configurations (TOML)")
-                for friendly_name, data in sorted(device_tomls.items()):
-                    with div(cls="device-card"):
-                        h3(friendly_name)
-                        with div(cls="file-list"):
-                            for f in data["files"]:
-                                path = f"carrier_settings/{data['dir']}/toml/{f}"
-                                with div(cls="file-item"):
-                                    a(f"📄 {f}", href=path)
+    body.append('</div>')
 
-            if uecaps_files:
-                h2("UE Capability Radio Profiles (Markdown)")
-                with div(cls="file-list"):
-                    for f in uecaps_files:
-                        path = f"uecaps/markdown/{f}"
-                        with div(cls="file-item"):
-                            a(f"📄 {f}", href=path)
+    html_doc = (
+        '<!DOCTYPE html>\n'
+        '<html lang="en">\n'
+        '<head>\n'
+        '  <meta charset="UTF-8">\n'
+        f'  <title>Index of {esc(friendly_build)}</title>\n'
+        '  <link rel="stylesheet" href="../index.css">\n'
+        '</head>\n'
+        '<body>\n'
+        + "\n".join(body)
+        + "\n</body>\n</html>\n"
+    )
 
     index_path = os.path.join(build_path, "index.html")
     with open(index_path, "w", encoding="utf-8") as f:
-        f.write(doc.render())
+        f.write(html_doc)
     print(f"Generated build index: {index_path}")
 
 
@@ -290,10 +304,14 @@ def compile_database() -> dict[str, Any]:
     database = {"builds": {}}
 
     # 1. Locate all extracted builds
-    builds = glob.glob(os.path.join("extracted", "android_*"))
+    from .common import get_device_sort_rank, get_friendly_build_name
+    builds = sorted(glob.glob(os.path.join("extracted", "android_*")), reverse=True)
     for build_path in builds:
         build_id = os.path.basename(build_path)
-        database["builds"][build_id] = {"devices": {}}
+        database["builds"][build_id] = {
+            "friendly_name": get_friendly_build_name(build_id),
+            "devices": {}
+        }
 
         # 2. Parse UE capability summaries for this build (shared across devices)
         uecaps_dir = os.path.join(build_path, "uecaps", "markdown")
@@ -311,15 +329,27 @@ def compile_database() -> dict[str, Any]:
         if not os.path.exists(cs_dir):
             continue
 
-        devices = [d for d in os.listdir(cs_dir) if os.path.isdir(os.path.join(cs_dir, d))]
+        raw_devices = [d for d in os.listdir(cs_dir) if os.path.isdir(os.path.join(cs_dir, d))]
+
+        def device_sort_key(d_dir):
+            codename = d_dir.split("_")[-1]
+            rank = get_device_sort_rank(codename)
+            return (-rank, d_dir)
+
+        devices = sorted(raw_devices, key=device_sort_key)
         for device_dir in devices:
             device_path = os.path.join(cs_dir, device_dir)
             toml_dir = os.path.join(device_path, "toml")
             if not os.path.exists(toml_dir):
                 continue
 
-            friendly_name = device_dir.replace("_", " ").title()
-            friendly_name = friendly_name.replace(" Xl", " XL").replace("10A", "10a").replace("9A", "9a")
+            from .common import CODENAMES
+            codename = device_dir.split("_")[-1]
+            if codename in CODENAMES:
+                friendly_name = f"{CODENAMES[codename]} ({codename.title()})"
+            else:
+                friendly_name = device_dir.replace("_", " ").title()
+                friendly_name = friendly_name.replace(" Xl", " XL").replace("10A", "10a").replace("9A", "9a")
             database["builds"][build_id]["devices"][device_dir] = {"friendly_name": friendly_name, "carriers": {}}
 
             # 4. Parse all carrier TOML configs for this device
@@ -327,7 +357,7 @@ def compile_database() -> dict[str, Any]:
             for toml_file in glob.glob(os.path.join(toml_dir, "*.toml")):
                 filename = os.path.basename(toml_file)
                 try:
-                    with open(toml_file, "r", encoding="utf-8") as f:
+                    with open(toml_file, encoding="utf-8") as f:
                         toml_content = f.read()
                     data = tomllib.loads(toml_content)
                     device_raw[filename] = data
@@ -506,19 +536,110 @@ def compile_database() -> dict[str, Any]:
     return database
 
 
-def write_web_dashboard(database: dict[str, Any]) -> None:
-    """Writes the compiled JSON database to the static docs folder.
+def _sanitize_large_ints(node: Any) -> Any:
+    """Recursively converts integers outside the JS safe range to decimal strings.
+
+    JavaScript numbers lose precision above ``2**53 - 1``; carrier-config uint64
+    fields can exceed this, so such values are emitted as strings and rendered
+    verbatim in the browser, keeping the artifact lossless.
+    """
+    safe_max = (1 << 53) - 1
+    if isinstance(node, dict):
+        for key, value in node.items():
+            node[key] = _sanitize_large_ints(value)
+        return node
+    if isinstance(node, list):
+        for index, value in enumerate(node):
+            node[index] = _sanitize_large_ints(value)
+        return node
+    if isinstance(node, bool):
+        return node
+    if isinstance(node, int):
+        if node > safe_max or node < -safe_max:
+            return str(node)
+        return node
+    return node
+
+
+def _encode_varint(value: int) -> bytes:
+    """Encodes a non-negative integer as a protobuf base-128 varint."""
+    if value < 0:
+        raise ValueError("varint encoding requires non-negative integers")
+    out = bytearray()
+    while True:
+        byte = value & 0x7F
+        value >>= 7
+        if value:
+            out.append(byte | 0x80)
+        else:
+            out.append(byte)
+            break
+    return bytes(out)
+
+
+def _encode_dashboard_artifact(
+    *,
+    format_version: int,
+    payload_encoding: int,
+    compression: int,
+    payload: bytes,
+) -> bytes:
+    """Serializes the versioned dashboard envelope (see docs/dashboard.proto)."""
+    out = bytearray()
+    # field 1: uint32 format_version (varint)
+    out += _encode_varint((1 << 3) | 0)
+    out += _encode_varint(format_version)
+    # field 2: PayloadEncoding (varint)
+    out += _encode_varint((2 << 3) | 0)
+    out += _encode_varint(payload_encoding)
+    # field 3: Compression (varint)
+    out += _encode_varint((3 << 3) | 0)
+    out += _encode_varint(compression)
+    # field 4: bytes payload (length-delimited)
+    out += _encode_varint((4 << 3) | 2)
+    out += _encode_varint(len(payload))
+    out += payload
+    return bytes(out)
+
+
+def _gzip_deterministic(data: bytes) -> bytes:
+    """Compresses data with gzip using a fixed timestamp for reproducible output."""
+    return gzip.compress(data, compresslevel=9, mtime=0)
+
+
+def write_web_dashboard(database: dict[str, Any], artifact_path: str = "docs/carrier_data.pb") -> None:
+    """Writes the compiled database as a compact protobuf artifact for the web showcase.
+
+    The artifact is a ``DashboardArtifact`` protobuf envelope (see docs/dashboard.proto)
+    whose payload is deterministic-gzip-compressed, lossless JSON. Integers outside
+    JavaScript's safe integer range are encoded as decimal strings so precision is
+    preserved end-to-end. The previous ``docs/data.js`` artifact is removed.
 
     Args:
         database: The compiled static database.
+        artifact_path: Destination path for the compact protobuf artifact.
     """
-    os.makedirs("docs", exist_ok=True)
+    os.makedirs(os.path.dirname(artifact_path) or ".", exist_ok=True)
 
-    # Write docs/data.js
-    data_js_path = os.path.join("docs", "data.js")
-    with open(data_js_path, "w", encoding="utf-8") as f:
-        f.write(f"const DATABASE = {json.dumps(database, indent=2)};\n")
-    print(f"Compiled database written to {data_js_path}")
+    _sanitize_large_ints(database)
+    json_text = json.dumps(database, separators=(",", ":"), sort_keys=True)
+    compressed = _gzip_deterministic(json_text.encode("utf-8"))
+    artifact = _encode_dashboard_artifact(
+        format_version=1,
+        payload_encoding=1,  # PAYLOAD_ENCODING_JSON_UTF8
+        compression=1,       # COMPRESSION_GZIP
+        payload=compressed,
+    )
+
+    with open(artifact_path, "wb") as f:
+        f.write(artifact)
+
+    # Remove the legacy JavaScript artifact to keep the static bundle small.
+    legacy_path = os.path.join("docs", "data.js")
+    if os.path.exists(legacy_path):
+        os.remove(legacy_path)
+
+    print(f"Compiled compact protobuf dashboard written to {artifact_path} ({len(artifact)} bytes)")
     print("Static dashboard compiled successfully under docs/ folder!")
 
 

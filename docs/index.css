@@ -604,6 +604,7 @@ tr:last-child td {
     border-radius: 8px;
     padding: 1.25rem;
     margin-bottom: 1rem;
+    container-type: inline-size;
 }
 
 .uecap-summary-header {
@@ -617,6 +618,102 @@ tr:last-child td {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
     font-size: 0.85rem;
+}
+
+.inferred-label {
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.uecap-revisions {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--border-color);
+}
+
+.uecap-revisions-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.65rem;
+}
+
+.uecap-revisions-heading h4 {
+    flex: 0 0 auto;
+    font-size: 0.85rem;
+}
+
+.uecap-revisions-heading p {
+    max-width: 48rem;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    line-height: 1.4;
+    text-align: right;
+}
+
+.uecap-revisions-table-wrapper {
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.uecap-revisions-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.76rem;
+    text-align: left;
+}
+
+.uecap-revisions-table th,
+.uecap-revisions-table td {
+    padding: 0.55rem 0.65rem;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: top;
+}
+
+.uecap-revisions-table th {
+    background-color: rgba(255, 255, 255, 0.02);
+    color: var(--text-secondary);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.uecap-revisions-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.source-signature-details summary {
+    color: var(--accent);
+    cursor: pointer;
+    font-size: 0.72rem;
+    font-weight: 500;
+}
+
+.source-signature-details[open] .source-signature-list {
+    margin-top: 0.4rem;
+}
+
+.source-signature-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.source-signature-list code {
+    display: inline-block;
+    max-width: 100%;
+    padding: 0.12rem 0.3rem;
+    overflow-wrap: anywhere;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-size: 0.68rem;
 }
 
 .uecap-combinations-explorer {
@@ -928,6 +1025,16 @@ tr:last-child td {
         grid-template-columns: 1fr;
         gap: 0.35rem;
     }
+
+    .uecap-revisions-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .uecap-revisions-heading p {
+        text-align: left;
+    }
     
     .app-footer {
         padding: 1.5rem 1rem;
@@ -959,6 +1066,50 @@ tr:last-child td {
 }
 
 @media (max-width: 640px) {
+    .uecap-revisions-table-wrapper {
+        overflow: visible;
+        border: 0;
+    }
+
+    .uecap-revisions-table thead {
+        display: none;
+    }
+
+    .uecap-revisions-table tbody {
+        display: grid;
+        gap: 0.5rem;
+    }
+
+    .uecap-revisions-table tr {
+        display: block;
+        padding: 0.35rem 0.5rem;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+    }
+
+    .uecap-revisions-table td,
+    .uecap-revisions-table tbody tr:last-child td {
+        display: grid;
+        grid-template-columns: minmax(8rem, 40%) minmax(0, 1fr);
+        gap: 0.5rem;
+        padding: 0.35rem;
+        border: 0;
+    }
+
+    .uecap-revisions-table td::before {
+        content: attr(data-label);
+        color: var(--text-secondary);
+        font-size: 0.64rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+    }
+
+    .source-signature-list {
+        min-width: 0;
+    }
+
     /* Hide the default table header */
     #matrix-table thead {
         display: none;
@@ -1042,3 +1193,84 @@ tr:last-child td {
     }
 }
 
+@container (max-width: 640px) {
+    .uecap-summary-grid {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+    }
+
+    .uecap-revisions-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .uecap-revisions-heading p {
+        text-align: left;
+    }
+
+    .uecap-revisions-table-wrapper {
+        overflow: visible;
+        border: 0;
+    }
+
+    .uecap-revisions-table thead {
+        display: none;
+    }
+
+    .uecap-revisions-table tbody {
+        display: grid;
+        gap: 0.5rem;
+    }
+
+    .uecap-revisions-table tr {
+        display: block;
+        padding: 0.35rem 0.5rem;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+    }
+
+    .uecap-revisions-table td,
+    .uecap-revisions-table tbody tr:last-child td {
+        display: grid;
+        grid-template-columns: minmax(7rem, 40%) minmax(0, 1fr);
+        gap: 0.5rem;
+        padding: 0.35rem;
+        border: 0;
+    }
+
+    .uecap-revisions-table td::before {
+        content: attr(data-label);
+        color: var(--text-secondary);
+        font-size: 0.64rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+    }
+
+    .source-signature-list {
+        min-width: 0;
+    }
+}
+
+
+/* Loading overlay shown while the compact dashboard artifact loads */
+.loading-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-dark);
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+}
+
+.loading-error {
+    color: var(--red);
+    padding: 1rem 1.5rem;
+    text-align: center;
+}

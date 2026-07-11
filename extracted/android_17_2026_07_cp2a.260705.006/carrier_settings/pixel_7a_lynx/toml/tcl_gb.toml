@@ -1,0 +1,30 @@
+# Compiled automatically from CarrierSettings.pb overlays via Gemini
+
+[[carrier_id]]
+mcc_mnc = "23427"
+
+[settings]
+version = 77000000002
+
+[[settings.apns.apn]]
+name = "TCL MOVE"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "default", "dun" ]
+value = "move.dataxs.mobi"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|20"
+name = "IMS"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "ims" ]
+user_visible = false
+value = "ims"
+
+[settings.config]
+read_only_apn_types = []
+
+[settings.config.imsvoice]
+audio_codec_capability_payload_types = { imsvoice = { amrnb_payload_type = [ 98, 103 ], amrwb_payload_type = [ 100, 105 ], dtmfnb_payload_type = [ 97 ], dtmfwb_payload_type = [ 96 ] } }
+prack_supported_for_18x = true
