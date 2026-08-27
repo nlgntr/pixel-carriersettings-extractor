@@ -1,0 +1,91 @@
+# Compiled automatically from CarrierSettings.pb overlays via Gemini
+
+[[carrier_id]]
+mcc_mnc = "23415"
+gid1 = "22"
+
+[[carrier_id]]
+mcc_mnc = "23415"
+spn = "Gigs"
+
+[settings]
+version = 77000000007
+
+[[settings.apns.apn]]
+mtu = 1340
+name = "Gigs Data"
+password = "wap"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "default", "supl" ]
+user = "wap"
+user_editable = false
+value = "MY.INTERNET"
+
+[[settings.apns.apn]]
+bearer_bitmask = "14|18|20"
+name = "IMS"
+protocol = "ipv4v6"
+roaming_protocol = "ipv4v6"
+type = [ "ims" ]
+user_visible = false
+value = "IMS"
+
+[settings.config]
+carrier_certificate = []
+carrier_default_wfc_ims_mode = 1
+carrier_default_wfc_ims_roaming_mode = 1
+carrier_nr_availabilities = [ 1, 2 ]
+carrier_ussd_method = 2
+carrier_volte_available = true
+carrier_wfc_ims_available = true
+enabledMMS = false
+feature_access_codes = []
+hide_enhanced_4g_lte = true
+ims_reasoninfo_mapping = [ "338|busy everywhere|1017", "510|Call completed elsewhere|1014" ]
+min_udp_port_4500_nat_timeout_sec = 120
+read_only_apn_types = []
+show_4g_for_lte_data_icon = true
+smsToMmsTextThreshold = 10
+wfc_spn_format_idx = 12
+
+[settings.config.ims]
+ipv4_sip_mtu_size_cellular = 1280
+ipv6_sip_mtu_size_cellular = 1280
+registration_event_package_supported = false
+
+[settings.config.imsss]
+network_initiated_ussd_over_ims_supported = false
+xcap_over_ut_supported_rats = []
+
+[settings.config.imsvoice]
+audio_codec_capability_payload_types = { imsvoice = { amrnb_payload_type = [ 98, 103 ], amrwb_payload_type = [ 100, 105 ], dtmfnb_payload_type = [ 97 ], dtmfwb_payload_type = [ 96 ] } }
+conference_subscribe_type = 0
+evs_payload_description = { 127 = { imsvoice = { evs_codec_attribute_bitrate = [ 0, 6 ] } } }
+minimum_session_expires_timer_sec = 600
+ringback_timer_millis = 90000
+ringing_timer_millis = 90000
+session_refresh_method = 0
+session_refresher_type = 0
+
+[settings.config.iwlan]
+diffie_hellman_groups = [ 2 ]
+ike_remote_id_type = 11
+key_error_policy_config = "[{\"ApnName\": \"*\",\"ErrorTypes\": [{\"ErrorType\": \"IKE_PROTOCOL_ERROR_TYPE\",\"ErrorDetails\": [\"9002\"],\"RetryArray\": [\"1800\", \"-1\"],\"UnthrottlingEvents\": [\"APM_ENABLE_EVENT\", \"WIFI_DISABLE_EVENT\", \"WIFI_AP_CHANGED_EVENT\", \"WIFI_CALLING_DISABLE_EVENT\"]}]}]"
+mcc_mncs = [ "235-015" ]
+natt_keep_alive_timer_sec = 30
+
+[settings.config.qns]
+block_iwlan_in_international_roaming_without_wwan = true
+idle_eutran_rsrp = [ 18446744073709551506, 18446744073709551500 ]
+idle_geran_rssi = [ 18446744073709551562, 18446744073709551556 ]
+idle_utran_rscp = [ 18446744073709551511, 18446744073709551506 ]
+ims_wlan_hysteresis_timer_ms = [ 5000, 5000, 5000 ]
+ims_wwan_hysteresis_timer_ms = [ 5000, 5000, 5000 ]
+support_wfc_recovery = false
+video_eutran_rsrp = [ 18446744073709551506, 18446744073709551500 ]
+video_geran_rssi = [ 18446744073709551517, 18446744073709551514 ]
+video_utran_rscp = [ 18446744073709551511, 18446744073709551506 ]
+voice_eutran_rsrp = [ 18446744073709551506, 18446744073709551500 ]
+voice_geran_rssi = [ 18446744073709551517, 18446744073709551514 ]
+voice_utran_rscp = [ 18446744073709551511, 18446744073709551506 ]
