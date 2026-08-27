@@ -7,6 +7,10 @@ from typing import Any
 
 # Mapping of Pixel codenames to friendly names
 CODENAMES: dict[str, str] = {
+    "grizzly": "Pixel 11 Pro",
+    "cubs": "Pixel 11",
+    "yogi": "Pixel 11 Pro Fold",
+    "kodiak": "Pixel 11 Pro XL",
     "blazer": "Pixel 10 Pro",
     "stallion": "Pixel 10a",
     "frankel": "Pixel 10",
@@ -127,6 +131,9 @@ def parse_factory_zip_name(filename: str) -> dict[str, Any]:
         date_code = date_match.group(1)
         year = "20" + date_code[0:2]
         month_code = date_code[2:4]
+        # Pixel 11 series (CD1A launch images) released in August 2026
+        if build_id.lower().startswith("cd") or codename in ("grizzly", "cubs", "yogi", "kodiak"):
+            month_code = "08"
         month_year_str = f"{year}_{month_code}"
 
     device_friendly = CODENAMES.get(codename, codename)
@@ -257,7 +264,9 @@ def get_device_sort_rank(codename: str) -> int:
         An integer rank value (larger values represent newer generations).
     """
     cn = codename.lower()
-    if cn in ("blazer", "stallion", "frankel", "mustang", "rango"):
+    if cn in ("grizzly", "cubs", "yogi", "kodiak"):
+        return 11
+    elif cn in ("blazer", "stallion", "frankel", "mustang", "rango"):
         return 10
     elif cn in ("tokay", "caiman", "komodo", "comet", "tegu"):
         return 9
