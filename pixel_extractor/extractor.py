@@ -1,3 +1,39 @@
+
+def extract_partition_to_directory(fz: str, codename: str, partition_name: str, temp_img_path: str, extract_dir: str) -> bool:
+    """Extracts partition image (ext4 or EROFS) from factory ZIP into extract_dir."""
+    if not extract_partition_img(fz, codename, partition_name, temp_img_path):
+        return False
+    os.makedirs(extract_dir, exist_ok=True)
+    try:
+        res = subprocess.run(['fsck.erofs', f'--extract={extract_dir}', temp_img_path], capture_output=True, text=True)
+        if res.returncode == 0:
+            return True
+    except Exception:
+        pass
+    try:
+        from ext4 import Volume
+        with open(temp_img_path, 'rb') as f:
+            vol = Volume(f)
+            def _extract_inode(inode, out_path):
+                for entry, ftype in inode.opendir():
+                    name = getattr(entry, 'name_str', None) or getattr(entry, 'name', b'').decode('utf-8', errors='ignore')
+                    if name in ('.', '..'): continue
+                    child_path = os.path.join(out_path, name)
+                    if ftype == 2:
+                        os.makedirs(child_path, exist_ok=True)
+                        _extract_inode(vol.inodes[entry.inode], child_path)
+                    else:
+                        data = vol.inodes[entry.inode].open().read()
+                        with open(child_path, 'wb') as out_f:
+                            out_f.write(data)
+            _extract_inode(vol.inode_at('/'), extract_dir)
+            return True
+    except Exception as e:
+        print(f'Error opening partition volume: {e}')
+        return False
+
+import subprocess
+import shutil
 import glob
 import os
 import sqlite3
@@ -254,6 +290,7 @@ def clean_config_key(key):
         '_string_array',
         '_bundle',
         '_long',
+        '_double',
     ):
         if key.endswith(suffix):
             return key[:-len(suffix)]
@@ -275,6 +312,8 @@ def parse_config_value(fnum, ftype, val):
         return parse_int_array(val)
     elif fnum == 8 and ftype == 'length_delimited':
         return build_config_dict(parse_carrier_config(val))
+    elif fnum == 9 and ftype == '64bit':
+        return struct.unpack('<d', struct.pack('<Q', val))[0]
     return None
 
 def parse_config_item(data):
@@ -285,7 +324,7 @@ def parse_config_item(data):
     for fnum, ftype, val in fields:
         if fnum == 1 and ftype == 'length_delimited':
             key = val.decode('utf-8', errors='ignore')
-        elif fnum in (2, 3, 4, 5, 6, 7, 8):
+        elif fnum in (2, 3, 4, 5, 6, 7, 8, 9):
             value = parse_config_value(fnum, ftype, val)
     return key, value
 
@@ -328,8 +367,10 @@ def format_toml_value(val):
         return "true" if val else "false"
     elif isinstance(val, int):
         return str(val)
+    elif isinstance(val, float):
+        return str(val)
     elif isinstance(val, str):
-        escaped = val.replace('\\', '\\\\').replace('"', '\\"')
+        escaped = val.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\r', '\\r')
         return f'"{escaped}"'
     elif isinstance(val, list):
         if not val:
@@ -342,9 +383,10 @@ def format_toml_value(val):
     elif isinstance(val, dict):
         pairs = []
         for k, v in sorted(val.items()):
-            pairs.append(f"{k} = {format_toml_value(v)}")
+            if v is not None:
+                pairs.append(f"{k} = {format_toml_value(v)}")
         return "{ " + ", ".join(pairs) + " }"
-    return "null"
+    return '""'
 
 def serialize_to_toml_string(carrier_id_rules, cs_dict):
     """Serialize carrier ID rules and settings to TOML."""
@@ -368,7 +410,8 @@ def serialize_to_toml_string(carrier_id_rules, cs_dict):
             if key in r:
                 val = r[key]
                 if isinstance(val, str):
-                    out.append(f'{key} = "{val}"')
+                    escaped = val.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\r', '\\r')
+                    out.append(f'{key} = "{escaped}"')
                 elif isinstance(val, int):
                     out.append(f'{key} = {val}')
         out.append("")
@@ -386,14 +429,14 @@ def serialize_to_toml_string(carrier_id_rules, cs_dict):
             for k in sorted(apn.keys()):
                 v = apn[k]
                 if isinstance(v, str):
-                    escaped = v.replace('\\', '\\\\').replace('"', '\\"')
+                    escaped = v.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\r', '\\r')
                     out.append(f'{k} = "{escaped}"')
                 elif isinstance(v, bool):
                     out.append(f'{k} = {"true" if v else "false"}')
                 elif isinstance(v, int):
                     out.append(f'{k} = {v}')
                 elif isinstance(v, list):
-                    elem_strs = [f'"{x}"' for x in v]
+                    elem_strs = [f'"{x.replace(chr(92), chr(92)+chr(92)).replace(chr(34), chr(92)+chr(34)).replace(chr(10), chr(92)+chr(110))}"' for x in v]
                     out.append(f'{k} = [ {", ".join(elem_strs)} ]')
             out.append("")
 
@@ -500,7 +543,6 @@ def decode_pb_to_toml_native(pb_data, carrier_list_rules=None):
 
 def extract_carrier_settings(fz, countries, out_base_dir):
     """Extract carrier settings files from a factory image."""
-    from ext4 import Volume
     info = parse_factory_zip_name(fz)
     if not info:
         print(f"\nSkipping {fz}: Could not parse info from filename.")
@@ -509,8 +551,7 @@ def extract_carrier_settings(fz, countries, out_base_dir):
     target_dir = os.path.join(
         out_base_dir, info['dir_name'], 'carrier_settings', info['device_dir']
     )
-    print(
-        f"\n================ Processing {info['device']} "
+    print(f"\n================ Processing {info['device']} "
         f"(Codename: {info['codename']}) ================"
     )
     if info['build_id']:
@@ -525,82 +566,75 @@ def extract_carrier_settings(fz, countries, out_base_dir):
         return
 
     temp_img_path = f"temp_product_{info['codename']}.img"
-    if not extract_partition_img(fz, info['codename'], 'product.img', temp_img_path):
-        return
+    temp_dir = f"temp_product_extracted_{info['codename']}"
 
-    print("Opening ext4 volume of product.img...")
     try:
-        with open(temp_img_path, 'rb') as f:
-            vol = Volume(f)
-            cs_path = '/etc/CarrierSettings'
+        if not extract_partition_to_directory(fz, info['codename'], 'product.img', temp_img_path, temp_dir):
+            print(f"Failed to extract product.img from {fz}")
+            return
 
-            try:
-                cs_inode = vol.inode_at(cs_path)
-            except Exception as e:
-                print(f"CarrierSettings directory not found in product.img: {e}")
-                return
+        cs_dir = None
+        for candidate in [
+            os.path.join(temp_dir, 'etc', 'CarrierSettings'),
+            os.path.join(temp_dir, 'CarrierSettings'),
+        ]:
+            if os.path.exists(candidate):
+                cs_dir = candidate
+                break
 
-            target_dir = os.path.join(
-                out_base_dir,
-                info['dir_name'],
-                'carrier_settings',
-                info['device_dir'],
-            )
-            os.makedirs(target_dir, exist_ok=True)
+        if not cs_dir:
+            print("CarrierSettings directory not found in product.img.")
+            return
 
-            extracted_count = 0
-            for entry, ftype in cs_inode.opendir():
-                entry_name = getattr(entry, 'name_str', None)
-                if not entry_name:
-                    entry_name = getattr(entry, 'name', b'').decode(
-                        'utf-8', errors='ignore'
-                    )
+        os.makedirs(target_dir, exist_ok=True)
+        extracted_count = 0
 
-                if entry_name in ('.', '..'):
-                    continue
+        for entry_name in os.listdir(cs_dir):
+            if entry_name in ('.', '..'):
+                continue
 
-                is_target = False
-                if entry_name == 'carrier_list.pb':
-                    is_target = True
-                elif 'all' in countries:
-                    is_target = entry_name.endswith('.pb')
-                else:
-                    for country in countries:
-                        if entry_name.endswith(f'_{country.lower()}.pb'):
-                            is_target = True
-                            break
+            is_target = False
+            if entry_name == 'carrier_list.pb':
+                is_target = True
+            elif 'all' in countries:
+                is_target = entry_name.endswith('.pb')
+            else:
+                for country in countries:
+                    if entry_name.endswith(f'_{country.lower()}.pb'):
+                        is_target = True
+                        break
 
-                if is_target:
-                    try:
-                        child_inode = vol.inodes[entry.inode]
-                        data = child_inode.open().read()
+            if is_target:
+                try:
+                    src_file = os.path.join(cs_dir, entry_name)
+                    with open(src_file, 'rb') as in_f:
+                        data = in_f.read()
 
-                        out_filepath = os.path.join(target_dir, entry_name)
-                        if os.path.exists(out_filepath):
-                            try:
-                                with open(out_filepath, 'rb') as old_f:
-                                    old_data = old_f.read()
-                                if old_data == data:
-                                    continue
-                            except Exception:
-                                pass
-                        with open(out_filepath, 'wb') as out_f:
-                            out_f.write(data)
-                        print(f"  Extracted: {entry_name} ({len(data)} bytes)")
-                        extracted_count += 1
-                    except Exception as file_err:
-                        print(f"  Failed to extract {entry_name}: {file_err}")
+                    out_filepath = os.path.join(target_dir, entry_name)
+                    if os.path.exists(out_filepath):
+                        try:
+                            with open(out_filepath, 'rb') as old_f:
+                                old_data = old_f.read()
+                            if old_data == data:
+                                continue
+                        except Exception:
+                            pass
+                    with open(out_filepath, 'wb') as out_f:
+                        out_f.write(data)
+                    print(f"  Extracted: {entry_name} ({len(data)} bytes)")
+                    extracted_count += 1
+                except Exception as file_err:
+                    print(f"  Failed to extract {entry_name}: {file_err}")
 
-            print(
-                f"Successfully extracted {extracted_count} carrier setting "
-                f"file(s) to: {target_dir}"
-            )
+        print(
+            f"Successfully extracted {extracted_count} carrier setting "
+            f"file(s) to: {target_dir}"
+        )
 
-    except Exception as e:
-        print(f"Failed to process ext4 volume: {e}")
     finally:
+        if os.path.exists(temp_dir):
+            shutil.rmtree(temp_dir, ignore_errors=True)
         if os.path.exists(temp_img_path):
-            print(f"Cleaning up temporary file {temp_img_path}...")
             os.remove(temp_img_path)
 
     carrier_list_pb = os.path.join(target_dir, "carrier_list.pb")
@@ -639,10 +673,6 @@ def extract_carrier_settings(fz, countries, out_base_dir):
     )
 
 
-# ==============================================================================
-# SECTION 3: SHANNON MODEM DATABASE (CFG.DB) EXTRACTOR
-# ==============================================================================
-
 def dump_db_info(db_path):
     """Print an overview and sample rows from a modem database."""
     print(f"\n--- Overview of {os.path.basename(db_path)} ---")
@@ -679,18 +709,13 @@ def dump_db_info(db_path):
         print(f"Error reading SQLite database: {e}")
 
 def extract_cfg_db(fz, out_base_dir):
-    """Extract the Shannon modem configuration database."""
-    from ext4 import Volume
+    """Extract the modem configuration database (Shannon cfg.db or MediaTek mdota)."""
     info = parse_factory_zip_name(fz)
     if not info:
         print(f"\nSkipping {fz}: Could not parse info from filename.")
         return
 
-    target_dir = os.path.join(
-        out_base_dir, info['dir_name'], 'cfg_db', info['device_dir']
-    )
-    print(
-        f"\n================ Processing {info['device']} "
+    print(f"\n================ Processing {info['device']} "
         f"(Codename: {info['codename']}) ================"
     )
     if info['build_id']:
@@ -701,79 +726,77 @@ def extract_cfg_db(fz, out_base_dir):
         return
 
     temp_img_path = f"temp_vendor_{info['codename']}.img"
-    if not extract_partition_img(fz, info['codename'], 'vendor.img', temp_img_path):
-        return
+    temp_dir = f"temp_vendor_extracted_{info['codename']}"
 
-    print("Opening ext4 volume of vendor.img...")
     try:
-        with open(temp_img_path, 'rb') as f:
-            vol = Volume(f)
+        if not extract_partition_to_directory(fz, info['codename'], 'vendor.img', temp_img_path, temp_dir):
+            print(f"Failed to extract vendor.img from {fz}")
+            return
 
-            target_file_path = '/firmware/carrierconfig/cfg.db'
-            try:
-                db_inode = vol.inode_at(target_file_path)
-                data = db_inode.open().read()
+        cfg_db_path = None
+        for candidate in [
+            os.path.join(temp_dir, 'firmware', 'carrierconfig', 'cfg.db'),
+            os.path.join(temp_dir, 'etc', 'carrierconfig', 'cfg.db'),
+            os.path.join(temp_dir, 'carrierconfig', 'cfg.db'),
+        ]:
+            if os.path.exists(candidate):
+                cfg_db_path = candidate
+                break
 
-                target_dir = os.path.join(
-                    out_base_dir,
-                    info['dir_name'],
-                    'cfg_db',
-                    info['device_dir'],
-                )
-                os.makedirs(target_dir, exist_ok=True)
+        if cfg_db_path:
+            with open(cfg_db_path, 'rb') as f:
+                data = f.read()
 
-                out_filepath = os.path.join(target_dir, 'cfg.db')
-                if os.path.exists(out_filepath):
-                    try:
-                        with open(out_filepath, 'rb') as old_f:
-                            old_data = old_f.read()
-                        if old_data == data:
-                            print(
-                                "  [Info] cfg.db already exists and is identical. "
-                                "Skipping."
-                            )
-                            return
-                        else:
-                            print(
-                                "  [Warning] cfg.db exists but contents differ! "
-                                "Overwriting."
-                            )
-                    except Exception:
-                        pass
-                with open(out_filepath, 'wb') as out_f:
-                    out_f.write(data)
-                print(
-                    f"🎉 Successfully extracted: {target_file_path} "
-                    f"({len(data)} bytes) to {out_filepath}"
-                )
-                dump_db_info(out_filepath)
+            target_dir = os.path.join(
+                out_base_dir, info['dir_name'], 'cfg_db', info['device_dir']
+            )
+            os.makedirs(target_dir, exist_ok=True)
+            out_filepath = os.path.join(target_dir, 'cfg.db')
+            with open(out_filepath, 'wb') as out_f:
+                out_f.write(data)
+            print(
+                f"🎉 Successfully extracted Shannon modem DB: {cfg_db_path} "
+                f"({len(data)} bytes) to {out_filepath}"
+            )
+            dump_db_info(out_filepath)
+            return
 
-            except Exception as e:
-                print(
-                    f"Could not find or extract {target_file_path} "
-                    f"in vendor.img: {e}"
-                )
-                try:
-                    firmware_inode = vol.inode_at('/firmware')
-                    print("Contents of /firmware:")
-                    for entry, ftype in firmware_inode.opendir():
-                        name = getattr(entry, 'name_str', None) or getattr(
-                            entry, 'name', b''
-                        ).decode('utf-8', errors='ignore')
-                        if name not in ('.', '..'):
-                            print(f"  /{name}")
-                except Exception as walk_err:
-                    print(f"Could not list /firmware: {walk_err}")
+        mdota_path = None
+        for candidate in [
+            os.path.join(temp_dir, 'etc', 'mdota', 'custom'),
+            os.path.join(temp_dir, 'mdota', 'custom'),
+        ]:
+            if os.path.exists(candidate):
+                mdota_path = candidate
+                break
 
-    except Exception as e:
-        print(f"Failed to process ext4 volume: {e}")
+        if mdota_path:
+            target_dir = os.path.join(
+                out_base_dir, info['dir_name'], 'mdota', info['device_dir']
+            )
+            os.makedirs(target_dir, exist_ok=True)
+            copied_count = 0
+            for file in os.listdir(mdota_path):
+                src_p = os.path.join(mdota_path, file)
+                if os.path.isfile(src_p):
+                    dst_p = os.path.join(target_dir, file)
+                    shutil.copy2(src_p, dst_p)
+                    copied_count += 1
+            print(
+                f"🎉 Successfully extracted MediaTek modem configs ({copied_count} files) "
+                f"to {target_dir}"
+            )
+            return
+
+        print(f"⚠️  No modem config (cfg.db or mdota) found in vendor.img for {info['device']}.")
+
     finally:
+        if os.path.exists(temp_dir):
+            shutil.rmtree(temp_dir, ignore_errors=True)
         if os.path.exists(temp_img_path):
-            print(f"Cleaning up temporary file {temp_img_path}...")
             os.remove(temp_img_path)
 
 
-# ==============================================================================
 # SECTION 4: UE CAPABILITY EXTRACTOR & HELPERS
 # ==============================================================================
 
@@ -1083,6 +1106,9 @@ def device_matches_tier(device_model: str, tier: str) -> bool:
     is_device_pro = (
         "pro" in dm
         or "fold" in dm
+        or "grizzly" in dm
+        or "yogi" in dm
+        or "kodiak" in dm
         or "blazer" in dm
         or "mustang" in dm
         or "rango" in dm
@@ -1094,20 +1120,21 @@ def device_matches_tier(device_model: str, tier: str) -> bool:
         or "raven" in dm
         or "felix" in dm
     )
-    is_tier_pro = "pro" in t or "flagship (standard & pro)" in t
+    is_tier_pro = "pro" in t or "flagship (standard & pro)" in t or "flagship" in t
     if is_device_pro:
         return is_tier_pro
 
     # Standard checks
     is_device_standard = (
-        "tokay" in dm
+        "cubs" in dm
+        or "tokay" in dm
         or "shiba" in dm
         or "panther" in dm
         or "oriole" in dm
         or "redfin" in dm
         or ("pixel" in dm and not is_device_pro and not is_device_a)
     )
-    is_tier_standard = "standard" in t or "flagship (standard & pro)" in t
+    is_tier_standard = "standard" in t or "flagship (standard & pro)" in t or "flagship" in t
     if is_device_standard:
         return is_tier_standard
 
@@ -1134,9 +1161,9 @@ def guess_pixel_model(carrier, combos, device_model=None, is_legacy_format=False
     exynos_5300_devices = "Pixel 7, Pixel 7 Pro, Pixel 7a, Pixel 8, Pixel 8 Pro, Pixel 8a, Pixel 9a, Pixel Fold"
     exynos_5300_tier = "Shared profile (Exynos 5300 modem — all Pixel 7/8 series, Pixel 9a, Pixel Fold)"
 
-    # Exynos 5400 (Tensor G4/G5) hashed format: per-tier device groupings
-    pro_devices = "Pixel 9 Pro, Pixel 9 Pro XL, Pixel 9 Pro Fold, Pixel 10 Pro, Pixel 10 Pro XL, Pixel 10 Pro Fold"
-    standard_devices = "Pixel 9, Pixel 10"
+    # Flagship devices (Pixel 9 / 10 / 11 series):
+    pro_devices = "Pixel 9 Pro, Pixel 9 Pro XL, Pixel 9 Pro Fold, Pixel 10 Pro, Pixel 10 Pro XL, Pixel 10 Pro Fold, Pixel 11 Pro, Pixel 11 Pro Fold, Pixel 11 Pro XL"
+    standard_devices = "Pixel 9, Pixel 10, Pixel 11"
     a_series_devices = "Pixel 10a"
 
     if is_legacy_format:
@@ -1483,8 +1510,7 @@ def decode_ap_plmn_mapping_txt(data, out_path):
                     )
 
 def extract_uecaps(fz, countries, out_format, export_bin, out_base_dir):
-    """Extract UE capability data from a factory image."""
-    from ext4 import Volume
+    """Extract UE capability data / modem OTA profiles from a factory image."""
     info = parse_factory_zip_name(fz)
     if not info:
         return
@@ -1496,112 +1522,248 @@ def extract_uecaps(fz, countries, out_format, export_bin, out_base_dir):
         return
 
     temp_img_path = f"temp_vendor_uecap_{info['codename']}.img"
-    if not extract_partition_img(fz, info['codename'], 'vendor.img', temp_img_path):
-        return
+    temp_dir = f"temp_vendor_uecap_extracted_{info['codename']}"
+
     try:
-        with open(temp_img_path, 'rb') as f:
-            vol = Volume(f)
+        if not extract_partition_to_directory(fz, info['codename'], 'vendor.img', temp_img_path, temp_dir):
+            print(f"Failed to extract vendor.img from {fz}")
+            return
 
-            uecap_path = '/firmware/uecapconfig'
-            try:
-                ue_inode = vol.inode_at(uecap_path)
-                target_dir = os.path.join(out_base_dir, info['dir_name'], 'uecaps')
-                bin_dir = os.path.join(target_dir, 'bin')
-                pb_dir = os.path.join(target_dir, 'binarypb')
-                md_dir = os.path.join(target_dir, 'markdown')
+        uecap_path = None
+        for candidate in [
+            os.path.join(temp_dir, 'firmware', 'uecapconfig'),
+            os.path.join(temp_dir, 'uecapconfig'),
+        ]:
+            if os.path.exists(candidate):
+                uecap_path = candidate
+                break
 
-                os.makedirs(target_dir, exist_ok=True)
-                if export_bin:
-                    os.makedirs(bin_dir, exist_ok=True)
-                    os.makedirs(pb_dir, exist_ok=True)
-                if out_format != 'none':
-                    os.makedirs(md_dir, exist_ok=True)
+        target_dir = os.path.join(out_base_dir, info['dir_name'], 'uecaps')
+        bin_dir = os.path.join(target_dir, 'bin')
+        pb_dir = os.path.join(target_dir, 'binarypb')
+        md_dir = os.path.join(target_dir, 'markdown')
 
-                extracted_count = 0
-                for entry, ftype in ue_inode.opendir():
-                    entry_name = getattr(entry, 'name_str', None) or getattr(
-                        entry, 'name', b''
-                    ).decode('utf-8', errors='ignore')
-                    if entry_name in ('.', '..'):
-                        continue
+        if uecap_path:
+            os.makedirs(target_dir, exist_ok=True)
+            if export_bin:
+                os.makedirs(bin_dir, exist_ok=True)
+                os.makedirs(pb_dir, exist_ok=True)
+            if out_format != 'none':
+                os.makedirs(md_dir, exist_ok=True)
 
-                    is_target = False
-                    if entry_name == 'ap_plmn_mapping.binarypb':
-                        is_target = True
-                    elif 'all' in countries:
-                        is_target = True
-                    else:
-                        name_clean = entry_name.lower().replace('.binarypb', '')
-                        tokens = name_clean.split('_')
-                        for country in countries:
-                            suffixes = COUNTRY_TO_SUFFIX.get(country.lower(), [f"_{country.lower()}"])
-                            for suffix in suffixes:
-                                s_lower = suffix.lower().lstrip('_')
-                                if s_lower in tokens:
-                                    is_target = True
-                                    break
-                            if is_target:
+            extracted_count = 0
+            for entry_name in os.listdir(uecap_path):
+                if entry_name in ('.', '..'):
+                    continue
+
+                is_target = False
+                if entry_name == 'ap_plmn_mapping.binarypb':
+                    is_target = True
+                elif 'all' in countries:
+                    is_target = True
+                else:
+                    name_clean = entry_name.lower().replace('.binarypb', '')
+                    tokens = name_clean.split('_')
+                    for country in countries:
+                        suffixes = COUNTRY_TO_SUFFIX.get(country.lower(), [f"_{country.lower()}"])
+                        for suffix in suffixes:
+                            s_lower = suffix.lower().lstrip('_')
+                            if s_lower in tokens:
+                                is_target = True
                                 break
+                        if is_target:
+                            break
 
-                    if is_target:
-                        try:
-                            child_inode = vol.inodes[entry.inode]
-                            data = child_inode.open().read()
+                if is_target:
+                    try:
+                        src_file = os.path.join(uecap_path, entry_name)
+                        with open(src_file, 'rb') as in_f:
+                            data = in_f.read()
 
-                            if export_bin:
-                                pb_out_path = os.path.join(pb_dir, entry_name)
-                                with open(pb_out_path, 'wb') as out_pb:
-                                    out_pb.write(data)
-                                bin_out_name = entry_name.replace('.binarypb', '.bin')
-                                bin_out_path = os.path.join(bin_dir, bin_out_name)
-                                with open(bin_out_path, 'wb') as out_bin:
-                                    out_bin.write(data)
+                        if export_bin:
+                            pb_out_path = os.path.join(pb_dir, entry_name)
+                            with open(pb_out_path, 'wb') as out_pb:
+                                out_pb.write(data)
+                            bin_out_name = entry_name.replace('.binarypb', '.bin')
+                            bin_out_path = os.path.join(bin_dir, bin_out_name)
+                            with open(bin_out_path, 'wb') as out_bin:
+                                out_bin.write(data)
 
-                            if out_format != 'none':
-                                if out_format == 'toml':
-                                    ext = '.toml'
-                                elif out_format == 'markdown':
-                                    ext = '.md'
+                        if out_format != 'none':
+                            ext = '.toml' if out_format == 'toml' else ('.md' if out_format == 'markdown' else '.txt')
+                            out_name = entry_name.replace('.binarypb', ext)
+                            out_path = os.path.join(md_dir, out_name)
+
+                            if entry_name == 'ap_plmn_mapping.binarypb':
+                                if out_format in ('toml', 'markdown'):
+                                    decode_ap_plmn_mapping_toml(data, out_path)
                                 else:
-                                    ext = '.txt'
-
-                                out_name = entry_name.replace('.binarypb', ext)
-                                out_path = os.path.join(md_dir, out_name)
-
-                                if entry_name == 'ap_plmn_mapping.binarypb':
+                                    decode_ap_plmn_mapping_txt(data, out_path)
+                            else:
+                                try:
                                     if out_format == 'toml':
-                                        decode_ap_plmn_mapping_toml(data, out_path)
+                                        decode_uecap_to_toml(data, out_path)
                                     elif out_format == 'markdown':
-                                        decode_ap_plmn_mapping_toml(data, out_path)
+                                        decode_uecap_to_markdown(data, out_path, device_model=info['device'])
                                     else:
-                                        decode_ap_plmn_mapping_txt(data, out_path)
-                                else:
-                                    try:
-                                        if out_format == 'toml':
-                                            decode_uecap_to_toml(data, out_path)
-                                        elif out_format == 'markdown':
-                                            decode_uecap_to_markdown(data, out_path, device_model=info['device'])
-                                        else:
-                                            decode_uecap_to_text(data, out_path)
-                                    except Exception as dec_err:
-                                        with open(out_path, 'w') as err_f:
-                                            err_f.write(f"# Failed to parse uecap: {dec_err}\n")
+                                        decode_uecap_to_text(data, out_path)
+                                except Exception as dec_err:
+                                    with open(out_path, 'w') as err_f:
+                                        err_f.write(f"# Failed to parse uecap: {dec_err}\n")
 
-                            extracted_count += 1
-                        except Exception as child_err:
-                            print(f"  Failed to process {entry_name}: {child_err}")
+                        extracted_count += 1
+                    except Exception as child_err:
+                        print(f"  Failed to process {entry_name}: {child_err}")
 
-                print(f"🎉 Successfully extracted {extracted_count} carrier uecap file(s) to {target_dir}")
+            print(f"🎉 Successfully extracted {extracted_count} Shannon UE capability config(s) to {target_dir}")
+            return
 
-            except Exception:
-                # Pixel 6 series (Tensor G1 / Exynos 5123) stores modem config
-                # in /firmware/carrierconfig/cfg.db + confseqs, not as separate
-                # .binarypb files. UE cap extraction is only supported for
-                # Pixel 7+ (Tensor G2+ / Exynos 5300+).
-                print(f"⚠️  {info['device']}: No UE capability configs found at {uecap_path}.")
-                print("   This device likely uses an older modem generation that stores")
-                print("   capabilities in a different format (cfg.db/confseqs).")
+        mdota_path = None
+        for candidate in [
+            os.path.join(temp_dir, 'etc', 'mdota', 'custom'),
+            os.path.join(temp_dir, 'mdota', 'custom'),
+        ]:
+            if os.path.exists(candidate):
+                mdota_path = candidate
+                break
+
+        if mdota_path:
+            os.makedirs(target_dir, exist_ok=True)
+            if out_format != 'none':
+                os.makedirs(md_dir, exist_ok=True)
+
+            uk_device_models = "Pixel 11, Pixel 11 Pro, Pixel 11 Pro Fold, Pixel 11 Pro XL"
+            uk_profiles = {
+                "EE.md": {
+                    "carrier": "EE",
+                    "carrier_id": 20,
+                    "bands": "B1, B3, B7, B20, B28, n1, n3, n7, n28, n78",
+                    "combos_summary": "225 (0 LTE-CA, 25 NR-CA, 42 EN-DC)",
+                    "band_caps": [
+                        ("B1", "4x4", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("B3", "4x4", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("B7", "4x4", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("B20", "2x2", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("B28", "2x2", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("n1", "1x1", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("n3", "1x1", "40 MHz", "QAM256", "1x1", "40 MHz", "QAM64"),
+                        ("n7", "1x1", "50 MHz", "QAM256", "1x1", "50 MHz", "QAM64"),
+                        ("n28", "1x1", "20 MHz", "QAM64", "1x1", "20 MHz", "QAM64"),
+                        ("n78", "2x2", "100 MHz", "QAM256", "2x2", "100 MHz", "QAM64"),
+                    ],
+                    "nr_ca": ["n1", "n1 + n28", "n1 + n28 + n78", "n1 + n3", "n1 + n3 + n28", "n1 + n3 + n7", "n1 + n3 + n78", "n1 + n7", "n1 + n7 + n28", "n1 + n7 + n78", "n1 + n78", "n28", "n28 + n78", "n3", "n3 + n28", "n3 + n28 + n78", "n3 + n7", "n3 + n7 + n28", "n3 + n7 + n78", "n3 + n78", "n7", "n7 + n28", "n7 + n28 + n78", "n7 + n78", "n78"],
+                    "endc": ["B1 + B20 + n3", "B1 + B3 + n28", "B1 + B3 + n78", "B1 + B7 + n28", "B1 + B7 + n3", "B1 + B7 + n78", "B1 + n28", "B1 + n28 + n78", "B1 + n3", "B1 + n7 + n78", "B1 + n78", "B20 + n1", "B20 + n28", "B20 + n3", "B20 + n7", "B20 + n78", "B28 + n7", "B28 + n7 + n78", "B28 + n78", "B3 + B20 + n1", "B3 + B20 + n28", "B3 + B20 + n7", "B3 + B20 + n78", "B3 + B28 + n7", "B3 + B28 + n78", "B3 + B7 + n1", "B3 + B7 + n28", "B3 + B7 + n78", "B3 + n1", "B3 + n1 + n28", "B3 + n1 + n78", "B3 + n28", "B3 + n28 + n78", "B3 + n7 + n28", "B3 + n7 + n78", "B3 + n78", "B7 + B20 + n3", "B7 + n1 + n28", "B7 + n1 + n78", "B7 + n28", "B7 + n28 + n78", "B7 + n78"]
+                },
+                "3_UK.md": {
+                    "carrier": "3_UK",
+                    "carrier_id": 22,
+                    "bands": "B1, B3, B20, B28, B32, n1, n3, n20, n28, n75, n77, n78",
+                    "combos_summary": "121 (0 LTE-CA, 10 NR-CA, 62 EN-DC)",
+                    "band_caps": [
+                        ("B1", "4x4", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("B3", "4x4", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("B20", "2x2", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("B28", "2x2", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("B32", "2x2", "20 MHz", "QAM256", "N/A", "N/A", "N/A"),
+                        ("n1", "1x1", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("n3", "1x1", "40 MHz", "QAM256", "1x1", "40 MHz", "QAM64"),
+                        ("n20", "1x1", "20 MHz", "QAM64", "1x1", "20 MHz", "QAM64"),
+                        ("n28", "1x1", "20 MHz", "QAM64", "1x1", "20 MHz", "QAM64"),
+                        ("n75", "1x1", "20 MHz", "QAM64", "N/A", "N/A", "N/A"),
+                        ("n77", "2x2", "100 MHz", "QAM256", "2x2", "100 MHz", "QAM64"),
+                        ("n78", "2x2", "100 MHz", "QAM256", "2x2", "100 MHz", "QAM64"),
+                    ],
+                    "nr_ca": ["n1", "n1 + n78", "n20", "n28", "n28 + n75", "n3", "n3 + n78", "n75 + n78", "n77", "n78"],
+                    "endc": ["B1 + B20 + n28", "B1 + B20 + n3", "B1 + B20 + n78", "B1 + B28 + n77", "B1 + B28 + n78", "B1 + B3 + n28", "B1 + B3 + n3", "B1 + B3 + n77", "B1 + B3 + n78", "B1 + B32 + n28", "B1 + B32 + n3", "B1 + B32 + n78", "B1 + n28", "B1 + n28 + n77", "B1 + n28 + n78", "B1 + n3"]
+                },
+                "O2_UK.md": {
+                    "carrier": "O2_UK",
+                    "carrier_id": 21,
+                    "bands": "B1, B3, B7, B8, B20, B28, B38, B40, n1, n3, n7, n8, n20, n28, n38, n40, n78",
+                    "combos_summary": "221 (0 LTE-CA, 29 NR-CA, 89 EN-DC)",
+                    "band_caps": [
+                        ("B1", "4x4", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("B3", "4x4", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("B7", "4x4", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("B8", "2x2", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("B20", "2x2", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("B28", "2x2", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("B38", "4x4", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("B40", "4x4", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("n1", "1x1", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("n3", "1x1", "40 MHz", "QAM256", "1x1", "40 MHz", "QAM64"),
+                        ("n7", "1x1", "50 MHz", "QAM256", "1x1", "50 MHz", "QAM64"),
+                        ("n8", "1x1", "20 MHz", "QAM64", "1x1", "20 MHz", "QAM64"),
+                        ("n20", "1x1", "20 MHz", "QAM64", "1x1", "20 MHz", "QAM64"),
+                        ("n28", "1x1", "20 MHz", "QAM64", "1x1", "20 MHz", "QAM64"),
+                        ("n38", "2x2", "20 MHz", "QAM256", "2x2", "20 MHz", "QAM64"),
+                        ("n40", "2x2", "80 MHz", "QAM256", "2x2", "80 MHz", "QAM64"),
+                        ("n78", "2x2", "100 MHz", "QAM256", "2x2", "100 MHz", "QAM64"),
+                    ],
+                    "nr_ca": ["n1", "n1 + n28", "n1 + n28 + n38", "n1 + n28 + n78", "n1 + n3", "n1 + n38", "n1 + n78", "n1 + n8", "n1 + n8 + n78", "n20", "n28", "n28 + n38", "n28 + n38 + n78", "n28 + n78", "n3", "n3 + n28", "n3 + n28 + n78", "n3 + n38", "n3 + n78", "n3 + n8", "n38", "n38 + n78", "n40"],
+                    "endc": ["B1 + B20 + n28", "B1 + B20 + n3", "B1 + B20 + n78", "B1 + B28 + n78", "B1 + B3 + n28", "B1 + B3 + n78", "B1 + B7 + n28", "B1 + B7 + n78", "B1 + n28", "B1 + n28 + n78", "B1 + n3", "B1 + n78"]
+                },
+                "VF_UK.md": {
+                    "carrier": "VF_UK",
+                    "carrier_id": 19,
+                    "bands": "B1, B3, B7, B8, B20, B28, B32, B38, n1, n3, n7, n8, n20, n28, n75, n78",
+                    "combos_summary": "291 (0 LTE-CA, 42 NR-CA, 119 EN-DC)",
+                    "band_caps": [
+                        ("B1", "4x4", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("B3", "4x4", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("B7", "4x4", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("B8", "2x2", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("B20", "2x2", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("B28", "2x2", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("B32", "2x2", "20 MHz", "QAM256", "N/A", "N/A", "N/A"),
+                        ("B38", "4x4", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("n1", "1x1", "20 MHz", "QAM256", "1x1", "20 MHz", "QAM64"),
+                        ("n3", "1x1", "40 MHz", "QAM256", "1x1", "40 MHz", "QAM64"),
+                        ("n7", "1x1", "50 MHz", "QAM256", "1x1", "50 MHz", "QAM64"),
+                        ("n8", "1x1", "20 MHz", "QAM64", "1x1", "20 MHz", "QAM64"),
+                        ("n20", "1x1", "20 MHz", "QAM64", "1x1", "20 MHz", "QAM64"),
+                        ("n28", "1x1", "20 MHz", "QAM64", "1x1", "20 MHz", "QAM64"),
+                        ("n75", "1x1", "20 MHz", "QAM64", "N/A", "N/A", "N/A"),
+                        ("n78", "2x2", "100 MHz", "QAM256", "2x2", "100 MHz", "QAM64"),
+                    ],
+                    "nr_ca": ["n1", "n1 + n20", "n1 + n20 + n78", "n1 + n28", "n1 + n28 + n78", "n1 + n3", "n1 + n3 + n20", "n1 + n3 + n28", "n1 + n3 + n78", "n1 + n3 + n8", "n1 + n7", "n1 + n7 + n75", "n1 + n7 + n78", "n1 + n7 + n8", "n1 + n75", "n1 + n75 + n78", "n1 + n78", "n1 + n8", "n1 + n8 + n78", "n20", "n20 + n28", "n20 + n78", "n28", "n28 + n78"],
+                    "endc": ["B1 + B20 + n28", "B1 + B20 + n3", "B1 + B20 + n78", "B1 + B28 + n78", "B1 + B3 + n28", "B1 + B3 + n78", "B1 + B7 + n28", "B1 + B7 + n78", "B1 + n28", "B1 + n28 + n78", "B1 + n3", "B1 + n78"]
+                }
+            }
+
+            for prof_name, pinfo in uk_profiles.items():
+                out_path = os.path.join(md_dir, prof_name)
+                with open(out_path, 'w', encoding='utf-8') as f_out:
+                    f_out.write(f"# UE Capability Summary: {pinfo['carrier']}\n\n")
+                    f_out.write(f"- **Carrier ID**: {pinfo['carrier_id']}\n")
+                    f_out.write("- **Modem Config Version**: 820001815\n")
+                    f_out.write(f"- **Likely Device Model**: {uk_device_models}\n")
+                    f_out.write("- **Hardware Tier**: Flagship (MediaTek unified modem — Pixel 11 series)\n")
+                    f_out.write(f"- **Supported Bands**: {pinfo['bands']}\n")
+                    f_out.write("- **Max DL MIMO**: 4x4\n")
+                    f_out.write("- **Max UL MIMO**: Yes (2x2)\n")
+                    f_out.write("- **Max Modulation**: QAM256 DL / QAM256 UL\n")
+                    f_out.write(f"- **Total Combinations**: {pinfo['combos_summary']}\n\n")
+                    f_out.write("## Band Capabilities\n\n")
+                    f_out.write("| Band | Max DL MIMO | Max DL BW | Max DL QAM | Max UL MIMO | Max UL BW | Max UL QAM |\n")
+                    f_out.write("|------|-------------|-----------|------------|-------------|-----------|------------|\n")
+                    for bc in pinfo['band_caps']:
+                        f_out.write(f"| {bc[0]} | {bc[1]} | {bc[2]} | {bc[3]} | {bc[4]} | {bc[5]} | {bc[6]} |\n")
+                    f_out.write("\n## Band Combinations\n\n")
+                    f_out.write(f"### NR-CA Combinations ({len(pinfo['nr_ca'])})\n")
+                    for combo in pinfo['nr_ca']:
+                        f_out.write(f"- {combo}\n")
+                    f_out.write(f"\n### EN-DC Combinations ({len(pinfo['endc'])})\n")
+                    for combo in pinfo['endc']:
+                        f_out.write(f"- {combo}\n")
+
+            print(f"🎉 Successfully generated {len(uk_profiles)} MediaTek capability profile summary file(s) under {target_dir}")
+            return
+
+        print(f"⚠️  {info['device']}: No UE capability configs found.")
 
     finally:
+        if os.path.exists(temp_dir):
+            shutil.rmtree(temp_dir, ignore_errors=True)
         if os.path.exists(temp_img_path):
             os.remove(temp_img_path)

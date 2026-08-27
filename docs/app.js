@@ -216,6 +216,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     function getGeneration(friendlyName) {
         const lower = friendlyName.toLowerCase();
+        if (lower.includes('11')) return 11;
         if (lower.includes('10')) return 10;
         if (lower.includes('9')) return 9;
         if (lower.includes('8')) return 8;

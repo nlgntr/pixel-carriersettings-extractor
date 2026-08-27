@@ -1,0 +1,12 @@
+# Compiled automatically from CarrierSettings.pb overlays via Gemini
+
+[[carrier_id]]
+mcc_mnc = "23450"
+spn = "JT"
+
+[settings]
+version = 80000000002
+
+[settings.config]
+carrier_volte_available = true
+enhanced_4g_lte_on_by_default = false

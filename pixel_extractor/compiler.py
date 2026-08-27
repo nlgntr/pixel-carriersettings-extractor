@@ -173,26 +173,33 @@ def match_uecaps_to_carrier(
     toml_base = toml_filename.lower().replace(".toml", "").replace("_gb", "").replace("_us", "").replace("_de", "")
     matches = []
 
+    is_uk_carrier = toml_filename.lower().endswith("_gb.toml")
+    non_uk_suffixes = ("_de", "_at", "_ie", "_mx", "_fr", "_nl", "_dk", "_no", "_se", "_us")
+
     for summary in uecap_summaries:
         carrier_lower = summary.carrier.lower()
-        fn_lower = summary.filename.lower()
+        fn_clean = summary.filename.lower().replace(".md", "")
+
+        # Skip international profiles if compiling for UK carrier
+        if is_uk_carrier and any(fn_clean.endswith(sfx) for sfx in non_uk_suffixes):
+            continue
 
         # Use first token of filename to prevent false positive substring matches
-        first_part = fn_lower.split("_")[0]
+        first_part = fn_clean.split("_")[0]
 
         if toml_base == carrier_lower or toml_base == first_part:
             matches.append(summary)
             continue
 
         # Hardcoded overrides for common UK carriers
-        if toml_base == "h3" and (first_part == "3" or "three" in carrier_lower):
+        if toml_base == "h3" and (first_part in ("3", "three") or carrier_lower == "three"):
             matches.append(summary)
-        elif toml_base == "o2postpaid" or toml_base == "o2prepaid":
-            if first_part == "o2" or "o2" in carrier_lower:
-                matches.append(summary)
-        elif toml_base == "vodafone":
-            if first_part == "vf" or "vf" in carrier_lower or "vodafone" in carrier_lower:
-                matches.append(summary)
+        elif toml_base in ("o2postpaid", "o2prepaid") and (first_part == "o2" or carrier_lower == "o2"):
+            matches.append(summary)
+        elif toml_base == "vodafone" and (first_part in ("vf", "vodafone") or carrier_lower == "vodafone"):
+            matches.append(summary)
+        elif toml_base == "ee" and (first_part == "ee" or carrier_lower == "ee"):
+            matches.append(summary)
 
     return matches
 
